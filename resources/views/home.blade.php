@@ -19,11 +19,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4">
+            {{-- <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
                     <button class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>Add</button>
                 </div>                        
-            </div>
+            </div> --}}
         </div>          
     </div>
     <!-- End Breadcrumbbar -->
