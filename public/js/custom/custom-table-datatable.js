@@ -14,9 +14,17 @@ $(document).ready(function() {
         responsive: true
     } );    
     var table = $('#datatable-buttons').DataTable({
-        lengthChange: false,
-        responsive: true,
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        dom: '<"top"lB><"bottom"frtip>',
+        lengthMenu: [10, 25, 50, 75, 100,200,300,400],
+        pageLength: 10 ,
+        buttons:
+            ['copy', 'csv', 'excel', 'pdf',
+            {
+            extend: 'print',
+            exportOptions: {
+                columns: ":visible:not(.notexport)"
+            }
+        }],
     });
     table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 });
