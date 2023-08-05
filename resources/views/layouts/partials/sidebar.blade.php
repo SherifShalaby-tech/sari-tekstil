@@ -169,6 +169,7 @@
                         <li><a href="{{route('types.index')}}">@lang('lang.types')</a></li>
                         <li><a href="{{route('colors.index')}}">@lang('lang.colors')</a></li>
                         <li><a href="{{route('fills.index')}}">@lang('lang.fills')</a></li>
+                        <li><a href="{{route('cars.index')}}">@lang('lang.cars')</a></li>
                     </ul>
                 </li>                       
                 <li>

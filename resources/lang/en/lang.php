@@ -23,6 +23,7 @@ return [
     'extras'=>'Extras',
     'colors'=>'Colors',
     'fills'=>'Fills',
+    'cars'=>'Cars'
 ];
 
 ?>
