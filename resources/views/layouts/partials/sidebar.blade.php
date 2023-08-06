@@ -154,6 +154,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('customers.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.customers')</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javaScript:void();">
                         <i class="ri-pages-line"></i>@lang('lang.extras')<i class="ri-arrow-right-s-line"></i>
                     </a>
