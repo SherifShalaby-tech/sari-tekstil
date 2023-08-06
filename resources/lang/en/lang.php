@@ -45,6 +45,10 @@ return [
     'edit_customers'=>'Edit Customers',
     'company_address'=>'Company Address',
     'shipping_address'=>'Shipping Address',
+    'employees'=>'Employees',
+    'add_employees'=>'Add Employees',
+    'edit_employees'=>'Edit Employees',
+    'jobs'=>'Jobs'
 ];
 
 ?>
