@@ -23,6 +23,23 @@ return [
     'extras'=>'Extras',
     'colors'=>'Colors',
     'fills'=>'Fills',
+    'suppliers'=>'Suppliers',
+    'add_suppliers'=>'Add Suppliers',
+    'company_name'=>'Company Name',
+    'responsable_name'=>'Responsable Name',
+    'email'=>'Email',
+    'country'=>'Country',
+    'phone'=>'Phone',
+    'bank_name'=>'Bank Name',
+    'iban'=>'IBAN',
+    'currency'=>'Currency',
+    'address'=>'Address',
+    'phone_numbers'=>'Phone Numbers',
+    'bank_acount_details'=>'Bank Acount Details',
+    'please_select'=>'Please Select',
+    'edit_suppliers'=>'Edit Suppliers',
+    'total_purchases'=>'Total Purchases',
+    'total_debt'=>'Total Debt',
 ];
 
 ?>

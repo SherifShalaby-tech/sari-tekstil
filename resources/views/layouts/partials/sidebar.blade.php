@@ -149,16 +149,9 @@
                     </ul>
                 </li>                        
                 <li>
-                    <a href="javaScript:void();">
-                        <i class="ri-table-line"></i><span>Tables</span><i class="ri-arrow-right-s-line"></i>
+                    <a href="{{route('suppliers.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.suppliers')</span>
                     </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="table-bootstrap.html">Bootstrap</a></li>
-                        <li><a href="table-datatable.html">Datatable</a></li>
-                        <li><a href="table-editable.html">Editable</a></li>
-                        <li><a href="table-footable.html">Foo</a></li>
-                        <li><a href="table-rwdtable.html">RWD</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();">

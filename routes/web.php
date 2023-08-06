@@ -5,6 +5,7 @@ use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect('/home');
@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('types',TypeController::class);
     Route::resource('colors',ColorController::class);
     Route::resource('fills',FillController::class);
+    Route::resource('suppliers',SupplierController::class);
 
 });
 Auth::routes();
