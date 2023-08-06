@@ -6,6 +6,7 @@ use App\Http\Requests\ColorRequest;
 use App\Http\Requests\UpdateColorRequest;
 use App\Models\Color;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ColorController extends Controller
@@ -34,7 +35,7 @@ class ColorController extends Controller
     {
         try {
             $data = $request->except('_token');
-            // $data['created_by']=Auth::user()->id;
+            $data['created_by']=Auth::user()->id;
             $color = Color::create($data);
             $output = [
                 'success' => true,
@@ -80,7 +81,7 @@ class ColorController extends Controller
     {
         try {
             $data['name'] = $request->name;
-            // $data['edited_by'] = Auth::user()->id;
+            $data['edited_by'] = Auth::user()->id;
             Color::find($id)->update($data);
             $output = [
                 'success' => true,
@@ -104,7 +105,7 @@ class ColorController extends Controller
     {
         try {
             $color=Color::find($id);
-            // $color->deleted_by=Auth::user()->id;
+            $color->deleted_by=Auth::user()->id;
             $color->save();
             $color->delete();
             $output = [

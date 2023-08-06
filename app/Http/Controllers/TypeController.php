@@ -6,6 +6,7 @@ use App\Http\Requests\TypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class TypeController extends Controller
@@ -34,7 +35,7 @@ class TypeController extends Controller
     {
         try {
             $data = $request->except('_token');
-            // $data['created_by']=Auth::user()->id;
+            $data['created_by']=Auth::user()->id;
             $type = Type::create($data);
             $output = [
                 'success' => true,
@@ -80,7 +81,7 @@ class TypeController extends Controller
     {
         try {
             $data['name'] = $request->name;
-            // $data['edited_by'] = Auth::user()->id;
+            $data['edited_by'] = Auth::user()->id;
             Type::find($id)->update($data);
             $output = [
                 'success' => true,
@@ -104,7 +105,7 @@ class TypeController extends Controller
     {
         try {
             $type=Type::find($id);
-            // $type->deleted_by=Auth::user()->id;
+            $type->deleted_by=Auth::user()->id;
             $type->save();
             $type->delete();
             $output = [

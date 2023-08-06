@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 // Route::get('/', [HomeController::class,'index'])->name('home');
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('user/check-password', [HomeController::class, 'checkPassword']);
     Route::resource('nationality',NationalityController::class);
     Route::resource('types',TypeController::class);
