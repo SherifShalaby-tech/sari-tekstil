@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->string('employee_name');
 			$table->date('date_of_start_working')->nullable();
 			$table->integer('job_type_id')->unsigned()->nullable();
-			$table->string('mobile')->nullable();
+			$table->string('phone')->nullable();
 			$table->date('date_of_birth')->nullable();
 			$table->integer('annual_leave_per_year')->nullable();
 			$table->integer('sick_leave_per_year')->nullable();

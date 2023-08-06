@@ -61,6 +61,7 @@
                         <div class="col-md-3">
                             {!! Form::label('phone', __('lang.phone'), ['class'=>'h6 pt-3']) !!}
                             {!! Form::text('phone', null, [
+                                'id'=>"inputmask-phone",
                                 'class' => 'form-control',
                                 'placeholder'=>__('lang.phone')
                             ]) !!}
@@ -77,18 +78,43 @@
                     <div class="row">
                         <div class="col-md-3">
                             {!! Form::label('password', __('lang.password'), ['class'=>'h6 pt-3']) !!}
-                            {!! Form::text('password', null, [
+                            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="{{__('lang.password')}}">
+                        </div>
+                        <div class="col-md-3">
+                            {!! Form::label('confirm_password', __('lang.confirm_password'), ['class'=>'h6 pt-3']) !!}
+                            <input type="password" class="form-control" name="confirm_password" id="inputPassword" placeholder="{{__('lang.confirm_password')}}">
+                        </div>
+                        <div class="col-md-3">
+                            {!! Form::label('date_of_start_working', __('lang.date_of_start_working'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::date('date_of_start_working', null, [
                                 'class' => 'form-control',
-                                'placeholder'=>__('lang.password')
+                                'placeholder'=>__('lang.date_of_start_working')
                             ]) !!}
                         </div>
                         <div class="col-md-3">
-                            {!! Form::label('password', __('lang.confirm_password'), ['class'=>'h6 pt-3']) !!}
-                            {!! Form::text('confirm_password', null, [
+                            {!! Form::label('date_of_birth', __('lang.date_of_birth'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::date('date_of_birth', null, [
                                 'class' => 'form-control',
-                                'placeholder'=>__('lang.confirm_password')
+                                'placeholder'=>__('lang.date_of_birth')
                             ]) !!}
                         </div>
+
+                        <div class="col-md-3">
+                            {!! Form::label('upload_files', __('lang.upload_files'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::file('upload_files[]', null, [
+                                'class' => 'form-control',
+                                'multiple',
+                                'placeholder'=>__('lang.upload_files')
+                            ]) !!}
+                        </div>
+                        <div class="col-md-3">
+                            {!! Form::label('photo', __('lang.profile_photo'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::file('photo', null, [
+                                'class' => 'form-control',
+                                'placeholder'=>__('lang.profile_photo')
+                            ]) !!}
+                        </div>
+
                     </div>
                     <div class="row pt-4">
                         <div class="col-md-3 pt-5">
