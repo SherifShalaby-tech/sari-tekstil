@@ -6,6 +6,7 @@ use App\Http\Requests\FillRequest;
 use App\Http\Requests\UpdateFillRequest;
 use App\Models\Fill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class FillController extends Controller
@@ -34,7 +35,7 @@ class FillController extends Controller
     {
         try {
             $data = $request->except('_token');
-            // $data['created_by']=Auth::user()->id;
+            $data['created_by']=Auth::user()->id;
             $fill = Fill::create($data);
             $output = [
                 'success' => true,
@@ -80,7 +81,7 @@ class FillController extends Controller
     {
         try {
             $data['name'] = $request->name;
-            // $data['edited_by'] = Auth::user()->id;
+            $data['edited_by'] = Auth::user()->id;
             Fill::find($id)->update($data);
             $output = [
                 'success' => true,
@@ -104,7 +105,7 @@ class FillController extends Controller
     {
         try {
             $fill=Fill::find($id);
-            // $fill->deleted_by=Auth::user()->id;
+            $fill->deleted_by=Auth::user()->id;
             $fill->save();
             $fill->delete();
             $output = [

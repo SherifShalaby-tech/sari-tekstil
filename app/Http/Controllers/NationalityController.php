@@ -34,7 +34,7 @@ class NationalityController extends Controller
     {
         try {
             $data = $request->except('_token');
-            // $data['created_by']=Auth::user()->id;
+            $data['created_by']=Auth::user()->id;
             $nationality = Nationality::create($data);
             $output = [
                 'success' => true,
@@ -80,7 +80,7 @@ class NationalityController extends Controller
     {
         try {
             $data['name'] = $request->name;
-            // $data['edited_by'] = Auth::user()->id;
+            $data['edited_by'] = Auth::user()->id;
             Nationality::find($id)->update($data);
             $output = [
                 'success' => true,
@@ -104,7 +104,7 @@ class NationalityController extends Controller
     {
         try {
             $nationality=Nationality::find($id);
-            // $nationality->deleted_by=Auth::user()->id;
+            $nationality->deleted_by=Auth::user()->id;
             $nationality->save();
             $nationality->delete();
             $output = [

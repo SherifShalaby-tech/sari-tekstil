@@ -6,6 +6,7 @@ use App\Models\Currency;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -52,7 +53,7 @@ class SupplierController extends Controller
         ]);
         try {
             $data = $request->except('_token');
-            // $data['created_by'] = Auth::user()->id;
+            $data['created_by'] = Auth::user()->id;
             $s=Supplier::create($data);
             $output = [
                 'success' => true,
@@ -98,7 +99,7 @@ class SupplierController extends Controller
         try {
             $data = $request->except('_token');
             $data['name'] = $request->name;
-            // $data['edited_by'] = Auth::user()->id;
+            $data['edited_by'] = Auth::user()->id;
             Supplier::find($id)->update($data);
             $output = [
                 'success' => true,
@@ -122,7 +123,7 @@ class SupplierController extends Controller
     {
         try {
             $supplier=Supplier::find($id);
-            // $supplier->deleted_by=Auth::user()->id;
+            $supplier->deleted_by=Auth::user()->id;
             $supplier->save();
             $supplier->delete();
             $output = [

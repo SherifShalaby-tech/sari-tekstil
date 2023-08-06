@@ -13,10 +13,10 @@ class HomeController extends Controller
     }
     public function checkPassword()
     {
-        // $user = User::find(request()->user()->id);
-        // if (Hash::check(request()->value, $user->password)) {
+        $user = User::find(request()->user()->id);
+        if (Hash::check(request()->value, $user->password)) {
             return ['success' => true];
-        // }
-        // return ['success' => false];
+        }
+        return ['success' => false];
     }
 }
