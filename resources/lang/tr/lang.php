@@ -46,6 +46,13 @@ return [
     'add_employees'=>'',
     'edit_employees'=>'',
     'jobs'=>'',
+    'confirm_password'=>'',
+    'password'=>'',
+    'job_type'=>'',
+    'date_of_start_working'=>'',
+    'date_of_birth'=>'',
+    'upload_files'=>'',
+    'profile_photo'=>'',
 ];
 
 ?>

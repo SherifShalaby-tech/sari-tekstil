@@ -48,7 +48,14 @@ return [
     'employees'=>'Employees',
     'add_employees'=>'Add Employees',
     'edit_employees'=>'Edit Employees',
-    'jobs'=>'Jobs'
+    'jobs'=>'Jobs',
+    'confirm_password'=>'Confirm Password',
+    'password'=>'Password',
+    'job_type'=>'Job Type',
+    'date_of_start_working'=>'Date Of Start Working',
+    'date_of_birth'=>'Date Of Birth',
+    'upload_files'=>'Upload Files',
+    'profile_photo'=>'Profile Photo',
 ];
 
 ?>
