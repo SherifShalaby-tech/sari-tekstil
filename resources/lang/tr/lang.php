@@ -37,6 +37,11 @@ return [
     'edit_suppliers'=>'',
     'total_purchases'=>'',
     'total_debt'=>'',
+    'customers'=>'',
+    'add_customers'=>'',
+    'edit_customers'=>'',
+    'company_address'=>'',
+    'shipping_address'=>'',
 ];
 
 ?>

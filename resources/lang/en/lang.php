@@ -40,6 +40,11 @@ return [
     'edit_suppliers'=>'Edit Suppliers',
     'total_purchases'=>'Total Purchases',
     'total_debt'=>'Total Debt',
+    'customers'=>'Customers',
+    'add_customers'=>'Add Customers',
+    'edit_customers'=>'Edit Customers',
+    'company_address'=>'Company Address',
+    'shipping_address'=>'Shipping Address',
 ];
 
 ?>

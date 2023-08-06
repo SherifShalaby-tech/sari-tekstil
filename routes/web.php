@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('colors',ColorController::class);
     Route::resource('fills',FillController::class);
     Route::resource('suppliers',SupplierController::class);
+    Route::resource('customers',CustomerController::class);
 
 });
 Auth::routes();
