@@ -43,6 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function employees()
+    {
+        return $this->hasOne(Employee::class,'user_id');
+    }
     public static function modulePermissionArray()
     {
         return [
@@ -59,15 +63,15 @@ class User extends Authenticatable
     {
         return [
             'dashboard' ,
-            'customer_module' => [
-                'customer' => __('lang.customer'),
-                'customer_type' => __('lang.customer_type'),
+            'customers_module' => [
+                'customer' => __('lang.customers'),
+                'customer_type' => __('lang.customer_types'),
                 'add_payment' => __('lang.add_payment'),
             ],
-            'supplier_module' => [
+            'suppliers_module' => [
                 'supplier' => __('lang.suppliers'),
             ],
-            'employee_module' => [
+            'employees_module' => [
                 'employee' => __('lang.employees'),
                 'employee_commission' => __('lang.employee_commission'),
                 'jobs' => __('lang.jobs'),
@@ -86,16 +90,10 @@ class User extends Authenticatable
                 'summary_report' => __('lang.summary_report'),
                 'sales_per_employee' => __('lang.sales_per_employee'),
                 'best_seller_report' => __('lang.best_seller_report'),
-                'product_report' => __('lang.product_report'),
-                'daily_sale_report' => __('lang.daily_sale_report'),
-                'monthly_sale_report' => __('lang.monthly_sale_report'),
-                'daily_purchase_report' => __('lang.daily_purchase_report'),
-                'monthly_purchase_report' => __('lang.monthly_purchase_report'),
                 'sale_report' => __('lang.sale_report'),
                 'purchase_report' => __('lang.purchase_report'),
                 'store_report' => __('lang.store_report'),
                 'store_stock_chart' => __('lang.store_stock_chart'),
-                'product_quantity_alert_report' => __('lang.product_quantity_alert_report'),
                 'user_report' => __('lang.user_report'),
                 'customer_report' => __('lang.customer_report'),
                 'supplier_report' => __('lang.supplier_report'),
