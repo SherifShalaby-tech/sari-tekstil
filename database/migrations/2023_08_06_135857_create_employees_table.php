@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('user_id')->constrained('users', 'id')->cascadeOnDelete();;
-			$table->string('pass_string')->nullable();
-			$table->string('employee_name');
+			$table->string('password')->nullable();
+			$table->string('name');
 			$table->date('date_of_start_working')->nullable();
 			$table->integer('job_type_id')->unsigned()->nullable();
 			$table->string('phone')->nullable();

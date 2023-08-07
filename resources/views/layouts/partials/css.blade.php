@@ -20,4 +20,9 @@
     <link href="{{ asset('plugins/pnotify/css/pnotify.custom.min.css')}}" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
      <script src="{{asset('js/jquery.min.js')}}"></script>
+    <style>
+    input:not([type=file],[type=search]),textarea,select{
+        border:2px solid #e4dfdf !important;
+    }
+</style>
 

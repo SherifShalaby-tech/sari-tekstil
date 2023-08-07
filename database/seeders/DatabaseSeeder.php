@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CurrenciesTableSeeder::class,
+            PermissionTableSeeder::class,
         ]);
     }
 }

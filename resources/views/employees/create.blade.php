@@ -49,12 +49,14 @@
                             {!! Form::label('name', __('lang.name'), ['class'=>'h6 pt-3']) !!}
                             {!! Form::text('name', null, [
                                 'class' => 'form-control required',
+                                'placeholder'=>__('lang.name')
                             ]) !!}
                         </div>
                         <div class="col-md-3">
                             {!! Form::label('email', __('lang.email'), ['class'=>'h6 pt-3']) !!}
                             {!! Form::email('email', null, [
                                 'class' => 'form-control required',
+                                'placeholder'=>__('lang.email')
                             ]) !!}
                         </div>
 
@@ -114,7 +116,81 @@
                                 'placeholder'=>__('lang.profile_photo')
                             ]) !!}
                         </div>
-
+                    </div>
+                    <div class="row mt-4">
+                        <!-- Button salary modal -->
+                        <button type="button" style="margin-left: 15px;" class="btn btn-primary"
+                                data-toggle="modal" data-target="#salary_details">
+                            @lang('lang.salary_details')
+                        </button>
+                        @include('employees.salary_details')
+                    </div>
+                    
+                    <div class="row mt-4">
+                        @foreach ($leave_types as $leave_type)
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="i-checks">
+                                        <input id="number_of_leaves{{ $leave_type->id }}"
+                                               name="number_of_leaves[{{ $leave_type->id }}][enabled]"
+                                               type="checkbox" value="1" class="form-control-custom">
+                                        <label
+                                            for="number_of_leaves{{ $leave_type->id }}"><strong>{{ $leave_type->name }}</strong></label>
+                                        <input type="number" class="form-control"
+                                               name="number_of_leaves[{{ $leave_type->id }}][number_of_days]"
+                                               id="number_of_leaves" placeholder="{{ $leave_type->name }}"
+                                               readonly value="{{ $leave_type->number_of_days_per_year }}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <label
+                                for="working_day_per_week">@lang('lang.select_working_day_per_week')</label>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>@lang('lang.check_in')</th>
+                                    <th> @lang('lang.check_out')</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($week_days as $key => $week_day)
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="i-checks">
+                                                    <input id="working_day_per_week{{ $key }}"
+                                                           name="working_day_per_week[{{ $key }}]"
+                                                           type="checkbox" value="1"
+                                                           class="form-control-custom">
+                                                    <label
+                                                        for="working_day_per_week{{ $key }}"><strong>{{ $week_day }}</strong></label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {!! Form::time('check_in[' . $key . ']', null, ['class' => 'form-control input-md check_in time_picker',]) !!}
+                                        </td>
+                                        <td>
+                                            {!! Form::time('check_out[' . $key . ']', null, ['class' => 'form-control input-md check_out time_picker',]) !!}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <h3>@lang('lang.user_rights')</h3>
+                        </div>
+                        <div class="col-md-12">
+                            @include('employees.permission')
+                        </div>
                     </div>
                     <div class="row pt-4">
                         <div class="col-md-3 pt-5">
@@ -132,4 +208,86 @@
 @endsection
 @push('javascripts')
 <script src="{{asset('app-js/employee.js')}}" ></script>
+
+<script>
+    $( document ).ready(function() {
+        $('.checked_all').change(function() {
+            tr = $(this).closest('tr');
+            var checked_all = $(this).prop('checked');
+
+            tr.find('.check_box').each(function(item) {
+                if (checked_all === true) {
+                    $(this).prop('checked', true)
+                } else {
+                    $(this).prop('checked', false)
+                }
+            })
+        })
+        $('.all_module_check_all').change(function() {
+            var all_module_check_all = $(this).prop('checked');
+            $('#permission_table > tbody > tr').each((i, tr) => {
+                $(tr).find('.check_box').each(function(item) {
+                    if (all_module_check_all === true) {
+                        $(this).prop('checked', true)
+                    } else {
+                        $(this).prop('checked', false)
+                    }
+                })
+                $(tr).find('.module_check_all').each(function(item) {
+                    if (all_module_check_all === true) {
+                        $(this).prop('checked', true)
+                    } else {
+                        $(this).prop('checked', false)
+                    }
+                })
+                $(tr).find('.checked_all').each(function(item) {
+                    if (all_module_check_all === true) {
+                        $(this).prop('checked', true)
+                    } else {
+                        $(this).prop('checked', false)
+                    }
+                })
+
+            })
+        })
+        $('.module_check_all').change(function() {
+            let moudle_id = $(this).closest('tr').data('moudle');
+            if ($(this).prop('checked')) {
+                $('.sub_module_permission_' + moudle_id).find('.checked_all').prop('checked', true);
+                $('.sub_module_permission_' + moudle_id).find('.check_box').prop('checked', true);
+            } else {
+                $('.sub_module_permission_' + moudle_id).find('.checked_all').prop('checked', false);
+                $('.sub_module_permission_' + moudle_id).find('.check_box').prop('checked', false);
+            }
+        })
+        $(document).on('change', '.view_check_all', function() {
+            if ($(this).prop('checked')) {
+                $('.check_box_view').prop('checked', true);
+            } else {
+                $('.check_box_view').prop('checked', false);
+            }
+        });
+        $(document).on('change', '.create_check_all', function() {
+            if ($(this).prop('checked')) {
+                $('.check_box_create').prop('checked', true);
+            } else {
+                $('.check_box_create').prop('checked', false);
+            }
+        });
+        $(document).on('change', '.delete_check_all', function() {
+            if ($(this).prop('checked')) {
+                $('.check_box_delete').prop('checked', true);
+            } else {
+                $('.check_box_delete').prop('checked', false);
+            }
+        });
+
+        $(document).on('focusout', '.check_in', function() {
+            $('.check_in').val($(this).val())
+        })
+        $(document).on('focusout', '.check_out', function() {
+            $('.check_out').val($(this).val())
+        })
+    });
+</script>
 @endpush
