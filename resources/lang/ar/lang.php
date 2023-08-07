@@ -23,6 +23,8 @@ return [
     'extras'=>'اضافات',
     'colors'=>'الوان',
     'fills'=>'التعبئة',
+    'cars'=>'العربات',
+    'max_branches'=> 'انت تمتلك اقصى عدد من الفروع.',
     'suppliers'=>'الموردين',
     'add_suppliers'=>'اضافة مورد',
     'company_name'=>'اسم الشركة',

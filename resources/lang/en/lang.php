@@ -23,6 +23,8 @@ return [
     'extras'=>'Extras',
     'colors'=>'Colors',
     'fills'=>'Fills',
+    'cars'=>'Cars',
+    'max_branches'=> 'You hae the maximum number of branches',
     'suppliers'=>'Suppliers',
     'add_suppliers'=>'Add Suppliers',
     'company_name'=>'Company Name',
