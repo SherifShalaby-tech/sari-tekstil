@@ -172,6 +172,8 @@
                         <li><a href="{{route('cars.index')}}">@lang('lang.cars')</a></li>
                         <li><a href="{{route('opening.index')}}">@lang('lang.opening')</a></li>
                         <li><a href="{{route('screening.index')}}">@lang('lang.screening')</a></li>
+                        <li><a href="{{route('branches.index')}}">@lang('lang.branches')</a></li>
+                        <li><a href="{{route('stores.index')}}">@lang('lang.stores')</a></li>
                     </ul>
                 </li>                       
                 <li>

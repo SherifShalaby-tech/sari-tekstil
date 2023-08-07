@@ -23,7 +23,8 @@ return [
     'extras'=>'Extras',
     'colors'=>'Colors',
     'fills'=>'Fills',
-    'cars'=>'Cars'
+    'cars'=>'Cars',
+    'max_branches'=> 'You hae the maximum number of branches',
 ];
 
 ?>
