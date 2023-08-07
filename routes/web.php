@@ -10,6 +10,7 @@ use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect('/home');
@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('screening',ScreeningController::class);
     Route::resource('branches',BranchController::class);
     Route::resource('stores',StoreController::class);
+    Route::resource('suppliers',SupplierController::class);
 
 });
 Auth::routes();
