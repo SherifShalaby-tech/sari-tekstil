@@ -6,7 +6,10 @@ use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
+use App\Http\Controllers\OpeningController;
+use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\TypeController;
+use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +36,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user/check-password', [HomeController::class, 'checkPassword']);
     Route::resource('nationality',NationalityController::class);
     Route::resource('cars',CarsController::class);
+    Route::resource('opening',OpeningController::class);
     Route::resource('types',TypeController::class);
     Route::resource('colors',ColorController::class);
     Route::resource('fills',FillController::class);
+    Route::resource('screening',ScreeningController::class);
 
 });
 Auth::routes();
