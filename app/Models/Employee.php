@@ -11,6 +11,17 @@ class Employee extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = ['id'];
     protected $table = 'employees';
+    protected $casts = [
+        'working_day_per_week' => 'array',
+        // 'store_id' => 'array',
+        'check_in' => 'array',
+        'check_out' => 'array',
+        'files' => 'array',
+        'commission_customer_types' => 'array',
+        // 'commission_stores' => 'array',
+        'comission_cashier' => 'array'
+
+    ];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

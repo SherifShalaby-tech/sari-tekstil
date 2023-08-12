@@ -35,29 +35,35 @@
                         'method' => 'post',
                         'enctype' => 'multipart/form-data',
                     ]) !!}
-                    <div class="row">
-                        {{--                     
+                    <div class="row">               
                         <div class="col-md-3">
-                            {!! Form::label('responsable_name', __('lang.responsable_name'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::label('branch_name', __('lang.branch_name'), ['class'=>'h6 pt-3']) !!}
                                 {!! Form::select(
-                                    'responsable_id',
-                                    $users,null,
+                                    'branch_id',
+                                    $branches,null,
                                     ['class' => 'form-control required','placeholder'=>__('lang.please_select'),'id'=>'brand_id']
                             ) !!}
-                        </div> --}}
+                        </div>
                         <div class="col-md-3">
                             {!! Form::label('name', __('lang.name'), ['class'=>'h6 pt-3']) !!}
                             {!! Form::text('name', null, [
                                 'class' => 'form-control required',
                                 'placeholder'=>__('lang.name')
                             ]) !!}
+                            @error('name')
+                                <label class="text-danger error-msg">{{ $message }}</label>
+                            @enderror
                         </div>
+
                         <div class="col-md-3">
                             {!! Form::label('email', __('lang.email'), ['class'=>'h6 pt-3']) !!}
                             {!! Form::email('email', null, [
                                 'class' => 'form-control required',
                                 'placeholder'=>__('lang.email')
                             ]) !!}
+                            @error('email')
+                                <label class="text-danger error-msg">{{ $message }}</label>
+                            @enderror
                         </div>
 
                         <div class="col-md-3">
@@ -72,19 +78,29 @@
                             {!! Form::label('job_type', __('lang.job_type'), ['class'=>'h6 pt-3']) !!}
                                 {!! Form::select(
                                     'job_type_id',
-                                    $users,null,
+                                    $jobs,null,
                                     ['class' => 'form-control required','placeholder'=>__('lang.please_select'),'id'=>'brand_id']
                             ) !!}
+                        </div>
+                        <div class="col-md-3">
+                            {!! Form::label('daily_limit_of_daily_production', __('lang.daily_limit_of_daily_production'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::number('daily_limit_of_daily_production', null, [
+                                'class' => 'form-control required',
+                                'placeholder'=>__('lang.daily_limit_of_daily_production')
+                            ]) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             {!! Form::label('password', __('lang.password'), ['class'=>'h6 pt-3']) !!}
                             <input type="password" class="form-control" name="password" id="inputPassword" placeholder="{{__('lang.password')}}">
+                            @error('password')
+                                <label class="text-danger error-msg">{{ $message }}</label>
+                            @enderror
                         </div>
                         <div class="col-md-3">
                             {!! Form::label('confirm_password', __('lang.confirm_password'), ['class'=>'h6 pt-3']) !!}
-                            <input type="password" class="form-control" name="confirm_password" id="inputPassword" placeholder="{{__('lang.confirm_password')}}">
+                            <input type="password" class="form-control" name="password_confirmation" id="inputPassword" placeholder="{{__('lang.confirm_password')}}">
                         </div>
                         <div class="col-md-3">
                             {!! Form::label('date_of_start_working', __('lang.date_of_start_working'), ['class'=>'h6 pt-3']) !!}
@@ -103,11 +119,12 @@
 
                         <div class="col-md-3">
                             {!! Form::label('upload_files', __('lang.upload_files'), ['class'=>'h6 pt-3']) !!}
-                            {!! Form::file('upload_files[]', null, [
+                            {{-- {!! Form::file('upload_files[]', null, [
                                 'class' => 'form-control',
-                                'multiple',
+                                'multiple'=>'multiple',
                                 'placeholder'=>__('lang.upload_files')
-                            ]) !!}
+                            ]) !!} --}}
+                             <input type="file" name="upload_files[]"  multiple>
                         </div>
                         <div class="col-md-3">
                             {!! Form::label('photo', __('lang.profile_photo'), ['class'=>'h6 pt-3']) !!}

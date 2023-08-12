@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
+			$table->integer('branch_id')->constrained('branches', 'id')->cascadeOnDelete();;
 			$table->integer('user_id')->constrained('users', 'id')->cascadeOnDelete();;
 			$table->string('password')->nullable();
 			$table->string('name');
@@ -21,15 +22,18 @@ return new class extends Migration
 			$table->string('phone')->nullable();
 			$table->date('date_of_birth')->nullable();
 			$table->integer('annual_leave_per_year')->nullable();
+			$table->integer('daily_limit_of_daily_production')->nullable();
 			$table->integer('sick_leave_per_year')->nullable();
 			$table->enum('payment_cycle', array('daily', 'weekly', 'monthly'))->nullable();
 			$table->tinyInteger('commission')->nullable();
 			$table->decimal('commission_value', 10,2)->nullable();
-			$table->enum('commission_type', array('profit_sales'))->nullable();
+			$table->decimal('commission_over_daily_target', 10,2)->nullable();
+			$table->decimal('discount_over_daily_target', 10,2)->nullable();
+			$table->enum('commission_type', array('profit','sales'))->nullable();
 			$table->enum('commision_calculation_period', array('daily', 'weekly', 'one_month', 'three_month'))->nullable();
-			$table->text('comissioned_products')->nullable();
-			$table->text('comission_customer_types')->nullable();
-			$table->text('comission_stores')->nullable();
+
+			// $table->text('comission_customer_types')->nullable();
+			// $table->text('comission_stores')->nullable();
 			$table->text('comission_cashier')->nullable();
 			$table->string('working_day_per_weak')->nullable();
 			$table->string('check_in')->nullable();
@@ -39,6 +43,7 @@ return new class extends Migration
 			$table->boolean('fixed_wage')->default('0');
             $table->decimal('fixed_wage_value')->default('0');
             $table->string('photo')->nullable();
+            $table->text('files')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

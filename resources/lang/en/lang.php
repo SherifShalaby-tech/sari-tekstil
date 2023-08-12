@@ -129,6 +129,14 @@ return [
      'add_wages'=>'Add Wages',
      'customer_types' => 'Customer Types',
      'wage' => 'Wage',
+    'branch_name'=>'Branch Name',
+    'daily_limit_of_daily_production'=>'Daily limit of daily production',
+    'discount_over_daily_target'=>'Discounts in case of non-fulfillment of daily production',
+    'commission_over_daily_target'=>'Commission in case of increase over production',
+    'commission'=>'commission',
+    'age'=>'Age',
+
+
 ];
 
 ?>

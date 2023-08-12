@@ -40,13 +40,16 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>@lang('lang.profile_photo')</th>
                                 <th>@lang('lang.name')</th>
-                                <th>@lang('lang.responsable_name')</th>
                                 <th>@lang('lang.email')</th>
                                 <th>@lang('lang.phone_numbers')</th>
-                                <th>@lang('lang.country')</th>
-                                <th>@lang('lang.company_address')</th>
-                                <th>@lang('lang.shipping_address')</th>
+                                <th>@lang('lang.job_type')</th>
+                                <th>@lang('lang.wage')</th>
+                                {{-- <th>@lang('lang.annual_leave_balance')</th> --}}
+                                <th>@lang('lang.age')</th>
+                                <th>@lang('lang.date_of_start_working')</th>
+                                <th>@lang('lang.commission')</th>
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
@@ -56,21 +59,16 @@
                             @foreach($employees as $index=>$employee)
                             <tr>
                                 <td>{{ $index+1 }}</td>
+                                <td><img src="{{asset('uploads/employees/'.$employee->photo)}}"
+                                    alt="photo" width="50" height="50"></td>
                                 <td>{{$employee->name}}</td>
-                                {{-- <td>{{$employee->user->name}}</td>
-                                <td>
-                                    @for($i=0;$i<count($employee->emails);$i++)
-                                    {{$employee->emails[$i]}}<br>
-                                    @endfor
-                                </td>
-                                <td>
-                                    @for($i=0;$i<count($employee->phones);$i++)
-                                    {{$employee->phones[$i]}}<br>
-                                    @endfor
-                                </td>
-                                <td>{{$employee->country}}</td>
-                                <td>{{$employee->company_address}}</td>
-                                <td>{{$employee->shipping_address}}</td> --}}
+                                <td>{{$employee->user->email}}</td>
+                                <td>{{$employee->phone}}</td>
+                                <td>{{$employee->job_type->title}}</td>
+                                <td>{{$employee->fixed_wage_value}}</td>
+                                <td>{{Carbon\Carbon::parse($employee->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y');}}</td>
+                                <td>{{$employee->date_of_start_working}}</td>
+                                <td>{{$employee->commission_value}}</td>
                                 <td>
                                     @if ($employee->created_by  > 0 and $employee->created_by != null)
                                         {{ $employee->created_at->diffForHumans() }} <br>
