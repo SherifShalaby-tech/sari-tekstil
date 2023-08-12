@@ -129,6 +129,10 @@ return [
     'commission_over_daily_target'=>'',
     'commission'=>'',
     'age'=>'',
+    'vacation_types'=>'',
+    'vacation'=>'',
+    'vacations'=>'',
+    'number_of_days_per_year'=>'Number Of Days Per Year',
 ];
 
 ?>

@@ -15,6 +15,7 @@ use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\VacationTypeController;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('customers',CustomerController::class);
     Route::resource('employees',EmployeeController::class);
     Route::resource('jobs',JobController::class);
+    Route::resource('leave_types',VacationTypeController::class);
+    
 });
 Auth::routes();
 
