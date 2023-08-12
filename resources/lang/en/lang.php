@@ -135,7 +135,9 @@ return [
     'commission_over_daily_target'=>'Commission in case of increase over production',
     'commission'=>'commission',
     'age'=>'Age',
-
+    'vacation_types'=>'Vacation Types',
+    'vacation'=>'Vacation',
+    'vacations'=>'Vacations',
 
 ];
 
