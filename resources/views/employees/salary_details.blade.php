@@ -36,9 +36,20 @@
                         {!! Form::select('commission_type', $commission_type, !empty($employee->commission_type) ? $employee->commission_type : null, ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_type')]) !!}
                         <br>
                         <br>
-                        {!! Form::select('commission_calculation_period', $commission_calculation_period, !empty($employee->commission_calculation_period) ? $employee->commission_calculation_period : null, ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_calculation_period')]) !!}
+                        {!! Form::select('commision_calculation_period', $commission_calculation_period, !empty($employee->commision_calculation_period) ? $employee->commision_calculation_period : null, ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_calculation_period')]) !!}
                         <br>
                         <br>
+                        {!! Form::label('commission_over_daily_target', __('lang.commission_over_daily_target'), ['class'=>'h6 pt-3']) !!}
+                        {!! Form::text('commission_over_daily_target', !empty($employee->commission_over_daily_target) ? $employee->commission_over_daily_target : null, [
+                            'class' => 'form-control required',
+                            'placeholder'=>__('lang.commission_over_daily_target')
+                        ]) !!}
+                        <br>
+                        {!! Form::label('discount_over_daily_target', __('lang.discount_over_daily_target'), ['class'=>'h6 pt-3']) !!}
+                        {!! Form::text('discount_over_daily_target',!empty($employee->discount_over_daily_target) ? $employee->discount_over_daily_target : null, [
+                            'class' => 'form-control required',
+                            'placeholder'=>__('lang.discount_over_daily_target')
+                        ]) !!}
                         {{-- {!! Form::label('commissioned_products', __('lang.products') . ':', ['class' => 'text-muted']) !!}
                         {!! Form::select('commissioned_products[]', $products, !empty($employee->commissioned_products) ? $employee->commissioned_products : null, ['class' => 'form-control salary_select select2', 'multiple','placehoder'=>__('lang.please_select'), 'data-actions-box' => 'true']) !!} --}}
                         {{-- <br>
@@ -52,7 +63,7 @@
                         <br>
                         <br>
                         {!! Form::label('commission_cashiers', __('lang.cashiers') . ':', ['class' => 'text-muted']) !!}
-                        {!! Form::select('commission_cashiers[]', $cashiers, !empty($employee->commission_cashiers) ? $employee->commission_cashiers : null, ['class' => 'form-control salary_select select2', 'multiple','placehoder'=>__('lang.please_select'), 'data-actions-box' => 'true']) !!}
+                        {!! Form::select('comission_cashier[]', $cashiers, !empty($employee->commission_cashiers) ? $employee->commission_cashiers : null, ['class' => 'form-control salary_select select2', 'multiple','placehoder'=>__('lang.please_select'), 'data-actions-box' => 'true']) !!}
 
                     </div>
                 </div>

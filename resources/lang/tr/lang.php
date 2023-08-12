@@ -123,6 +123,12 @@ return [
     'add_wages'=>'',
     'customer_types' => '',
     'wage' => '',
+    'branch_name'=>'',
+    'daily_limit_of_daily_production'=>'',
+    'discount_over_daily_target'=>'',
+    'commission_over_daily_target'=>'',
+    'commission'=>'',
+    'age'=>'',
 ];
 
 ?>

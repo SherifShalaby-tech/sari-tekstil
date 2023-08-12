@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Role;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -41,8 +42,11 @@ class PermissionTableSeeder extends Seeder
             $d['created_at'] = $time_stamp;
             $insert_data[] = $d;
         }
+        $adminRole = Role::create(['name' => 'Administrator']);
         foreach ($insert_data as $item) {
-            Permission::updateOrCreate(['id' => $item['id']],$item);
+            $permission=Permission::updateOrCreate(['id' => $item['id']],$item);
+        $permission->assignRole($adminRole);
+
         }
     }
 }

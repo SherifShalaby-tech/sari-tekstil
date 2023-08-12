@@ -128,8 +128,12 @@ return [
     'add_wages'=>'اضافة اجر',
     'customer_types' => 'أنواع العملاء',
     'wage' => 'الأجر',
-    ''=>'',
-    ''=>'',
+    'branch_name'=>'اسم الفرع',
+    'daily_limit_of_daily_production'=>'الحد اليومي من الإنتاج اليومي',
+    'discount_over_daily_target'=>'الخصومات في حالة عدم إنجاز الإنتاج اليومي',
+    'commission_over_daily_target'=>'العمولة في حالة تخطى انتاج معين',
+    'commission'=>'عمولة',
+    'age'=>'العمر',
 ];
 
 ?>
