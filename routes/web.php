@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CalibersController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CustomerController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LabsController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
@@ -52,6 +54,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('customers',CustomerController::class);
     Route::resource('employees',EmployeeController::class);
     Route::resource('jobs',JobController::class);
+    Route::resource('lab',LabsController::class);
+    Route::resource('calibers',CalibersController::class);
 });
 Auth::routes();
 

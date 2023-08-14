@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="createBranchModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="createLabModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  rollIn  animated" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
                 <span aria-hidden="true">×</span>
                 </button>
             </div>
-            {!! Form::open(['route' => 'branches.store', 'method' => 'post', 'files' => true,'id' =>'branch-form' ]) !!}
+            {!! Form::open(['route' => 'lab.store', 'method' => 'post', 'files' => true,'id' =>'branch-form' ]) !!}
             <div class="modal-body">
                 <div class="form-group">
                    

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('lang.branches'))
+@section('title', __('lang.labs'))
 @section('breadcrumbbar')
     <!-- Start Breadcrumbbar -->                    
     <div class="breadcrumbbar">
@@ -13,7 +13,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.branches')</li>
+                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.labs')</li>
                             </ol>
                         </div>
                     </div>
@@ -21,13 +21,13 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createBranchModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#createLabModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
                 </div>                        
             </div>
         </div>          
     </div>
     <!-- End Breadcrumbbar -->
-    @include('branches.create')
+    @include('labs.create')
 @endsection
 @section('content')
     <!-- Start Contentbar -->    
@@ -52,32 +52,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($branches as $index=>$branch)
+                            @foreach($labs as $index=>$lab)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{$branch->name}}</td>
-                                <td>{{$branch->phone_number ?? 'NAN'}}</td>
-                                <td>{{$branch->email ?? 'NAN'}}</td>
-                                <td>{{$branch->manager_name ?? 'NAN'}}</td>
-                                <td>{{$branch->location ?? 'NAN'}}</td>
+                                <td>{{$lab->name}}</td>
+                                <td>{{$lab->phone_number ?? 'NAN'}}</td>
+                                <td>{{$lab->email ?? 'NAN'}}</td>
+                                <td>{{$lab->manager_name ?? 'NAN'}}</td>
+                                <td>{{$lab->location ?? 'NAN'}}</td>
                                 <td>
-                                    @if ($branch->created_by  > 0 and $branch->created_by != null)
-                                        {{ $branch->created_at->diffForHumans() }} <br>
-                                        {{ $branch->created_at->format('Y-m-d') }}
-                                        ({{ $branch->created_at->format('h:i') }})
-                                        {{ ($branch->created_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
-                                        {{ $branch->createBy?->name }}
+                                    @if ($lab->created_by  > 0 and $lab->created_by != null)
+                                        {{ $lab->created_at->diffForHumans() }} <br>
+                                        {{ $lab->created_at->format('Y-m-d') }}
+                                        ({{ $lab->created_at->format('h:i') }})
+                                        {{ ($lab->created_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
+                                        {{ $lab->createBy?->name }}
                                     @else
                                     {{ __('no_update') }}
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($branch->edited_by  > 0 and $branch->edited_by != null)
-                                        {{ $branch->updated_at->diffForHumans() }} <br>
-                                        {{ $branch->updated_at->format('Y-m-d') }}
-                                        ({{ $branch->updated_at->format('h:i') }})
-                                        {{ ($branch->updated_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
-                                        {{ $branch->updateBy?->name }}
+                                    @if ($lab->edited_by  > 0 and $lab->edited_by != null)
+                                        {{ $lab->updated_at->diffForHumans() }} <br>
+                                        {{ $lab->updated_at->format('Y-m-d') }}
+                                        ({{ $lab->updated_at->format('h:i') }})
+                                        {{ ($lab->updated_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
+                                        {{ $lab->updateBy?->name }}
                                     @else
                                        {{ __('no_update') }}
                                     @endif
@@ -89,11 +89,11 @@
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <li>
-                                                <a data-href="{{route('branch.edit', $branch->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                                <a data-href="{{route('lab.edit', $lab->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             <li class="divider"></li>
                                                 <li>
-                                                    <a data-href="{{route('branch.destroy', $branch->id)}}"
+                                                    <a data-href="{{route('lab.destroy', $lab->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>

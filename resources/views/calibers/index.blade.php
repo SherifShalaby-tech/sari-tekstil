@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('lang.branches'))
+@section('title', __('lang.calibers'))
 @section('breadcrumbbar')
     <!-- Start Breadcrumbbar -->                    
     <div class="breadcrumbbar">
@@ -13,7 +13,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.branches')</li>
+                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.calibers')</li>
                             </ol>
                         </div>
                     </div>
@@ -21,13 +21,13 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createBranchModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#createCaliberModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
                 </div>                        
             </div>
         </div>          
     </div>
     <!-- End Breadcrumbbar -->
-    @include('branches.create')
+    @include('calibers.create')
 @endsection
 @section('content')
     <!-- Start Contentbar -->    
@@ -41,43 +41,37 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>@lang('lang.name')</th>
-                                <th>@lang('lang.phone_number')</th>
-                                <th>@lang('lang.email')</th>
-                                <th>@lang('lang.manager_name')</th>
-                                <th>@lang('lang.location')</th>
+                                <th>@lang('lang.number')</th>
+                                {{-- <th>@lang('lang.store')</th> --}}
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($branches as $index=>$branch)
+                            @foreach($calibers as $index=>$caliber)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{$branch->name}}</td>
-                                <td>{{$branch->phone_number ?? 'NAN'}}</td>
-                                <td>{{$branch->email ?? 'NAN'}}</td>
-                                <td>{{$branch->manager_name ?? 'NAN'}}</td>
-                                <td>{{$branch->location ?? 'NAN'}}</td>
+                                <td>{{$caliber->number}}</td>
+                                {{-- <td>{{$car->store->name}}</td> --}}
                                 <td>
-                                    @if ($branch->created_by  > 0 and $branch->created_by != null)
-                                        {{ $branch->created_at->diffForHumans() }} <br>
-                                        {{ $branch->created_at->format('Y-m-d') }}
-                                        ({{ $branch->created_at->format('h:i') }})
-                                        {{ ($branch->created_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
-                                        {{ $branch->createBy?->name }}
+                                    @if ($caliber->created_by  > 0 and $caliber->created_by != null)
+                                        {{ $caliber->created_at->diffForHumans() }} <br>
+                                        {{ $caliber->created_at->format('Y-m-d') }}
+                                        ({{ $caliber->created_at->format('h:i') }})
+                                        {{ ($caliber->created_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
+                                        {{ $caliber->createBy?->name }}
                                     @else
                                     {{ __('no_update') }}
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($branch->edited_by  > 0 and $branch->edited_by != null)
-                                        {{ $branch->updated_at->diffForHumans() }} <br>
-                                        {{ $branch->updated_at->format('Y-m-d') }}
-                                        ({{ $branch->updated_at->format('h:i') }})
-                                        {{ ($branch->updated_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
-                                        {{ $branch->updateBy?->name }}
+                                    @if ($caliber->edited_by  > 0 and $caliber->edited_by != null)
+                                        {{ $caliber->updated_at->diffForHumans() }} <br>
+                                        {{ $caliber->updated_at->format('Y-m-d') }}
+                                        ({{ $caliber->updated_at->format('h:i') }})
+                                        {{ ($caliber->updated_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
+                                        {{ $caliber->updateBy?->name }}
                                     @else
                                        {{ __('no_update') }}
                                     @endif
@@ -89,11 +83,11 @@
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <li>
-                                                <a data-href="{{route('branch.edit', $branch->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                                <a data-href="{{route('calibers.edit', $caliber->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             <li class="divider"></li>
                                                 <li>
-                                                    <a data-href="{{route('branch.destroy', $branch->id)}}"
+                                                    <a data-href="{{route('calibers.destroy', $caliber->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>

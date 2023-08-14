@@ -129,6 +129,17 @@ return [
      'add_wages'=>'Add Wages',
      'customer_types' => 'Customer Types',
      'wage' => 'Wage',
+     'opening' => 'Opening',
+     'screening'=>'Screening',
+     'branches'=>'Branches',
+     'stores'=>'Stores',
+     'location'=>'Location',
+     'phone_number'=>'Phone Number',
+     'manager_name'=>'Manager Name',
+     'manager_mobile_number'=>'Manager mobile number',
+     'labs'=>'Labs',
+     'calibers'=>'Calibers',
+    'number'=>'Number',
 ];
 
 ?>

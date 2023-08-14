@@ -26,7 +26,7 @@
                 <div class="form-group">
                     {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
                     {!! Form::label('opening', __( 'lang.opening' ) . ':*') !!}
-                    {!! Form::select('opening_id', $openings,$screening->opening_id , ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'opening_id']) !!}
+                    {!! Form::select('opening_id', $openings,$screening->opening_id , ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'opening_id','required']) !!}
                     @error('opening_id')
                         <label class="text-danger error-msg">{{ $message }}</label>
                     @enderror
