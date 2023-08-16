@@ -145,7 +145,7 @@
                     
                     <div class="row mt-4">
                         @foreach ($leave_types as $leave_type)
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <div class="i-checks">
                                         <input id="number_of_leaves{{ $leave_type->id }}"

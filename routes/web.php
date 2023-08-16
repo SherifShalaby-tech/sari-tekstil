@@ -16,6 +16,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
+use App\Http\Controllers\WageController;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('employees',EmployeeController::class);
     Route::resource('jobs',JobController::class);
     Route::resource('leave_types',VacationTypeController::class);
+    Route::get('wages/calculate-salary-and-commission/{employee_id}/{payment_type}', [WageController::class,'calculateSalaryAndCommission']);
+    Route::get('wages/change-wage-status/{wage_id}', [WageController::class,'changeWageStatus'])->name('wages.changeWageStatus');
+    Route::resource('wages',WageController::class);
     
 });
 Auth::routes();

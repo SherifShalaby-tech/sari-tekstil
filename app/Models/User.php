@@ -60,6 +60,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function scopeNotview($query)
+    {
+        return $query->where('email', '!=', env( 'SYSTEM_SUPERADMIN','superadmin@sherifshalaby.tech'));
+    }
     public static function subModulePermissionArray()
     {
         return [
