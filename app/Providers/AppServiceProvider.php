@@ -37,5 +37,16 @@ class AppServiceProvider extends ServiceProvider
                 return null;
             }
         });
+
+          //Blade directive to return appropiate class according to attendance status
+          Blade::directive('attendance_status', function ($status) {
+            return "<?php if($status == 'late'){
+                    echo 'badge-warning';
+                }elseif($status == 'on_leave'){
+                    echo 'badge-danger';
+                }elseif ($status == 'present') {
+                    echo 'badge-success';
+                }?>";
+        });
     }
 }

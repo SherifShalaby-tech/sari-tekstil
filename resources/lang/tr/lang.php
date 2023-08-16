@@ -166,6 +166,19 @@ return [
     'paid' => '',
     'date_of_creation' => '',
     'job_title' => ' ',
+    'attendance' => 'katılım',
+    'checkin' => 'Giriş',
+    'checkout' => 'Çıkış yapmak',
+    'date' => 'Tarih',
+    'add_attendance'=>' ',
+    'edit_attendance'=>' ',
+    'add_row' => 'Satır ekle',
+    'attendance_list' => 'Katılımcı listesi',
+    'check_in_time' => 'Zamanında kontrol et',
+    'check_out_time' => 'Kontrol zamanı',
+    'late' => 'Geç',
+    'present' => 'Mevcut',
+    'on_leave' => 'İzinli',
 ];
 
 ?>

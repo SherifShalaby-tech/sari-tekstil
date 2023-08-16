@@ -91,4 +91,8 @@ class Employee extends Model
         }
         return $employees->toArray();
     }
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

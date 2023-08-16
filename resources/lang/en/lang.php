@@ -171,6 +171,19 @@ return [
     'paid' => 'Paid',
     'date_of_creation' => 'Date Of Creation',
     'job_title' => 'Job Title',
+    'attendance'=>'Attendance',
+    'add_attendance'=>'Add Attendance',
+    'edit_attendance'=>'Edit Attendance',
+    'add_row' => 'Add Row',
+    'checkin' => 'CheckIn',
+    'checkout' => 'CheckOut',
+    'date' => 'Date',
+    'attendance_list' => 'Attendance List',
+    'check_in_time' => 'Check In Time',
+    'check_out_time' => 'Check Out Time',
+    'late' => 'Late',
+    'present' => 'Present',
+    'on_leave' => 'On Leave',
 ];
 
 ?>
