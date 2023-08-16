@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ColorController;
@@ -58,6 +59,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('wages/calculate-salary-and-commission/{employee_id}/{payment_type}', [WageController::class,'calculateSalaryAndCommission']);
     Route::get('wages/change-wage-status/{wage_id}', [WageController::class,'changeWageStatus'])->name('wages.changeWageStatus');
     Route::resource('wages',WageController::class);
+    Route::get('attendance/get-attendance-row/{row_index}', [AttendanceController::class,'getAttendanceRow']);
+    Route::resource('attendance',AttendanceController::class);
     
 });
 Auth::routes();
