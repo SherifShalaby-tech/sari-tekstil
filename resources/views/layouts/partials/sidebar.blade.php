@@ -136,6 +136,7 @@
                         <li><a href="{{route('employees.index')}}">@lang('lang.employees')</a></li>
                         <li><a href="{{route('jobs.index')}}">@lang('lang.jobs')</a></li>
                         <li><a href="{{route('leave_types.index')}}">@lang('lang.vacation_types')</a></li>
+                        <li><a href="{{route('wages.index')}}">@lang('lang.wages')</a></li>
                     </ul>
                 </li>                        
                 <li>
