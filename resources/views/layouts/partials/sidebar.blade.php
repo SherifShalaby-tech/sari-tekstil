@@ -138,6 +138,8 @@
                         <li><a href="{{route('leave_types.index')}}">@lang('lang.vacation_types')</a></li>
                         <li><a href="{{route('wages.index')}}">@lang('lang.wages')</a></li>
                         <li><a href="{{route('attendance.index')}}">@lang('lang.attendance')</a></li>
+                        <li><a href="{{route('leaves.index')}}">@lang('lang.view_list_of_employees_in_leave')</a></li>
+                        <li><a href="{{route('forfeit-leaves.index')}}">@lang('lang.view_list_of_employees_in_forfeit_leave')</a></li>
                     </ul>
                 </li>                        
                 <li>

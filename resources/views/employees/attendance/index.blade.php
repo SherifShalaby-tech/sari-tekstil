@@ -8,7 +8,7 @@
                 <div class="media">
                     <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
                     <div class="media-body">
-                        <h4 class="page-title">E-Commerce</h4>
+                        <h4 class="page-title">{{ __('lang.attendance')}}</h4>
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
