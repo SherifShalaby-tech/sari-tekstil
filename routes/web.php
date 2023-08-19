@@ -7,8 +7,10 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FillController;
+use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
@@ -61,6 +63,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('wages',WageController::class);
     Route::get('attendance/get-attendance-row/{row_index}', [AttendanceController::class,'getAttendanceRow']);
     Route::resource('attendance',AttendanceController::class);
+    Route::resource('leaves',LeaveController::class);
+    Route::resource('forfeit-leaves',ForfeitLeaveController::class);
+    
     
 });
 Auth::routes();

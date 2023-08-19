@@ -8,7 +8,7 @@
                 <div class="media">
                     <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
                     <div class="media-body">
-                        <h4 class="page-title">E-Commerce</h4>
+                        <h4 class="page-title">{{__('lang.employees')}}</h4>
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -100,6 +100,9 @@
                                             <li>
                                                 <a href="{{route('employees.edit', $employee->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
+                                            <li>
+                                                <a data-href="{{route('forfeit-leaves.create', $employee->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.forfeit_leave')</a>
+                                            </li>
                                             <li class="divider"></li>
                                                 <li>
                                                     <a data-href="{{route('employees.destroy', $employee->id)}}"
@@ -113,7 +116,8 @@
                             @endforeach
                             </tbody>
                         </table>
-                      
+                        <div class="view_modal no-print" >
+                        </div>
                     </div>
             </div>
             <!-- End col -->

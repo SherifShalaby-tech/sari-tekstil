@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -94,5 +95,87 @@ class Employee extends Model
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public static function getBalanceLeave($id)
+    {
+        $employee = Employee::find($id);
+
+        $leave_balance = 0;
+        $worked_months = Employee::getWorkedMonth($employee);
+
+        $per_month_leaves = Employee::getEmployeeLeaveTotal($id) / 12;
+        $deserving_leaves_till_date = $per_month_leaves * $worked_months;
+
+        $leave_taken = Leave::whereDate('start_date', '<=', \Carbon\Carbon::now())->where('employee_id', $id)->where('status', 'approved')->sum('number_of_days');
+        $leave_balance = $deserving_leaves_till_date - $leave_taken;
+        //leave taken from attendance
+        $leave_taken_from_attendance = 0;
+        if (!empty($employee->date_of_start_working)) {
+            $leave_taken_from_attendance = Attendance::where('employee_id', $employee->id)->where('status', 'on_leave')->whereDate('date', '>=', $employee->date_of_start_working)->whereDate('date', '<=', date('Y-m-d'))->count();
+        } else {
+            $leave_taken_from_attendance = Attendance::where('employee_id', $employee->id)->where('status', 'on_leave')->whereDate('date', '<=', date('Y-m-d'))->count();
+        }
+
+        $leave_balance = $leave_balance - $leave_taken_from_attendance;
+
+        // $forfeit_leaves = ForfeitLeave::where('employee_id', $id)->where('start_date', Carbon::now()->format('Y'))->sum('number_of_days');
+        // $leave_balance = $leave_balance - $forfeit_leaves;
+
+        return number_format($leave_balance, 2);
+    }
+
+    public static function getBalanceLeaveByLeaveType($employee_id, $id)
+    {
+        $employee = Employee::find($employee_id);
+
+        $leave_balance = 0;
+        $worked_months = Employee::getWorkedMonth($employee);
+
+        $per_month_leaves = Employee::getEmployeeLeaveTotalByLeaveType($employee_id, $id) / 12;
+        $deserving_leaves_till_date = $per_month_leaves * $worked_months;
+
+        $leave_taken = Leave::whereDate('start_date', '<=', \Carbon\Carbon::now())->where('employee_id', $employee_id)->where('leave_type_id', $id)->where('status', 'approved')->sum('number_of_days');
+
+        $leave_balance = $deserving_leaves_till_date - $leave_taken;
+        //leave taken from attendance
+        $leave_taken_from_attendance = 0;
+        if (!empty($employee->date_of_start_working)) {
+            $leave_taken_from_attendance = Attendance::where('employee_id', $employee->id)->where('status', 'on_leave')->whereDate('date', '>=', $employee->date_of_start_working)->whereDate('date', '<=', date('Y-m-d'))->count();
+        } else {
+            $leave_taken_from_attendance = Attendance::where('employee_id', $employee->id)->where('status', 'on_leave')->whereDate('date', '<=', date('Y-m-d'))->count();
+        }
+
+        $leave_balance = $leave_balance - $leave_taken_from_attendance;
+
+        // $forfeit_leaves = ForfeitLeave::where('employee_id', $employee_id)->where('leave_type_id', $id)->where('start_date', Carbon::now()->format('Y'))->sum('number_of_days');
+        // $leave_balance = $leave_balance - $forfeit_leaves;
+
+        return number_format($leave_balance, 2);
+    }
+
+    public static function getWorkedMonth($employee)
+    {
+        $worked_months = 0;
+        $this_year = Carbon::now()->format('Y');
+
+        if (!empty($employee->date_of_start_working) && Carbon::parse($this_year . '-01-01')->lt(Carbon::parse($employee->date_of_start_working))) {
+            $worked_months = Carbon::parse($employee->date_of_start_working)->diffInMonths(\Carbon\Carbon::now());
+        } else {
+            $worked_months = Carbon::parse($this_year . '-01-01')->diffInMonths(\Carbon\Carbon::now());
+        }
+
+        return $worked_months;
+    }
+    public static function getEmployeeLeaveTotal($employee_id)
+    {
+        $number_of_leaves = LeaveType::leftjoin('number_of_leaves', 'leave_types.id', 'number_of_leaves.leave_type_id')
+            ->where('number_of_leaves.employee_id', $employee_id)
+            ->where('number_of_leaves.enabled', 1)
+            ->select('leave_types.id', 'leave_types.name', 'leave_types.number_of_days_per_year as number_of_days', 'number_of_leaves.enabled')
+            ->get();
+
+
+        return $number_of_leaves->sum('number_of_days');
     }
 }
