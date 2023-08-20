@@ -19,6 +19,7 @@
     <!-- Pnotify css -->
     <link href="{{ asset('plugins/pnotify/css/pnotify.custom.min.css')}}" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
      <script src="{{asset('js/jquery.min.js')}}"></script>
     <style>
     input:not([type=file],[type=search]),textarea,select{

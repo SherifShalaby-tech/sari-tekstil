@@ -199,6 +199,19 @@ return [
     'number_of_days' => 'Gün sayısı',
     'year' => 'Yıl',
     'select_type_of_leave' => 'İzin Türünü Seçin',
+    'settings'=>'',
+    'developed_by'=>'',
+    'site_title'=>'',
+    'time_format'=>'',
+    'language'=>'',
+    'currency'=>'',
+    'invoice_lang'=>'',
+    'watsapp_number'=>'',
+    'letter_header'=>'',
+    'letter_footer'=>'',
+    'logo'=>'',
+    'help_page_content'=>'',
+    'tax'=>'',
 ];
 
 

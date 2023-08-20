@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\ScreeningController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
@@ -65,6 +66,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('attendance',AttendanceController::class);
     Route::resource('leaves',LeaveController::class);
     Route::resource('forfeit-leaves',ForfeitLeaveController::class);
+    Route::post('settings/update-general-settings', [SettingController::class, 'updateGeneralSetting'])->name('settings.updateGeneralSettings');
+    Route::post('settings/remove-image/{type}', [SettingController::class,'removeImage']);
+    Route::resource('settings',SettingController::class);
     
     
 });

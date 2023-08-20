@@ -61,6 +61,11 @@
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                         <div class="settingbar">
+                            <a href="https://api.whatsapp.com/send?phone={{$settings['watsapp_number']}}" id="infobar-watsapp-open" class="infobar-icon"><i class="dripicons-phone"></i></a>
+                        </div>
+                    </li>
+                    <li class="list-inline-item">
+                        <div class="settingbar">
                             <a href="javascript:void(0)" id="infobar-settings-open" class="infobar-icon"><i class="ri-settings-line"></i></a>
                         </div>
                     </li>

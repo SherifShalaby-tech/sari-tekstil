@@ -215,7 +215,7 @@ code {
   transition: 0.5s;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0;
 }
 
@@ -229,7 +229,7 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: transparent;
-}
+} */
 
 /* 
 -------------------------------

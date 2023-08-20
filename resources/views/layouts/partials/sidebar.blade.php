@@ -3,8 +3,8 @@
     <div class="sidebar">
         <!-- Start Logobar -->
         <div class="logobar">
-            <a href="index.html" class="logo logo-large"><img src="assets/images/logo.svg" class="img-fluid" alt="logo"></a>
-            <a href="index.html" class="logo logo-small"><img src="assets/images/small_logo.svg" class="img-fluid" alt="logo"></a>
+            <a href="index.html" class="logo logo-large"><img src="{{asset('/uploads/'.$settings['logo'])}}" style="width:70px; height:70px;" class="img-fluid" alt="logo"></a>
+            <a href="index.html" class="logo logo-small"><img src="{{asset('/uploads/'.$settings['logo'])}}"style="width:70px; height:70px;" width="100" height="100" class="img-fluid" alt="logo"></a>
         </div>
         <!-- End Logobar -->
         <!-- Start Navigationbar -->
@@ -174,8 +174,8 @@
                     </ul>
                 </li>                       
                 <li>
-                    <a href="widgets.html">
-                        <i class="ri-palette-line"></i><span>Widgets</span><span class="new-icon"></span>
+                    <a href="{{route('settings.index')}}">
+                        <i class="ri-settings-line"></i><span>{{__('lang.settings')}}</span><span class="new-icon"></span>
                     </a>
                 </li>                                           
             </ul>

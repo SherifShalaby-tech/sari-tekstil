@@ -204,6 +204,19 @@ return [
     'number_of_days' => 'Number of Days',
     'year'=>'Year',
     'select_type_of_leave' => 'Select Type Of Leave',
+    'settings'=>'settings',
+    'developed_by'=>'Developed By',
+    'site_title'=>'Site Title',
+    'time_format'=>'Time Format',
+    'language'=>'Language',
+    'currency'=>'Currency',
+    'invoice_lang'=>'Invoice Lang',
+    'watsapp_number'=>'Watsapp Number',
+    'letter_header'=>'Letter Header',
+    'letter_footer'=>'Letter Footer',
+    'logo'=>'Logo',
+    'help_page_content'=>'Help Page Content',
+    'tax'=>'Tax',
 ];
 
 ?>
