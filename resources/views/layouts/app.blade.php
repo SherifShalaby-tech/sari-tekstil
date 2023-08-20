@@ -13,8 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>@yield('title')</title>
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{asset('/uploads/'.$settings['logo'])}}">
     @include('layouts.partials.css')
+    @stack('css')
 </head>
 <body class="vertical-layout">    
     <!-- Start Infobar Setting Sidebar -->
@@ -76,7 +77,7 @@
             <!-- Start Footerbar -->
             <div class="footerbar">
                 <footer class="footer">
-                    <p class="mb-0">© 2020 Minaati - All Rights Reserved.</p>
+                    <p class="mb-0">© 2023 {{$settings['site_title']}}- {{__('lang.developed_by')}}: {{$settings['developed_by']}} - All Rights Reserved.</p>
                 </footer>
             </div>
             <!-- End Footerbar -->
@@ -86,6 +87,4 @@
     <!-- End Containerbar -->
     @include('layouts.partials.javascript')
 </body>
-
-<!-- Mirrored from themesbox.in/admin-templates/minaati/html/light-vertical/dashboard-ecommerce.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 11:53:58 GMT -->
 </html>

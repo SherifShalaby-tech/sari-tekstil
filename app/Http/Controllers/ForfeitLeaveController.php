@@ -27,7 +27,7 @@ class ForfeitLeaveController extends Controller
     public function create()
     {
         $query = Employee::latest();
-        // $query->where('user_id', Auth::user()->id);
+        $query->where('user_id', Auth::user()->id);
         $employees =  $query->pluck('name', 'id');
 
         $this_employee = Employee::where('user_id', Auth()->user()->id)->first();

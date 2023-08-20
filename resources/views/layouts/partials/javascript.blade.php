@@ -37,7 +37,7 @@
     <script src="{{asset('plugins/pnotify/js/pnotify.custom.min.js')}}"></script>
     <script src="{{asset('js/custom/custom-pnotify.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
+    <script src="{{asset('js/summernote.min.js')}}" referrerpolicy="origin"></script>
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     <!-- End js -->
     <script>
