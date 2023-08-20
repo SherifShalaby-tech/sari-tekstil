@@ -41836,7 +41836,7 @@ input[type=range]:focus {
   position: relative;
 }
 .note-editor .btn-default {
-  background-color: transparent;
+  background-color: #7e789b;
   border-color: transparent;
 }
 .note-editor .btn-group-sm > .btn, .note-editor .btn-sm {
