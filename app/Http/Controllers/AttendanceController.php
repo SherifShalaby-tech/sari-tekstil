@@ -15,12 +15,14 @@ class AttendanceController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('employees_module.attendance.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $attendances = Attendance::with('employee')->latest()
         ->get();
-
-    return view('employees.attendance.index')->with(compact(
-        'attendances'
-    ));
+        return view('employees.attendance.index')->with(compact(
+            'attendances'
+        ));
     }
 
     /**
@@ -28,6 +30,9 @@ class AttendanceController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->can('employees_module.attendance.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $employees = Employee::whereNotNull('user_id')->pluck('name', 'id');
         return view('employees.attendance.create')->with(compact(
             'employees'
@@ -104,6 +109,9 @@ class AttendanceController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('employees_module.attendance.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $attendance=Attendance::find($id);
             $attendance->deleted_by=Auth::user()->id;

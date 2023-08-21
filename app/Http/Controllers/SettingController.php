@@ -18,6 +18,9 @@ class SettingController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('settings_module.general_settings.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $settings = System::pluck('value', 'key');
         $config_languages = config('constants.langs');
         $languages = [];
@@ -60,6 +63,10 @@ class SettingController extends Controller
     }
     public function updateGeneralSetting(Request $request)
     {
+        if(!auth()->user()->can('settings_module.general_settings.edit') 
+        || !auth()->user()->can('settings_module.general_settings.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             System::updateOrCreate(
                 ['key' => 'site_title'],

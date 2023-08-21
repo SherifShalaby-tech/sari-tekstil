@@ -31,6 +31,9 @@ class WageController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('employees_module.wages.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $wages=Wage::latest()->get();
         $payment_types = Wage::getPaymentTypes();
         return view('employees.wages.index',compact('wages','payment_types'));
@@ -41,6 +44,9 @@ class WageController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->can('employees_module.wages.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $employees = Employee::latest()->pluck('name','id');
         $payment_types = Wage::getPaymentTypes();
         $users = User::Notview()->pluck('name', 'id');
@@ -110,6 +116,9 @@ class WageController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('employees_module.wages.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $employees = Employee::latest()->pluck('name','id');
         $payment_types = Wage::getPaymentTypes();
         $users = User::Notview()->pluck('name', 'id');
@@ -177,6 +186,9 @@ class WageController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('employees_module.wages.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try{
             $wage=Wage::find($id);
             $wage->deleted_by=Auth::user()->id;
@@ -237,6 +249,9 @@ class WageController extends Controller
     }
     public function changeWageStatus($wage_id){
 
+        if(!auth()->user()->can('employees_module.wages.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $wages = Wage::find($wage_id);
             $wages->status = 'paid';

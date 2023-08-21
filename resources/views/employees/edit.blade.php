@@ -76,9 +76,12 @@
                         </div>                       
                         <div class="col-md-3">
                             {!! Form::label('job_type', __('lang.job_type'), ['class'=>'h6 pt-3']) !!}
-                                {!! Form::select(
+                            {!! Form::select(
                                     'job_type_id',
-                                    $jobs,$employee->job_type_id,
+                                    $jobs->map(function($title, $id){
+                                        $translatedTitle = trans('lang.'.$title);
+                                        return (strpos($translatedTitle, 'lang.') === 0) ? $title : $translatedTitle;
+                                    }),$employee->job_type_id,
                                     ['class' => 'form-control required','placeholder'=>__('lang.please_select'),'id'=>'brand_id']
                             ) !!}
                         </div>

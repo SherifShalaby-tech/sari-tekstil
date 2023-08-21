@@ -212,6 +212,15 @@ return [
     'logo'=>'',
     'help_page_content'=>'',
     'tax'=>'',
+    'admin'=>'المشرف',
+    'orignal_store_worker'=>'',
+    'transporter'=>'الناقل',
+    'conquest_factor'=>'',
+    'sort_worker'=>'',
+    'cream_sorting_worker'=>'',
+    'extra_sorting_worker'=>'',
+    'compression_worker'=>'',
+    'unauthorized_action'=>'',
 ];
 
 

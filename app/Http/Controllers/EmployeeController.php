@@ -25,6 +25,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('employees_module.employee.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $employees=Employee::latest()->get();
         return view('employees.index',compact('employees'));
     }
@@ -34,6 +37,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->can('employees_module.employee.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $jobs=Job::orderBy('created_at', 'desc')->pluck('title','id');
         $payment_cycle = Employee::paymentCycle();
         $commission_type = Employee::commissionType();
@@ -70,10 +76,10 @@ class EmployeeController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-  
             ];
             $user = User::create($user_data);
-            $user->assignRole('Administrator');
+            $job=Job::find($request->job_type_id);
+            // $user->assignRole($job->title);
             $data['user_id'] = $user->id;
             $data['password'] = $data['password'];
             $data['fixed_wage_value'] = $data['fixed_wage_value'] ?? 0;
@@ -116,13 +122,14 @@ class EmployeeController extends Controller
             if (!empty($request->permissions)) {
                 foreach ($request->permissions as $key => $value) {
                     $permissions[] = $key;
-                }
-
+                } 
+            }
+            if(!empty($job)){
+                $permissions[]=$job->title;
                 if (!empty($permissions)) {
                     $user->syncPermissions($permissions);
                 }
             }
-  
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -137,7 +144,7 @@ class EmployeeController extends Controller
                 'msg' => __('lang.something_went_wrong')
             ];
         }
-            return redirect()->back()->with('status', $output);
+        return redirect()->back()->with('status', $output);
   
     }
     public function createOrUpdateNumberofLeaves($request, $employee_id)
@@ -164,9 +171,9 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        
-        
-
+        if(!auth()->user()->can('employees_module.employee.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $jobs= Job::orderBy('created_at', 'desc')->pluck('title','id');
         $payment_cycle = Employee::paymentCycle();
         $commission_type = Employee::commissionType();
@@ -210,6 +217,7 @@ class EmployeeController extends Controller
             $user = User::find($request->user_id);
             $user->update($user_data);
             $employee=Employee::find($id);
+            $job=Job::find($request->job_type_id);
             // $user->assignRole('Administrator');
             $data['user_id'] = $user->id;
             $data['password'] = $data['password'];
@@ -265,8 +273,10 @@ class EmployeeController extends Controller
             if (!empty($request->permissions)) {
                 foreach ($request->permissions as $key => $value) {
                     $permissions[] = $key;
-                }
-
+                } 
+            }
+            if(!empty($job)){
+                $permissions[]=$job->title;
                 if (!empty($permissions)) {
                     $user->syncPermissions($permissions);
                 }
@@ -292,6 +302,9 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('employees_module.employee.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $employee=Employee::find($id);
             $user=User::find($employee->user_id)->delete();

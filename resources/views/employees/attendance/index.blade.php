@@ -20,9 +20,11 @@
                 </div>
             </div>
             <div class="col-md-4 col-lg-4">
+                @if(auth()->user()->can('employees_module.attendance.create'))
                 <div class="widgetbar">
-                    <a href="{{route('attendance.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>Add</a>
-                </div>                        
+                    <a href="{{route('attendance.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</a>
+                </div>     
+                @endif                   
             </div>
         </div>          
     </div>
@@ -126,6 +128,7 @@
                                        {{ __('no_update') }}
                                     @endif
                                 </td>
+                                @if(auth()->user()->can('employees_module.attendance.delete'))
                                 <td>
                                     <div class="btn-group">
                                         <a data-href="{{route('attendance.destroy', $attendance->id)}}"
@@ -133,6 +136,7 @@
                                             @lang('lang.delete')</a>
                                     </div>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                             </tbody>

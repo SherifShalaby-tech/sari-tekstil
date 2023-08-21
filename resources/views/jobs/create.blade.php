@@ -1,4 +1,4 @@
-<!-- Modal -->
+-<!-- Modal -->
 <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  rollIn  animated" role="document">
         <div class="modal-content">

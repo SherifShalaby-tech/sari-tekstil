@@ -14,6 +14,9 @@ class VacationTypeController extends Controller
 {
     public function index()
     {
+        if(!auth()->user()->can('employees_module.leave_types.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $leave_types=LeaveType::latest()->get();
         return view('employees.leave_types.index',compact('leave_types'));
     }
@@ -62,6 +65,9 @@ class VacationTypeController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('employees_module.leave_types.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $leave_type = LeaveType::find($id);
         return view('employees.leave_types.edit')->with(compact(
             'leave_type'
@@ -97,6 +103,9 @@ class VacationTypeController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('employees_module.leave_types.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $vacation_type=LeaveType::find($id);
             $vacation_type->deleted_by=Auth::user()->id;

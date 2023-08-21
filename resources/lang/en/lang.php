@@ -217,6 +217,15 @@ return [
     'logo'=>'Logo',
     'help_page_content'=>'Help Page Content',
     'tax'=>'Tax',
+    'admin'=>'Admin',
+    'orignal_store_worker'=>'Orignal Store Worker',
+    'transporter'=>'Transporter',
+    'conquest_factor'=>'Conquest Factor',
+    'sort_worker'=>'Sort Worker',
+    'cream_sorting_worker'=>'Cream Sorting Worker',
+    'extra_sorting_worker'=>'Extra Sorting Worker',
+    'compression_worker'=>'Compression Worker',
+    'unauthorized_action'=>'Unauthorized action.',
 ];
 
 ?>

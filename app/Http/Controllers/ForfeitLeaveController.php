@@ -17,6 +17,9 @@ class ForfeitLeaveController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('employees_module.forfeit_leaves.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $forfiets=ForfeitLeave::latest()->get();
         return view('employees.forfeit_leave.index')->with(compact('forfiets'));
     }
@@ -26,6 +29,9 @@ class ForfeitLeaveController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->can('employees_module.forfeit_leaves.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $query = Employee::latest();
         $query->where('user_id', Auth::user()->id);
         $employees =  $query->pluck('name', 'id');

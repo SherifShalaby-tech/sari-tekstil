@@ -14,6 +14,9 @@ class CarsController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('settings_module.cars.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $cars=Cars::latest()->get();
         return view('cars.index',compact('cars'));
     }
@@ -67,6 +70,9 @@ class CarsController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('settings_module.cars.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $car = Cars::find($id);
         return view('cars.edit')->with(compact(
             'car'
