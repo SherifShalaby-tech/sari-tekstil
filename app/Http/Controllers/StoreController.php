@@ -81,6 +81,7 @@ class StoreController extends Controller
     public function update(Request $request, string $id)
     {
         try {
+            $data = $request->except('_token');
             $data['name'] = $request->name;
             $data['edited_by'] = Auth::user()->id;
             Store::find($id)->update($data);

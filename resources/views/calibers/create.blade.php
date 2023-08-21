@@ -1,3 +1,6 @@
+@php
+     $stores = App\Models\Store::pluck('name', 'id');
+@endphp
 <!-- Modal -->
 <div class="modal fade" id="createCaliberModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  rollIn  animated" role="document">
@@ -8,7 +11,7 @@
                 <span aria-hidden="true">×</span>
                 </button>
             </div>
-            {!! Form::open(['route' => 'cars.store', 'method' => 'post', 'files' => true,'id' =>'car-form' ]) !!}
+            {!! Form::open(['route' => 'calibers.store', 'method' => 'post', 'files' => true,'id' =>'car-form' ]) !!}
                 <div class="modal-body">
                     <div class="row pt-5">
                         <div class="col-md-6">
@@ -23,17 +26,16 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('store', __( 'lang.store' ) . ':*') !!}
-                                {!! Form::text('store_id', null, ['class' => 'form-control', 'placeholder' => __( 'lang.store' ), 'required'
-                                ]);
+                                {!! Form::select('store_id', $stores, false,['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'store_id','required']);
                                 !!}
-                                @error('weight')
+                                @error('store_id')
                                     <label class="text-danger error-msg">{{ $message }}</label>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

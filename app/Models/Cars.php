@@ -12,10 +12,10 @@ class Cars extends Model
     protected $guarded = ['id'];
     protected $table = 'cars';
 
-    // public function store()
-    // {
-    //     return $this->belongsTo(Store::class, 'store_id');
-    // }
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
     public function createBy()
     {
         return $this->belongsTo(User::class, 'created_by');

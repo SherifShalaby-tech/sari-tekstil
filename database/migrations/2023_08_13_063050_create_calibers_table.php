@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('calibers', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->foreignId('branch_id')->nullable()->constrained('branches', 'id')->cascadeOnDelete();
+            $table->foreignId('store_id')->nullable()->constrained('stores', 'id')->cascadeOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

@@ -1,3 +1,6 @@
+@php
+     $stores = App\Models\Store::pluck('name', 'id');
+@endphp
 <!-- Modal -->
 <div class="modal fade" id="createCarModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  rollIn  animated" role="document">
@@ -37,7 +40,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('sku', __( 'lang.sku' ) . ':*') !!}
-                                {!! Form::text('sku', null, ['class' => 'form-control', 'placeholder' => __( 'lang.sku' ), 'required'
+                                {!! Form::text('sku', null, ['class' => 'form-control', 'placeholder' => __( 'lang.sku' ), 
                                 ]);
                                 !!}
                                 @error('weight')
@@ -45,17 +48,16 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('store', __( 'lang.store' ) . ':*') !!}
-                                {!! Form::text('store_id', null, ['class' => 'form-control', 'placeholder' => __( 'lang.store' ), 'required'
-                                ]);
+                                {!! Form::select('store_id', $stores, false,['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'store_id','required']);
                                 !!}
-                                @error('weight')
+                                @error('store_id')
                                     <label class="text-danger error-msg">{{ $message }}</label>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

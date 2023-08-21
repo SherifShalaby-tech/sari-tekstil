@@ -53,7 +53,7 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{$caliber->number}}</td>
-                                {{-- <td>{{$car->store->name}}</td> --}}
+                                <td>{{$caliber->store->name}}</td>
                                 <td>
                                     @if ($caliber->created_by  > 0 and $caliber->created_by != null)
                                         {{ $caliber->created_at->diffForHumans() }} <br>

@@ -15,6 +15,7 @@
     <!-- Fevicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     @include('layouts.partials.css')
+    @livewireStyles
 </head>
 <body class="vertical-layout">    
     <!-- Start Infobar Setting Sidebar -->
@@ -85,6 +86,7 @@
     </div>
     <!-- End Containerbar -->
     @include('layouts.partials.javascript')
+    @livewireScripts
 </body>
 
 <!-- Mirrored from themesbox.in/admin-templates/minaati/html/light-vertical/dashboard-ecommerce.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 11:53:58 GMT -->

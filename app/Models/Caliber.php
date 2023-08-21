@@ -12,9 +12,9 @@ class Caliber extends Model
     protected $guarded = ['id'];
     protected $table = 'calibers';
 
-    public function branch()
+    public function store()
     {
-        return $this->belongsTo(Branch::class, 'branch_id');
+        return $this->belongsTo(Store::class, 'store_id');
     }
     public function createBy()
     {

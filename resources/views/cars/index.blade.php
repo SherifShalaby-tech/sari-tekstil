@@ -44,7 +44,7 @@
                                 <th>@lang('lang.name')</th>
                                 <th>@lang('lang.weight')</th>
                                 <th>@lang('lang.sku')</th>
-                                {{-- <th>@lang('lang.store')</th> --}}
+                                <th>@lang('lang.store')</th>
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
@@ -57,7 +57,7 @@
                                 <td>{{$car->name}}</td>
                                 <td>{{$car->weight}}</td>
                                 <td>{{$car->sku}}</td>
-                                {{-- <td>{{$car->store->name}}</td> --}}
+                                <td>{{$car->store->name}}</td>
                                 <td>
                                     @if ($car->created_by  > 0 and $car->created_by != null)
                                         {{ $car->created_at->diffForHumans() }} <br>

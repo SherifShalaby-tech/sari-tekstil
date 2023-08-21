@@ -9,7 +9,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            {!! Form::open(['route' => ['branch.update',$branch->id],'method'=>'put','id'=>'opening-update-form' ]) !!}
+            {!! Form::open(['route' => ['branches.update',$branch->id],'method'=>'put','id'=>'branches-update-form' ]) !!}
                     @csrf
                     @method('PUT')
             <div class="modal-body">

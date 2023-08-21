@@ -27,17 +27,15 @@
                         </div>
                     </div>
                    
-                    {{-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('store', __( 'lang.store' ) . ':*') !!}
-                            {!! Form::text('store_id', null, ['class' => 'form-control', 'placeholder' => __( 'lang.store' ), 'required'
-                            ]);
-                            !!}
-                            @error('weight')
+                            {!! Form::select('store_id', $stores,$caliber->store_id , ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'branch_id','required']) !!}
+                            @error('branch_id')
                                 <label class="text-danger error-msg">{{ $message }}</label>
                             @enderror
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

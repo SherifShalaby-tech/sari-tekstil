@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caliber;
+use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -67,8 +68,10 @@ class CalibersController extends Controller
     public function edit(string $id)
     {
         $caliber = Caliber::find($id);
+        $stores = Store::pluck('name', 'id');
         return view('calibers.edit')->with(compact(
-            'caliber'
+            'caliber',
+            'stores'
         ));
     }
 
@@ -78,7 +81,8 @@ class CalibersController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $data['name'] = $request->name;
+            $data['number'] = $request->number;
+            $data['store_id'] = $request->store_id;
             $data['edited_by'] = Auth::user()->id;
             Caliber::find($id)->update($data);
             $output = [
