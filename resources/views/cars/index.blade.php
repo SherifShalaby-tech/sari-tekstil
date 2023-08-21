@@ -23,7 +23,8 @@
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
-                </div>                        
+                </div>   
+                @endif                     
             </div>
         </div>          
     </div>
