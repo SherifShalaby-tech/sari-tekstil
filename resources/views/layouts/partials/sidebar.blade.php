@@ -128,56 +128,81 @@
                         <li><a href="chart-sparkline.html">Sparkline</a></li>
                     </ul>
                 </li>
+                @if(auth()->user()->can('employees_module.employee.view'))
                 <li>
                     <a href="javaScript:void();">
                         <i class="ri-service-line"></i><span>@lang('lang.employees')</span><i class="ri-arrow-right-s-line"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{route('employees.index')}}">@lang('lang.employees')</a></li>
+                        @if(auth()->user()->can('employees_module.jobs.view'))
                         <li><a href="{{route('jobs.index')}}">@lang('lang.jobs')</a></li>
+                        @endif
+                        @if(auth()->user()->can('employees_module.leave_types.view'))
                         <li><a href="{{route('leave_types.index')}}">@lang('lang.vacation_types')</a></li>
+                        @endif
+                        @if(auth()->user()->can('employees_module.wages.view'))
                         <li><a href="{{route('wages.index')}}">@lang('lang.wages')</a></li>
+                        @endif
+                        @if(auth()->user()->can('employees_module.attendance.view'))
                         <li><a href="{{route('attendance.index')}}">@lang('lang.attendance')</a></li>
+                        @endif
+                        @if(auth()->user()->can('employees_module.leaves.view'))
                         <li><a href="{{route('leaves.index')}}">@lang('lang.view_list_of_employees_in_leave')</a></li>
+                        @endif
+                        @if(auth()->user()->can('employees_module.forfeit_leaves.view'))
                         <li><a href="{{route('forfeit-leaves.index')}}">@lang('lang.view_list_of_employees_in_forfeit_leave')</a></li>
+                        @endif
                     </ul>
-                </li>                        
+                </li> 
+                @endif 
+                @if(auth()->user()->can('suppliers_module.supplier.view'))                      
                 <li>
                     <a href="{{route('suppliers.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.suppliers')</span>
                     </a>
                 </li>
+                @endif
+                @if(auth()->user()->can('customers_module.customer.view'))
                 <li>
                     <a href="{{route('customers.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.customers')</span>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{route('employees.index')}}">
-                        <i class="ri-hospital-fill"></i><span>@lang('lang.employees')</span>
-                    </a>
-                </li> --}}
+                @endif
                 <li>
                     <a href="javaScript:void();">
                         <i class="ri-pages-line"></i>@lang('lang.extras')<i class="ri-arrow-right-s-line"></i>
                     </a>
                     <ul class="vertical-submenu">
+                        @if(auth()->user()->can('settings_module.nationalities.view'))
                         <li><a href="{{route('nationality.index')}}">@lang('lang.nationalities')</a></li>
+                        @endif
+                        @if(auth()->user()->can('settings_module.types.view'))
                         <li><a href="{{route('types.index')}}">@lang('lang.types')</a></li>
+                        @endif
+                        @if(auth()->user()->can('settings_module.colors.view'))
                         <li><a href="{{route('colors.index')}}">@lang('lang.colors')</a></li>
+                        @endif
+                        @if(auth()->user()->can('settings_module.fills.view'))
                         <li><a href="{{route('fills.index')}}">@lang('lang.fills')</a></li>
+                        @endif
+                        @if(auth()->user()->can('settings_module.cars.view'))
                         <li><a href="{{route('cars.index')}}">@lang('lang.cars')</a></li>
+                        @endif
                         <li><a href="{{route('opening.index')}}">@lang('lang.opening')</a></li>
                         <li><a href="{{route('screening.index')}}">@lang('lang.screening')</a></li>
                         <li><a href="{{route('branches.index')}}">@lang('lang.branches')</a></li>
                         <li><a href="{{route('stores.index')}}">@lang('lang.stores')</a></li>
                     </ul>
-                </li>                       
+                </li> '
+                @if(auth()->user()->can('settings_module.general_settings.view'))                      
                 <li>
                     <a href="{{route('settings.index')}}">
                         <i class="ri-settings-line"></i><span>{{__('lang.settings')}}</span><span class="new-icon"></span>
                     </a>
-                </li>                                           
+                </li> 
+                @endif                                          
             </ul>
         </div>
         <!-- End Navigationbar -->

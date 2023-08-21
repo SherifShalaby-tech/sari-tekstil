@@ -20,9 +20,11 @@
                 </div>
             </div>
             <div class="col-md-4 col-lg-4">
+                @if(auth()->user()->can('customers_module.customer.create'))
                 <div class="widgetbar">
-                    <a href="{{route('customers.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>Add</a>
-                </div>                        
+                    <a href="{{route('customers.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</a>
+                </div>   
+                @endif                     
             </div>
         </div>          
     </div>
@@ -99,15 +101,19 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            @if(auth()->user()->can('customers_module.customer.edit'))
                                             <li>
                                                 <a href="{{route('customers.edit', $supplier->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
+                                            @endif
                                             <li class="divider"></li>
+                                            @if(auth()->user()->can('customers_module.customer.delete'))
                                                 <li>
                                                     <a data-href="{{route('customers.destroy', $supplier->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
-                                            </li>
+                                                </li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </td>

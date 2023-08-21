@@ -16,6 +16,9 @@ class NationalityController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('settings_module.nationalities.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $nationalities=Nationality::latest()->get();
         return view('nationalities.index',compact('nationalities'));
     }

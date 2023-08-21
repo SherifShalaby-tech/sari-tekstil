@@ -18,6 +18,9 @@ class LeaveController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('employees_module.leaves.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $leaves = Leave::
         when(\request()->start_date != null, function ($query) {
             $query->where('start_date',\request()->start_date);
@@ -103,6 +106,9 @@ class LeaveController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('employees_module.leaves.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $leave = Leave::find($id);
         $employees =  Employee::orderBy('name', 'asc')->pluck('name', 'id');
         $leave_types = LeaveType::orderBy('name', 'asc')->pluck('name', 'id');
@@ -161,6 +167,9 @@ class LeaveController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('employees_module.leaves.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $leave=Leave::where('id', $id);
             $leave->deleted_by=Auth::user()->id;

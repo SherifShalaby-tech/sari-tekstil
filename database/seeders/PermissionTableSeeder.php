@@ -42,11 +42,42 @@ class PermissionTableSeeder extends Seeder
             $d['created_at'] = $time_stamp;
             $insert_data[] = $d;
         }
-        $adminRole = Role::create(['name' => 'Administrator']);
+        // $adminRole = Role::create(['name' => 'Administrator']);
         foreach ($insert_data as $item) {
             $permission=Permission::updateOrCreate(['id' => $item['id']],$item);
-        $permission->assignRole($adminRole);
-
+         // $permission->assignRole('admin');
         }
+
+
+
+        //////////////////
+        $employee_data = [];
+        $subModuleEmployeePermissionArray = User::subModuleEmployeePermissionArray();
+        foreach ($subModuleEmployeePermissionArray as $key_module => $moudle) {
+            $employee_data[] = ['name' => $key_module];
+        }
+
+        $insert_employee_data = [];
+        $time_stamp = Carbon::now()->toDateTimeString();
+        $count=Permission::count();
+        foreach ($employee_data as $index=>$d) {
+            $d['id'] = $count+1;
+            $count++;
+            $d['guard_name'] = 'web';
+            $d['created_at'] = $time_stamp;
+            $insert_employee_data[] = $d;
+        }
+        // $adminRole = Role::create(['name' => 'Administrator']);
+        foreach ($insert_employee_data as $item) {
+            $permission=Permission::updateOrCreate(['id' => $item['id']],$item);
+         // $permission->assignRole('admin');
+        }
+
+        $permissions = Permission::pluck('id');
+        $superAdmin=User::find(1);
+        $superAdmin->syncPermissions($permissions);
+
+        $admin=User::find(2);
+        $admin->syncPermissions($permissions);
     }
 }

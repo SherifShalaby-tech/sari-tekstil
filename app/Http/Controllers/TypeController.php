@@ -16,6 +16,9 @@ class TypeController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('settings_module.types.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $types=Type::latest()->get();
         return view('types.index',compact('types'));
     }
@@ -68,6 +71,9 @@ class TypeController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('settings_module.types.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $type = Type::find($id);
         return view('types.edit')->with(compact(
             'type'

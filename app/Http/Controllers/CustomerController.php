@@ -15,6 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('customers_module.customer.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $customers=Customer::latest()->get();
         return view('customers.index',compact('customers'));
     }
@@ -24,6 +27,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->can('customers_module.customer.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $users=User::orderBy('created_at', 'desc')->pluck('name','id');
         return view('customers.create',compact('users'));
     }
@@ -69,6 +75,9 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('customers_module.customer.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $users=User::orderBy('created_at', 'desc')->pluck('name','id');
         $customer=Customer::find($id);
         return view('customers.edit',compact('users','customer'));
@@ -103,6 +112,9 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('customers_module.customer.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $customer=Customer::find($id);
             $customer->deleted_by=Auth::user()->id;

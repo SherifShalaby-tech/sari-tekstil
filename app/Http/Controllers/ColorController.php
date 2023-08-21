@@ -16,6 +16,9 @@ class ColorController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('settings_module.colors.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $colors=Color::latest()->get();
         return view('colors.index',compact('colors'));
     }
@@ -68,6 +71,9 @@ class ColorController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('settings_module.colors.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $color = Color::find($id);
         return view('colors.edit')->with(compact(
             'color'

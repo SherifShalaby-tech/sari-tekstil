@@ -16,6 +16,9 @@ class JobController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('employees_module.jobs.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $jobs=Job::latest()->get();
         return view('jobs.index',compact('jobs'));
     }
@@ -68,6 +71,9 @@ class JobController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('employees_module.jobs.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $job = Job::find($id);
         return view('jobs.edit')->with(compact(
             'job'
@@ -103,6 +109,9 @@ class JobController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->user()->can('employees_module.jobs.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $job=Job::find($id);
             $job->deleted_by=Auth::user()->id;

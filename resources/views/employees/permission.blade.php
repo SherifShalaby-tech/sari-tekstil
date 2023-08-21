@@ -34,11 +34,6 @@
         <td> {!! Form::checkbox('edit_check_all', 1, false, ['class' => 'edit_check_all']) !!}</td>
         <td> {!! Form::checkbox('delete_check_all', 1, false, ['class' => 'delete_check_all']) !!}</td>
     </tr>
-    @if (session('system_mode') != 'restaurant')
-        {{-- @php
-            unset($modulePermissionArray['raw_material_module']);
-        @endphp --}}
-    @endif
     @foreach ($modulePermissionArray as $key_module => $moudle)
         <div>
             <tr class="module_permission" data-moudle="{{ $key_module }}">

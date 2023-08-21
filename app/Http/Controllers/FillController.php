@@ -16,6 +16,9 @@ class FillController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('settings_module.fills.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $fills=Fill::latest()->get();
         return view('fills.index',compact('fills'));
     }
@@ -68,6 +71,9 @@ class FillController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('settings_module.fills.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $fill = Fill::find($id);
         return view('fills.edit')->with(compact(
             'fill'

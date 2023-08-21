@@ -19,9 +19,11 @@
                 </div>
             </div>
             <div class="col-md-4 col-lg-4">
+                @if(auth()->user()->can('employees_module.jobs.create'))
                 <div class="widgetbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createJobModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
-                </div>                        
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#createJobModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
+                </div>   
+                @endif                     
             </div>
         </div>          
     </div>
@@ -79,15 +81,19 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            @if(auth()->user()->can('employees_module.jobs.edit'))
                                             <li>
                                                 <a data-href="{{route('jobs.edit', $job->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
+                                            @endif
                                             <li class="divider"></li>
-                                                <li>
-                                                    <a data-href="{{route('jobs.destroy', $job->id)}}"
-                                                        class="btn text-red delete_item"><i class="fa fa-trash"></i>
-                                                        @lang('lang.delete')</a>
+                                            @if(auth()->user()->can('employees_module.jobs.delete'))
+                                            <li>
+                                                <a data-href="{{route('jobs.destroy', $job->id)}}"
+                                                    class="btn text-red delete_item"><i class="fa fa-trash"></i>
+                                                    @lang('lang.delete')</a>
                                             </li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </td>

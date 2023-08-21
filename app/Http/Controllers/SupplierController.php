@@ -17,6 +17,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->can('suppliers_module.supplier.view')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $suppliers=Supplier::latest()->get();
         $currencies=Currency::getDropdown();
         return view('suppliers.index',compact('suppliers','currencies'));
@@ -27,6 +30,9 @@ class SupplierController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->can('suppliers_module.supplier.create')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $users=User::orderBy('created_at', 'desc')->pluck('name','id');
         $currencies  = $this->allCurrencies();
         return view('suppliers.create',compact('users','currencies'));
@@ -85,6 +91,9 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
+        if(!auth()->user()->can('suppliers_module.supplier.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         $users=User::orderBy('created_at', 'desc')->pluck('name','id');
         $currencies  = $this->allCurrencies();
         $supplier=Supplier::find($id);
@@ -96,6 +105,9 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if(!auth()->user()->can('suppliers_module.supplier.delete')){
+            abort(403, __('lang.unauthorized_action'));
+        }
         try {
             $data = $request->except('_token');
             $data['name'] = $request->name;

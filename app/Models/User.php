@@ -84,6 +84,7 @@ class User extends Authenticatable
                 'leaves' => __('lang.leaves'),
                 'attendance' => __('lang.attendance'),
                 'wages' => __('lang.wages'),
+                'forfeit_leaves' => __('lang.forfeit_leaves'),
             ],
             'reports_module' => [
                 'profit_loss' => __('lang.profit_loss'),
@@ -111,6 +112,7 @@ class User extends Authenticatable
                 'fills' => __('lang.fills'),
                 'types' => __('lang.types'),
                 'colors' => __('lang.colors'),
+                'cars' => __('lang.cars'),
                 //
                 'money_safe' => __('lang.money_safe'),
                 'add_money_to_safe' => __('lang.add_moneysafe'),
@@ -124,6 +126,20 @@ class User extends Authenticatable
                 //
                 'sales_promotion' => __('lang.sales_promotion'),
             ],
+            
+        ];
+    }
+    public static function subModuleEmployeePermissionArray()
+    {
+        return [
+            'admin' => 'admin',
+            'orignal_store_worker' => 'orignal_store_worker',
+            'transporter' => 'transporter',
+            'conquest_factor' => 'conquest_factor',
+            'sort_worker' => 'sort_worker',
+            'cream_sorting_worker' => 'cream_sorting_worker',
+            'extra_sorting_worker' => 'extra_sorting_worker',
+            'compression_worker' => 'compression_worker',
         ];
     }
 
