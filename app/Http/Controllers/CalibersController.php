@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
+use App\Models\Caliber;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class StoreController extends Controller
+class CalibersController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $stores=Store::latest()->get();
-        return view('stores.index',compact('stores'));
+        $calibers=Caliber::latest()->get();
+        return view('calibers.index',compact('calibers'));
     }
 
     /**
@@ -35,10 +35,10 @@ class StoreController extends Controller
         try {
             $data = $request->except('_token');
             $data['created_by']=Auth::user()->id;
-            $store = Store::create($data);
+            $caliber = Caliber::create($data);
             $output = [
                 'success' => true,
-                'id' => $store->id,
+                'id' => $caliber->id,
                 'msg' => __('lang.success')
             ];
         } catch (\Exception $e) {
@@ -67,11 +67,11 @@ class StoreController extends Controller
      */
     public function edit(string $id)
     {
-        $store = Store::find($id);
-        $branches = Branch::pluck('name', 'id');
-        return view('stores.edit')->with(compact(
-            'store',
-            'branches'
+        $caliber = Caliber::find($id);
+        $stores = Store::pluck('name', 'id');
+        return view('calibers.edit')->with(compact(
+            'caliber',
+            'stores'
         ));
     }
 
@@ -81,10 +81,10 @@ class StoreController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $data = $request->except('_token');
-            $data['name'] = $request->name;
+            $data['number'] = $request->number;
+            $data['store_id'] = $request->store_id;
             $data['edited_by'] = Auth::user()->id;
-            Store::find($id)->update($data);
+            Caliber::find($id)->update($data);
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -106,10 +106,10 @@ class StoreController extends Controller
     public function destroy(string $id)
     {
         try {
-            $store=Store::find($id);
-            $store->deleted_by=Auth::user()->id;
-            $store->save();
-            $store->delete();
+            $caliber=Caliber::find($id);
+            $caliber->deleted_by=Auth::user()->id;
+            $caliber->save();
+            $caliber->delete();
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')

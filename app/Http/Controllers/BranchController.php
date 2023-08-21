@@ -76,7 +76,7 @@ class BranchController extends Controller
     public function edit(string $id)
     {
         $branch = Branch::find($id);
-        return view('branch.edit')->with(compact(
+        return view('branches.edit')->with(compact(
             'branch'
         ));
     }
@@ -87,6 +87,7 @@ class BranchController extends Controller
     public function update(Request $request, string $id)
     {
         try {
+            $data = $request->except('_token');
             $data['name'] = $request->name;
             $data['edited_by'] = Auth::user()->id;
             Branch::find($id)->update($data);

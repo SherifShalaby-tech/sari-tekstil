@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('lang.opening'))
+@section('title', __('lang.branches'))
 @section('breadcrumbbar')
     <!-- Start Breadcrumbbar -->                    
     <div class="breadcrumbbar">
@@ -89,11 +89,11 @@
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <li>
-                                                <a data-href="{{route('branch.edit', $branch->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                                <a data-href="{{route('branches.edit', $branch->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             <li class="divider"></li>
                                                 <li>
-                                                    <a data-href="{{route('branch.destroy', $branch->id)}}"
+                                                    <a data-href="{{route('branches.destroy', $branch->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>

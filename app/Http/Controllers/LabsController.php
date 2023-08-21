@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
-use App\Models\Store;
+use App\Models\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class StoreController extends Controller
+class LabsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $stores=Store::latest()->get();
-        return view('stores.index',compact('stores'));
+        $labs=Lab::latest()->get();
+        return view('labs.index',compact('labs'));
     }
 
     /**
@@ -32,25 +31,28 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $data = $request->except('_token');
-            $data['created_by']=Auth::user()->id;
-            $store = Store::create($data);
-            $output = [
-                'success' => true,
-                'id' => $store->id,
-                'msg' => __('lang.success')
-            ];
-        } catch (\Exception $e) {
-            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-            $output = [
-                'success' => false,
-                'msg' => __('lang.something_went_wrong')
-            ];
-        }
-        if ($request->quick_add) {
-          return $output;
-          }
+        
+            try {
+                $data = $request->except('_token');
+                $data['created_by']=Auth::user()->id;
+                $lab = Lab::create($data);
+                $output = [
+                    'success' => true,
+                    'id' => $lab->id,
+                    'msg' => __('lang.success')
+                ];
+            } catch (\Exception $e) {
+                Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+                $output = [
+                    'success' => false,
+                    'msg' => __('lang.something_went_wrong')
+                ];
+            }
+            if ($request->quick_add) {
+              return $output;
+            }
+        
+       
         return redirect()->back()->with('status', $output);
     }
 
@@ -67,11 +69,9 @@ class StoreController extends Controller
      */
     public function edit(string $id)
     {
-        $store = Store::find($id);
-        $branches = Branch::pluck('name', 'id');
-        return view('stores.edit')->with(compact(
-            'store',
-            'branches'
+        $lab = Lab::find($id);
+        return view('labs.edit')->with(compact(
+            'lab'
         ));
     }
 
@@ -81,10 +81,9 @@ class StoreController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $data = $request->except('_token');
             $data['name'] = $request->name;
             $data['edited_by'] = Auth::user()->id;
-            Store::find($id)->update($data);
+            Lab::find($id)->update($data);
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -106,10 +105,10 @@ class StoreController extends Controller
     public function destroy(string $id)
     {
         try {
-            $store=Store::find($id);
-            $store->deleted_by=Auth::user()->id;
-            $store->save();
-            $store->delete();
+            $lab=Lab::find($id);
+            $lab->deleted_by=Auth::user()->id;
+            $lab->save();
+            $lab->delete();
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')

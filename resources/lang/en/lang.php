@@ -226,6 +226,17 @@ return [
     'extra_sorting_worker'=>'Extra Sorting Worker',
     'compression_worker'=>'Compression Worker',
     'unauthorized_action'=>'Unauthorized action.',
+     'opening' => 'Opening',
+     'screening'=>'Screening',
+     'branches'=>'Branches',
+     'stores'=>'Stores',
+     'location'=>'Location',
+     'phone_number'=>'Phone Number',
+     'manager_name'=>'Manager Name',
+     'manager_mobile_number'=>'Manager mobile number',
+     'labs'=>'Labs',
+     'calibers'=>'Calibers',
+    'number'=>'Number',
 ];
 
 ?>

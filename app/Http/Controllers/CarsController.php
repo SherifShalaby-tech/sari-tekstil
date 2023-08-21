@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cars;
+use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -74,8 +75,10 @@ class CarsController extends Controller
             abort(403, __('lang.unauthorized_action'));
         }
         $car = Cars::find($id);
+        $stores = Store::pluck('name', 'id');
         return view('cars.edit')->with(compact(
-            'car'
+            'car',
+            'stores',
         ));
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CalibersController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CustomerController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\LabsController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
@@ -71,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('settings',SettingController::class);
     
     
+    Route::resource('lab',LabsController::class);
+    Route::resource('calibers',CalibersController::class);
 });
 Auth::routes();
 

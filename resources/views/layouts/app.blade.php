@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="{{asset('/uploads/'.$settings['logo'])}}">
     @include('layouts.partials.css')
     @stack('css')
+    @livewireStyles
 </head>
 <body class="vertical-layout">    
     <!-- Start Infobar Setting Sidebar -->
@@ -86,5 +87,6 @@
     </div>
     <!-- End Containerbar -->
     @include('layouts.partials.javascript')
+    @livewireScripts
 </body>
 </html>

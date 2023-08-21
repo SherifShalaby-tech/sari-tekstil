@@ -2,7 +2,7 @@
      $stores = App\Models\Store::pluck('name', 'id');
 @endphp
 <!-- Modal -->
-<div class="modal fade" id="createCarModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="createCaliberModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  rollIn  animated" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,39 +11,17 @@
                 <span aria-hidden="true">×</span>
                 </button>
             </div>
-            {!! Form::open(['route' => 'cars.store', 'method' => 'post', 'files' => true,'id' =>'car-form' ]) !!}
+            {!! Form::open(['route' => 'calibers.store', 'method' => 'post', 'files' => true,'id' =>'car-form' ]) !!}
                 <div class="modal-body">
                     <div class="row pt-5">
                         <div class="col-md-6">
                             <div class="form-group">
                                 {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
-                                {!! Form::label('name', __( 'lang.name' ) . ':*') !!}
-                                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __( 'lang.name' ), 'required'
+                                {!! Form::label('number', __( 'lang.number' ) . ':*') !!}
+                                {!! Form::text('number', null, ['class' => 'form-control', 'placeholder' => __( 'lang.number' ), 'required'
                                 ]);
                                 !!}
-                                @error('name')
-                                    <label class="text-danger error-msg">{{ $message }}</label>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('weight', __( 'lang.weight' ) . ':*') !!}
-                                {!! Form::text('weight', null, ['class' => 'form-control', 'placeholder' => __( 'lang.weight' ), 'required'
-                                ]);
-                                !!}
-                                @error('weight')
-                                    <label class="text-danger error-msg">{{ $message }}</label>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('sku', __( 'lang.sku' ) . ':*') !!}
-                                {!! Form::text('sku', null, ['class' => 'form-control', 'placeholder' => __( 'lang.sku' ), 
-                                ]);
-                                !!}
-                                @error('weight')
+                                @error('number')
                                     <label class="text-danger error-msg">{{ $message }}</label>
                                 @enderror
                             </div>
@@ -68,5 +46,3 @@
         </div>
     </div>
 </div>
-
-{!! JsValidator::formRequest('App\Http\Requests\StoreCarsRequest','#car-form'); !!}
