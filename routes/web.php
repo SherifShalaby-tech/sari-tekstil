@@ -52,9 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('nationality',NationalityController::class);
     Route::resource('cars',CarsController::class);
     Route::resource('maintain-car',ExpenseCarController::class);
-    Route::get('cars/change-sku/{id}', [PlanningCarController::class,'changeSku']);
-    Route::get('cars/change-weight_empty/{id}', [PlanningCarController::class,'changeWeightEmpty']);
-    Route::get('cars/change-weight-product/{id}', [PlanningCarController::class,'changeWeightProduct']);
     Route::resource('planning-carts',PlanningCarController::class);
     Route::resource('opening',OpeningController::class);
     Route::resource('types',TypeController::class);

@@ -34,18 +34,17 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                {{-- <th>@lang('lang.branch')</th> --}}
                                 <th>@lang('lang.sku')</th>
                                 <th>@lang('lang.name')</th>
                                 <th>@lang('lang.weight_empty')</th>
-                                <th>@lang('lang.recent_process')</th>
-                                <th>@lang('lang.recent_car_content')</th>
-                                <th>@lang('lang.recent_place')</th>
-                                <th>@lang('lang.employee')</th>
+                                <th>@lang('lang.recent_process')&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>@lang('lang.recent_car_content')&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>@lang('lang.recent_place')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>@lang('lang.employee')&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 <th>@lang('lang.weight_product')</th>
-                                <th>@lang('lang.next_process')</th>
-                                <th>@lang('lang.caliber')</th>
-                                <th>@lang('lang.next_employee')</th>
+                                <th>@lang('lang.next_process') &nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>@lang('lang.caliber')&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>@lang('lang.next_employee')&nbsp;&nbsp;&nbsp;</th>
                                 {{-- <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th> --}}
                                 {{-- <th>@lang('lang.action')</th> --}}
@@ -59,31 +58,35 @@
                                     {{ $index+1 }}
                                 </td>
                                 <td>
-                                    {!! Form::text('sku',  $car->sku, ['class' => 'form-control', 'placeholder' => __('lang.sku'),'id'=>'sku','data-id'=>$car->id]) !!}
+                                    {!! Form::text('sku',  $car->sku, ['class' => 'form-control sku', 'placeholder' => __('lang.sku'),'data-val'=>$car->sku,!$disabled?'disabled':'']) !!}
                                 </td>
                                 <td>{{$car->name}}</td>
                                 <td class="d-flex justify-content-between">
-                                    {!! Form::text('weight_empty',  @num_format($car->weight_empty), ['class' => 'form-control', 'placeholder' => '0.00','id'=>'weight_empty','data-id'=>$car->id]) !!}
+                                    {!! Form::number('weight_empty',  @num_format($car->weight_empty), ['class' => 'form-control weight_empty', 'placeholder' => '0.00','data-val'=>$car->weight_empty,!$disabled?'disabled':'']) !!}
                                     &nbsp;<span class="pt-2">Kg</span></td>
-                                <td>{{__('lang.'.$car->process)}}</td>
-                                <td class="text-center">{{$car->recent_car_content}}</td>
-                                <td class="text-center">
-                                    {!! Form::select('recent_place', $places,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-']) !!}
+                                <td>
+                                    {!! Form::select('process', $processes,  !empty($car->process)?$car->process:NULL, ['class' => 'selectpicker form-control process', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
                                 </td>
-                                <td class="text-center">
-                                    {!! Form::select('employee_id', $employees,  !empty($car->employee)?$car->employee_id:null, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' =>'-']) !!}
+                                <td>
+                                    {!! Form::text('recent_car_content', !empty($car->recent_car_content)?$car->recent_car_content:null, ['class' => 'form-control recent_car_content', 'placeholder' => '-','data-val'=>$car->sku,!$disabled?'disabled':'']) !!}
+                                </td>
+                                <td>
+                                    {!! Form::select('recent_place', $places,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-',!$disabled?'disabled':'']) !!}
+                                </td>
+                                <td>
+                                    {!! Form::select('employee_id', $employees,  !empty($car->employee)?$car->employee_id:null, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' =>'-',!$disabled?'disabled':'']) !!}
                                 </td>
                                 <td class="d-flex justify-content-between">
-                                    {!! Form::text('weight_product',  @num_format($car->weight_product), ['class' => 'form-control', 'placeholder' =>'0.00','id'=>'weight_product','data-id'=>$car->id]) !!}
+                                    {!! Form::number('weight_product',  @num_format($car->weight_product), ['class' => 'form-control weight_product', 'placeholder' =>'0.00','data-val'=>$car->weight_product,!$disabled?'disabled':'']) !!}
                                     &nbsp;<span class="pt-2">Kg</span></td>
                                 <td>
-                                    {!! Form::select('next_process', $processes,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-','id'=>'next_process','data-index'=>$index]) !!}
+                                    {!! Form::select('next_process', $processes,  !empty($car->next_process)?$car->next_process:NULL, ['class' => 'selectpicker form-control next_process', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
                                 </td>
                                 <td class="text-center">
-                                    {!! Form::select('caliber_id', $calibars,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-','id'=>'caliber_id','data-index'=>$index]) !!}
+                                    {!! Form::select('caliber_id', $calibars,  !empty($car->caliber_id)?$car->caliber_id:NULL, ['class' => 'selectpicker form-control caliber_id', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
                                 </td>
                                 <td>
-                                    {!! Form::select('next_employee_id', $employees,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-','id'=>'next_employee_id','data-index'=>$index]) !!}
+                                    {!! Form::select('next_employee_id', $employees,  !empty($car->next_employee_id)?$car->next_employee_id:null, ['class' => 'selectpicker form-control next_employee_id', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
                                 </td>
                                 {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
                                 {{-- <td>
@@ -138,10 +141,12 @@
                         </div>
                     </div>
             </div>
-            <div class="col-lg-12 col-xl-12">
-                <button  id="save" class="btn btn-primary">{{__('lang.save')}}</button>
-                <button  id="save-print" class="btn btn-danger">{{__('lang.save_and_print')}}</button>
-            </div>
+            @if($disabled && !empty($cars))
+                <div class="col-lg-12 col-xl-12">
+                    <button  id="save" class="btn btn-primary">{{__('lang.save')}}</button>
+                    <button  id="save-print" data-print="1"  class="btn btn-danger">{{__('lang.save_and_print')}}</button>
+                </div>
+            @endif
             <!-- End col -->
         </div>
         <!-- End row -->

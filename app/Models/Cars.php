@@ -44,6 +44,7 @@ class Cars extends Model
             'squeeze' => __('lang.squeeze'),
             'sort' => __('lang.sort'),
             'cream_sort' => __('lang.cream_sort'),
+            'not_used' => __('lang.not_used'),
         ];
     }
 }

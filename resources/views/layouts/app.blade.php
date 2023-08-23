@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="{{asset('/uploads/'.$settings['logo'])}}">
     @include('layouts.partials.css')
     @stack('css')
-    @livewireStyles
+    {{-- @livewireStyles --}}
 </head>
 <body class="vertical-layout">    
     <!-- Start Infobar Setting Sidebar -->

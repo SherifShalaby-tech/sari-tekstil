@@ -7,4 +7,5 @@ LANG ={
     phone:'Phone',
     email:'Email',
     continue:'Continue',
+    no_cart_changed_changed:'No Cart Changed',
 }

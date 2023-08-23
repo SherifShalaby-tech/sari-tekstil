@@ -244,6 +244,7 @@ return [
     'cream_sort' =>'',
     'sku_repeated'=>'',
     'save_and_print'=>'',
+    'number_of_days_per_year'=>'',
 ];
 
 

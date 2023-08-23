@@ -260,6 +260,7 @@ return [
     'cream_sort' =>'Cream Sort',
     'sku_repeated'=>'Code Is Repeated',
     'save_and_print'=>'Save & Print',
+    'number_of_days_per_year'=>'Number Of Days Per Year',
 ];
 
 ?>

@@ -261,7 +261,7 @@ return [
     'cream_sort' =>'فرز الكريم',
     'sku_repeated'=>'الكود مكرر',
     'save_and_print'=>'حفظ وطباعة',
-    ''=>'',
+    'number_of_days_per_year'=>'عدد الايام فى السنة',
     ''=>'',
     ''=>'',
     ''=>'',

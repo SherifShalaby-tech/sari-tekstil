@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('branch_id')->nullable()->constrained('branches', 'id')->cascadeOnDelete();
             $table->foreignId('caliber_id')->nullable()->constrained('calibers', 'id')->cascadeOnDelete();
             $table->enum('process',['not_used','open','sort','cream sort','original store','squeeze'])->nullable()->default('not_used');
+            $table->enum('next_process',['not_used','open','sort','cream sort','original store','squeeze'])->nullable()->default('not_used');
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
