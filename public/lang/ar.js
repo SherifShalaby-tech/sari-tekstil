@@ -6,4 +6,5 @@ LANG = {
     are_you_sure_you_wanna_delete_it:'هل متاكد من الحذف ؟',
     phone:'تليفون',
     email:'ايميل',
+    continue:'استمرار',
 };

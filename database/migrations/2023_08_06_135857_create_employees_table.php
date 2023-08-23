@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-			$table->integer('branch_id')->constrained('branches', 'id')->cascadeOnDelete();;
-			$table->integer('user_id')->constrained('users', 'id')->cascadeOnDelete();;
+			$table->integer('branch_id')->constrained('branches', 'id')->cascadeOnDelete();
+			$table->integer('user_id')->constrained('users', 'id')->cascadeOnDelete();
 			$table->string('password')->nullable();
 			$table->string('name');
 			$table->date('date_of_start_working')->nullable();

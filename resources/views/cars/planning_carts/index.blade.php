@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('lang.cars'))
+@section('title', __('lang.planning_carts'))
 @section('breadcrumbbar')
     <!-- Start Breadcrumbbar -->                    
     <div class="breadcrumbbar">
@@ -12,30 +12,15 @@
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.cars')</li>
+                                <li class="breadcrumb-item"><a href="{{route('cars.index')}}">{{__('lang.cars')}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.planning_carts')</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1 col-lg-1">
-                @if(auth()->user()->can('settings_module.cars.create'))
-                <div class="widgetbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
-                </div>   
-                @endif                     
-            </div>
-            <div class="col-md-2 col-lg-2">
-                @if(auth()->user()->can('settings_module.cars.create'))
-                <div class="widgetbar">
-                    <a href="{{route('planning-carts.index')}}" class="btn btn-warning"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.planning_carts')</a>
-                </div>   
-                @endif                     
-            </div>
         </div>          
     </div>
-    <!-- End Breadcrumbbar -->
-    @include('cars.create')
 @endsection
 @section('content')
     <!-- Start Contentbar -->    
@@ -49,39 +34,59 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>@lang('lang.branch')</th>
+                                {{-- <th>@lang('lang.branch')</th> --}}
                                 <th>@lang('lang.sku')</th>
                                 <th>@lang('lang.name')</th>
                                 <th>@lang('lang.weight_empty')</th>
                                 <th>@lang('lang.recent_process')</th>
                                 <th>@lang('lang.recent_car_content')</th>
-                                <th>@lang('lang.caliber')</th>
+                                <th>@lang('lang.recent_place')</th>
                                 <th>@lang('lang.employee')</th>
                                 <th>@lang('lang.weight_product')</th>
-                                {{-- <th>@lang('lang.store')</th> --}}
-                                {{-- <th class="text-center">@lang('lang.details')</th> --}}
-                                <th>@lang('lang.added_by')</th>
-                                <th>@lang('lang.updated_by')</th>
-                                <th>@lang('lang.action')</th>
+                                <th>@lang('lang.next_process')</th>
+                                <th>@lang('lang.caliber')</th>
+                                <th>@lang('lang.next_employee')</th>
+                                {{-- <th>@lang('lang.added_by')</th>
+                                <th>@lang('lang.updated_by')</th> --}}
+                                {{-- <th>@lang('lang.action')</th> --}}
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($cars as $index=>$car)
                             <tr>
-                                <td>{{ $index+1 }}</td>
-                                <td>{{$car->branch->name}}</td>
-                                <td>{{$car->sku}}</td>
+                                <td>
+                                    <input type="hidden" value="{{$car->id}}" name="id"/>
+                                    {{ $index+1 }}
+                                </td>
+                                <td>
+                                    {!! Form::text('sku',  $car->sku, ['class' => 'form-control', 'placeholder' => __('lang.sku'),'id'=>'sku','data-id'=>$car->id]) !!}
+                                </td>
                                 <td>{{$car->name}}</td>
-                                {{-- <td> {!! Form::text('discount[]',  @num_format(444), ['class' => 'clear_input_form form-control', 'placeholder' => __('lang.discount')]) !!}</td> --}}
-                                <td>{{@num_format($car->weight_empty)}} KG</td>
+                                <td class="d-flex justify-content-between">
+                                    {!! Form::text('weight_empty',  @num_format($car->weight_empty), ['class' => 'form-control', 'placeholder' => '0.00','id'=>'weight_empty','data-id'=>$car->id]) !!}
+                                    &nbsp;<span class="pt-2">Kg</span></td>
                                 <td>{{__('lang.'.$car->process)}}</td>
                                 <td class="text-center">{{$car->recent_car_content}}</td>
-                                <td class="text-center">{{!empty($car->caliber)?$car->caliber->number:'-'}}</td>
-                                <td class="text-center">{{!empty($car->employee)?$car->employee->number:'-'}}</td>
-                                <td>{{@num_format($car->weight_product)}} KG</td>
-                                {{-- <td>{{$car->store->name}}</td> --}}
-                                {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
+                                <td class="text-center">
+                                    {!! Form::select('recent_place', $places,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-']) !!}
+                                </td>
+                                <td class="text-center">
+                                    {!! Form::select('employee_id', $employees,  !empty($car->employee)?$car->employee_id:null, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' =>'-']) !!}
+                                </td>
+                                <td class="d-flex justify-content-between">
+                                    {!! Form::text('weight_product',  @num_format($car->weight_product), ['class' => 'form-control', 'placeholder' =>'0.00','id'=>'weight_product','data-id'=>$car->id]) !!}
+                                    &nbsp;<span class="pt-2">Kg</span></td>
                                 <td>
+                                    {!! Form::select('next_process', $processes,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-','id'=>'next_process','data-index'=>$index]) !!}
+                                </td>
+                                <td class="text-center">
+                                    {!! Form::select('caliber_id', $calibars,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-','id'=>'caliber_id','data-index'=>$index]) !!}
+                                </td>
+                                <td>
+                                    {!! Form::select('next_employee_id', $employees,  NULL, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'placeholder' => '-','id'=>'next_employee_id','data-index'=>$index]) !!}
+                                </td>
+                                {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
+                                {{-- <td>
                                     @if ($car->created_by  > 0 and $car->created_by != null)
                                         {{ $car->created_at->diffForHumans() }} <br>
                                         {{ $car->created_at->format('Y-m-d') }}
@@ -111,11 +116,6 @@
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             @if(auth()->user()->can('settings_module.cars.edit'))
                                             <li>
-                                                <a data-href="{{route('maintain-car.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.maintain_car')</a>
-                                            </li>
-                                            @endif
-                                            @if(auth()->user()->can('settings_module.cars.edit'))
-                                            <li>
                                                 <a data-href="{{route('cars.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             @endif
@@ -129,7 +129,7 @@
                                             @endif
                                         </ul>
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                             </tbody>
@@ -138,9 +138,16 @@
                         </div>
                     </div>
             </div>
+            <div class="col-lg-12 col-xl-12">
+                <button  id="save" class="btn btn-primary">{{__('lang.save')}}</button>
+                <button  id="save-print" class="btn btn-danger">{{__('lang.save_and_print')}}</button>
+            </div>
             <!-- End col -->
         </div>
         <!-- End row -->
     </div>
     <!-- End Contentbar -->
 @endsection
+@push('javascripts')
+<script src="{{asset('app-js/planning_carts.js')}}" ></script>
+@endpush

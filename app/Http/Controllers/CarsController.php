@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCarsRequest;
+use App\Http\Requests\UpdateCarsRequest;
+use App\Models\Branch;
+use App\Models\Caliber;
 use App\Models\Cars;
 use App\Models\Store;
 use Illuminate\Http\Request;
@@ -19,7 +23,10 @@ class CarsController extends Controller
             abort(403, __('lang.unauthorized_action'));
         }
         $cars=Cars::latest()->get();
-        return view('cars.index',compact('cars'));
+        $stores =Store::latest()->pluck('name', 'id');
+        $branches=Branch::latest()->pluck('name', 'id');
+        $calibars=Caliber::latest()->pluck('number', 'id');
+        return view('cars.index',compact('cars','stores','branches','calibars'));
     }
 
     /**
@@ -33,7 +40,7 @@ class CarsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCarsRequest $request)
     {
         try {
             $data = $request->except('_token');
@@ -76,22 +83,22 @@ class CarsController extends Controller
         }
         $car = Cars::find($id);
         $stores = Store::pluck('name', 'id');
+        $branches=Branch::latest()->pluck('name', 'id');
         return view('cars.edit')->with(compact(
             'car',
             'stores',
+            'branches'
         ));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCarsRequest $request, string $id)
     {
         try {
-            $data['name'] = $request->name;
-            $data['weight'] = $request->weight;
+            $data = $request->except('_token');
             $data['sku'] = !empty($request->sku) ? $request->sku : $this->generateSku($request->name);
-            $data['store_id'] = $request->store_id;
             $data['edited_by'] = Auth::user()->id;
             Cars::find($id)->update($data);
             $output = [

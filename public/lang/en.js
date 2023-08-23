@@ -6,4 +6,5 @@ LANG ={
     are_you_sure_you_wanna_delete_it:'Are you sure You Wanna Delete it?',
     phone:'Phone',
     email:'Email',
+    continue:'Continue',
 }
