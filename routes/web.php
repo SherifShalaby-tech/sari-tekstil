@@ -16,6 +16,7 @@ use App\Http\Controllers\LabsController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
+use App\Http\Controllers\OriginalStockController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StoreController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
+use App\Models\OriginalStock;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
+    Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');
 });
 Auth::routes();
 
