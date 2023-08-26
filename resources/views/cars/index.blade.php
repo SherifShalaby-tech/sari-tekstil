@@ -18,14 +18,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1 col-lg-1">
+            <div class="col-md-3  col-lg-3 d-flex">
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
                 </div>   
-                @endif                     
-            </div>
-            <div class="col-md-2 col-lg-2">
+                @endif  
+                &nbsp;&nbsp;&nbsp;                   
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <a href="{{route('planning-carts.index')}}" class="btn btn-warning"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.planning_carts')</a>
@@ -40,6 +39,13 @@
 @section('content')
     <!-- Start Contentbar -->    
     <div class="contentbar">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container-fluid">
+                    @include('cars.partials.filters',['url'=>'cars.index'])
+                </div>
+            </div>
+        </div>
         <!-- Start row -->
         <div class="row">
             <!-- Start col -->
@@ -52,14 +58,13 @@
                                 <th>@lang('lang.branch')</th>
                                 <th>@lang('lang.sku')</th>
                                 <th>@lang('lang.name')</th>
+                                <th>@lang('lang.status')</th>
                                 <th>@lang('lang.weight_empty')</th>
                                 <th>@lang('lang.recent_process')</th>
                                 <th>@lang('lang.recent_car_content')</th>
                                 <th>@lang('lang.caliber')</th>
                                 <th>@lang('lang.employee')</th>
                                 <th>@lang('lang.weight_product')</th>
-                                {{-- <th>@lang('lang.store')</th> --}}
-                                {{-- <th class="text-center">@lang('lang.details')</th> --}}
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
@@ -72,12 +77,19 @@
                                 <td>{{$car->branch->name}}</td>
                                 <td>{{$car->sku}}</td>
                                 <td>{{$car->name}}</td>
+                                <td>
+                                    @if($car->weight_empty==0)
+                                        <span class="text-danger">@lang('lang.empty')</span>
+                                    @else
+                                        <span class="text-primary">@lang('lang.occuppied')</span>
+                                    @endif    
+                                </td>
                                 {{-- <td> {!! Form::text('discount[]',  @num_format(444), ['class' => 'clear_input_form form-control', 'placeholder' => __('lang.discount')]) !!}</td> --}}
                                 <td>{{@num_format($car->weight_empty)}} KG</td>
                                 <td>{{__('lang.'.$car->process)}}</td>
                                 <td class="text-center">{{$car->recent_car_content}}</td>
                                 <td class="text-center">{{!empty($car->caliber)?$car->caliber->number:'-'}}</td>
-                                <td class="text-center">{{!empty($car->employee)?$car->employee->number:'-'}}</td>
+                                <td class="text-center">{{!empty($car->employee)?$car->employee->name:'-'}}</td>
                                 <td>{{@num_format($car->weight_product)}} KG</td>
                                 {{-- <td>{{$car->store->name}}</td> --}}
                                 {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
@@ -111,7 +123,13 @@
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             @if(auth()->user()->can('settings_module.cars.edit'))
                                             <li>
-                                                <a data-href="{{route('maintain-car.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.maintain_car')</a>
+                                                <a data-href="{{route('maintain-car.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal">
+                                                    @if($car->expense_car)
+                                                        <span class="text-danger"><i class="dripicons-document-edit"></i> @lang('lang.under_maintainance')</span>
+                                                    @else
+                                                        <span><i class="dripicons-document-edit"></i> @lang('lang.maintain_car')</span>
+                                                    @endif
+                                                </a>
                                             </li>
                                             @endif
                                             @if(auth()->user()->can('settings_module.cars.edit'))

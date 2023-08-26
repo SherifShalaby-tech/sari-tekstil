@@ -25,5 +25,28 @@
     input:not([type=file],[type=search]),textarea,select{
         border:2px solid #e4dfdf !important;
     }
+    .print-only {
+    display: none;
+    }
+
+    @media print {
+        .no-print {
+            display: none;
+        }
+
+        .print-only {
+            display: block;
+        }
+        .ui-pnotify-container{
+            display: none !important;
+        }
+        @livewireScripts {
+        display: none !important;
+    }
+    }
+    /* .scrollable-div {
+    width: 100%; 
+    overflow: visible;
+    } */
 </style>
 

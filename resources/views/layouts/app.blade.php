@@ -20,7 +20,7 @@
 </head>
 <body class="vertical-layout">    
     <!-- Start Infobar Setting Sidebar -->
-    <div id="infobar-settings-sidebar" class="infobar-settings-sidebar">
+    <div id="infobar-settings-sidebar" class="infobar-settings-sidebar no-print">
         <div class="infobar-settings-sidebar-head d-flex w-100 justify-content-between">
             <h4>Settings</h4><a href="javascript:void(0)" id="infobar-settings-close" class="infobar-settings-close"><i class="ri-close-line menu-hamburger-close"></i></a>
         </div>
@@ -61,10 +61,10 @@
             </div>
         </div>
     </div>
-    <div class="infobar-settings-sidebar-overlay"></div>
+    <div class="infobar-settings-sidebar-overlay no-print"></div>
     <!-- End Infobar Setting Sidebar -->
     <!-- Start Containerbar -->
-    <div id="containerbar">
+    <div id="containerbar" class="no-print">
         <!-- Start Leftbar -->
         @include('layouts.partials.sidebar')
         <!-- End Leftbar -->
@@ -76,7 +76,7 @@
             @yield('breadcrumbbar')
             @yield('content')
             <!-- Start Footerbar -->
-            <div class="footerbar">
+            <div class="footerbar no-print">
                 <footer class="footer">
                     <p class="mb-0">© 2023 {{$settings['site_title']}}- {{__('lang.developed_by')}}: {{$settings['developed_by']}} - All Rights Reserved.</p>
                 </footer>
@@ -88,5 +88,7 @@
     <!-- End Containerbar -->
     @include('layouts.partials.javascript')
     @livewireScripts
+    <section class="invoice print_section print-only" id="receipt_section"> </section>
+
 </body>
 </html>

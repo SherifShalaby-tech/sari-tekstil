@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name', 60)->nullable();
             $table->decimal('weight_empty', 15, 4)->nullable()->default(0);
             $table->decimal('weight_product', 15, 4)->nullable()->default(0);
-            $table->string('recent_car_content')->nullable()->default('-');
+            $table->string('recent_car_content')->nullable();
             $table->string('sku', 60)->nullable();
+            $table->string('recent_place', 60)->nullable();
             $table->foreignId('employee_id')->nullable()->constrained('employees', 'id')->cascadeOnDelete();
             $table->foreignId('next_employee_id')->nullable()->constrained('employees', 'id')->cascadeOnDelete();
             // $table->foreignId('store_id')->nullable()->constrained('stores', 'id')->cascadeOnDelete();

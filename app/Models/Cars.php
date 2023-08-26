@@ -26,7 +26,15 @@ class Cars extends Model
     }
     public function employee()
     {
-        return $this->belongsTo(employee::class, 'employee_id');
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
+    public function next_employee()
+    {
+        return $this->belongsTo(Employee::class, 'next_employee_id');
+    }
+    public function expense_car()
+    {
+        return $this->hasOne(ExpenseCar::class,'car_id');
     }
     public function createBy()
     {

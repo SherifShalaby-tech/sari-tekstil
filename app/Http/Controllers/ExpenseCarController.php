@@ -6,6 +6,7 @@ use App\Models\Cars;
 use App\Models\ExpenseCar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 class ExpenseCarController extends Controller
@@ -33,19 +34,45 @@ class ExpenseCarController extends Controller
     {
         try {
             $data = $request->except('_token');
-            $data['created_by']=Auth::user()->id;
-            if ($request->hasFile('upload_files')) {
-                $files=[];
-                for ($i=0;$i<count($request->upload_files);$i++) {
-                    $image= $request->upload_files[$i];
-                    $ext = $image->getClientOriginalExtension();
-                    $filename = rand(1111,9999).time() . '.' . $ext;
-                    $image->move("uploads/cars/", $filename);
-                    $files[]= $filename;
+            if($request->car_id && $request->car_id!==null){
+                $expenseCar=ExpenseCar::where('car_id',$request->car_id)->first();
+                $data['edited_by']=Auth::user()->id;
+                if ($request->hasFile('upload_files')) {
+                    if(!empty($expenseCar->files)){
+                        for ($i=0;$i<count($expenseCar->files);$i++) {
+                            $image= $expenseCar->files[$i];
+                            $fullPath = public_path('uploads/cars/' .$image);
+                            File::delete($fullPath);
+                        }
+                    }
+                    $files=[];
+                    for ($i=0;$i<count($request->upload_files);$i++) {
+                        $image= $request->upload_files[$i];
+                        $ext = $image->getClientOriginalExtension();
+                        $filename = rand(1111,9999).time() . '.' . $ext;
+                        $image->move("uploads/cars/", $filename);
+                        $files[]= $filename;
+                    }
+                    $data['files']=$files;
                 }
-                $data['files']=$files;
+                $editCarExpense= $expenseCar->update($data);
+            }else{
+                $data['created_by']=Auth::user()->id;
+                $data['car_id']=$request->id;
+                $data['status']=1;
+                if ($request->hasFile('upload_files')) {
+                    $files=[];
+                    for ($i=0;$i<count($request->upload_files);$i++) {
+                        $image= $request->upload_files[$i];
+                        $ext = $image->getClientOriginalExtension();
+                        $filename = rand(1111,9999).time() . '.' . $ext;
+                        $image->move("uploads/cars/", $filename);
+                        $files[]= $filename;
+                    }
+                    $data['files']=$files;
+                }
+                $carExpense= ExpenseCar::create($data);
             }
-            $carExpense= ExpenseCar::create($data);
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')

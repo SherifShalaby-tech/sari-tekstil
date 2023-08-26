@@ -245,6 +245,12 @@ return [
     'sku_repeated'=>'',
     'save_and_print'=>'',
     'number_of_days_per_year'=>'',
+    'show_only_empty_carts'=>'',
+    'show_only_occupied_carts'=>'',
+    'empty'=>'',
+    'created_by'=>'',
+    'occuppied'=>'',
+    'under_maintainance'=>'',
 ];
 
 

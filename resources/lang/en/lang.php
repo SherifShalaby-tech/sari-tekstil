@@ -261,6 +261,12 @@ return [
     'sku_repeated'=>'Code Is Repeated',
     'save_and_print'=>'Save & Print',
     'number_of_days_per_year'=>'Number Of Days Per Year',
+    'show_only_empty_carts'=>'Show Only Empty Carts',
+    'show_only_occupied_carts'=>'Show Only Occupied Carts',
+    'empty'=>'Empty',
+    'created_by'=>'Created By',
+    'occuppied'=>'Occuppied',
+    'under_maintainance'=>'Car Under Maintainance',
 ];
 
 ?>

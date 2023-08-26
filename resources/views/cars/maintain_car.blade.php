@@ -14,7 +14,8 @@
                 <div class="row pt-5">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <input type="hidden" value="{{$car->id}}" name="car_id"/>
+                            <input type="hidden" value="{{!empty($expense_car)?$expense_car->car_id:null}}" name="car_id"/>
+                            <input type="hidden" value="{{$car->id}}" name="id"/>
                             {!! Form::label('name', __( 'lang.name' ) . ':*') !!}
                             {!! Form::text('name', $car->name, ['class' => 'form-control', 'placeholder' => __( 'lang.name' ), 'disabled'
                             ]);
@@ -40,7 +41,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('cost', __( 'lang.cost' ) . ':*') !!}
-                            {!! Form::number('cost', !empty($expense_car)?$expense_car->cost:null, ['class' => 'form-control', 'placeholder' => __( 'lang.cost' ), 'required'
+                            {!! Form::number('cost', !empty($expense_car)?@num_format($expense_car->cost):null, ['class' => 'form-control', 'placeholder' => __( 'lang.cost' ), 'required'
                             ]);
                             !!}
                             @error('cost')
@@ -51,10 +52,11 @@
                     <div class="col-md-4">
                         <label for="upload_files">@lang('lang.upload_files')</label><br>
                         <input type="file" name="upload_files[]"  multiple>
+                        {{!empty($expense_car)?count($expense_car->files).' Files Uploaded':''}}
                     </div>
                     <div class="col-md-12 pt-3">
                         <label for="details">@lang('lang.details')</label>
-                        {!! Form::textarea('notes', !empty($expense_car)?$expense_car->details:null, ['class' => 'form-control', 'rows' => 3, 'placeholder' =>
+                        {!! Form::textarea('notes', !empty($expense_car)?$expense_car->notes:null, ['class' => 'form-control', 'rows' => 3, 'placeholder' =>
                         __('lang.details'), 'id' => 'textInput','oninput'=>"checkLetterCount()"]) !!}
                         <p id="letterCount">0 letters out of 250</p>
                     </div>

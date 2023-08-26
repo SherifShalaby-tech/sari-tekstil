@@ -1,7 +1,6 @@
 $(document).on('change', '.sku,.weight_empty,.weight_product', function(e) {
     e.preventDefault();
     var val=$(this).attr('data-val');
-    alert(val)
     swal({
         title: LANG.are_you_sure,
         text: LANG.continue,
@@ -58,8 +57,7 @@ $(document).on('click', '#save,#save-print', function(e) {
                     var employee_id = $('.employee_id', rowData.node()).val();
                     var next_employee_id = $('.next_employee_id', rowData.node()).val();
                     var recent_car_content = $('.recent_car_content', rowData.node()).val();
-                    alert(next_employee_id);
-                    if(next_process!=='' && next_employee_id!=='' && caliber_id!=='' ){
+                    if(next_process!=='' && next_employee_id!=='' && caliber_id!==''){
                         dataObj = {
                             id: id,
                             sku: sku,
@@ -76,7 +74,6 @@ $(document).on('click', '#save,#save-print', function(e) {
                         selectedData.push(dataObj);
                     }
                 }
-                console.log(selectedData);
                 saveCarPlanning(selectedData,print);
             }else{
                 selectedRows=[];
@@ -96,10 +93,26 @@ function saveCarPlanning(selectedData,print) {
             },
             success: function (response) {
                 new PNotify( {title: response.msg, text: response.msg,type: "success"});
-                console.log(response)
+                if(response.html_content!==''){
+                pos_print(response.html_content);
+                }
+                selectedRows=[];
             }
         });
     }else{
         swal(LANG.no_cart_changed, '', "error");
     }
+}
+function pos_print(receipt) {
+    $("#receipt_section").html(receipt);
+    const sectionToPrint = document.getElementById('receipt_section');
+    __print_receipt(sectionToPrint);
+}
+function __print_receipt(section= null) {
+    setTimeout(function () {
+        section.style.display = 'block';
+        window.print();
+        section.style.display = 'none';
+    
+    }, 1000);
 }
