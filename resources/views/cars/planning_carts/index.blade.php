@@ -37,16 +37,16 @@
             <!-- Start col -->
             <div class="col-lg-12 col-xl-12">
                 <div class="scrollable-div">
-                    <div class="table-responsive ">
-                        {{-- <table id="datatable-buttons" class="table table-striped table-bordered "> --}}
-                            <table id="datatable-buttons" class="display table table-striped table-bordered dataTable dtr-inline collapsed" role="grid" aria-describedby="default-datatable_info">   
+                    <div class="table-responsive " >
+                        <table id="datatable-buttons" class="table table-striped table-bordered ">
+                            {{-- <table id="datatable-buttons" class="display table table-striped table-bordered dataTable dtr-inline collapsed" role="grid" aria-describedby="default-datatable_info" >    --}}
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th style="width:8%">@lang('lang.sku')</th>
                                 <th style="width:5%">@lang('lang.name')</th>
-                                <th style="width:3%">@lang('lang.status')</th>
-                                <th style="width:9%">@lang('lang.weight_empty')</th>
+                                <th style="width:2%">@lang('lang.status')</th>
+                                <th style="width:10%">@lang('lang.weight_empty')</th>
                                 <th style="width:10%">@lang('lang.recent_process')</th>
                                 <th style="width:10%">@lang('lang.recent_car_content')</th>
                                 <th style="width:10%">@lang('lang.recent_place')</th>
