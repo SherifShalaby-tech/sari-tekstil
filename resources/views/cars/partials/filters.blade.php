@@ -1,7 +1,7 @@
 <div class="card-body">
     <form action="{{route($url)}}" method="get">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'branch_id',
@@ -10,7 +10,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'employee_id',
@@ -19,7 +19,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'recent_process',
@@ -28,7 +28,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'caliber_id',
@@ -37,7 +37,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'recent_car_content',
@@ -46,7 +46,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'created_by',
@@ -55,7 +55,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 <div class="form-check">
                     <input type="hidden" name="empty_carts_val" value="0">
@@ -66,7 +66,7 @@
                   </div>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 <div class="form-check">
                     <input type="hidden" name="occupied_carts_val" value="0">
@@ -77,8 +77,7 @@
                   </div>
             </div>
         </div>
-        {{-- <div class="col-2"></div> --}}
-        <div class="col-2">
+        <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 <button type="submit" name="submit" class="btn btn-primary width-100" title="search">
                     <i class="fa fa-eye"></i> {{ __('Search') }}</button>
