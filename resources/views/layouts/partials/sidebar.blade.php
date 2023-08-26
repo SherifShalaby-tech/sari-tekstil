@@ -3,8 +3,8 @@
     <div class="sidebar">
         <!-- Start Logobar -->
         <div class="logobar">
-            <a href="index.html" class="logo logo-large"><img src="{{asset('/uploads/'.$settings['logo'])}}" style="width:70px; height:70px;" class="img-fluid" alt="logo"></a>
-            <a href="index.html" class="logo logo-small"><img src="{{asset('/uploads/'.$settings['logo'])}}"style="width:70px; height:70px;" width="100" height="100" class="img-fluid" alt="logo"></a>
+            <a href="{{url('/')}}" class="logo logo-large"><img src="{{asset('/uploads/'.$settings['logo'])}}" style="width:70px; height:70px;" class="img-fluid" alt="logo"></a>
+            <a href="{{url('/')}}" class="logo logo-small"><img src="{{asset('/uploads/'.$settings['logo'])}}"style="width:70px; height:70px;" width="100" height="100" class="img-fluid" alt="logo"></a>
         </div>
         <!-- End Logobar -->
         <!-- Start Navigationbar -->

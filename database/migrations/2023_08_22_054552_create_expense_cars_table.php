@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('expense_cars', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 60);
-            $table->decimal('weight', 15, 4)->nullable();
-            $table->string('sku', 60)->nullable();
-            $table->unsignedBigInteger('store_id')->nullable();
+            $table->decimal('cost', 15, 4)->nullable()->default(0);
+            $table->foreignId('car_id')->nullable()->constrained('cars', 'id')->cascadeOnDelete();
+            $table->date('date_of_creation');
+            $table->string('status')->nullable()->default(0);
+            $table->text('notes')->nullable();
+            $table->text('files')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('expense_cars');
     }
 };

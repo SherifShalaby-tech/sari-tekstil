@@ -23,7 +23,8 @@
                 @if(auth()->user()->can('employees_module.leaves.create'))
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createColorModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
-                </div>                        
+                </div> 
+                @endif                       
             </div>
         </div>          
     </div>

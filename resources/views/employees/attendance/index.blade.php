@@ -13,7 +13,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.attendances')</li>
+                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.attendance')</li>
                             </ol>
                         </div>
                     </div>

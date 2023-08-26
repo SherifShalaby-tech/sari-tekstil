@@ -4,25 +4,30 @@
     <!-- Start Breadcrumbbar -->                    
     <div class="breadcrumbbar">
         <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
+            <div class="col-md-9 col-lg-9">
                 <div class="media">
                     <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
                     <div class="media-body">
-                        <h4 class="page-title">E-Commerce</h4>
+                        <h4 class="page-title">@lang('lang.planning_carts')</h4>
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">{{__('lang.dashboard')}}</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('/')}}">{{__('lang.dashboard')}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">@lang('lang.cars')</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4">
+            <div class="col-md-3  col-lg-3 d-flex">
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
+                </div>   
+                @endif  
+                &nbsp;&nbsp;&nbsp;                   
+                @if(auth()->user()->can('settings_module.cars.create'))
+                <div class="widgetbar">
+                    <a href="{{route('planning-carts.index')}}" class="btn btn-warning"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.planning_carts')</a>
                 </div>   
                 @endif                     
             </div>
@@ -34,19 +39,32 @@
 @section('content')
     <!-- Start Contentbar -->    
     <div class="contentbar">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container-fluid">
+                    @include('cars.partials.filters',['url'=>'cars.index'])
+                </div>
+            </div>
+        </div>
         <!-- Start row -->
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12 col-xl-12">
                     <div class="table-responsive">
-                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                        <table id="datatable-buttons" class="table table-striped table-bordered ">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>@lang('lang.name')</th>
-                                <th>@lang('lang.weight')</th>
+                                <th>@lang('lang.branch')</th>
                                 <th>@lang('lang.sku')</th>
-                                <th>@lang('lang.store')</th>
+                                <th>@lang('lang.name')</th>
+                                <th>@lang('lang.status')</th>
+                                <th>@lang('lang.weight_empty')</th>
+                                <th>@lang('lang.recent_process')</th>
+                                <th>@lang('lang.recent_car_content')</th>
+                                <th>@lang('lang.caliber')</th>
+                                <th>@lang('lang.employee')</th>
+                                <th>@lang('lang.weight_product')</th>
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
@@ -56,10 +74,25 @@
                             @foreach($cars as $index=>$car)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{$car->name}}</td>
-                                <td>{{$car->weight}}</td>
+                                <td>{{$car->branch->name}}</td>
                                 <td>{{$car->sku}}</td>
-                                <td>{{$car->store->name}}</td>
+                                <td>{{$car->name}}</td>
+                                <td>
+                                    @if($car->weight_empty==0)
+                                        <span class="text-danger">@lang('lang.empty')</span>
+                                    @else
+                                        <span class="text-primary">@lang('lang.occuppied')</span>
+                                    @endif    
+                                </td>
+                                {{-- <td> {!! Form::text('discount[]',  @num_format(444), ['class' => 'clear_input_form form-control', 'placeholder' => __('lang.discount')]) !!}</td> --}}
+                                <td>{{@num_format($car->weight_empty)}} KG</td>
+                                <td>{{__('lang.'.$car->process)}}</td>
+                                <td class="text-center">{{$car->recent_car_content}}</td>
+                                <td class="text-center">{{!empty($car->caliber)?$car->caliber->number:'-'}}</td>
+                                <td class="text-center">{{!empty($car->employee)?$car->employee->name:'-'}}</td>
+                                <td>{{@num_format($car->weight_product)}} KG</td>
+                                {{-- <td>{{$car->store->name}}</td> --}}
+                                {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
                                 <td>
                                     @if ($car->created_by  > 0 and $car->created_by != null)
                                         {{ $car->created_at->diffForHumans() }} <br>
@@ -88,6 +121,17 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            @if(auth()->user()->can('settings_module.cars.edit'))
+                                            <li>
+                                                <a data-href="{{route('maintain-car.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal">
+                                                    @if($car->expense_car)
+                                                        <span class="text-danger"><i class="dripicons-document-edit"></i> @lang('lang.under_maintainance')</span>
+                                                    @else
+                                                        <span><i class="dripicons-document-edit"></i> @lang('lang.maintain_car')</span>
+                                                    @endif
+                                                </a>
+                                            </li>
+                                            @endif
                                             @if(auth()->user()->can('settings_module.cars.edit'))
                                             <li>
                                                 <a data-href="{{route('cars.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>

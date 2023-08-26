@@ -13,9 +13,10 @@
                     @csrf
                     @method('PUT')
             <div class="modal-body">
-                <div class="row pt-5">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <input type="hidden" name="id" value="{{$car->id}}"/>
                             {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
                             {!! Form::label('name', __( 'lang.name' ) . ':*') !!}
                             {!! Form::text('name', $car->name, ['class' => 'form-control', 'placeholder' => __( 'lang.name' ), 'required'
@@ -28,8 +29,15 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            {!! Form::label('weight', __( 'lang.weight' ) . ':*') !!}
-                            {!! Form::text('weight', $car->weight, ['class' => 'form-control', 'placeholder' => __( 'lang.weight' ), 'required'
+                            <label for="branch_id">@lang('lang.branch')</label>
+                            {!! Form::select('branch_id', $branches, $car->branch_id, ['class' => 'form-control', 'required',
+                            'placeholder' =>  __('lang.please_select')]) !!}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {!! Form::label('weight', __( 'lang.weight_empty' ) . ':*') !!}
+                            {!! Form::number('weight_empty', @num_format($car->weight_empty), ['class' => 'form-control', 'placeholder' => __( 'lang.weight_empty' ), 'required'
                             ]);
                             !!}
                             @error('weight')
@@ -40,19 +48,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('sku', __( 'lang.sku' ) . ':*') !!}
-                            {!! Form::text('sku', $car->sku, ['class' => 'form-control', 'placeholder' => __( 'lang.sku' ), 'required'
+                            {!! Form::text('sku', $car->sku, ['class' => 'form-control', 'placeholder' => __( 'lang.sku' ), 
                             ]);
                             !!}
                             @error('sku')
-                                <label class="text-danger error-msg">{{ $message }}</label>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!! Form::label('store', __( 'lang.store' ) . ':*') !!}
-                            {!! Form::select('store_id', $stores,$car->store_id , ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'branch_id','required']) !!}
-                            @error('branch_id')
                                 <label class="text-danger error-msg">{{ $message }}</label>
                             @enderror
                         </div>

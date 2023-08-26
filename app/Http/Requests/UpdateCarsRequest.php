@@ -25,7 +25,7 @@ class UpdateCarsRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'weight' =>'nullable|numeric|between:0,99999999999.99',
-            'sku' => 'required|max:255|unique:cars,sku,' . $id,
+            'sku' => 'required|max:255|unique:cars,sku,' .$id.',id,deleted_at,NULL',
             // 'store_id'=>'required'
         ];
     }
