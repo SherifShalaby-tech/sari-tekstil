@@ -12,10 +12,23 @@ $(document).ready(function() {
     $('#default-datatable').DataTable( {
         "order": [[ 3, "desc" ]],
         responsive: true
-    } );    
+    } );  
+    var table = $('#datatable-buttons-scroll').DataTable({
+        dom: '<"top"lB><"bottom"frtip>',
+        lengthMenu: [10, 25, 50, 75, 100,200,300,400],
+        pageLength: 10 ,
+        buttons:
+            ['copy', 'csv', 'excel', 'pdf',
+            {
+            extend: 'print',
+            exportOptions: {
+                columns: ":visible:not(.notexport)"
+            }
+        }],
+    });
     var table = $('#datatable-buttons').DataTable({
-        // "order": [[ 3, "desc" ]],
-        // responsive: true,
+        "order": [[ 3, "desc" ]],
+        responsive: true,
         dom: '<"top"lB><"bottom"frtip>',
         lengthMenu: [10, 25, 50, 75, 100,200,300,400],
         pageLength: 10 ,

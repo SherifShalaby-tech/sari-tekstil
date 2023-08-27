@@ -44,9 +44,9 @@
         display: none !important;
     }
     }
-    /* .scrollable-div {
+    .scrollable-div {
     width: 100%; 
     overflow: visible;
-    } */
+    }
 </style>
 
