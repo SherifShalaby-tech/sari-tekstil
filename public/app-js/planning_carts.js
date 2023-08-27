@@ -53,6 +53,7 @@ $(document).on('click', '#save,#save-print', function(e) {
                     var recent_place = $('input[name="recent_place"]', rowData.node()).val();
                     var process = $('.process', rowData.node()).val();
                     var next_process = $('.next_process', rowData.node()).val();
+                    var next_place = $('.next_place', rowData.node()).val();
                     var caliber_id = $('.caliber_id', rowData.node()).val();
                     var employee_id = $('.employee_id', rowData.node()).val();
                     var next_employee_id = $('.next_employee_id', rowData.node()).val();
@@ -66,6 +67,7 @@ $(document).on('click', '#save,#save-print', function(e) {
                             employee_id : employee_id,
                             recent_place : recent_place,
                             next_process: next_process,
+                            next_place: next_place,
                             caliber_id: caliber_id,
                             next_employee_id: next_employee_id,
                             process : process,
@@ -116,3 +118,30 @@ function __print_receipt(section= null) {
     
     }, 1000);
 }
+
+$(document).on('change','.next_process',function (e) { 
+    var next_process=$(this).val();
+    $.ajax({
+        type: "get",
+        url: "/cars/get-places/"+next_process,
+        contactType: "html",
+        success: function (response) {
+            console.log(response)
+            $(".next_place").empty().append(response);
+            // $(".next_place").selectpicker("refresh");
+        }
+    });
+});
+
+////
+$(document).on('click','.add-barcode',function(e){
+    e.preventDefault();
+    $.ajax({
+        type: "get",
+        url: "/cars/get-barcode/"+$(this).data('car'),
+        success: function (response) {
+           console.log(response);
+           pos_print(response.html_content);
+        }
+    });
+});

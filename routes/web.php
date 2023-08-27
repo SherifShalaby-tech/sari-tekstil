@@ -50,6 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('user/check-password', [HomeController::class, 'checkPassword']);
     Route::resource('nationality',NationalityController::class);
+    Route::get('cars/change-status/{id}', [CarsController::class, 'changeStatus']);
+    Route::get('cars/get-places/{process}', [CarsController::class, 'getPlaces']);
+    Route::get('cars/get-barcode/{id}', [CarsController::class, 'getBarcode']);
     Route::resource('cars',CarsController::class);
     Route::resource('maintain-car',ExpenseCarController::class);
     Route::resource('planning-carts',PlanningCarController::class);
