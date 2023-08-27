@@ -114,18 +114,11 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                        <i class="ri-pie-chart-line"></i><span>Charts</span><i class="ri-arrow-right-s-line"></i>
+                        <i class="ri-pie-chart-line"></i><span>@lang('lang.stock')</span><i class="ri-arrow-right-s-line"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="chart-apex.html">Apex</a></li>
-                        <li><a href="chart-c3.html">C3</a></li>
-                        <li><a href="chart-chartistjs.html">Chartist</a></li> 
-                        <li><a href="chart-chartjs.html">Chartjs</a></li>
-                        <li><a href="chart-flot.html">Flot</a></li>
-                        <li><a href="chart-knob.html">Knob</a></li>
-                        <li><a href="chart-morris.html">Morris</a></li>
-                        <li><a href="chart-piety.html">Piety</a></li>
-                        <li><a href="chart-sparkline.html">Sparkline</a></li>
+                        <li><a href="{{route('original-stock-create')}}">@lang('lang.original_stock')</a></li>
+                        <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li>
                     </ul>
                 </li>
                 @if(auth()->user()->can('employees_module.employee.view'))
