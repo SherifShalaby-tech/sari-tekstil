@@ -8,7 +8,10 @@ use App\Models\Branch;
 use App\Models\Caliber;
 use App\Models\Cars;
 use App\Models\Employee;
+use App\Models\Opening;
+use App\Models\Screening;
 use App\Models\Store;
+use App\Models\System;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,9 +66,14 @@ class CarsController extends Controller
         $calibars=Caliber::latest()->pluck('number', 'id');
         $processes=Cars::getProcesses();
         $employees=Employee::latest()->pluck('name', 'id');
-        $places=Store::latest()->pluck('name', 'id');
+         ////to get places concat////
+        $storeNames = Store::latest()->pluck('name');
+        $openingNames = Opening::latest()->pluck('name');
+        $screeningNames = Screening::latest()->pluck('name');
+        $places = $storeNames->concat($openingNames)->concat($screeningNames);
         $places->push( __('lang.square'));
         $places=$places->all();
+        ///////
         $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
         $recent_car_contents->prepend( __('lang.empty'));
         $recent_car_contents=$recent_car_contents->all();
@@ -203,5 +211,94 @@ class CarsController extends Controller
         } else {
             return $sku;
         }
+    }
+    public function changeStatus($id){
+        try {
+            $car =Cars::find($id);
+            $car->status=!$car->status;
+            $car->save();
+            $output = [
+                'success' => true,
+                'status'=>$car->status,
+                'msg' => __('lang.success')
+            ];
+          } catch (\Exception $e) {
+              Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+              $output = [
+                  'success' => false,
+                  'msg' => __('lang.something_went_wrong')
+              ];
+          }
+          return $output;
+    }
+    public function getPlaces($process){
+        $places=[];
+        if($process=="openning"){
+            $places=Opening::latest()->pluck('name');
+        }else if($process=="sort"){
+            $places=Screening::latest()->pluck('name');
+        }else{
+            ////////
+            $storeNames = Store::latest()->pluck('name');
+            $openingNames = Opening::latest()->pluck('name');
+            $screeningNames = Screening::latest()->pluck('name');
+            $places = $storeNames->concat($openingNames)->concat($screeningNames);
+            $places->push( __('lang.square'));
+            $places=$places->all();
+            ///////
+        }
+        $places_dp = $this->createDropdownHtml($places, '-');
+        return $places_dp;
+    }
+    public function createDropdownHtml($array, $append_text = null)
+    {
+        $html = '';
+        if (!empty($append_text)) {
+            $html = '<option value="">' . $append_text . '</option>';
+        }
+        foreach ($array as $key => $value) {
+            $html .= '<option value="' . $value . '">' . $value . '</option>';
+        }
+
+        return $html;
+    }
+    public function getBarcode($id){
+        try{
+            $html_content = $this->getInvoicePrint($id);
+            $output = [
+                'success' => true,
+                'html_content' => $html_content,
+                'msg' => __('lang.success')
+            ];
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
+        }
+        return $output;
+    }
+    public function getInvoicePrint($id, $invoice_lang = null)
+    {
+        if (!empty($invoice_lang)) {
+            $invoice_lang = $invoice_lang;
+        } else {
+            $invoice_lang = System::getProperty('invoice_lang');
+            if (empty($invoice_lang)) {
+                $invoice_lang = request()->session()->get('language');
+            }
+        }
+        if ($invoice_lang == 'ar_and_en') {
+            $car=Cars::find($id);
+        } else {
+            $car=Cars::find($id);
+            $html_content = view('cars.partials.barcode_invoice')->with(compact(
+                'car',
+                'invoice_lang',
+            ))->render();
+        }
+
+        return $html_content;
     }
 }

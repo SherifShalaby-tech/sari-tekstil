@@ -58,13 +58,13 @@
                                 <th>@lang('lang.branch')</th>
                                 <th>@lang('lang.sku')</th>
                                 <th>@lang('lang.name')</th>
-                                <th>@lang('lang.status')</th>
                                 <th>@lang('lang.weight_empty')</th>
                                 <th>@lang('lang.recent_process')</th>
                                 <th>@lang('lang.recent_car_content')</th>
                                 <th>@lang('lang.caliber')</th>
                                 <th>@lang('lang.employee')</th>
                                 <th>@lang('lang.weight_product')</th>
+                                <th class="text-center">@lang('lang.status')</th>
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
@@ -77,13 +77,6 @@
                                 <td>{{$car->branch->name}}</td>
                                 <td>{{$car->sku}}</td>
                                 <td>{{$car->name}}</td>
-                                <td>
-                                    @if($car->weight_empty==0)
-                                        <span class="text-danger">@lang('lang.empty')</span>
-                                    @else
-                                        <span class="text-primary">@lang('lang.occuppied')</span>
-                                    @endif    
-                                </td>
                                 {{-- <td> {!! Form::text('discount[]',  @num_format(444), ['class' => 'clear_input_form form-control', 'placeholder' => __('lang.discount')]) !!}</td> --}}
                                 <td>{{@num_format($car->weight_empty)}} KG</td>
                                 <td>{{__('lang.'.$car->process)}}</td>
@@ -91,6 +84,17 @@
                                 <td class="text-center">{{!empty($car->caliber)?$car->caliber->number:'-'}}</td>
                                 <td class="text-center">{{!empty($car->employee)?$car->employee->name:'-'}}</td>
                                 <td>{{@num_format($car->weight_product)}} KG</td>
+                                <td>
+                                    @if($car->status==0)
+                                    <span class="d-flex change-car-status" data-car="{{$car->id}}">
+                                        <img src="{{asset('images/empty-box.jpg')}}"  width="50px" height="70px" class="img-status"/>
+                                        <span class="word-status">@lang('lang.empty')</span></span>
+                                    @else
+                                    <span class="d-flex change-car-status" data-car="{{$car->id}}">
+                                        <img src="{{asset('images/full-box.jpg')}}"  width="50px" height="70px" class="img-status"/>
+                                        <span class="word-status">@lang('lang.occuppied')</span></span>
+                                    @endif    
+                                </td>
                                 {{-- <td>{{$car->store->name}}</td> --}}
                                 {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
                                 <td>
@@ -123,13 +127,28 @@
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             @if(auth()->user()->can('settings_module.cars.edit'))
                                             <li>
-                                                <a data-href="{{route('maintain-car.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal">
+                                                <a data-href="{{route('maintain-car.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal maintain-url" data-toggle="modal" style="{{$car->status==0?'pointer-events: none;color: rgb(168, 165, 165);':''}}">
                                                     @if($car->expense_car)
                                                         <span class="text-danger"><i class="dripicons-document-edit"></i> @lang('lang.under_maintainance')</span>
                                                     @else
                                                         <span><i class="dripicons-document-edit"></i> @lang('lang.maintain_car')</span>
                                                     @endif
                                                 </a>
+                                                
+                                            </li>
+                                            @endif
+                                            @if(auth()->user()->can('settings_module.cars.edit') || auth()->user()->can('settings_module.cars.create'))
+                                            <li>
+                                                <a data-href="{{route('planning-carts.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal">
+                                                    <span><i class="dripicons-document-add"></i> @lang('lang.add_aplan')</span>
+                                                </a>
+                                            </li>
+                                            @endif
+                                            @if(auth()->user()->can('settings_module.cars.edit') || auth()->user()->can('settings_module.cars.create'))
+                                            <li>
+                                                <span class="btn add-barcode" data-car="{{$car->id}}" style="{{$car->status==1?'pointer-events: none;color: rgb(168, 165, 165);cursor: not-allowed;':''}}">
+                                                    <span><i class="dripicons-document-add"></i> @lang('lang.add_barcode')</span>
+                                                </span>
                                             </li>
                                             @endif
                                             @if(auth()->user()->can('settings_module.cars.edit'))
@@ -162,3 +181,32 @@
     </div>
     <!-- End Contentbar -->
 @endsection
+@push('javascripts')
+<script src="{{asset('app-js/planning_carts.js')}}" ></script>
+<script>
+    $(document).on('click','.change-car-status',function (e) {  
+        $.ajax({
+            type: "get",
+            url: "/cars/change-status/"+$(this).data('car'),
+            success: function (response) {
+                if(response.status==1){
+                    $('.img-status').attr('src','{{asset('images/full-box.jpg')}}');
+                    $('.word-status').text("{{__('lang.occuppied')}}");
+                    $(".maintain-url").css("pointer-events", "auto");
+                    $(".maintain-url").css("color", "black");
+                    $('.add-barcode').css("pointer-events", "none");
+                    $('.add-barcode').css("color", "gray");
+                }else if(response.status==0){
+                    $('.img-status').attr('src','{{asset('images/empty-box.jpg')}}');
+                    $('.word-status').text("{{__('lang.empty')}}");
+                    $(".maintain-url").css("pointer-events", "none");
+                    $(".maintain-url").css("color", "gray");
+                    $('.add-barcode').css("pointer-events", "auto");
+                    $('.add-barcode').css("color", "black");
+                }
+            }
+        });
+    });
+   
+</script>
+@endpush

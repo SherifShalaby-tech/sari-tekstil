@@ -150,7 +150,6 @@
                                         style="display: none;">
                                         @csrf
                                     </form>
-                                    {{-- <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i class="ri-shut-down-line"></i>Logout</a> --}}
                                 </div>
                             </div>
                         </div>                                   

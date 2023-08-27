@@ -6,10 +6,13 @@ use App\Models\Branch;
 use App\Models\Caliber;
 use App\Models\Cars;
 use App\Models\Employee;
+use App\Models\Opening;
+use App\Models\Screening;
 use App\Models\Store;
 use App\Models\System;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class PlanningCarController extends Controller
@@ -63,9 +66,14 @@ class PlanningCarController extends Controller
         $calibars=Caliber::latest()->pluck('number', 'id');
         $processes=Cars::getProcesses();
         $employees=Employee::latest()->pluck('name', 'id');
-        $places=Store::latest()->pluck('name', 'id');
+        ////////
+        $storeNames = Store::latest()->pluck('name');
+        $openingNames = Opening::latest()->pluck('name');
+        $screeningNames = Screening::latest()->pluck('name');
+        $places = $storeNames->concat($openingNames)->concat($screeningNames);
         $places->push( __('lang.square'));
         $places=$places->all();
+        ///////
         $users=User::latest()->pluck('name', 'id');
         return view('cars.planning_carts.index',compact('cars','stores','branches',
         'calibars','processes','employees','places','disabled','recent_car_contents','users'));
@@ -84,6 +92,7 @@ class PlanningCarController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         if(!auth()->user()->can('settings_module.cars.create')){
             abort(403, __('lang.unauthorized_action'));
         }
@@ -152,7 +161,25 @@ class PlanningCarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if(!auth()->user()->can('settings_module.cars.create') || !auth()->user()->can('settings_module.cars.edit')){
+            abort(403, __('lang.unauthorized_action'));
+        }
+        $car = Cars::find($id);
+        $branches=Branch::latest()->pluck('name', 'id');
+        $processes=Cars::getProcesses();
+        $employees=Employee::latest()->pluck('name', 'id');
+        ////////
+        $storeNames = Store::latest()->pluck('name');
+        $openingNames = Opening::latest()->pluck('name');
+        $screeningNames = Screening::latest()->pluck('name');
+        $places = $storeNames->concat($openingNames)->concat($screeningNames);
+        $places->push( __('lang.square'));
+        $places=$places->all();
+        ///////
+        $calibars=Caliber::latest()->pluck('number', 'id');
+        return view('cars.planning_carts.planing_cart_modal')->with(compact(
+            'car','branches','processes','employees','places','calibars'
+        ));
     }
 
     /**
@@ -160,7 +187,23 @@ class PlanningCarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $data = $request->except('_token');
+            $data['edited_by'] = Auth::user()->id;
+            Cars::find($id)->update($data);
+            $output = [
+                'success' => true,
+                'msg' => __('lang.success')
+            ];
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
+        }
+      
+        return redirect()->back()->with('status', $output);
     }
 
     /**

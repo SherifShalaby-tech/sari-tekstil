@@ -14,8 +14,8 @@ $(document).ready(function() {
         responsive: true
     } );    
     var table = $('#datatable-buttons').DataTable({
-        "order": [[ 3, "desc" ]],
-        responsive: true,
+        // "order": [[ 3, "desc" ]],
+        // responsive: true,
         dom: '<"top"lB><"bottom"frtip>',
         lengthMenu: [10, 25, 50, 75, 100,200,300,400],
         pageLength: 10 ,

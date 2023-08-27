@@ -53,6 +53,7 @@
                                 <th style="width:10%">@lang('lang.employee')</th>
                                 <th style="width:10%">@lang('lang.weight_product')</th>
                                 <th style="width:10%">@lang('lang.next_process') </th>
+                                <th style="width:10%">@lang('lang.next_place') </th>
                                 <th style="width:6%">@lang('lang.caliber')</th>
                                 <th style="width:10%">@lang('lang.next_employee')</th>
                                 {{-- <th>@lang('lang.added_by')</th>
@@ -72,7 +73,7 @@
                                 </td>
                                 <td>{{$car->name}}</td>
                                 <td>
-                                @if($car->weight_empty==0)
+                                @if($car->status==0)
                                     <span class="text-danger">@lang('lang.empty')</span>
                                 @else
                                     <span class="text-primary">@lang('lang.occuppied')</span>
@@ -96,8 +97,12 @@
                                 <td class="d-flex justify-content-between">
                                     {!! Form::number('weight_product',  @num_format($car->weight_product), ['class' => 'form-control weight_product', 'placeholder' =>'0.00','data-val'=>$car->weight_product,!$disabled?'disabled':'']) !!}
                                     &nbsp;<span class="pt-2">Kg</span></td>
+
                                 <td>
                                     {!! Form::select('next_process', $processes,  !empty($car->next_process)?$car->next_process:NULL, ['class' => 'selectpicker form-control next_process', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
+                                </td>
+                                <td>
+                                    {!! Form::select('next_place', $places,  !empty($car->next_place)?$car->next_place:NULL, ['class' => 'selectpicker form-control next_place', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
                                 </td>
                                 <td >
                                     {!! Form::select('caliber_id', $calibars,  !empty($car->caliber_id)?$car->caliber_id:NULL, ['class' => 'selectpicker form-control caliber_id', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
@@ -105,51 +110,6 @@
                                 <td>
                                     {!! Form::select('next_employee_id', $employees,  !empty($car->next_employee_id)?$car->next_employee_id:null, ['class' => 'selectpicker form-control next_employee_id', 'data-live-search' => 'true', 'placeholder' => '-','data-index'=>$index,!$disabled?'disabled':'']) !!}
                                 </td>
-                                {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
-                                {{-- <td>
-                                    @if ($car->created_by  > 0 and $car->created_by != null)
-                                        {{ $car->created_at->diffForHumans() }} <br>
-                                        {{ $car->created_at->format('Y-m-d') }}
-                                        ({{ $car->created_at->format('h:i') }})
-                                        {{ ($car->created_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
-                                        {{ $car->createBy?->name }}
-                                    @else
-                                    {{ __('no_update') }}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($car->edited_by  > 0 and $car->edited_by != null)
-                                        {{ $car->updated_at->diffForHumans() }} <br>
-                                        {{ $car->updated_at->format('Y-m-d') }}
-                                        ({{ $car->updated_at->format('h:i') }})
-                                        {{ ($car->updated_at->format('A')=='AM'?__('am') : __('pm')) }}  <br>
-                                        {{ $car->updateBy?->name }}
-                                    @else
-                                       {{ __('no_update') }}
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خيارات                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            @if(auth()->user()->can('settings_module.cars.edit'))
-                                            <li>
-                                                <a data-href="{{route('cars.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
-                                            </li>
-                                            @endif
-                                            <li class="divider"></li>
-                                            @if(auth()->user()->can('settings_module.cars.delete'))    
-                                            <li>
-                                                <a data-href="{{route('cars.destroy', $car->id)}}"
-                                                    class="btn text-red delete_item"><i class="fa fa-trash"></i>
-                                                    @lang('lang.delete')</a>
-                                            </li>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </td> --}}
                             </tr>
                             @endforeach
                             </tbody>

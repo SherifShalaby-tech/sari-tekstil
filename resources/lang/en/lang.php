@@ -267,6 +267,9 @@ return [
     'created_by'=>'Created By',
     'occuppied'=>'Occuppied',
     'under_maintainance'=>'Car Under Maintainance',
+    'add_aplan'=>'Add a plan',
+    'next_place'=>'Next Place',
+    'add_barcode'=>'Add Barcode',
 ];
 
 ?>
