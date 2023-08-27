@@ -74,13 +74,13 @@
                             'class' => 'form-control select2','placholder'=>__('lang.please_select')
                         ]) !!}
                     </div>
-                    {{-- <div class="col-md-3">
-                        {!! Form::label('dollar_exchange', __('lang.dollar_exchange'), ['class'=>'h5 pt-3']) !!}
-                        {!! Form::text('dollar_exchange', !empty($settings['dollar_exchange']) ? $settings['dollar_exchange'] : null, [
+                   <div class="col-md-3">
+                        {!! Form::label('discount_per_kilo', __('lang.discount_per_kilo'), ['class'=>'h5 pt-3']) !!}
+                        {!! Form::text('discount_per_kilo', !empty($settings['discount_per_kilo']) ? $settings['discount_per_kilo'] : null, [
                             'class' => 'form-control',
                         ]) !!}
                     </div>
-                    <div class="col-md-3">
+                    {{-- <div class="col-md-3">
                         {!! Form::label('default_payment_type', __('lang.default_payment_type'), ['class'=>'h5 pt-3']) !!}
                         {!! Form::select('default_payment_type',['cash'=>__('lang.cash'),'later'=>__('lang.later')], !empty($settings['default_payment_type']) ? $settings['default_payment_type'] : null, [
                             'class' => 'form-control select2',

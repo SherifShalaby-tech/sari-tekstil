@@ -99,6 +99,7 @@ class DatabaseSeeder extends Seeder
           ['id'=>16,'key' => 'default_payment_type', 'value' => 'cash', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
           ['id'=>17,'key' => 'developed_by', 'value' => 'SherifShalaby.COMP', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
           ['id'=>18,'key' => 'invoice_lang', 'value' => 'ar', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+          ['id'=>19,'key' => 'discount_per_kilo', 'value' => '0', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
           
           
         ];
