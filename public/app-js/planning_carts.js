@@ -95,7 +95,7 @@ function saveCarPlanning(selectedData,print) {
             },
             success: function (response) {
                 new PNotify( {title: response.msg, text: response.msg,type: "success"});
-                if(response.html_content!==''){
+                if(response.html_content!=='' && print==1){
                 pos_print(response.html_content);
                 }
                 selectedRows=[];
