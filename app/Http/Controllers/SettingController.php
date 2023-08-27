@@ -124,6 +124,11 @@ class SettingController extends Controller
                 ['key' => 'watsapp_number'],
                 ['value' => $request->watsapp_number, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
             );
+            System::updateOrCreate(
+                ['key' => 'discount_per_kilo'],
+                ['value' => $request->discount_per_kilo, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
+            );
+            
             $data['logo'] = null;
             if ($request->has('logo') && !is_null('logo')) {
                 $imageData = $this->getCroppedImage($request->logo);

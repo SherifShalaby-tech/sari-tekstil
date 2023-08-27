@@ -270,6 +270,7 @@ return [
     'add_aplan'=>'Add a plan',
     'next_place'=>'Next Place',
     'add_barcode'=>'Add Barcode',
+    'discount_per_kilo'=>'Discount Per Kilo',
 ];
 
 ?>
