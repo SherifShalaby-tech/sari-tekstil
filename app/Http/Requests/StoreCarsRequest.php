@@ -23,8 +23,8 @@ class StoreCarsRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'weight' =>'required|numeric|between:0,99999999999.99',
-            'sku' => 'required|max:255|unique:cars',
+            'weight_empty' =>'required|numeric|between:0,99999999999.99',
+            'sku' => 'required|max:255|unique:cars,name',
             // 'store_id'=>'required'
         ];
     }

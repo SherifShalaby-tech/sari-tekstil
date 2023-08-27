@@ -140,7 +140,7 @@
                     <li class="list-inline-item">
                         <div class="profilebar">
                             <div class="dropdown">
-                              <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/profile.svg" class="img-fluid" alt="profile"><span class="live-icon">John D</span></a>
+                              <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('images/users/profile.svg')}}" class="img-fluid" alt="profile"><span class="live-icon">{{Auth::user()->name}}</span></a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                     <a class="dropdown-item" href="#"><i class="ri-user-6-line"></i>My Profile</a>
                                     <a class="dropdown-item" href="#"><i class="ri-mail-line"></i>Email</a>
@@ -150,7 +150,6 @@
                                         style="display: none;">
                                         @csrf
                                     </form>
-                                    {{-- <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i class="ri-shut-down-line"></i>Logout</a> --}}
                                 </div>
                             </div>
                         </div>                                   

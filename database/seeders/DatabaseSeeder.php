@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Branch;
+use App\Models\Caliber;
 use App\Models\Employee;
+use App\Models\Store;
 use App\Models\System;
 use App\Models\User;
 use Carbon\Carbon;
@@ -96,11 +98,32 @@ class DatabaseSeeder extends Seeder
           ['id'=>15,'key' => 'tax', 'value' => '33', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
           ['id'=>16,'key' => 'default_payment_type', 'value' => 'cash', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
           ['id'=>17,'key' => 'developed_by', 'value' => 'SherifShalaby.COMP', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+          ['id'=>18,'key' => 'invoice_lang', 'value' => 'ar', 'created_by' => 1, 'date_and_time' => Carbon::now(), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
           
           
         ];
-      foreach ($system_data as $item) {
+        foreach ($system_data as $item) {
           System::updateOrCreate(['id' => $item['id']],$item);
+        }
+        /////
+        $store_data = [
+            'id'=>1,
+            'name' => 'default',
+        ];
+        Store::updateOrCreate(['id'=>1],$store_data);
+        $caliber_data =
+        [
+            ['id'=>1,'number' => '0','store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>2,'number' => '1', 'store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>3,'number' => '2', 'store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>4,'number' => '3', 'store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>5,'number' => '4', 'store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>6,'number' => '5','store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>7,'number' => '6','store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id'=>8,'number' => '7', 'store_id' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        ];
+        foreach ($caliber_data as $item) {
+            Caliber::updateOrCreate(['id' => $item['id']],$item);
         }
         $this->call([
             CurrenciesTableSeeder::class,
