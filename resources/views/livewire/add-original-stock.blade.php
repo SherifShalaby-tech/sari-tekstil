@@ -32,6 +32,10 @@
             <label class="h6 pt-3" for="shipment_number">{{__( 'lang.shipment_number' )}}</label>
             <input type="number" id="shipmentNumber" wire:model="shipmentNumber" class="form-control ">
         </div>
+        <div   class="col-md-3 form-group">
+            <label class="h6 pt-3" for="sku">{{__( 'lang.sku' )}}</label>
+            <input type="number" id="sku" wire:model="sku" class="form-control ">
+        </div>
         <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="shipment_weight">{{__( 'lang.shipment_weight' )}}</label>
             <input type="number" id="shipmentWeight" wire:model="shipmentWeight" class="form-control ">
@@ -111,10 +115,10 @@
             @for ($i=0; $i <= 4; $i++)
             <div class="row">
                 <div class="col-md-2">
-                    <input type="text" name="other_costs[{{ $i }}][key]" class="form-control" value="{{ old('other_costs['.$i.'][key]') }}">
+                    <input type="text" name="otherCosts[{{ $i }}][key]" class="form-control" value="{{ old('otherCosts['.$i.'][key]') }}">
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="other_costs[{{ $i }}][value]" class="form-control" value="{{ old('other_costs['.$i.'][value]') }}">
+                    <input type="text" name="otherCosts[{{ $i }}][value]" class="form-control" value="{{ old('otherCosts['.$i.'][value]') }}">
                 </div>
             </div>
             @endfor

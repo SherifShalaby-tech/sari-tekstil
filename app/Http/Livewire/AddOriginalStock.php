@@ -9,6 +9,7 @@ use App\Models\Store;
 use App\Models\Supplier;
 use App\Models\Type;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class AddOriginalStock extends Component
 {
@@ -39,6 +40,7 @@ class AddOriginalStock extends Component
     public $pricePerKilo;
     public $otherCosts;
     public $fines;
+    public $sku;
 
     public function mount()
     {
@@ -83,6 +85,18 @@ class AddOriginalStock extends Component
             
         // ]);
 
+        // Generate the barcode (as shown in the previous steps)
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $length = 12;
+        $barcode = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $barcode .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        // Check if the barcode already exists
+        $existingSku = OriginalStock::where('sku', $barcode)->first();
+
+       
         // Create a new instance of your model and set the attributes
         $originalStock = new OriginalStock();
         $originalStock->supplier_id = $this->selectedSupplier;
@@ -103,6 +117,8 @@ class AddOriginalStock extends Component
         $originalStock->total_weight = $this->totalWeight;
         $originalStock->price_per_kilo = $this->pricePerKilo;
         $originalStock->other_costs = $this->otherCosts;
+        $originalStock->sku = $this->sku ?? Str::random(12);  
+ 
         // Set other attributes
 
         // Save the model
@@ -111,10 +127,10 @@ class AddOriginalStock extends Component
         // Clear the input fields after saving
         // $this->resetFields();
 
-        // $output = [
-        //     'success' => true,
-        //     'msg' => __('lang.success')
-        // ];
+        $output = [
+            'success' => true,
+            'msg' => __('lang.success')
+        ];
         $this->redirect(route('original-stock-create'));
         // return redirect()->back()->with('status', $output);
     }
