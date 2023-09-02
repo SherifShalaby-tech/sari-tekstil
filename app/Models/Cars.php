@@ -51,7 +51,9 @@ class Cars extends Model
             'openning' => __('lang.openning'),
             'squeeze' => __('lang.squeeze'),
             'sort' => __('lang.sort'),
+            'sort' => __('lang.extra_sort'),
             'cream_sort' => __('lang.cream_sort'),
+            'cream_sort' => __('lang.filling'),
             'not_used' => __('lang.not_used'),
         ];
     }

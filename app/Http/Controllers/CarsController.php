@@ -39,16 +39,20 @@ class CarsController extends Controller
                 $query->where('employee_id',\request()->employee_id);
             })
             ->when(\request()->recent_process != null, function ($query) {
-                $query->where('recent_process',\request()->recent_process);
+                $query->where('process',\request()->recent_process);
             })
             ->when(\request()->caliber_id != null, function ($query) {
                 $query->where('caliber_id',\request()->caliber_id);
             })
             ->when(\request()->recent_car_content != null, function ($query) {
-                $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
-                $recent_car_contents->prepend( __('lang.empty'));
-                $recent_car_contents=$recent_car_contents->all();
-                $query->where('recent_car_content',$recent_car_contents[request()->recent_car_content]);
+                if(request()->recent_car_content==0){
+                    $query->whereNull('recent_car_content');
+                }else{
+                    $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
+                    $recent_car_contents->prepend( __('lang.empty'));
+                    $recent_car_contents=$recent_car_contents->all();
+                    $query->where('recent_car_content',$recent_car_contents[request()->recent_car_content]);
+                }
             })
             ->when(\request()->created_by != null, function ($query) {
                 $query->where('created_by',\request()->created_by);

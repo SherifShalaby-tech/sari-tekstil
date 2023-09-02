@@ -26,4 +26,16 @@ class OriginalStock extends Model
     {
         return $this->belongsTo(Branch::class, 'branch_id');
     }
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class, 'nationality_id');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseCarController;
 use App\Http\Controllers\FillController;
+use App\Http\Controllers\FillingByOriginalStoreController;
 use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\OriginalStockController;
+use App\Http\Controllers\OriginalStoreWorkerController;
 use App\Http\Controllers\PlanningCarController;
+use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StoreController;
@@ -80,6 +83,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('settings/update-general-settings', [SettingController::class, 'updateGeneralSetting'])->name('settings.updateGeneralSettings');
     Route::post('settings/remove-image/{type}', [SettingController::class,'removeImage']);
     Route::resource('settings',SettingController::class);
+    Route::get('original-store-worker/add-nationality-row', [OriginalStoreWorkerController::class,'addNationalityRow']);
+    Route::resource('original-store-worker',OriginalStoreWorkerController::class);
+    Route::resource('recieve-shipment-from-supplier',RecieveOriginalStockFromSupplierController::class);
+    Route::get('get-cart-weight', [FillingByOriginalStoreController::class,'getCartWeight']);
+    Route::resource('original-store-worker-filling',FillingByOriginalStoreController::class);
     
     
     Route::resource('lab',LabsController::class);
