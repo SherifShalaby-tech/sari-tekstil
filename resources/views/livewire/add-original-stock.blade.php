@@ -49,22 +49,22 @@
                 @endforeach
             </select>
         </div>
-        <div  class="col-md-4 form-group">
+        {{-- <div  class="col-md-4 form-group">
             <label class="h6 pt-3" for="actual_weight">{{__( 'lang.actual_weight' )}}</label>
             <input type="number" id="actualWeight" wire:model="actualWeight" class="form-control ">
-        </div>
+        </div> --}}
         <div  class="col-md-3 form-group">
             <label class="h6 pt-3" for="price">{{__( 'lang.price' )}}</label>
             <input type="number" id="price" wire:model="price" class="form-control ">
         </div>
-        <div class="col-md-3 form-group">
+        {{-- <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="wet_weight">{{__( 'lang.wet_weight' )}}</label>
             <input type="number" id="wetWeight" wire:model="wetWeight" class="form-control ">
         </div>
         <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="dry_weight">{{__( 'lang.dry_weight' )}}</label>
             <input type="number" id="dryWeight" wire:model="dryWeight" class="form-control ">
-        </div>
+        </div> --}}
         {{-- <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="dry_weight">{{__( 'lang.dry_weight' )}}</label>
             <input type="number" id="dryWeight" wire:model="dryWeight" class="form-control ">
@@ -133,7 +133,7 @@
         </div>
         <div class="col-md-3">
             <label class="h6 pt-3" for="upload_files">{{__( 'lang.upload_files' )}}</label>
-             <input type="file" name="upload_files[]"  multiple>
+             <input type="file" name="upload_files[]" wire:model="upload_files" multiple>
         </div>
        
     </div>
