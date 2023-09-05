@@ -299,9 +299,12 @@ return [
     'add_nationalities'=>'اختر جنسية',
     'batch_number'=>'رقم التشغيلة',
     'percent'=>'النسبة',
-    ''=>'',
-    ''=>'',
-    ''=>'',
+    'filling_admin_requests'=>'تعبئة طلبات الادمن',
+    'requested_weight'=>'الوزن المطلوب',
+    'shipment_number'=>'رقم المعاملة',
+    'priority'=>'الاولوية',
+    'goods_weight'=>'وزن البضاعة',
+    'transport_worker'=>'عامل النقل',
 ];
 
 ?>

@@ -1,6 +1,4 @@
-// $("input[name='recive_stock']").click(function(){
-//     $(this).closest('.recieve').find('input[name="check_recive_stock"]').val($(this)[0].checked);
-// });
+
 $(document).on('click','.add_row',function(){
     // var latestRow = $(".row_weight:last");
     var actual_weight =0;
@@ -16,6 +14,7 @@ $(document).on('click','.add_row',function(){
             dataType: "html",
             success: function (response) {
                 $('.nationalities').append(response);
+                $('.selectpicker').selectpicker();
             }
         });
     }
@@ -23,17 +22,7 @@ $(document).on('click','.add_row',function(){
 $(document).on('click','.remove_row',function(){
     $(this).closest('.row').remove()
 });
-$(document).on('change','.sku',function () { 
-    $.ajax({
-        type: "get",
-        url: "/get-cart-weight",
-        data: {'car_id':$(this).val()},
-        success: function (response) {
-            console.log(response)
-            $('.weight').val(response);   
-        }
-    });
-});
+
 $(document).on('change','.percent',function () { 
     var actual_weight=($('.net_weight').val()*$(this).val())/100;
     $(this).closest('.row_weight').find('.actual_weight').val(actual_weight);

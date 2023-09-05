@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-3">
                             {!! Form::label('process', __('lang.table')."*", ['class'=>'h6 pt-3']) !!}
-                                {!! Form::select(
+                            {!! Form::select(
                                     'process',
                                     $processes,null,
                                     ['class' => 'form-control selectpicker','data-live-search'=>"true",'required','placeholder'=>__('lang.please_select')]
@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-3">
                             {!! Form::label('workers', __('lang.employees')."*", ['class'=>'h6 pt-3']) !!}
-                                {!! Form::select(
+                            {!! Form::select(
                                     'workers[]',
                                     $employees,null,
                                     ['class' => 'form-control selectpicker','data-live-search'=>"true",'required'=>'required','data-placeholder'=>__('lang.please_select'),'multiple']

@@ -298,6 +298,12 @@ return [
     'add_nationalities'=>'Add Nationalities',
     'batch_number'=>'Batch Number',
     'percent'=>'Percent',
+    'filling_admin_requests'=>'Filling Admin Requests',
+    'requested_weight'=>'Requested Weight',
+    'shipment_number'=>'Shipment Number',
+    'priority'=>'Priority',
+    'goods_weight'=>'Goods Weight',
+    'transport_worker'=>'Transporter',
 ];
 
 ?>

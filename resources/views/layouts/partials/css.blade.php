@@ -46,11 +46,11 @@
         }
         @livewireScripts {
         display: none !important;
-    }
+        }
     }
     .scrollable-div {
     width: 100%; 
     overflow: visible;
     }
-</style>
+    </style>
 

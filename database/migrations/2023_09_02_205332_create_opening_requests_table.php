@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('batch_number')->nullable();
             $table->string('source', 60)->nullable();
-            $table->decimal('requested_weight', 15, 4)->nullable();
+            $table->decimal('requested_weight', 15, 2)->nullable();
             $table->integer('shipment_number')->nullable()->constrained('original_stocks', 'shipment_number')->cascadeOnDelete();
             $table->foreignId('type_id')->nullable()->constrained('types', 'id')->cascadeOnDelete();
-            $table->boolean('status')->default(0);
+            $table->string('status')->default('pending');
             $table->integer('priority')->nullable();    
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

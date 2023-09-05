@@ -36,6 +36,15 @@ class Cars extends Model
     {
         return $this->hasOne(ExpenseCar::class,'car_id');
     }
+    public function filling_by_original_store()
+    {
+        return $this->hasMany(FillingByOriginalStore::class);
+    }
+
+    public function opening_request_nationalities()
+    {
+        return $this->hasMany(OpeningRequestNationality::class);
+    }
     public function createBy()
     {
         return $this->belongsTo(User::class, 'created_by');

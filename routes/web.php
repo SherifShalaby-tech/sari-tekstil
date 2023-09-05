@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseCarController;
 use App\Http\Controllers\FillController;
+use App\Http\Controllers\FillingAdminRequestsController;
 use App\Http\Controllers\FillingByOriginalStoreController;
 use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
@@ -88,6 +90,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('recieve-shipment-from-supplier',RecieveOriginalStockFromSupplierController::class);
     Route::get('get-cart-weight', [FillingByOriginalStoreController::class,'getCartWeight']);
     Route::resource('original-store-worker-filling',FillingByOriginalStoreController::class);
+    Route::get('filling-admin-requests/add-nationality-row', [FillingAdminRequestsController::class,'addNationalityRow']);
+    Route::resource('filling-admin-requests',FillingAdminRequestsController::class);
+    Route::resource('transporter',TransporterController::class);
     
     
     Route::resource('lab',LabsController::class);
