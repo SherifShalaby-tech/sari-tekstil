@@ -37,7 +37,7 @@
                 ) !!}
             </div>
         </div>
-        <div class="col-sm-4 col-md-2">
+        {{-- <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(
                     'recent_car_content',
@@ -45,7 +45,7 @@
                     ['class' => 'form-control select2','placeholder'=>__('lang.recent_car_content')]
                 ) !!}
             </div>
-        </div>
+        </div> --}}
         <div class="col-sm-4 col-md-2">
             <div class="form-group">
                 {!! Form::select(

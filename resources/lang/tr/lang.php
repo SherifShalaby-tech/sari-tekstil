@@ -288,6 +288,11 @@ return [
     'priority'=>'',
     'goods_weight'=>'',
     'transport_worker'=>'',
+    'price_per_kilo'=>'',
+    'fill'=>'',
+    'change_plan'=>'',
+    'move'=>'',
+    'use'=>'',
 ];
 
 

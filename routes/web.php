@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cars/get-barcode/{id}', [CarsController::class, 'getBarcode']);
     Route::resource('cars',CarsController::class);
     Route::resource('maintain-car',ExpenseCarController::class);
+    Route::post('change-cart-plan',[PlanningCarController::class,'changeCartPlan']);
     Route::resource('planning-carts',PlanningCarController::class);
     Route::resource('opening',OpeningController::class);
     Route::resource('types',TypeController::class);

@@ -94,7 +94,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('next_place', __( 'lang.next_place' ) . ':*') !!}
-                            {!! Form::select('next_place', $places,  !empty($car->next_place)?$car->next_place:null, ['class' => 'selectpicker form-control next_place', 'data-live-search' => 'true', 'placeholder' => '-']) !!}
+                            {!! Form::select('next_place', $places,  !empty($car->next_place)?$car->next_place:null, ['class' => 'form-control next_place', 'placeholder' => '-']) !!}
                             @error('next_place')
                                 <label class="text-danger error-msg">{{ $message }}</label>
                             @enderror
@@ -103,7 +103,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('caliber_id', __( 'lang.caliber' ) . ':*') !!}
-                            {!! Form::select('caliber_id', $calibars,  !empty($car->caliber_id)?$car->caliber_id:null, ['class' => 'selectpicker form-control next_place', 'data-live-search' => 'true', 'placeholder' => '-']) !!}
+                            {!! Form::select('caliber_id[]', $calibars,  !empty($car->caliber_id)?$car->caliber_id:null, ['class' => 'selectpicker form-control', 'data-live-search' => 'true','multiple']) !!}
                             @error('caliber_id')
                                 <label class="text-danger error-msg">{{ $message }}</label>
                             @enderror
@@ -112,7 +112,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('employee', __( 'lang.employee' ) . ':*') !!}
-                            {!! Form::select('employee_id', $employees,  !empty($car->employee)?$car->employee_id:null, ['class' => 'selectpicker form-control employee', 'data-live-search' => 'true', 'placeholder' => '-']) !!}
+                            {!! Form::select('employee_id[]', $employees,  !empty($car->employee)?$car->employee_id:null, ['class' => 'selectpicker form-control employee', 'data-live-search' => 'true','multiple']) !!}
                             @error('employee_id')
                                 <label class="text-danger error-msg">{{ $message }}</label>
                             @enderror
@@ -122,7 +122,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('next_employee_id', __( 'lang.next_employee' ) . ':*') !!}
-                            {!! Form::select('next_employee_id', $employees,  !empty($car->next_employee_id)?$car->next_employee_id:null, ['class' => 'selectpicker form-control next_employee_id', 'data-live-search' => 'true', 'placeholder' => '-']) !!}
+                            {!! Form::select('next_employee_id[]', $employees,  !empty($car->next_employee_id)?$car->next_employee_id:null, ['class' => 'selectpicker form-control next_employee_id', 'data-live-search' => 'true','multiple']) !!}
                             @error('next_employee_id')
                                 <label class="text-danger error-msg">{{ $message }}</label>
                             @enderror

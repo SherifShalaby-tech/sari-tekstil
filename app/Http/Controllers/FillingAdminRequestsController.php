@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarContents;
 use App\Models\Cars;
 use App\Models\Employee;
 use App\Models\Nationality;
@@ -71,6 +72,7 @@ class FillingAdminRequestsController extends Controller
         $opening_request=OpeningRequest::find($id);
         $opening_request->status="filled";
         $opening_request->save();
+
         $indexs=[];
             if($request->has('opening_id')){
                 if(count($request->opening_id)>0){
@@ -82,6 +84,32 @@ class FillingAdminRequestsController extends Controller
                     'goods_weight'=>$request->goods_weight[$index],
                     'car_id'=>$request->car_id[$index],
                 ]);
+                // if(){
+                    $car=Cars::find($request->car_id[$index]);
+                    $car->shipment_number=$opening_request->shipment_number;
+                    // $car->batch_numer=$opening_request->batch_numer;
+                // }
+                if(CarContents::where('car_id',$request->car_id[$index])->where('opening_request_id',$request->opening_id[$index])->count()==0){
+                    CarContents::create([
+                        'car_id'=>$request->car_id[$index],
+                        'opening_request_id'=>$request->opening_id[$index],
+                        'nationality_id'=>$request->nationality_id[$index],
+                        'percentage'=>$request->percentage[$index],
+                        'weight'=>$request->weight[$index],
+                        'goods_weight'=>$request->goods_weight[$index],
+              
+                    ]); 
+                }else{
+                    CarContents::where('car_id',$request->car_id[$index])
+                    ->where('opening_request_id',$request->opening_id[$index])
+                    ->update([
+                        'nationality_id'=>$request->nationality_id[$index],
+                        'percentage'=>$request->percentage[$index],
+                        'weight'=>$request->weight[$index],
+                        'goods_weight'=>$request->goods_weight[$index],
+                    ]);
+                }
+                
             }
 
             $output = [

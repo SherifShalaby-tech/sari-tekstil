@@ -28,6 +28,10 @@ class FillingByOriginalStore extends Model
     {
         return $this->belongsTo(Type::class,'type_id');
     }
+    public function car_contents()
+    {
+        return $this->hasMany(CarContents::class, 'id');
+    }
     public function createBy()
     {
         return $this->belongsTo(User::class, 'created_by');

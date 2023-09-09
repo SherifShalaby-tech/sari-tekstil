@@ -13,8 +13,9 @@
         ]) !!}
     </div>
     <div class="col-md-2 pt-3">
+        <input type="hidden" name="nationality_id[]" value="{{isset($nationality)?$nationality->nationality->id:null}}"/>
         {!! Form::label('nationality_id', __('lang.nationality')."*", ['class' => 'h6 ', 'style'=>(isset($index)&& $index!=0)? 'display:none;' : '']) !!}
-        {!! Form::text('nationality_id[]', isset($nationality)?$nationality->nationality->name:null, [
+        {!! Form::text('nationality[]', isset($nationality)?$nationality->nationality->name:null, [
             'class' => 'form-control ',
             'placeholder' => __('lang.please_select'),
             'required','disabled'
@@ -24,14 +25,14 @@
         {!! Form::label('weight', __('lang.weight'), ['class' => 'h6', 'style'=>(isset($index)&& $index!=0)? 'display:none;' : '']) !!}
         {!! Form::number('weight[]',isset($nationality)?$nationality->weight:null, [
             'class' => 'form-control weight',
-            'placeholder' => '0.00','disabled'
+            'placeholder' => '0.00'
         ]) !!}
     </div>
     <div class="col-md-2 pt-3">
         {!! Form::label('percentage', __('lang.percent') . '%', ['class' => 'h6', 'style'=>(isset($index)&& $index!=0) ? 'display:none;' : '']) !!}
         {!! Form::number('percentage[]', isset($nationality)?@num_format($nationality->percentage):null, [
             'class' => 'form-control percent',
-            'placeholder' => '0','disabled'
+            'placeholder' => '0'
         ]) !!}
     </div>
     <div class="col-md-2 pt-3">

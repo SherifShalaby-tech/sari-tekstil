@@ -304,6 +304,11 @@ return [
     'priority'=>'Priority',
     'goods_weight'=>'Goods Weight',
     'transport_worker'=>'Transporter',
+    'price_per_kilo'=>'Price Per Kilo',
+    'fill'=>'Fill',
+    'change_plan'=>'Change Plan',
+    'move'=>'Move',
+    'use'=>'Use',
 ];
 
 ?>

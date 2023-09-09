@@ -16,6 +16,7 @@ $(document).on('click','.add_row',function(){
             dataType: "html",
             success: function (response) {
                 $('.nationalities').append(response);
+                $('.selectpicker').selectpicker();
             }
         });
     }
