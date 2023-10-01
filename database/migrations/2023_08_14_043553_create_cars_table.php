@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60)->nullable();
-            $table->decimal('weight_empty', 15, 4)->nullable()->default(0);
-            $table->decimal('weight_product', 15, 4)->nullable()->default(0);
+            $table->decimal('weight_empty', 15, 2)->nullable()->default(0);
+            $table->decimal('weight_product', 15, 2)->nullable()->default(0);
             // $table->string('recent_car_content')->nullable();
             $table->string('sku', 60)->nullable();
             $table->string('status')->nullable()->default(0);

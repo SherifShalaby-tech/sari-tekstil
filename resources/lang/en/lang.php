@@ -309,6 +309,22 @@ return [
     'change_plan'=>'Change Plan',
     'move'=>'Move',
     'use'=>'Use',
+    'compression'=>'compression',
+    'compression_request_form_admin'=>'Compression Request Form Admin',
+    'empty_weight'=>'Empty Weight',
+    'requested'=>'Requested',
+    'quantity'=>'Quantity',
+    'destination'=>'Destination',
+    'remaining_amount'=>'Remaining Amount',
+    'count'=>'Count',
+    'total_weight'=>'Total Weight',
+    'tying_bales'=>'Tying Bales',
+    'bales_skus'=>'Bales Skus',
+    'bales'=>'Bales',
+    'bale_sku'=>'Bale Sku',
+    'bale'=>'Bale',
+    'tie'=>'Tie',
+    'content'=>'Content',
 ];
 
 ?>

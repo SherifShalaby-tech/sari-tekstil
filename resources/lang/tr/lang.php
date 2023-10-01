@@ -293,6 +293,22 @@ return [
     'change_plan'=>'',
     'move'=>'',
     'use'=>'',
+    'compression'=>'',
+    'compression_request_form_admin'=>'',
+    'empty_weight'=>'',
+    'requested'=>'',
+    'quantity'=>'',
+    'destination'=>'',
+    'remaining_amount'=>'',
+    'count'=>'',
+    'total_weight'=>'',
+    'tying_bales'=>'',
+    'bales_skus'=>'',
+    'bales'=>'',
+    'bale_sku'=>'',
+    'bale'=>'',
+    'tie'=>'',
+    'content'=>'',
 ];
 
 

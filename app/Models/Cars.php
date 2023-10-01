@@ -83,6 +83,10 @@ class Cars extends Model
     {
         return $this->belongsTo(User::class, 'edited_by');
     }
+    public function screening()
+    {
+        return $this->belongsTo(Screening::class, 'screening_id');
+    }
     public static function getProcesses()
     {
         return [

@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('pressing_requests', function (Blueprint $table) {
             $table->id();
             $table->string('required')->nullable();
-            $table->json('calibers')->nullable();
+            $table->foreignId('screening_id')->nullable()->constrained('screenings', 'id')->cascadeOnDelete();
             $table->decimal('empty_weight', 15, 2)->nullable(); 
             $table->decimal('weight', 15, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->string('destination')->nullable();
+            $table->text('calibers')->nullable();
             $table->integer('priority')->nullable();
+            $table->string('status')->nullable()->default('0');
             $table->foreignId('color_id')->nullable()->constrained('colors', 'id')->cascadeOnDelete();
             $table->foreignId('filling_id')->nullable()->constrained('fills', 'id')->cascadeOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

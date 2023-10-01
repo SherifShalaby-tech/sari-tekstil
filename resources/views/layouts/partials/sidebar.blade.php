@@ -91,6 +91,24 @@
                         <li><a href="apps-onboarding-screens.html">Onboarding Screens</a></li>
                     </ul>
                 </li>
+                {{-- @if(auth()->user()->can('compression_worker'))                      
+                <li>
+                    <a href="{{route('squeeze.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.compression')</span>
+                    </a>
+                </li>
+                @endif --}}
+                @if(auth()->user()->can('compression_worker'))
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="ri-file-copy-2-line"></i><span>{{__('lang.compression')}}</span><i class="ri-arrow-right-s-line"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{route('squeeze.index')}}">@lang('lang.compression_request_form_admin')</a></li>
+                        <li><a href="{{route('tying-bales.index')}}">@lang('lang.tying_bales')</a></li>
+                    </ul>
+                </li>
+                @endif
                 @if(auth()->user()->can('transporter'))                      
                 <li>
                     <a href="{{route('transporter.index')}}">

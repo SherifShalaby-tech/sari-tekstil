@@ -25,9 +25,11 @@ use App\Http\Controllers\PlanningCarController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SqueezeController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransporterController;
+use App\Http\Controllers\TyingBalesController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
@@ -94,6 +96,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('filling-admin-requests/add-nationality-row', [FillingAdminRequestsController::class,'addNationalityRow']);
     Route::resource('filling-admin-requests',FillingAdminRequestsController::class);
     Route::resource('transporter',TransporterController::class);
+    Route::resource('squeeze',SqueezeController::class);
+    Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
+    Route::resource('tying-bales',TyingBalesController::class);
     
     
     Route::resource('lab',LabsController::class);
