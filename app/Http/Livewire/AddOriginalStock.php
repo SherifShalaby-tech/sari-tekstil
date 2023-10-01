@@ -9,9 +9,13 @@ use App\Models\Store;
 use App\Models\Supplier;
 use App\Models\Type;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Redirect;
 
 class AddOriginalStock extends Component
 {
+    use WithFileUploads;
     public $suppliers;
     public $branches;
     public $nationalities;
@@ -25,10 +29,10 @@ class AddOriginalStock extends Component
     public $selectedType;
     public $shipmentNumber;
     public $shipmentWeight = 0;
-    public $wetWeight = 0;
-    public $dryWeight = 0;
+    // public $wetWeight = 0;
+    // public $dryWeight = 0;
     public $totalWeight = 0;
-    public $actualWeight = 0;
+    // public $actualWeight = 0;
     public $paymentStatus;
     public $shipmentName;
     public $price;
@@ -39,6 +43,11 @@ class AddOriginalStock extends Component
     public $pricePerKilo;
     public $otherCosts;
     public $fines;
+    public $sku;
+    public $upload_files = [];
+
+    protected $listeners = ['updatePrices'];
+
 
     public function mount()
     {
@@ -48,17 +57,23 @@ class AddOriginalStock extends Component
         $this->stores = Store::pluck('name', 'id');
         $this->types = Type::pluck('name','id');
     }
-     public function updatedPrice($value)
+    public function updated($propertyName)
+    {
+        // This method will be automatically called whenever any property is updated.
+        $this->updatedPrice();
+        $this->updatedWetWeight();
+    }
+    public function updatedPrice()
     {
         $this->calculatePricePerKilo();
     }
-    public function updatedWetWeight($value)
+    public function updatedWetWeight()
     {
-        if($this->wetWeight != 0 && $this->dryWeight != 0){
-            $this->totalWeight = $this->wetWeight - $this->dryWeight;
-        }else{
-            $this->totalWeight = $this->actualWeight;
-        }
+        // if($this->wetWeight != 0 && $this->dryWeight != 0){
+        //     $this->totalWeight = $this->wetWeight - $this->dryWeight;
+        // }else{
+            $this->totalWeight = $this->shipmentWeight;
+        // }
        
         $this->calculatePricePerKilo();
     }
@@ -83,6 +98,18 @@ class AddOriginalStock extends Component
             
         // ]);
 
+        // Generate the barcode (as shown in the previous steps)
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $length = 12;
+        $barcode = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $barcode .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        // Check if the barcode already exists
+        $existingSku = OriginalStock::where('sku', $barcode)->first();
+
+       
         // Create a new instance of your model and set the attributes
         $originalStock = new OriginalStock();
         $originalStock->supplier_id = $this->selectedSupplier;
@@ -91,9 +118,6 @@ class AddOriginalStock extends Component
         $originalStock->type_id = $this->selectedType;
         $originalStock->shipment_number = $this->shipmentNumber;
         $originalStock->shipment_weight = $this->shipmentWeight;
-        $originalStock->actual_weight = $this->actualWeight;
-        $originalStock->wet_weight = $this->wetWeight;
-        $originalStock->dry_weight = $this->dryWeight;
         $originalStock->payment_status = $this->paymentStatus;
         $originalStock->price = $this->price;
         $originalStock->shipment_name = $this->shipmentName;
@@ -103,7 +127,21 @@ class AddOriginalStock extends Component
         $originalStock->total_weight = $this->totalWeight;
         $originalStock->price_per_kilo = $this->pricePerKilo;
         $originalStock->other_costs = $this->otherCosts;
-        // Set other attributes
+        $originalStock->sku = $this->sku ?? Str::random(12);  
+ 
+        if ($this->upload_files && count($this->upload_files) > 0) {
+            $files = [];
+
+            foreach ($this->upload_files as $image) {
+                $ext = $image->getClientOriginalExtension();
+                $filename = rand(1111, 9999) . time() . '.' . $ext;
+                $image->storeAs('uploads/original_stock', $filename);
+                $files[] = $filename;
+            }
+
+            $data['files'] = json_encode($files); // Convert array to JSON
+            $originalStock->files =  $data['files'];
+        }
 
         // Save the model
         $originalStock->save();
@@ -111,11 +149,13 @@ class AddOriginalStock extends Component
         // Clear the input fields after saving
         // $this->resetFields();
 
-        // $output = [
-        //     'success' => true,
-        //     'msg' => __('lang.success')
-        // ];
-        $this->redirect(route('original-stock-create'));
-        // return redirect()->back()->with('status', $output);
+        $output = [
+            'success' => true,
+            'msg' => __('lang.success')
+        ];
+        // Create a redirect response with the output attached as a parameter
+        $redirectResponse = Redirect::route('original-stock-create')->with('status', $output);
+        // Return the redirect response
+        return $redirectResponse;
     }
 }

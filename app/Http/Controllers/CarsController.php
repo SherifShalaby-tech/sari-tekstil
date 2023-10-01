@@ -16,7 +16,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
+use Milon\Barcode\DNS1D;
 class CarsController extends Controller
 {
     /**
@@ -28,9 +28,9 @@ class CarsController extends Controller
             abort(403, __('lang.unauthorized_action'));
         }
         // return request()->input('empty_carts');
-        $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('id','recent_car_content');
-        $recent_car_contents->prepend( __('lang.empty'));
-        $recent_car_contents=$recent_car_contents->all();
+        // $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('id','recent_car_content');
+        // $recent_car_contents->prepend( __('lang.empty'));
+        // $recent_car_contents=$recent_car_contents->all();
         $cars=Cars::
             when(\request()->branch_id != null, function ($query) {
                 $query->where('branch_id',\request()->branch_id);
@@ -39,17 +39,21 @@ class CarsController extends Controller
                 $query->where('employee_id',\request()->employee_id);
             })
             ->when(\request()->recent_process != null, function ($query) {
-                $query->where('recent_process',\request()->recent_process);
+                $query->where('process',\request()->recent_process);
             })
             ->when(\request()->caliber_id != null, function ($query) {
                 $query->where('caliber_id',\request()->caliber_id);
             })
-            ->when(\request()->recent_car_content != null, function ($query) {
-                $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
-                $recent_car_contents->prepend( __('lang.empty'));
-                $recent_car_contents=$recent_car_contents->all();
-                $query->where('recent_car_content',$recent_car_contents[request()->recent_car_content]);
-            })
+            // ->when(\request()->recent_car_content != null, function ($query) {
+            //     if(request()->recent_car_content==0){
+            //         $query->whereNull('recent_car_content');
+            //     }else{
+            //         $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
+            //         $recent_car_contents->prepend( __('lang.empty'));
+            //         $recent_car_contents=$recent_car_contents->all();
+            //         $query->where('recent_car_content',$recent_car_contents[request()->recent_car_content]);
+            //     }
+            // })
             ->when(\request()->created_by != null, function ($query) {
                 $query->where('created_by',\request()->created_by);
             })
@@ -74,11 +78,11 @@ class CarsController extends Controller
         $places->push( __('lang.square'));
         $places=$places->all();
         ///////
-        $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
-        $recent_car_contents->prepend( __('lang.empty'));
-        $recent_car_contents=$recent_car_contents->all();
+        // $recent_car_contents=Cars::whereNotNull('recent_car_content')->latest()->distinct('recent_car_content')->pluck('recent_car_content');
+        // $recent_car_contents->prepend( __('lang.empty'));
+        // $recent_car_contents=$recent_car_contents->all();
         return view('cars.index',compact('cars','stores','branches','calibars',
-            'processes','employees','places','users','recent_car_contents'));
+            'processes','employees','places','users'));
     }
 
     /**
@@ -94,27 +98,29 @@ class CarsController extends Controller
      */
     public function store(StoreCarsRequest $request)
     {
-        try {
+        // try {
             $data = $request->except('_token');
             $data['sku'] = !empty($request->sku) ? $request->sku : $this->generateSku($request->name);
             $data['created_by']=Auth::user()->id;
+            // $barcode = new DNS1D();
+            // $data['sku']=$barcode->getBarcodeHTML("12345345678", "C128");
             $car = Cars::create($data);
             $output = [
                 'success' => true,
                 'id' => $car->id,
                 'msg' => __('lang.success')
             ];
-        } catch (\Exception $e) {
-            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-            $output = [
-                'success' => false,
-                'msg' => __('lang.something_went_wrong')
-            ];
-        }
-        if ($request->quick_add) {
-          return $output;
-          }
-        return redirect()->back()->with('status', $output);
+        // } catch (\Exception $e) {
+        //     Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+        //     $output = [
+        //         'success' => false,
+        //         'msg' => __('lang.something_went_wrong')
+        //     ];
+        // }
+        // if ($request->quick_add) {
+        //   return $output;
+        //   }
+        // return redirect()->back()->with('status', $output);
     }
 
     /**

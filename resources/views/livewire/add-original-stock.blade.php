@@ -32,6 +32,10 @@
             <label class="h6 pt-3" for="shipment_number">{{__( 'lang.shipment_number' )}}</label>
             <input type="number" id="shipmentNumber" wire:model="shipmentNumber" class="form-control ">
         </div>
+        <div   class="col-md-3 form-group">
+            <label class="h6 pt-3" for="sku">{{__( 'lang.sku' )}}</label>
+            <input type="number" id="sku" wire:model="sku" class="form-control ">
+        </div>
         <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="shipment_weight">{{__( 'lang.shipment_weight' )}}</label>
             <input type="number" id="shipmentWeight" wire:model="shipmentWeight" class="form-control ">
@@ -45,22 +49,22 @@
                 @endforeach
             </select>
         </div>
-        <div  class="col-md-4 form-group">
+        {{-- <div  class="col-md-4 form-group">
             <label class="h6 pt-3" for="actual_weight">{{__( 'lang.actual_weight' )}}</label>
             <input type="number" id="actualWeight" wire:model="actualWeight" class="form-control ">
-        </div>
+        </div> --}}
         <div  class="col-md-3 form-group">
             <label class="h6 pt-3" for="price">{{__( 'lang.price' )}}</label>
             <input type="number" id="price" wire:model="price" class="form-control ">
         </div>
-        <div class="col-md-3 form-group">
+        {{-- <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="wet_weight">{{__( 'lang.wet_weight' )}}</label>
             <input type="number" id="wetWeight" wire:model="wetWeight" class="form-control ">
         </div>
         <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="dry_weight">{{__( 'lang.dry_weight' )}}</label>
             <input type="number" id="dryWeight" wire:model="dryWeight" class="form-control ">
-        </div>
+        </div> --}}
         {{-- <div class="col-md-3 form-group">
             <label class="h6 pt-3" for="dry_weight">{{__( 'lang.dry_weight' )}}</label>
             <input type="number" id="dryWeight" wire:model="dryWeight" class="form-control ">
@@ -111,10 +115,10 @@
             @for ($i=0; $i <= 4; $i++)
             <div class="row">
                 <div class="col-md-2">
-                    <input type="text" name="other_costs[{{ $i }}][key]" class="form-control" value="{{ old('other_costs['.$i.'][key]') }}">
+                    <input type="text" name="otherCosts[{{ $i }}][key]" class="form-control" value="{{ old('otherCosts['.$i.'][key]') }}">
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="other_costs[{{ $i }}][value]" class="form-control" value="{{ old('other_costs['.$i.'][value]') }}">
+                    <input type="text" name="otherCosts[{{ $i }}][value]" class="form-control" value="{{ old('otherCosts['.$i.'][value]') }}">
                 </div>
             </div>
             @endfor
@@ -129,7 +133,7 @@
         </div>
         <div class="col-md-3">
             <label class="h6 pt-3" for="upload_files">{{__( 'lang.upload_files' )}}</label>
-             <input type="file" name="upload_files[]"  multiple>
+             <input type="file" name="upload_files[]" wire:model="upload_files" multiple>
         </div>
        
     </div>

@@ -91,27 +91,46 @@
                         <li><a href="apps-onboarding-screens.html">Onboarding Screens</a></li>
                     </ul>
                 </li>
+                {{-- @if(auth()->user()->can('compression_worker'))                      
+                <li>
+                    <a href="{{route('squeeze.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.compression')</span>
+                    </a>
+                </li>
+                @endif --}}
+                @if(auth()->user()->can('compression_worker'))
                 <li>
                     <a href="javaScript:void();">
-                        <i class="ri-file-copy-2-line"></i><span>Forms</span><i class="ri-arrow-right-s-line"></i>
+                        <i class="ri-file-copy-2-line"></i><span>{{__('lang.compression')}}</span><i class="ri-arrow-right-s-line"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="form-inputs.html">Basic Elements</a></li>
-                        <li><a href="form-groups.html">Groups</a></li>
-                        <li><a href="form-layouts.html">Layouts</a></li>
-                        <li><a href="form-colorpickers.html">Color Pickers</a></li>
-                        <li><a href="form-datepickers.html">Date Pickers</a></li>
-                        <li><a href="form-editors.html">Editors</a></li>
-                        <li><a href="form-file-uploads.html">File Uploads</a></li>
-                        <li><a href="form-input-mask.html">Input Mask</a></li>
-                        <li><a href="form-maxlength.html">MaxLength</a></li>
-                        <li><a href="form-selects.html">Selects</a></li>
-                        <li><a href="form-touchspin.html">Touchspin</a></li>
-                        <li><a href="form-validations.html">Validations</a></li>
-                        <li><a href="form-wizards.html">Wizards</a></li>
-                        <li><a href="form-xeditable.html">X-editable</a></li>
+                        <li><a href="{{route('squeeze.index')}}">@lang('lang.compression_request_form_admin')</a></li>
+                        <li><a href="{{route('tying-bales.index')}}">@lang('lang.tying_bales')</a></li>
                     </ul>
                 </li>
+                @endif
+                @if(auth()->user()->can('transporter'))                      
+                <li>
+                    <a href="{{route('transporter.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.transport_worker')</span>
+                    </a>
+                </li>
+                @endif
+                @if(auth()->user()->can('orignal_store_worker'))
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="ri-file-copy-2-line"></i><span>{{__('lang.original_store_worker')}}</span><i class="ri-arrow-right-s-line"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        {{-- <li><a href="{{route('original-store-worker.fill')}}">@lang('lang.filling')</a></li> --}}
+                        <li><a href="{{route('original-store-worker-filling.index')}}">@lang('lang.filling')</a></li>
+                        <li><a href="{{route('original-store-worker.index')}}">@lang('lang.store_worker_recieve_original')</a></li>
+                        <li><a href="{{route('recieve-shipment-from-supplier.index')}}">@lang('lang.recieve_shipment_from_supplier')</a></li>
+                        <li><a href="{{route('filling-admin-requests.index')}}">@lang('lang.filling_admin_requests')</a></li>
+                        <li><a href="form-layouts.html">Layouts</a></li>
+                    </ul>
+                </li>
+                @endif
                 <li>
                     <a href="javaScript:void();">
                         <i class="ri-pie-chart-line"></i><span>@lang('lang.stock')</span><i class="ri-arrow-right-s-line"></i>

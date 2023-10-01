@@ -36,6 +36,8 @@ return new class extends Migration
             $table->decimal('price_per_kilo', 15, 4)->nullable();
             $table->string('payment_status')->nullable();
             $table->string('shipment_name')->nullable();
+            $table->string('status')->default('pending')->nullable();
+            $table->string('sku')->nullable();
             $table->text('files')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
