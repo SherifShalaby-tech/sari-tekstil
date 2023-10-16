@@ -107,6 +107,18 @@
                 @endif
                 <li>
                     <a href="javaScript:void();">
+                        <i class="ri-file-copy-2-line"></i><span>{{__('lang.admin_requests')}}</span><i class="ri-arrow-right-s-line"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{route('admin_opening_request.index')}}">@lang('lang.opening_request')</a></li>
+                    </ul>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{route('admin_filling_request.index')}}">@lang('lang.filling_request')</a></li>
+                       
+                    </ul>
+                </li>
+                <li>
+                    <a href="javaScript:void();">
                         <i class="ri-pie-chart-line"></i><span>@lang('lang.stock')</span><i class="ri-arrow-right-s-line"></i>
                     </a>
                     <ul class="vertical-submenu">

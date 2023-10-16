@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('opening_request_nationalities', function (Blueprint $table) {
             $table->id();
-            $table->decimal('percentage', 15, 4)->nullable();   
-            $table->decimal('weight', 15, 4)->nullable(); 
+            $table->decimal('percentage', 15, 2)->nullable();   
+            $table->decimal('weight', 15, 2)->nullable(); 
             $table->foreignId('nationality_id')->nullable()->constrained('nationalities', 'id')->cascadeOnDelete();
             $table->foreignId('opening_request_id')->nullable()->constrained('opening_requests', 'id')->cascadeOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

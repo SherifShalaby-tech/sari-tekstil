@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminRequestsController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CalibersController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseCarController;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\FillingByOriginalStoreController;
+use App\Http\Controllers\FillingRequestsController;
 use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -88,8 +90,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('recieve-shipment-from-supplier',RecieveOriginalStockFromSupplierController::class);
     Route::get('get-cart-weight', [FillingByOriginalStoreController::class,'getCartWeight']);
     Route::resource('original-store-worker-filling',FillingByOriginalStoreController::class);
-    
-    
+    Route::resource('admin_opening_request',AdminRequestsController::class);
+    Route::get('get-nationality-weight/{id}',[ AdminRequestsController::class,'getWeight']);
+    Route::get('add-nationality-row', [AdminRequestsController::class,'addNationalityRow']);
+    Route::get('add-filling-row', [FillingRequestsController::class,'addFiliingRow']);
+    Route::resource('admin_filling_request',FillingRequestsController::class);
+
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
     Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');
