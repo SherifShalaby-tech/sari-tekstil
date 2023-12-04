@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseCarController;
 use App\Http\Controllers\FillController;
+use App\Http\Controllers\FillingAdminRequestsController;
 use App\Http\Controllers\FillingByOriginalStoreController;
 use App\Http\Controllers\FillingRequestsController;
 use App\Http\Controllers\ForfeitLeaveController;
@@ -26,8 +27,11 @@ use App\Http\Controllers\PlanningCarController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SqueezeController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransporterController;
+use App\Http\Controllers\TyingBalesController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
@@ -62,6 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cars/get-barcode/{id}', [CarsController::class, 'getBarcode']);
     Route::resource('cars',CarsController::class);
     Route::resource('maintain-car',ExpenseCarController::class);
+    Route::post('change-cart-plan',[PlanningCarController::class,'changeCartPlan']);
     Route::resource('planning-carts',PlanningCarController::class);
     Route::resource('opening',OpeningController::class);
     Route::resource('types',TypeController::class);
@@ -96,6 +101,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('add-filling-row', [FillingRequestsController::class,'addFiliingRow']);
     Route::resource('admin_filling_request',FillingRequestsController::class);
 
+    Route::get('filling-admin-requests/add-nationality-row', [FillingAdminRequestsController::class,'addNationalityRow']);
+    Route::resource('filling-admin-requests',FillingAdminRequestsController::class);
+    Route::resource('transporter',TransporterController::class);
+    Route::resource('squeeze',SqueezeController::class);
+    Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
+    Route::resource('tying-bales',TyingBalesController::class);
+    
+    
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
     Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');

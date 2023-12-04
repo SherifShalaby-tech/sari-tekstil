@@ -26,4 +26,8 @@ class OpeningRequestNationality extends Model
     {
         return $this->belongsTo(User::class, 'edited_by');
     }
+    public function car()
+    {
+        return $this->belongsTo(Cars::class,'car_id');
+    }
 }

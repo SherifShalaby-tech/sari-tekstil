@@ -156,15 +156,15 @@
                   dataType: 'html',
                   success: function(result) {
                       $(container).html(result);
+                      $('.selectpicker').selectpicker();
                       $('#editModal').modal('show');
-                    //   $('.select2').select2();
-                    //   $('.datepicker').datepicker();
                   },
               });
           });
           $(document).ready(function() {
                 $('.selectpicker').selectpicker();
             });
+            
   </script>
   @stack('javascripts')
 

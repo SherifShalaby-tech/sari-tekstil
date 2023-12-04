@@ -21,14 +21,14 @@
     </div>
     <div class="col-md-2 pt-3">
         {!! Form::label('percent', __('lang.percent') . '%', ['class' => 'h6', 'style'=>isset($hideBtn) ? 'display:none;' : '']) !!}
-        {!! Form::number('percent[]', isset($f_store)?$f_store->percent:null, [
+        {!! Form::number('percentage[]', isset($f_store)?$f_store->percentage:null, [
             'class' => 'form-control percent',
             'placeholder' => '0',
         ]) !!}
     </div>
     <div class="col-md-2 pt-3">
         {!! Form::label('actual_weight', __('lang.actual_weight')."*", ['class' => 'h6', 'style'=>isset($hideBtn) ? 'display:none;' : '']) !!}
-        {!! Form::text('actual_weight[]', isset($f_store)?$f_store->actual_weight:0, [
+        {!! Form::text('actual_weight[]', isset($f_store)?$f_store->goods_weight:0, [
             'class' => 'form-control actual_weight',
             'placeholder' => '0.00',
             'required'

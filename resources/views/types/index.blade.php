@@ -11,7 +11,7 @@
                         <h4 class="page-title">{{__('lang.types')}}</h4>
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                {{-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> --}}
                                 <li class="breadcrumb-item"><a href="#">{{__('lang.dashboard')}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">@lang('lang.types')</li>
                             </ol>

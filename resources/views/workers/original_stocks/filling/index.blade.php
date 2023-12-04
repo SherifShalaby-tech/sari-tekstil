@@ -60,7 +60,7 @@
                                 <td>{{$fill->car->sku}}</td>
                                 <td>{{$fill->type->name}}</td>
                                 <td>{{$fill->net_weight}}</td>
-                                <td>{{$fill->batch_number??"-"}}</td>
+                                <td>{{$fill->car->batch_number??"-"}}</td>
                                 <td>{{$fill->process}}</td>
                                 <td>
                                     @if(!empty($fill->workers))
@@ -70,23 +70,23 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @foreach($fill->filling_by_original_store_nationalities as $store_fill)
-                                        {{$store_fill->nationality->name}} <br>
+                                    @foreach($fill->car_contents as $content)
+                                        {{$content->nationality->name}} <br>
                                     @endforeach
                                 </td>
                                 <td>
-                                    @foreach($fill->filling_by_original_store_nationalities as $store_fill)
-                                        {{$store_fill->percent}} %<br>
+                                    @foreach($fill->car_contents as $content)
+                                        {{$content->percentage ??0}} % <br>
                                     @endforeach
                                 </td>
                                 <td>
-                                    @foreach($fill->filling_by_original_store_nationalities as $store_fill)
-                                        {{$store_fill->actual_weight}} <br>
+                                    @foreach($fill->car_contents as $content)
+                                        {{$content->goods_weight ??0}} <br>
                                     @endforeach
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button fill="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خيارات                                            <span class="caret"></span>
+                                        <button fill="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خيارات                                            <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">

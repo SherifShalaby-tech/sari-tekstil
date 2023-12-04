@@ -8,7 +8,6 @@ $(document).on('click','.add_row',function(){
         actual_weight += parseFloat($(this).find(".actual_weight").val());
     });
     var net_weight=parseFloat($('.net_weight').val());
-    alert(actual_weight)
     if(actual_weight<net_weight || actual_weight==0){
         $.ajax({
             type: "get",
@@ -17,6 +16,7 @@ $(document).on('click','.add_row',function(){
             dataType: "html",
             success: function (response) {
                 $('.nationalities').append(response);
+                $('.selectpicker').selectpicker();
             }
         });
     }

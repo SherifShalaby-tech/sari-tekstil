@@ -60,7 +60,7 @@
                                 <th>@lang('lang.name')</th>
                                 <th>@lang('lang.weight_empty')</th>
                                 <th>@lang('lang.recent_process')</th>
-                                <th>@lang('lang.recent_car_content')</th>
+                                {{-- <th>@lang('lang.recent_car_content')</th> --}}
                                 <th>@lang('lang.caliber')</th>
                                 <th>@lang('lang.employee')</th>
                                 <th>@lang('lang.weight_product')</th>
@@ -74,13 +74,13 @@
                             @foreach($cars as $index=>$car)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{$car->branch->name}}</td>
+                                <td>{{$car->branch->name??''}}</td>
                                 <td>{{$car->sku}}</td>
                                 <td>{{$car->name}}</td>
                                 {{-- <td> {!! Form::text('discount[]',  @num_format(444), ['class' => 'clear_input_form form-control', 'placeholder' => __('lang.discount')]) !!}</td> --}}
                                 <td>{{@num_format($car->weight_empty)}} KG</td>
                                 <td>{{__('lang.'.$car->process)}}</td>
-                                <td class="text-center">{{$car->recent_car_content}}</td>
+                                {{-- <td class="text-center">{{$car->recent_car_content}}</td> --}}
                                 <td class="text-center">{{!empty($car->caliber)?$car->caliber->number:'-'}}</td>
                                 <td class="text-center">{{!empty($car->employee)?$car->employee->name:'-'}}</td>
                                 <td>{{@num_format($car->weight_product)}} KG</td>
@@ -121,7 +121,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خيارات                                            <span class="caret"></span>
+                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خيارات                                            <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">

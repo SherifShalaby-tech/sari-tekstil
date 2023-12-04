@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarContents;
+use App\Models\CarExtra;
 use App\Models\Cars;
 use App\Models\Employee;
 use App\Models\FillingByOriginalStore;
@@ -33,14 +35,20 @@ class FillingByOriginalStoreController extends Controller
         }
         $types=Type::latest()->pluck('name','id');
         $nationalities=Nationality::latest()->pluck('name','id');
-        $batch_number=11;
+        $batch_number=$this->generateUniqueBatchNumber();
         $processes=Cars::getProcesses();
         $employees=Employee::latest()->pluck('name','id');
-        $skus=Cars::latest()->pluck('sku','id');
+        $skus=Cars::whereIn('process',['not_used','original_store'])->whereIn('next_process',['not_used','original_store'])->latest()->pluck('sku','id');
         return view('workers.original_stocks.filling.filling',compact('types','nationalities',
         'batch_number','processes','employees','skus'));
     }
-
+    public function generateUniqueBatchNumber() {
+        do {
+            $batchNumber = mt_rand(100000, 999999); 
+            $existingCount = Cars::where('batch_number', $batchNumber)->count();
+        } while ($existingCount > 0);
+        return $batchNumber;
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -48,11 +56,28 @@ class FillingByOriginalStoreController extends Controller
     {
         try {
             $data = $request->except('_token');
-            // $data['created_by']=Auth::user()->id;
+            $data['created_by']=Auth::user()->id;
             $data['employee_id']=Employee::find(Auth::user()->id)->id;
             $data['car_id']=$request->sku;
             $data['workers']=$request->workers;
             $fill = FillingByOriginalStore::create($data);
+
+            $car=Cars::find($data['car_id']);
+            $car->weight_product=$car->weight_product + (float)$request->net_weight;
+            $car->next_process=$request->process;
+            $car->type_id=$car->type_id;
+            if($request->process!=='original_store'){
+            $car->batch_number=$request->batch_number;
+            }
+            $car->save();
+            $workers=$request->get('workers');
+            for($i=0; $i<count($workers);$i++){
+                CarExtra::create([
+                    'cars_id'=>$car->id,
+                    'next_employee_id'=>$workers[$i]
+                ]);    
+            }
+            
 
             $indexs=[];
             if($request->has('nationality_id')){
@@ -61,14 +86,23 @@ class FillingByOriginalStoreController extends Controller
                 }
             }
             foreach ($indexs as $index){
-                $items=[
-                    'filling_by_original_store_id' => $fill->id,
-                    'nationality_id' => $request->nationality_id[$index],
-                    'percent' => $request->percent[$index],
-                    'weight' => $request->weight[$index],
-                    'actual_weight' => $request->actual_weight[$index],
-                ];
-                FillingByOriginalStoreNationality::create($items);
+                CarContents::create([
+                    'car_id'=>$car->id,
+                    'filling_by_original_store_id'=>$fill->id,
+                    'nationality_id'=>$request->nationality_id[$index],
+                    'percentage'=>$request->percentage[$index],
+                    'weight'=>$request->weight[$index],
+                    'goods_weight'=>$request->actual_weight[$index],
+          
+                ]); 
+                // $items=[
+                //     'filling_by_original_store_id' => $fill->id,
+                //     'nationality_id' => $request->nationality_id[$index],
+                //     'percent' => $request->percent[$index],
+                //     'weight' => $request->weight[$index],
+                //     'actual_weight' => $request->actual_weight[$index],
+                // ];
+                // FillingByOriginalStoreNationality::create($items);
             }
             
             $output = [
@@ -125,22 +159,39 @@ class FillingByOriginalStoreController extends Controller
             $data['workers']=$request->workers;
             $fill = $filling_store->update($data);
 
+            $car=Cars::find($data['car_id']);
+            $car->weight_product=$car->weight_product + (float)$request->net_weight;
+            $car->next_process=$request->process;
+            $car->type_id=$car->type_id;
+            if($request->process!=='original_store'){
+            $car->batch_number=$request->batch_number;
+            }
+            $car->save();
+            $workers=$request->get('workers');
+            for($i=0; $i<count($workers);$i++){
+                $car->car_extras()->update([
+                    'next_employee_id'=>$workers[$i]
+                ]);    
+            }
+
+
             $indexs=[];
-            $filling_store->filling_by_original_store_nationalities()->delete();
+            $filling_store->car_contents()->delete();
             if($request->has('nationality_id')){
                 if(count($request->nationality_id)>0){
                     $indexs=array_keys($request->nationality_id);
                 }
             }
             foreach ($indexs as $index){
-                $items=[
-                    'filling_by_original_store_id' => $filling_store->id,
-                    'nationality_id' => $request->nationality_id[$index],
-                    'percent' => $request->percent[$index],
-                    'weight' => $request->weight[$index],
-                    'actual_weight' => $request->actual_weight[$index],
-                ];
-                FillingByOriginalStoreNationality::create($items);
+                CarContents::create([
+                    'car_id'=>$car->id,
+                    'filling_by_original_store_id'=>$fill->id,
+                    'nationality_id'=>$request->nationality_id[$index],
+                    'percentage'=>$request->percentage[$index],
+                    'weight'=>$request->weight[$index],
+                    'goods_weight'=>$request->actual_weight[$index],
+          
+                ]); 
             }
             
             $output = [
@@ -166,7 +217,7 @@ class FillingByOriginalStoreController extends Controller
             $fill=FillingByOriginalStore::find($id);
             $fill->deleted_by=Auth::user()->id;
             $fill->save();
-            $fill_store=FillingByOriginalStoreNationality::where('filling_by_original_store_id',$fill->id)->delete();
+            CarContents::where('filling_by_original_store_id',$fill->id)->delete();
             $fill->delete();
             $output = [
                 'success' => true,

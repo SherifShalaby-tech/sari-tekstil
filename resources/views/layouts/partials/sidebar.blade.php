@@ -91,6 +91,31 @@
                         <li><a href="apps-onboarding-screens.html">Onboarding Screens</a></li>
                     </ul>
                 </li>
+                {{-- @if(auth()->user()->can('compression_worker'))                      
+                <li>
+                    <a href="{{route('squeeze.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.compression')</span>
+                    </a>
+                </li>
+                @endif --}}
+                @if(auth()->user()->can('compression_worker'))
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="ri-file-copy-2-line"></i><span>{{__('lang.compression')}}</span><i class="ri-arrow-right-s-line"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{route('squeeze.index')}}">@lang('lang.compression_request_form_admin')</a></li>
+                        <li><a href="{{route('tying-bales.index')}}">@lang('lang.tying_bales')</a></li>
+                    </ul>
+                </li>
+                @endif
+                @if(auth()->user()->can('transporter'))                      
+                <li>
+                    <a href="{{route('transporter.index')}}">
+                        <i class="ri-hospital-fill"></i><span>@lang('lang.transport_worker')</span>
+                    </a>
+                </li>
+                @endif
                 @if(auth()->user()->can('orignal_store_worker'))
                 <li>
                     <a href="javaScript:void();">
@@ -101,6 +126,7 @@
                         <li><a href="{{route('original-store-worker-filling.index')}}">@lang('lang.filling')</a></li>
                         <li><a href="{{route('original-store-worker.index')}}">@lang('lang.store_worker_recieve_original')</a></li>
                         <li><a href="{{route('recieve-shipment-from-supplier.index')}}">@lang('lang.recieve_shipment_from_supplier')</a></li>
+                        <li><a href="{{route('filling-admin-requests.index')}}">@lang('lang.filling_admin_requests')</a></li>
                         <li><a href="form-layouts.html">Layouts</a></li>
                     </ul>
                 </li>

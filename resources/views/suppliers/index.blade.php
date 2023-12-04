@@ -65,10 +65,11 @@
                                 <td>{{$supplier->user->name}}</td>
                                 <td>{{$supplier->email}}</td>
                                 <td>
+                                    @if(!isset($supplier->phones))
                                     {{$supplier->phones[0]}}<br>
                                     {{$supplier->phones[1]}}<br>
                                     {{$supplier->phones[2]}}
-                                
+                                    @endif
                                 </td>
                                 <td>{{$supplier->country}}</td>
                                 <td>{{$supplier->currency->currency}}</td>

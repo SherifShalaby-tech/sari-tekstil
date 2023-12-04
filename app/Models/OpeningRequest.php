@@ -26,4 +26,8 @@ class OpeningRequest extends Model
     {
         return $this->belongsTo(User::class, 'edited_by');
     }
+    public function car_contents()
+    {
+        return $this->hasMany(CarContents::class, 'id');
+    }
 }

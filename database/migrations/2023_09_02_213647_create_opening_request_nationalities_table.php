@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->decimal('percentage', 15, 2)->nullable();   
             $table->decimal('weight', 15, 2)->nullable(); 
+            $table->decimal('goods_weight', 15, 2)->nullable();
             $table->foreignId('nationality_id')->nullable()->constrained('nationalities', 'id')->cascadeOnDelete();
             $table->foreignId('opening_request_id')->nullable()->constrained('opening_requests', 'id')->cascadeOnDelete();
+            $table->foreignId('car_id')->nullable()->constrained('cars', 'id')->cascadeOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('edited_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

@@ -95,8 +95,8 @@
                         @php 
                          $hideBtn=2
                         @endphp
-                         @if(!empty($fill->filling_by_original_store_nationalities))
-                            @foreach($fill->filling_by_original_store_nationalities as $index=>$f_store)
+                         @if(!empty($fill->car_contents))
+                            @foreach($fill->car_contents as $index=>$f_store)
                                
                                 @include('workers.original_stocks.partials.add_nationalities',['f_store'=>$f_store,'index'=>$index,'hideBtn'=>$hideBtn])
                             @endforeach
