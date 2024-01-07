@@ -142,6 +142,10 @@
                         <li><a href="{{route('admin_filling_request.index')}}">@lang('lang.filling_request')</a></li>
                        
                     </ul>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{route('pressing-admin-requests.index')}}">@lang('lang.pressing_request')</a></li>
+                       
+                    </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();">

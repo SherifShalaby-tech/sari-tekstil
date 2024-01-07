@@ -98,7 +98,7 @@ class CarsController extends Controller
      */
     public function store(StoreCarsRequest $request)
     {
-        // try {
+        try {
             $data = $request->except('_token');
             $data['sku'] = !empty($request->sku) ? $request->sku : $this->generateSku($request->name);
             $data['created_by']=Auth::user()->id;
@@ -110,17 +110,17 @@ class CarsController extends Controller
                 'id' => $car->id,
                 'msg' => __('lang.success')
             ];
-        // } catch (\Exception $e) {
-        //     Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-        //     $output = [
-        //         'success' => false,
-        //         'msg' => __('lang.something_went_wrong')
-        //     ];
-        // }
-        // if ($request->quick_add) {
-        //   return $output;
-        //   }
-        // return redirect()->back()->with('status', $output);
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
+        }
+        if ($request->quick_add) {
+          return $output;
+        }
+        return redirect()->back()->with('status', $output);
     }
 
     /**

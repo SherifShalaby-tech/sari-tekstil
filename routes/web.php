@@ -24,6 +24,7 @@ use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\OriginalStockController;
 use App\Http\Controllers\OriginalStoreWorkerController;
 use App\Http\Controllers\PlanningCarController;
+use App\Http\Controllers\PressingRequestController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
@@ -107,7 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('squeeze',SqueezeController::class);
     Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
     Route::resource('tying-bales',TyingBalesController::class);
-    
+    Route::resource('pressing-admin-requests',PressingRequestController::class);
     
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);

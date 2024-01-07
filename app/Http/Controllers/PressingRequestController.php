@@ -2,7 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Caliber;
+use App\Models\Color;
+use App\Models\Employee;
+use App\Models\Fill;
+use App\Models\FillingRequest;
+use App\Models\PressingRequest;
+use App\Models\Screening;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PressingRequestController extends Controller
 {
@@ -11,8 +20,8 @@ class PressingRequestController extends Controller
      */
     public function index()
     {
-        $fillingRequests=FillingRequest::latest()->get();
-        return view('admin.filling_request_index',compact('fillingRequests'));
+        $pressingRequests=PressingRequest::latest()->get();
+        return view('admin.pressing_request_index',compact('pressingRequests'));
     }
 
     /**
@@ -25,7 +34,7 @@ class PressingRequestController extends Controller
         $calibers=Caliber::pluck('number');
         $employees=Employee::pluck('name', 'id');
         $colors=Color::pluck('name', 'id');
-        return view('admin.filling_request_create')->with(compact(
+        return view('admin.pressing_request_create')->with(compact(
             'fills',
             'screening',
             'calibers',
@@ -41,24 +50,32 @@ class PressingRequestController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = $request->except('_token');
-            $data['created_by']=Auth::user()->id;
-            $filling_request = FillingRequest::create($data);
+            $fillingIds = $request->input('filling_id');
+            $emptyWeights = $request->input('empty_weight');
+            $requestedWeights = $request->input('requested_weight');
+            $calibers = $request->input('calibers');
+            $screeningIds = $request->input('screening_id');
+            $destinations = $request->input('destination');
+            $quantities = $request->input('quantity');
+            // $employeeIds = $request->input('employee_id');
+            $colorIds = $request->input('color_id');
 
-            $indexs=[];
-            if($request->has('nationality_id')){
-                if(count($request->nationality_id)>0){
-                    $indexs=array_keys($request->nationality_id);
-                }
-            }
-            foreach ($indexs as $index){
-                $items=[
-                    'opening_request_id' => $filling_request->id,
-                    'nationality_id' => $request->nationality_id[$index],
-                    'percent' => $request->percent[$index],
-                    'weight' => $request->weight[$index],
-                ];
-                FillingRequest::create($items);
+            foreach ($fillingIds as $index => $fillingId) {
+                FillingRequest::create([
+                    'source' => $request->input('source'),
+                    'filling_id' => $fillingId,
+                    'empty_weight' => $emptyWeights[$index],
+                    'requested_weight' => $requestedWeights[$index],
+                    'calibers' => json_encode($calibers[$index]), // Convert to JSON if needed
+                    'screening_id' => $screeningIds[$index],
+                    'destination' => $destinations[$index],
+                    'priority' => $request->input('priority'),
+                    // 'notes' => $request->input('notes'),
+                    'quantity' => $quantities[$index],
+                    // 'employee_id' => $employeeIds[$index],
+                    'color_id' => $colorIds[$index],
+                    'created_by' => Auth::user()->id,
+                ]);
             }
             
             $output = [

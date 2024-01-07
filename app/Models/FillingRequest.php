@@ -10,4 +10,14 @@ class FillingRequest extends Model
 {
     use HasFactory , SoftDeletes;
     protected $casts = ['calibers' => 'array'];
+    protected $fillable = array('source','filling_id','empty_weight','requested_weight',
+     'calibers','screening_id','destination','priority','notes','quantity','employee_id','color_id', 'created_by'
+    );
+    public function fills(){
+        return $this->hasOne(Fill::class, 'id', 'filling_id');
+    }
+
+    public function calibers (){
+        return $this->hasMany(Caliber::class, 'id');
+    }
 }
