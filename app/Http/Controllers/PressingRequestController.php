@@ -60,20 +60,18 @@ class PressingRequestController extends Controller
             // $employeeIds = $request->input('employee_id');
             $colorIds = $request->input('color_id');
 
-            foreach ($fillingIds as $index => $fillingId) {
-                FillingRequest::create([
+            foreach ($calibers as $index => $caliberSet) {
+                PressingRequest::create([
                     'source' => $request->input('source'),
-                    'filling_id' => $fillingId,
-                    'empty_weight' => $emptyWeights[$index],
-                    'requested_weight' => $requestedWeights[$index],
-                    'calibers' => json_encode($calibers[$index]), // Convert to JSON if needed
-                    'screening_id' => $screeningIds[$index],
-                    'destination' => $destinations[$index],
+                    'filling_id' => $fillingIds[$index - 1],
+                    'empty_weight' => $emptyWeights[$index-1],
+                    'requested_weight' => $requestedWeights[$index-1],
+                    'calibers' => $caliberSet, // Convert to JSON if needed
+                    'screening_id' => $screeningIds[$index-1],
+                    'destination' => $destinations[$index-1],
                     'priority' => $request->input('priority'),
-                    // 'notes' => $request->input('notes'),
-                    'quantity' => $quantities[$index],
-                    // 'employee_id' => $employeeIds[$index],
-                    'color_id' => $colorIds[$index],
+                    'quantity' => $quantities[$index -1 ],
+                    'color_id' => $colorIds[$index-1],
                     'created_by' => Auth::user()->id,
                 ]);
             }
@@ -91,7 +89,6 @@ class PressingRequestController extends Controller
         }
         return redirect()->back()->with('status', $output);
     }
-
     /**
      * Display the specified resource.
      */
@@ -128,15 +125,15 @@ class PressingRequestController extends Controller
         $fills = Fill::pluck('name', 'id');
         $screening = Screening::pluck('name', 'id');
         $calibers=Caliber::pluck('number');
-        $employees=Employee::pluck('name', 'id');
+        // $employees=Employee::pluck('name', 'id');
         $colors=Color::pluck('name', 'id');
         $hideBtn=0;
         $weight_product='';
         // return "Hello from addNationalityRow";
-        return view('admin.partials.add_nationalities',compact('fills',
+        return view('admin.partials.add_pressing_row',compact('fills',
         'screening',
         'calibers',
-        'employees',
+        // 'employees',
         'colors','hideBtn'));
     }
 }

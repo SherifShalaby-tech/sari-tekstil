@@ -62,7 +62,7 @@
                                         {{$caliber->name}} <br>
                                     @endforeach
                                 </td> --}}
-                                <td>{{$fillingRequest->screening->name}}</td>
+                                <td>{{$fillingRequest->screening->name ?? "-"}}</td>
                                 <td>{{$fillingRequest->destination}}</td>
                                 <td>{{$fillingRequest->priority}}</td>
                                 <td>{{$fillingRequest->employee->name ??"-"}}</td>

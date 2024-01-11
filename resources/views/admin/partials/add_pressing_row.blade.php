@@ -1,10 +1,13 @@
+@php
+    $index = 1;
+@endphp
 <div class="row row_weight" style="margin: 0%">
     <table id="main">
         {{-- <th> --}}
             <button type="button" @if(isset($hideBtn) && $hideBtn != 2)
             style="display:none; margin-bottom: 10px;"
             @else style="margin-bottom: 10px"  @endif 
-                class="btn btn-primary btn-sm ml-2 add_row" value="Add New Row" onclick="addRow();" id="rowButton"><i class="fa fa-plus"></i></button>
+                class="btn btn-primary btn-sm ml-2 add_row" value="Add New Row" onclick="addRow();"   data-index="{{ $index }}" id="rowButton"><i class="fa fa-plus"></i></button>
         {{-- </th> --}}
         <th class="head">
             <label for="filling_id" class="h6" style="{{ isset($hideBtn) ? 'display:none;' : '' }}">{{ __('lang.filling') }}*</label>
@@ -27,7 +30,7 @@
           </select></th>
         <th class="head">
             <label for="calibers" class="h6" style="{{ isset($hideBtn) ? 'display:none;' : '' }}">{{ __('lang.calibers') }}*</label>
-            <select  name=calibers[]  style="display:inline !important" class="form-control selectpicker" data-live-search="true" multiple>
+            <select  name="calibers[{{ $index }}][]" style="display:inline !important" class="form-control selectpicker" data-live-search="true" multiple>
         @foreach ($calibers as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
         @endforeach

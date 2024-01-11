@@ -31,7 +31,7 @@
             <div class="col-lg-12 col-xl-12">
                 <div class="card m-b-30 p-2">
                     {!! Form::open([
-                        'route' => 'admin_filling_request.store',
+                        'route' => 'pressing-admin-requests.store',
                         'method' => 'post',
                         'enctype' => 'multipart/form-data',
                     ]) !!}
@@ -90,7 +90,7 @@
     <!-- End Contentbar -->
 @endsection
 @push('javascripts')
-<script src="{{ asset('app-js/filling_request.js') }}"></script>
+<script src="{{ asset('app-js/pressing_request.js') }}"></script>
     {{-- <script>
       
 
