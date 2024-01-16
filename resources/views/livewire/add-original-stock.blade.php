@@ -102,7 +102,7 @@
             <label class="h6 pt-3" for="fines">{{__( 'lang.fines' )}}</label>
             <input type="number" id="fines" wire:model="fines" class="form-control ">
         </div>
-        <div  class=" col-md-12 form-group">
+        <div class=" col-md-12 form-group">
             <label class="h6 pt-3" for="other_costs">Other Costs</label>
             <div class="row">
                 <div class="col-md-2">
@@ -112,17 +112,17 @@
                     Value:
                 </div>
             </div>
-            @for ($i=0; $i <= 4; $i++)
-            <div class="row">
-                <div class="col-md-2">
-                    <input type="text" name="otherCosts[{{ $i }}][key]" class="form-control" value="{{ old('otherCosts['.$i.'][key]') }}">
+            @foreach ($otherCosts as $index => $cost)
+                <div class="row">
+                    <div class="col-md-2">
+                        <input type="text" wire:model="otherCosts.{{ $index }}.key" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" wire:model="otherCosts.{{ $index }}.value" class="form-control">
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <input type="text" name="otherCosts[{{ $i }}][value]" class="form-control" value="{{ old('otherCosts['.$i.'][value]') }}">
-                </div>
-            </div>
-            @endfor
-        </div>
+            @endforeach
+        </div>        
         <div class="col-md-3 form-group" >
             <label class="h6 pt-3">{{__( 'lang.price_per_kilo' )}}</label>
             <span class="form-control ">{{ $pricePerKilo }}</span>
