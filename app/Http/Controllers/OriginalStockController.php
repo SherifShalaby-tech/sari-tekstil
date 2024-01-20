@@ -15,7 +15,8 @@ class OriginalStockController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('original_stock.create');
     }
 
     /**
