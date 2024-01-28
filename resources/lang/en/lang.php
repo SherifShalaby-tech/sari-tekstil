@@ -325,6 +325,16 @@ return [
     'bale'=>'Bale',
     'tie'=>'Tie',
     'content'=>'Content',
+    'introduction_sheet'=> 'Introduction Sheet' ,
+    'car_sku' => 'Car Sku' ,
+    'car_barcode'=>'Car Barcode',
+    'process_type' => 'Process Type' ,
+    'calibars' => 'Calibars' ,
+    'add_introduction_sheet' => 'Add Introduction Sheet' ,
+    'edit_introduction_sheet' =>'Edit Introduction Sheet' ,
+    'no' => 'No' ,
+    'deleted_by' => 'Deleted By' ,
+    'show' => 'Show' ,
 ];
 
 ?>

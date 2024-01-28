@@ -15,6 +15,7 @@ use App\Http\Controllers\FillingByOriginalStoreController;
 use App\Http\Controllers\FillingRequestsController;
 use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IntroductionSheetController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LabsController;
@@ -35,6 +36,7 @@ use App\Http\Controllers\TyingBalesController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
+use App\Models\IntroductionSheet;
 use App\Models\OriginalStock;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +67,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cars/get-places/{process}', [CarsController::class, 'getPlaces']);
     Route::get('cars/get-barcode/{id}', [CarsController::class, 'getBarcode']);
     Route::resource('cars',CarsController::class);
+    // ++++++++++ introduction_sheet ++++++++++
+    Route::resource('introduction-sheet',IntroductionSheetController::class);
+    // ++++++++++ Create Page : Add "new row" ++++++++++
+    Route::get('introduction-sheet/get-sheet-row/{row_index}', [IntroductionSheetController::class , 'getSheetRow']);
+    //++++++++++ fetch "processes" of selected "process_type" selectbox
+    Route::post('fetch-processes',[IntroductionSheetController::class,'fetchProcesses']);
+    // +++++++ print "introduction_sheet" ++++++++
+    Route::get('print/invoice/{id}',[IntroductionSheetController::class, 'print'])->name('print_invoice');
+    // +++++++ print "barcode" ++++++++
+    Route::get('print/barcode/{id}',[IntroductionSheetController::class, 'printBarcode'])->name('print_barcode');
+
+
     Route::resource('maintain-car',ExpenseCarController::class);
     Route::post('change-cart-plan',[PlanningCarController::class,'changeCartPlan']);
     Route::resource('planning-carts',PlanningCarController::class);
@@ -107,8 +121,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('squeeze',SqueezeController::class);
     Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
     Route::resource('tying-bales',TyingBalesController::class);
-    
-    
+
+
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
     Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');

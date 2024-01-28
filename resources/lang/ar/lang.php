@@ -326,8 +326,16 @@ return [
     'bale'=>'بالة',
     'tie'=>'ربط',
     'content'=>'محتوى',
-    ''=>'',
-    ''=>'',
+    'introduction_sheet' => 'ورقة تعريفية',
+    'car_sku'=>'كود العربة',
+    'car_barcode'=>'باركود العربة',
+    'process_type' => 'نوع العملية' ,
+    'calibars' => 'العيار' ,
+    'add_introduction_sheet' => 'اضافة ورقة تعريفية',
+    'edit_introduction_sheet' => 'تعديل ورقة تعريفية',
+    'no' => 'لا يوجد' ,
+    'deleted_by' => 'حذف بواسطة' ,
+    'show' => 'عرض' ,
 ];
 
 ?>

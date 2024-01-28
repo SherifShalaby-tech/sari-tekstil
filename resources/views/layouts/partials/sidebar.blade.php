@@ -47,8 +47,8 @@
                         <li><a href="basic-ui-kits-popovers.html">Popovers</a></li>
                         <li><a href="basic-ui-kits-progressbars.html">Progress Bars</a></li>
                         <li><a href="basic-ui-kits-spinners.html">Spinners</a></li>
-                        <li><a href="basic-ui-kits-tabs.html">Tabs</a></li>   
-                        <li><a href="basic-ui-kits-toasts.html">Toasts</a></li>     
+                        <li><a href="basic-ui-kits-tabs.html">Tabs</a></li>
+                        <li><a href="basic-ui-kits-toasts.html">Toasts</a></li>
                         <li><a href="basic-ui-kits-tooltips.html">Tooltips</a></li>
                         <li><a href="basic-ui-kits-typography.html">Typography</a></li>
                     </ul>
@@ -57,8 +57,8 @@
                     <a href="javaScript:void();">
                         <i class="ri-pencil-ruler-2-line"></i><span>Advanced UI</span><i class="ri-arrow-right-s-line"></i>
                     </a>
-                    <ul class="vertical-submenu">                                
-                        <li><a href="advanced-ui-kits-image-crop.html">Image Crop</a></li>  
+                    <ul class="vertical-submenu">
+                        <li><a href="advanced-ui-kits-image-crop.html">Image Crop</a></li>
                         <li><a href="advanced-ui-kits-jquery-confirm.html">jQuery Confirm</a></li>
                         <li><a href="advanced-ui-kits-nestable.html">Nestable</a></li>
                         <li><a href="advanced-ui-kits-pnotify.html">Pnotify</a></li>
@@ -78,7 +78,7 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="apps-calender.html">Calender</a></li>
-                        <li><a href="apps-chat.html">Chat</a></li> 
+                        <li><a href="apps-chat.html">Chat</a></li>
                         <li>
                             <a href="javaScript:void();">Email<i class="ri-arrow-right-s-line"></i></a>
                             <ul class="vertical-submenu">
@@ -91,7 +91,7 @@
                         <li><a href="apps-onboarding-screens.html">Onboarding Screens</a></li>
                     </ul>
                 </li>
-                {{-- @if(auth()->user()->can('compression_worker'))                      
+                {{-- @if(auth()->user()->can('compression_worker'))
                 <li>
                     <a href="{{route('squeeze.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.compression')</span>
@@ -109,7 +109,7 @@
                     </ul>
                 </li>
                 @endif
-                @if(auth()->user()->can('transporter'))                      
+                @if(auth()->user()->can('transporter'))
                 <li>
                     <a href="{{route('transporter.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.transport_worker')</span>
@@ -140,7 +140,7 @@
                     </ul>
                     <ul class="vertical-submenu">
                         <li><a href="{{route('admin_filling_request.index')}}">@lang('lang.filling_request')</a></li>
-                       
+
                     </ul>
                 </li>
                 <li>
@@ -178,9 +178,9 @@
                         <li><a href="{{route('forfeit-leaves.index')}}">@lang('lang.view_list_of_employees_in_forfeit_leave')</a></li>
                         @endif
                     </ul>
-                </li> 
-                @endif 
-                @if(auth()->user()->can('suppliers_module.supplier.view'))                      
+                </li>
+                @endif
+                @if(auth()->user()->can('suppliers_module.supplier.view'))
                 <li>
                     <a href="{{route('suppliers.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.suppliers')</span>
@@ -220,15 +220,17 @@
                         <li><a href="{{route('stores.index')}}">@lang('lang.stores')</a></li>
                         <li><a href="{{route('lab.index')}}">@lang('lang.labs')</a></li>
                         <li><a href="{{route('calibers.index')}}">@lang('lang.calibers')</a></li>
+                        {{-- ++++++++++++ introduction_sheet +++++++++++++ --}}
+                        <li><a href="{{route('introduction-sheet.index')}}">@lang('lang.introduction_sheet')</a></li>
                     </ul>
                 </li> '
-                @if(auth()->user()->can('settings_module.general_settings.view'))                      
+                @if(auth()->user()->can('settings_module.general_settings.view'))
                 <li>
                     <a href="{{route('settings.index')}}">
                         <i class="ri-settings-line"></i><span>{{__('lang.settings')}}</span><span class="new-icon"></span>
                     </a>
-                </li> 
-                @endif                                          
+                </li>
+                @endif
             </ul>
         </div>
         <!-- End Navigationbar -->
