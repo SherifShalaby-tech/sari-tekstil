@@ -19,7 +19,7 @@ class FillingAdminRequestsController extends Controller
      */
     public function index()
     {
-        $openingrequests=OpeningRequest::orderBy('status')->latest()->get();
+        $openingrequests = OpeningRequest::orderBy('status')->latest()->get();
         return view('workers.original_stocks.filling_admin_requests.index',compact('openingrequests'));
     }
 
@@ -28,7 +28,7 @@ class FillingAdminRequestsController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -97,8 +97,8 @@ class FillingAdminRequestsController extends Controller
                         'percentage'=>$request->percentage[$index],
                         'weight'=>$request->weight[$index],
                         'goods_weight'=>$request->goods_weight[$index],
-              
-                    ]); 
+
+                    ]);
                 }else{
                     CarContents::where('car_id',$request->car_id[$index])
                     ->where('opening_request_id',$request->opening_id[$index])
@@ -109,7 +109,7 @@ class FillingAdminRequestsController extends Controller
                         'goods_weight'=>$request->goods_weight[$index],
                     ]);
                 }
-                
+
             }
 
             $output = [
@@ -124,7 +124,7 @@ class FillingAdminRequestsController extends Controller
             ];
         }
         return redirect()->back()->with('status', $output);
-        
+
     }
 
     /**

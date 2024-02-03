@@ -18,4 +18,5 @@ class FillPressRequest extends Model
     {
         return $this->belongsTo(PressingRequest::class, 'press_request_id');
     }
+    
 }

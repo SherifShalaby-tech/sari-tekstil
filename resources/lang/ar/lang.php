@@ -338,7 +338,9 @@ return [
     'show' => 'عرض' ,
     'packing_tape' => 'شريط التغليف' ,
     'meter' => 'متر' ,
-
+    // ++++++++++++++++ production ++++++++++
+    'production' => 'الانتاج',
+    'show_hide_columns' => 'اظهار/اخفاء الاعمدة' ,
 ];
 
 ?>

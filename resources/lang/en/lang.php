@@ -337,6 +337,9 @@ return [
     'show' => 'Show' ,
     'packing_tape' => 'Packing Tape' ,
     'meter' => 'Meter' ,
+    // ++++++++++++++++ production ++++++++++
+    'production' => 'Production',
+    'show_hide_columns' => 'show/hide columns' ,
 ];
 
 ?>
