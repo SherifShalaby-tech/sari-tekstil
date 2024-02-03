@@ -335,6 +335,8 @@ return [
     'no' => 'No' ,
     'deleted_by' => 'Deleted By' ,
     'show' => 'Show' ,
+    'packing_tape' => 'Packing Tape' ,
+    'meter' => 'Meter' ,
 ];
 
 ?>

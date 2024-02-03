@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.filling'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -21,14 +21,14 @@
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
                     <a href="{{route('admin_filling_request.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</a>
-                </div>    
+                </div>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -58,9 +58,9 @@
                                 <td>{{$fillingRequest->filling->name}}</td>
                                 <td>{{$fillingRequest->requested_weight}}</td>
                                 <td>
-                                    @foreach($fillingRequest->calibers as $caliber)
+                                    {{-- @foreach($fillingRequest->calibers as $caliber)
                                         {{$caliber->caliber->name}} <br>
-                                    @endforeach
+                                    @endforeach --}}
                                 </td>
                                 <td>{{$fillingRequest->screening->name}}</td>
                                 <td>{{$fillingRequest->destination}}</td>
@@ -73,13 +73,13 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            
+
                                             <li>
                                                     <a data-href="{{route('original-store-worker-filling.destroy', $fillingRequest->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 </td>

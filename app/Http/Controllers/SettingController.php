@@ -63,8 +63,10 @@ class SettingController extends Controller
     }
     public function updateGeneralSetting(Request $request)
     {
-        if(!auth()->user()->can('settings_module.general_settings.edit') 
-        || !auth()->user()->can('settings_module.general_settings.create')){
+        if( !auth()->user()->can('settings_module.general_settings.edit')
+            || !auth()->user()->can('settings_module.general_settings.create')
+          )
+        {
             abort(403, __('lang.unauthorized_action'));
         }
         try {
@@ -99,7 +101,8 @@ class SettingController extends Controller
                 ['key' => 'tax'],
                 ['value' => $request->tax, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
             );
-            if (!empty($request->currency)) {
+            if (!empty($request->currency))
+            {
                 $currency = Currency::find($request->currency);
                 $currency_data = [
                     'country' => $currency->country,
@@ -128,7 +131,12 @@ class SettingController extends Controller
                 ['key' => 'discount_per_kilo'],
                 ['value' => $request->discount_per_kilo, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
             );
-            
+            // +++++++++++++++ Packing tape : شريط التغليف +++++++++++++++
+            System::updateOrCreate(
+                ['key' => 'packing_tape'],
+                ['value' => $request->packing_tape, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
+            );
+
             $data['logo'] = null;
             if ($request->has('logo') && !is_null('logo')) {
                 $imageData = $this->getCroppedImage($request->logo);

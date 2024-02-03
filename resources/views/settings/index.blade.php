@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-css/crop.css') }}">
 @endpush
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -23,11 +23,11 @@
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -77,6 +77,13 @@
                    <div class="col-md-3">
                         {!! Form::label('discount_per_kilo', __('lang.discount_per_kilo'), ['class'=>'h5 pt-3']) !!}
                         {!! Form::text('discount_per_kilo', !empty($settings['discount_per_kilo']) ? $settings['discount_per_kilo'] : null, [
+                            'class' => 'form-control',
+                        ]) !!}
+                    </div>
+                    {{-- +++++++++++++++ Packing tape : شريط التغليف +++++++++++++++ --}}
+                    <div class="col-md-3">
+                        {!! Form::label('packing_tape', __('lang.packing_tape')."(".(__('lang.meter')).")", ['class'=>'h5 pt-3']) !!}
+                        {!! Form::text('packing_tape', !empty($settings['packing_tape']) ? $settings['packing_tape'] : null, [
                             'class' => 'form-control',
                         ]) !!}
                     </div>

@@ -71,11 +71,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('introduction-sheet',IntroductionSheetController::class);
     // ++++++++++ Create Page : Add "new row" ++++++++++
     Route::get('introduction-sheet/get-sheet-row/{row_index}', [IntroductionSheetController::class , 'getSheetRow']);
-    //++++++++++ fetch "processes" of selected "process_type" selectbox
+    //++++++++++ fetch "processes" of selected "process_type" selectbox ++++++++++
     Route::post('fetch-processes',[IntroductionSheetController::class,'fetchProcesses']);
-    // +++++++ print "introduction_sheet" ++++++++
+    // +++++++ print "introduction_sheet" ++++++++++
     Route::get('print/invoice/{id}',[IntroductionSheetController::class, 'print'])->name('print_invoice');
-    // +++++++ print "barcode" ++++++++
+    // +++++++ print "barcode" ++++++++++
     Route::get('print/barcode/{id}',[IntroductionSheetController::class, 'printBarcode'])->name('print_barcode');
 
 

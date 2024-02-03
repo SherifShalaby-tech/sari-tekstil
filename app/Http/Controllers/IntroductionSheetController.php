@@ -66,6 +66,7 @@ class IntroductionSheetController extends Controller
         }
         catch (\Exception $e)
         {
+            dd($e);
             // Handle exceptions or validation errors
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

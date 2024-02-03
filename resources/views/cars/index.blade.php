@@ -19,12 +19,14 @@
                 </div>
             </div>
             <div class="col-md-3  col-lg-3 d-flex">
+                {{-- +++++++++++++++++ انشاء العربة +++++++++++++++++ --}}
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
                 </div>
                 @endif
                 &nbsp;&nbsp;&nbsp;
+                {{-- +++++++++++++++++ تخطيط العربة +++++++++++++++++ --}}
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <a href="{{route('planning-carts.index')}}" class="btn btn-warning"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.planning_carts')</a>

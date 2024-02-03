@@ -21,7 +21,7 @@
                             <th scope="col">@lang('lang.quantity')</th>
                             <th scope="col">@lang('lang.color')</th>
                             <th scope="col">@lang('lang.destination')</th>
-                            
+
                             <th></th>
                         </tr>
                     </thead>
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-{{-- 
+{{--
     <div class="row pt-3">
         <div class="col-lg-12 col-xl-12">
             <button wire:click="insertSelectedData" class="btn btn-primary">@lang('lang.save')</button>

@@ -63,7 +63,7 @@
                                         <td>{{ $introductionSheet->process }}</td>
                                         <td>{{ $introductionSheet->caliber }}</td>
                                         <td>
-                                            {!! DNS1D::getBarcodeHtml("$introductionSheet->car_barcode", 'UPCA', 3, 50, 'black') !!}
+                                            {!!DNS1D::getBarcodeHTML($introductionSheet->car_barcode, 'C39')!!}
                                             {{ $introductionSheet->car_barcode }}
                                         </td>
                                         <td>

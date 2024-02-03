@@ -10,4 +10,12 @@ class FillingRequest extends Model
 {
     use HasFactory , SoftDeletes;
     protected $casts = ['calibers' => 'array'];
+    public function filling()
+    {
+        return $this->belongsTo('App\Models\Fill','filling_id');
+    }
+    public function screening()
+    {
+        return $this->belongsTo('App\Models\Screening','screening_id');
+    }
 }
