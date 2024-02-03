@@ -152,6 +152,17 @@
                         <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li>
                     </ul>
                 </li>
+                {{-- +++++++++++++++++++++++ production : الانتاج +++++++++++++++ --}}
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="ri-pie-chart-line"></i>
+                        <span>@lang('lang.production')</span><i class="ri-arrow-right-s-line"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{route('original-stock-create')}}">@lang('lang.original_stock')</a></li>
+                        <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li>
+                    </ul>
+                </li>
                 @if(auth()->user()->can('employees_module.employee.view'))
                 <li>
                     <a href="javaScript:void();">

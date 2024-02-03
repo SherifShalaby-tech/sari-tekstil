@@ -36,7 +36,8 @@
                                 <td>{{ $item->quantity }}</td>
                                 <td>{{ $item->color->name }}</td>
                                 <td>{{ $item->destination }}</td>
-                                <td ><a href="{{route('squeeze.edit',$item->id)}}" class="btn btn-default text-danger" title="{{__('lang.squeeze')}}">
+                                <td>
+                                    <a href="{{route('squeeze.edit',$item->id)}}" class="btn btn-default text-danger" title="{{__('lang.squeeze')}}">
                                         <h4 class="{{ $item->status==0?'text-danger':''}}" title="{{__('lang.squeeze')}}">
                                             <i class="fa fa-stop-circle"></i>
                                         </h4>
