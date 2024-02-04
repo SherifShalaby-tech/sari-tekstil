@@ -42,7 +42,7 @@
                                 <th>@lang('lang.source')</th>
                                 <th>@lang('lang.filling')</th>
                                 <th>@lang('lang.requested_weight')</th>
-                                <th>@lang('lang.calibers')</th>
+                                {{-- <th>@lang('lang.calibers')</th> --}}
                                 <th>@lang('lang.screening')</th>
                                 <th>@lang('lang.destination')</th>
                                 <th>@lang('lang.priority')</th>
@@ -55,14 +55,14 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{$fillingRequest->source}}</td>
-                                <td>{{$fillingRequest->filling->name}}</td>
+                                <td>{{$fillingRequest->fills->name ?? '-'}}</td>
                                 <td>{{$fillingRequest->requested_weight}}</td>
-                                <td>
-                                    {{-- @foreach($fillingRequest->calibers as $caliber)
-                                        {{$caliber->caliber->name}} <br>
-                                    @endforeach --}}
-                                </td>
-                                <td>{{$fillingRequest->screening->name}}</td>
+                                {{-- <td>
+                                    @foreach($fillingRequest->calibers as $caliber)
+                                        {{$caliber->name}} <br>
+                                    @endforeach
+                                </td> --}}
+                                <td>{{$fillingRequest->screening->name ?? "-"}}</td>
                                 <td>{{$fillingRequest->destination}}</td>
                                 <td>{{$fillingRequest->priority}}</td>
                                 <td>{{$fillingRequest->employee->name ??"-"}}</td>

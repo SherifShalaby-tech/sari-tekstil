@@ -1,10 +1,13 @@
+@php
+    $index = 1;
+@endphp
 <div class="row row_weight" style="margin: 0%">
     <table id="main">
         {{-- <th> --}}
             <button type="button" @if(isset($hideBtn) && $hideBtn != 2)
             style="display:none; margin-bottom: 10px;"
             @else style="margin-bottom: 10px"  @endif 
-                class="btn btn-primary btn-sm ml-2 add_row" value="Add New Row" onclick="addRow();" id="rowButton"><i class="fa fa-plus"></i></button>
+                class="btn btn-primary btn-sm ml-2 add_row" value="Add New Row" onclick="addRow();" data-index="{{ $index }}" id="rowButton"><i class="fa fa-plus"></i></button>
         {{-- </th> --}}
         <th class="head"><select  name=filling_id[] class="form-control selectpicker" data-live-search="true" style="display:inline !important">
             @foreach ($fills as $id => $name)
@@ -17,7 +20,7 @@
                 <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
           </select></th>
-        <th class="head"><select  name=calibers[]  style="display:inline !important" class="form-control selectpicker" data-live-search="true" multiple>
+        <th class="head"><select  name="calibers[{{ $index }}][]" style="display:inline !important" class="form-control selectpicker" data-live-search="true" multiple>
         @foreach ($calibers as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
         @endforeach
@@ -35,7 +38,7 @@
                 <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
             </select></th>
-            <th class="head"><select  name=employee_id[]  style="display:inline !important" class="form-control selectpicker" data-live-search="true">
+            <th class="head"><select  name=destinations[]  style="display:inline !important" class="form-control selectpicker" data-live-search="true">
                     <option value="store">Store</option>
                     <option value="square">Square</option>
                     <option value="number">Number</option>

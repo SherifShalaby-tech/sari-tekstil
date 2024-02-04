@@ -41,7 +41,13 @@ class AddOriginalStock extends Component
     public $internalTransportCost;
     public $internalLoadCost;
     public $pricePerKilo;
-    public $otherCosts;
+    public $otherCosts = [
+        ['key' => '', 'value' => ''],
+        ['key' => '', 'value' => ''],
+        ['key' => '', 'value' => ''],
+        ['key' => '', 'value' => ''],
+        ['key' => '', 'value' => ''],
+    ];
     public $fines;
     public $sku;
     public $upload_files = [];
@@ -79,12 +85,29 @@ class AddOriginalStock extends Component
     }
     private function calculatePricePerKilo()
     {
-        if ($this->totalWeight != 0) {
-            $this->pricePerKilo = ($this->price + $this->shippingCost + $this->clearanceCost + $this->internalTransportCost + $this->internalLoadCost)/ $this->totalWeight;
+        $totalOtherCosts = 0;
+
+        // Summing up the values from otherCosts array
+        foreach ($this->otherCosts as $otherCost) {
+            $totalOtherCosts += $this->num_uf($otherCost['value']);
+        }
+
+        // Summing up all costs
+        $totalCosts = $this->num_uf($this->price)
+                    + $this->num_uf($this->shippingCost)
+                    + $this->num_uf($this->clearanceCost)
+                    + $this->num_uf($this->internalTransportCost)
+                    + $this->num_uf($this->internalLoadCost)
+                    + $totalOtherCosts;
+
+        // Calculate price per kilo
+        if ($this->totalWeight > 0) {
+            $this->pricePerKilo = $totalCosts / $this->num_uf($this->totalWeight);
         } else {
             $this->pricePerKilo = 0;
         }
     }
+
     public function render()
     {
         return view('livewire.add-original-stock');
@@ -157,5 +180,12 @@ class AddOriginalStock extends Component
         $redirectResponse = Redirect::route('original-stock-create')->with('status', $output);
         // Return the redirect response
         return $redirectResponse;
+    }
+    public function num_uf($input_number, $currency_details = null){
+        $thousand_separator  = ',';
+        $decimal_separator  = '.';
+        $num = str_replace($thousand_separator, '', $input_number);
+        $num = str_replace($decimal_separator, '.', $num);
+        return (float)$num;
     }
 }

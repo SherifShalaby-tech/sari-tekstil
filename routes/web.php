@@ -26,6 +26,7 @@ use App\Http\Controllers\OriginalStockController;
 use App\Http\Controllers\OriginalStoreWorkerController;
 use App\Http\Controllers\PlanningCarController;
 use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\PressingRequestController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
@@ -124,6 +125,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('tying-bales',TyingBalesController::class);
     // +++++++++++++++++++++++++++ Production Routes +++++++++++++++++++++++++++
     Route::resource('production',ProductionController::class);
+    Route::resource('pressing-admin-requests',PressingRequestController::class);
+    Route::get('add-pressing-row', [PressingRequestController::class,'addPressingRow']);
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
     Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');
