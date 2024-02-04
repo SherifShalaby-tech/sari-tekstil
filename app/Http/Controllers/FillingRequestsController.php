@@ -59,7 +59,7 @@ class FillingRequestsController extends Controller
             $quantities = $request->input('quantity');
             $employeeIds = $request->input('employee_id');
             $colorIds = $request->input('color_id');
-
+            
             foreach ($fillingIds as $index => $fillingId) {
                 FillingRequest::create([
                     'source' => $request->input('source'),

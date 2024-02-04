@@ -45,7 +45,7 @@
                 <div class="col-lg-2 col-xl-2">
                 </div>
                 <div class="col-lg-2 col-xl-2">
-                <input type="number" value="{{$total_weight- $weight*$i}}"  placeholder="{{__('lang.total_weight')}}" class="form-control mt-3">
+                    <input type="number" value="{{$total_weight- $weight*$i}}"  placeholder="{{__('lang.total_weight')}}" class="form-control mt-3">
                 </div>
                 {{-- ++++++++++++++++++ زرار الكبس ++++++++++++++++++ --}}
                 <div class="col-lg-2 col-xl-2 text-center pt-3">
