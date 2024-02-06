@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Production extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+
+    public function fill_press_request()
+    {
+        return $this->hasMany(FillPressRequest::class, 'fill_press_request_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'last_worker');
+    }
+
 }

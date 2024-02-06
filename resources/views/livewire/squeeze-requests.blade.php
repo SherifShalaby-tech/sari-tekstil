@@ -22,7 +22,8 @@
                     <span class="font-weight-bold">@lang('lang.sku') </span><br><span>{{$car->sku}}</span>
                 </div>
                 <div class="col-lg-2 col-xl-2">
-                    <span class="font-weight-bold">@lang('lang.recent_car_content') </span><br><span class="text-primary">{{$car->screening->name ?? ''}}</span>
+                    <span class="font-weight-bold">@lang('lang.recent_car_content')
+                    </span><br><span class="text-primary">{{$car->screening->name ?? ''}}</span>
                 </div>
                 <div class="col-lg-2 col-xl-2">
                     <span class="font-weight-bold">@lang('lang.total_weight') </span><br><span class="text-primary">{{$car->weight_product}}</span>
@@ -45,7 +46,7 @@
                 <div class="col-lg-2 col-xl-2">
                 </div>
                 <div class="col-lg-2 col-xl-2">
-                    <input type="number" value="{{$total_weight- $weight*$i}}"  placeholder="{{__('lang.total_weight')}}" class="form-control mt-3">
+                    <input type="text" value="{{$total_weight- $weight*$i}}"  placeholder="{{__('lang.total_weight')}}" class="form-control mt-3">
                 </div>
                 {{-- ++++++++++++++++++ زرار الكبس ++++++++++++++++++ --}}
                 <div class="col-lg-2 col-xl-2 text-center pt-3">
