@@ -65,10 +65,8 @@
                 var selectedNationalityId = weightInput.data('nationality');
                 var percentInput = percent;
                 var percent = parseFloat(percentInput);
-
                 if (!isNaN(percent)) {
                     var weight = parseFloat(weightInput.val());
-
                     if (!isNaN(weight)) {
                         var newWeight = (percent * weight) / 100;
                         weightInput.val(newWeight.toFixed(2));

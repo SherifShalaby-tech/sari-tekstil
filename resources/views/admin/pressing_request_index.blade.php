@@ -79,6 +79,10 @@
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="{{route('pressing-admin-requests.edit', $fillingRequest->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                            </li>
                                             
                                         </ul>
                                     </div>
