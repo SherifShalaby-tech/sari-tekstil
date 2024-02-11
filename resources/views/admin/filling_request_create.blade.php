@@ -12,7 +12,7 @@
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('original-store-worker-filling.index')}}">{{__('lang.filling_request')}}</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin_filling_request.index')}}">{{__('lang.filling_request')}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">@lang('lang.filling_request')</li>
                             </ol>
                         </div>
@@ -57,9 +57,13 @@
                            
                         </div>
                     </div>
+                    @php
+                        $index = 1;
+                    @endphp
                     <div class="fillings">
                         @include('admin.partials.add_filling_row')
                     </div>
+                    <input type="text" value="{{$index}}" class="row_index"/>
                     <div class="row">
                         <div class="col-md-6 pt-5">
                             {!! Form::label('notes', __( 'lang.notes' )) !!}

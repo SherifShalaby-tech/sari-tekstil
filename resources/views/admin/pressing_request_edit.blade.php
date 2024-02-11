@@ -31,13 +31,13 @@
             <div class="col-lg-12 col-xl-12">
                 <div class="card m-b-30 p-2">
                     {!! Form::open([
-                        'route' => 'pressing-admin-requests.store',
-                        'method' => 'post',
-                        'enctype' => 'multipart/form-data',
+                        'route' => ['pressing-admin-requests.update', $pressing_request_transaction->id],
+                        'method' => 'put',
+                        'id' => 'filling-request-update-form',
                     ]) !!}
+                    @csrf
+                    @method('PUT')
                     <div class="row">
-                       
-                    
                         <div class="col-md-3">
                             {!! Form::label('type_id', __('lang.source')."*", ['class' => 'h6 pt-3']) !!}
                             {!! Form::select(
@@ -46,7 +46,7 @@
                                     'original' => 'Original', 
                                     'other' => 'Other',
                                 ],
-                                null, 
+                                isset($pressing_request_transaction->source)?$pressing_request_transaction->source:null, 
                                 ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'required', 'placeholder' => __('lang.please_select')]
                             ) !!}
                         </div>
@@ -57,13 +57,22 @@
                            
                         </div>
                     </div>
-                    @php
-                        $index = 1;
-                    @endphp
                     <div class="fillings">
-                        @include('admin.partials.add_pressing_row')
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach($pressing_request_transaction->pressing_requests as $key=>$pressing_request)
+                            @include('admin.partials.add_pressing_row',['index'=>$index])
+                            @php
+                            $index += 1;
+                            // echo $index.'99';
+                        @endphp
+                            @endforeach
+                            @php
+                            $index -= 1;
+                            @endphp
+                        <input type="hidden" value="{{$index}}" class="row_index"/>
                     </div>
-                    <input type="text" value="{{$index}}" class="row_index"/>
                     <div class="row">
                         {{-- <div class="col-md-6 pt-5">
                             {!! Form::label('notes', __( 'lang.notes' )) !!}
@@ -73,7 +82,7 @@
                         </div> --}}
                         <div class="col-md-2 pt-5">
                             {!! Form::label('priority', __( 'lang.priority' )) !!}
-                            {!! Form::text('priority', null, ['class' => 'form-control', 'placeholder' => __( 'lang.priority' ), 
+                            {!! Form::text('priority', isset($pressing_request_transaction->priority)?$pressing_request_transaction->priority:null, ['class' => 'form-control', 'placeholder' => __( 'lang.priority' ), 
                             ]);
                             !!}
                         </div>

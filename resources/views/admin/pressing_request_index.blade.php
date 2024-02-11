@@ -40,33 +40,58 @@
                             <tr>
                                 <th>#</th>
                                 <th>@lang('lang.source')</th>
+                                <th>@lang('lang.priority')</th>
                                 <th>@lang('lang.filling')</th>
                                 <th>@lang('lang.requested_weight')</th>
                                 <th>@lang('lang.calibers')</th>
                                 <th>@lang('lang.screening')</th>
                                 <th>@lang('lang.destination')</th>
-                                <th>@lang('lang.priority')</th>
                                 {{-- <th>@lang('lang.employee')</th> --}}
                                 <th>@lang('lang.color')</th>
+                                <th>@lang('lang.action')</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($pressingRequests as $index=>$pressingRequest)
+                            @foreach($pressing_request_transactions as $index=>$pressingRequestTransaction)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{$pressingRequest->source}}</td>
-                                <td>{{$pressingRequest->filling->name}}</td>
-                                <td>{{$pressingRequest->requested_weight}}</td>
+                                <td>{{$pressingRequestTransaction->source}}</td>
+                                <td>{{$pressingRequestTransaction->priority}}</td>
                                 <td>
-                                    @foreach($pressingRequest->calibers as $caliber)
-                                        {{$caliber->caliber->name}} <br>
+                                    @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
+                                    {{$pressingRequest->filling->name??''}}<br>
                                     @endforeach
                                 </td>
-                                <td>{{$pressingRequest->screening->name}}</td>
-                                <td>{{$pressingRequest->destination}}</td>
-                                <td>{{$pressingRequest->priority}}</td>
+                                <td>
+                                    @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
+                                    {{$pressingRequest->weight}}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
+                                    @php
+                                        $calibersString = implode(', ', $pressingRequest->calibers);
+                                    @endphp
+                                    {{ $calibersString }}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
+                                        {{$pressingRequest->screening->name}}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
+                                    {{$pressingRequest->destination}}<br>
+                                    @endforeach
+                                </td>
                                 {{-- <td>{{$fillingRequest->employee->name ??"-"}}</td> --}}
-                                <td>{{$pressingRequest->color->name ??"-"}}</td>
+                                <td>
+                                    @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
+                                    {{$pressingRequest->color->name ??"-"}}<br>
+                                    @endforeach
+                                </td>
+                                {{-- @endforeach --}}
                                 <td>
                                     <div class="btn-group">
                                         <button fill="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خيارات                                            <span class="caret"></span>
@@ -75,13 +100,13 @@
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             
                                             <li>
-                                                    <a data-href="{{route('pressing-admin-requests.destroy', $pressingRequest->id)}}"
+                                                    <a data-href="{{route('pressing-admin-requests.destroy', $pressingRequestTransaction->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="{{route('pressing-admin-requests.edit', $fillingRequest->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                                <a href="{{route('pressing-admin-requests.edit', $pressingRequestTransaction->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             
                                         </ul>
