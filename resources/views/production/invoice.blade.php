@@ -131,7 +131,18 @@
                                                         <label for="" class="text-danger">المبلغ المتبقي</label> <br/>
                                                         <input type="number" class="form-control" id="rest_paid_id" name="rest_paid" readonly value="{{ $sum_total_cost }}" />
                                                     </div>
-
+                                                    {{-- ///////// اضافة لرصيد العميل ///////// --}}
+                                                    <div class="col-md-12 mt-3" id="balance_container" style="display:none;">
+                                                        <label>اضافة لرصيد العميل : </label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="number" class="form-control" name="balance" id="balance_input" readonly />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <button class="btn btn-info" id="submit_balance">تاكيد</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div> <br/>
                                                 <div class="row" style="width:325% !important;">
                                                     {{-- ///////// paymentType Selectbox ///////// --}}
@@ -239,19 +250,59 @@
                 // Toggle the display of the customer_info div
                 $('#payment_info').toggle();
             });
-            // ++++++++++++++++++++ Calculate rest +++++++++++++++++
+            // +++++++++++++++++ Calculate rest +++++++++++++++++
             $("#customer_paid").on('keyup', function () {
                 // Get the entered customer_paid value
                 var customerPaid = parseFloat($(this).val()) || 0;
-
                 // Get the initial amount
                 var initialAmount = parseFloat($("#amount").val()) || 0;
-
                 // Calculate the remaining amount
                 var remainingAmount = initialAmount - customerPaid;
-
                 // Update the rest_paid input
                 $("#rest_paid_id").val(remainingAmount.toFixed(2));
+                // +++++++++++++++ Appear Customer Balance +++++++++
+                // Appear Customer Balance and set balance_input value
+                if (remainingAmount < 0)
+                {
+                    $("#balance_container").show();
+                    // Set the absolute value of remainingAmount to balance_input
+                    $("#balance_input").val(Math.abs(remainingAmount).toFixed(2));
+                }
+                else
+                {
+                    $("#balance_container").hide();
+                }
+            });
+            // +++++++++++++++++ Submit Balance +++++++++++++++++
+            $("#submit_balance").on("click", function(e){
+                e.preventDefault();
+                var customer_id = $("#customer_select_id").val();
+                var customer_balance = $("#balance_input").val();
+                console.log(customer_balance);
+                // Make an AJAX request to update the customer balance
+                $.ajax({
+                    url: "{{ route('production.invoice.store_invoice.update_customer_balance') }}", // Replace with your actual endpoint
+                    type: "POST", // Use the appropriate HTTP method
+                    data:
+                    {
+                        customer_id: customer_id,
+                        customer_balance: customer_balance
+                    },
+                    success: function(response)
+                    {
+                        // Handle the success response
+                        console.log("Customer balance updated successfully");
+                        // Show a success notification using Toaster.js
+                        toastr.success('تم تحديث رصيد العميل بنجاح');
+                    },
+                    error: function(error)
+                    {
+                        // Handle the error, if any
+                        console.error("Error updating customer balance:", error);
+                        // Show an error notification using Toaster.js
+                        toastr.error('حدث خطا في تحديث رصيد العميل');
+                    }
+                });
             });
         </script>
     @endpush

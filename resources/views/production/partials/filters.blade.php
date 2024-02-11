@@ -1,34 +1,26 @@
 <div class="card-body">
     <form  method="get" id="filter_form">
         <div class="row">
-            {{-- +++++++++++++++ store filter +++++++++++++++ --}}
+            {{-- +++++++++++++++++ نوع التعبئة +++++++++++++++++ --}}
             <div class="col-2">
                 <div class="form-group">
-                    {!! Form::label('store_id', __('lang.store'), []) !!}
-                    {!! Form::select('store_id', $stores,null, ['class' => 'form-control select2 stores','placeholder'=>__('lang.please_select'),'id' => 'store_id']
+                    {!! Form::label('packing_type','نوع التعبئة', []) !!}
+                    {!! Form::select('packing_type', $packing_types,null, ['class' => 'form-control select2 packing_type','placeholder'=>__('lang.please_select'),'id' => 'packing_type']
                     ) !!}
                 </div>
             </div>
-            {{-- +++++++++++++++ supplier filter +++++++++++++++ --}}
+            {{-- +++++++++++++++ color filter +++++++++++++++ --}}
             <div class="col-2">
                 <div class="form-group">
-                    {!! Form::label('supplier_id', __('lang.supplier'), []) !!}
-                    {!! Form::select('supplier_id', $suppliers,null, ['class' => 'form-control select2 suppliers','placeholder'=>__('lang.please_select'),'id' => 'supplier_id']
-                    ) !!}
-                </div>
-            </div>
-            {{-- +++++++++++++++ products filter +++++++++++++++ --}}
-            <div class="col-2">
-                <div class="form-group">
-                    {!! Form::label('product_id', __('lang.products'), []) !!}
-                    {!! Form::select('product_id', $products,null, ['class' => 'form-control select2 products','placeholder'=>__('lang.please_select'),'id' => 'product_id']
+                    {!! Form::label('color_id','اللون', []) !!}
+                    {!! Form::select('color_id', $colors,null, ['class' => 'form-control select2 colors','placeholder'=>__('lang.please_select'),'id' => 'color_id']
                     ) !!}
                 </div>
             </div>
             {{-- +++++++++++++++ start_date filter +++++++++++++++ --}}
             <div class="col-2">
                 <div class="d-flex align-items-center gap-2 flex-wrap flex-lg-nowrap">
-                    <div class=" w-100">
+                    <div class="w-100">
                         {!! Form::label('from', __('site.From'), []) !!}
                         {!! Form::date('from', null, ['class' => 'form-control start_date w-100']) !!}
                     </div>
@@ -41,6 +33,22 @@
                         {!! Form::label('to', __('site.To'), []) !!}
                         {!! Form::date('to', null, ['class' => 'form-control end_date w-100']) !!}
                     </div>
+                </div>
+            </div>
+            {{-- +++++++++++++++ current_content filter +++++++++++++++ --}}
+            <div class="col-2">
+                <div class="form-group">
+                    {!! Form::label('current_content','المحتوي الحالي', []) !!}
+                    {!! Form::select('current_content', $current_content,null, ['class' => 'form-control select2 current_content','placeholder'=>__('lang.please_select'),'id' => 'current_content']
+                    ) !!}
+                </div>
+            </div>
+            {{-- +++++++++++++++ caliber filter +++++++++++++++ --}}
+            <div class="col-2">
+                <div class="form-group">
+                    {!! Form::label('caliber','العيار', []) !!}
+                    {!! Form::select('caliber', $calibers,null, ['class' => 'form-control select2 caliber','placeholder'=>__('lang.please_select'),'id' => 'caliber']
+                    ) !!}
                 </div>
             </div>
             {{-- ++++++++++++++++++ "filter" and "clear filters" button ++++++++++++++++++ --}}

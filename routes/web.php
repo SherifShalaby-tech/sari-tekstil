@@ -127,6 +127,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('production',ProductionController::class);
     Route::post('production/invoice',[ProductionController::class,'invoice'])->name('production.invoice');
     Route::post('production/invoice/store_invoice',[ProductionController::class,'store_invoice'])->name('production.invoice.store_invoice');
+    // update "update_customer_balance"
+    Route::post('production/invoice/store_invoice/update-customer-balance',[ProductionController::class,'update_customer_balance'])
+            ->name('production.invoice.store_invoice.update_customer_balance');
     // Get Data of "Selected Customer" From customers selectbox
     Route::post('production/invoice/getCustomerInfo/',[ProductionController::class,'getCustomerInfo'])->name('production.invoice.getCustomerInfo');
     Route::resource('pressing-admin-requests',PressingRequestController::class);

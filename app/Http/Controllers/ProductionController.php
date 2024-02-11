@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Color;
 use App\Models\Customer;
 use App\Models\Production;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProductionTransaction;
 use App\Models\ProductionTransactionPayment;
+use App\Models\Screening;
 
 class ProductionController extends Controller
 {
@@ -19,8 +21,13 @@ class ProductionController extends Controller
     public function index()
     {
         $productions = Production::all();
-        // dd($customers);
-        // dd($fill_press_requests);
+        // packing_types filters
+        $packing_types = Production::select('packing_type')->get();
+        // colors filters
+        $colors = Color::select('id','name')->get();
+        // current_content filters
+        $current_content = Screening::pluck('name','id');
+        // dd($current_content);
         return view('production.index',compact('productions'));
     }
 
@@ -178,6 +185,35 @@ class ProductionController extends Controller
     {
         $data['customer_info'] = Customer::where('id', $request->id)->first();
         return response()->json($data);
+    }
+    // +++++++++++++++++++ Update customer Balance +++++++++++++++
+    public function update_customer_balance(Request $request)
+    {
+        // Get "customer_id"
+        $customer_id = $request->input('customer_id');
+        // Get "customer_balance"
+        $customer_balance = $request->input('customer_balance');
+        // Get customer data
+        $customer = Customer::find($customer_id);
+        if ($customer)
+        {
+            // Add the new balance to the existing balance
+            $new_balance = $customer->balance + $customer_balance;
+            // Update the customer balance
+            $customer->update(['balance' => $new_balance]);
+            $output = [
+                'success' => true,
+                'msg' => __('lang.success')
+            ];
+        }
+        else
+        {
+            $output = [
+                'error' => true,
+                'msg' => __('lang.success')
+            ];
+        }
+        return $output;
     }
     /**
      * Show the form for editing the specified resource.

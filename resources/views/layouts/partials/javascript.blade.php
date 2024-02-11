@@ -41,7 +41,9 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
      <!-- ++++++ Include Select2 JS ++++++ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-     <!-- ++++++ Include Jquery ++++++ -->
+<!-- Include Toaster.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+    <!-- ++++++ Include Jquery ++++++ -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <!-- Include Bootstrap-Select CSS and JS -->
     <!-- Latest compiled and minified JavaScript -->
