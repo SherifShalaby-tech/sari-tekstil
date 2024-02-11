@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
-use App\Models\User;
+use App\Models\Store;
+use App\Models\StoreCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class CustomerController extends Controller
+class StoreCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if(!auth()->user()->can('customers_module.customer.view')){
-            abort(403, __('lang.unauthorized_action'));
-        }
-        $customers=Customer::latest()->get();
-        return view('customers.index',compact('customers'));
+        $stores=StoreCategory::latest()->get();
+        return view('stores.index',compact('stores'));
     }
 
     /**
@@ -27,11 +24,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        if(!auth()->user()->can('customers_module.customer.create')){
-            abort(403, __('lang.unauthorized_action'));
-        }
-        $users=User::orderBy('created_at', 'desc')->pluck('name','id');
-        return view('customers.create',compact('users'));
+        //
     }
 
     /**
@@ -39,26 +32,25 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'max:255|required',
-        ]);
         try {
             $data = $request->except('_token');
-            $data['created_by'] = Auth::user()->id;
-            Customer::create($data);
+            $data['created_by']=Auth::user()->id;
+            $store = StoreCategory::create($data);
             $output = [
                 'success' => true,
+                'id' => $store->id,
                 'msg' => __('lang.success')
             ];
-  
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
             $output = [
                 'success' => false,
                 'msg' => __('lang.something_went_wrong')
             ];
         }
+        if ($request->quick_add) {
+          return $output;
+          }
         return redirect()->back()->with('status', $output);
     }
 
@@ -75,12 +67,12 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        if(!auth()->user()->can('customers_module.customer.edit')){
-            abort(403, __('lang.unauthorized_action'));
-        }
-        $users=User::orderBy('created_at', 'desc')->pluck('name','id');
-        $customer=Customer::find($id);
-        return view('customers.edit',compact('users','customer'));
+        $store = Store::find($id);
+        $stores = Store::pluck('name', 'id');
+        return view('stores.edit')->with(compact(
+            'store',
+            'stores'
+        ));
     }
 
     /**
@@ -92,7 +84,7 @@ class CustomerController extends Controller
             $data = $request->except('_token');
             $data['name'] = $request->name;
             $data['edited_by'] = Auth::user()->id;
-            Customer::find($id)->update($data);
+            Store::find($id)->update($data);
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -104,6 +96,7 @@ class CustomerController extends Controller
                 'msg' => __('lang.something_went_wrong')
             ];
         }
+      
         return redirect()->back()->with('status', $output);
     }
 
@@ -112,14 +105,11 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        if(!auth()->user()->can('customers_module.customer.delete')){
-            abort(403, __('lang.unauthorized_action'));
-        }
         try {
-            $customer=Customer::find($id);
-            $customer->deleted_by=Auth::user()->id;
-            $customer->save();
-            $customer->delete();
+            $store=Store::find($id);
+            $store->deleted_by=Auth::user()->id;
+            $store->save();
+            $store->delete();
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -132,25 +122,5 @@ class CustomerController extends Controller
               ];
           }
           return $output;
-    }
-    public function addBalance(string $id){
-
-    }
-    public function customer_dues($id,Request $request){
-        // $cities = City::pluck('name', 'id');
-        // $dues = TransactionSellLine::where('customer_id', $id)
-        //     ->where('payment_status', '!=', 'paid')
-        //     ->where('status', 'final')
-        //     ->where('due_date', '=', $request->date);
-
-        // if ($request->date) {
-        //     $dues->where('due_date', '=', $request->date);
-        // }
-
-        // // Add the get() method to execute the query and retrieve the results
-        // $dues = $dues->get();
-
-        // // Now you can use $dues to access the results
-        // return view('customers.due', compact('dues','cities'));
     }
 }

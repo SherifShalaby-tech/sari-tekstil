@@ -42,12 +42,13 @@
                                 <th>@lang('lang.source')</th>
                                 <th>@lang('lang.filling')</th>
                                 <th>@lang('lang.requested_weight')</th>
-                                <th>@lang('lang.calibers')</th>
+                                {{-- <th>@lang('lang.calibers')</th> --}}
                                 <th>@lang('lang.screening')</th>
                                 <th>@lang('lang.destination')</th>
                                 <th>@lang('lang.priority')</th>
                                 <th>@lang('lang.employee')</th>
                                 <th>@lang('lang.color')</th>
+                                <th>@lang('lang.action')</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,14 +56,14 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{$fillingRequest->source}}</td>
-                                <td>{{$fillingRequest->filling->name}}</td>
+                                <td>{{$fillingRequest->fills->name ?? '-'}}</td>
                                 <td>{{$fillingRequest->requested_weight}}</td>
-                                <td>
+                                {{-- <td>
                                     @foreach($fillingRequest->calibers as $caliber)
-                                        {{$caliber->caliber->name}} <br>
+                                        {{$caliber->name}} <br>
                                     @endforeach
-                                </td>
-                                <td>{{$fillingRequest->screening->name}}</td>
+                                </td> --}}
+                                <td>{{$fillingRequest->screening->name ?? "-"}}</td>
                                 <td>{{$fillingRequest->destination}}</td>
                                 <td>{{$fillingRequest->priority}}</td>
                                 <td>{{$fillingRequest->employee->name ??"-"}}</td>
@@ -75,11 +76,14 @@
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             
                                             <li>
-                                                    <a data-href="{{route('original-store-worker-filling.destroy', $fillingRequest->id)}}"
+                                                    <a data-href="{{route('admin_filling_request.destroy', $fillingRequest->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
                                                         @lang('lang.delete')</a>
                                             </li>
-                                            
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="{{route('admin_filling_request.edit', $fillingRequest->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </td>

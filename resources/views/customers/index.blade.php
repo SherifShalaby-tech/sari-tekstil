@@ -101,11 +101,21 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <li>
+                                                <a href="{{route('customer_dues', $supplier->id)}}" class="btn" target="_blank"><i class="dripicons-document-edit"></i> @lang('lang.dues')</a>
+                                            </li>
+                                            <li class="divider"></li>
                                             @if(auth()->user()->can('customers_module.customer.edit'))
                                             <li>
                                                 <a href="{{route('customers.edit', $supplier->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             @endif
+                                            <li class="divider"></li>
+                                            {{-- @if(auth()->user()->can('customers_module.customer.edit')) --}}
+                                            <li>
+                                                <a href="{{route('customers.add-balance', $supplier->id)}}" class="btn"><i class="dripicons-document-add"></i> @lang('lang.add_balance')</a>
+                                            </li>
+                                            {{-- @endif --}}
                                             <li class="divider"></li>
                                             @if(auth()->user()->can('customers_module.customer.delete'))
                                                 <li>

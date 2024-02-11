@@ -24,6 +24,7 @@ use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\OriginalStockController;
 use App\Http\Controllers\OriginalStoreWorkerController;
 use App\Http\Controllers\PlanningCarController;
+use App\Http\Controllers\PressingRequestController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
@@ -77,6 +78,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('stores',StoreController::class);
     Route::resource('suppliers',SupplierController::class);
     Route::resource('customers',CustomerController::class);
+    Route::get('customer/customer_dues/{id}', [CustomerController::class,'customer_dues'])->name('customer_dues');
+    Route::post('customers/add-balance',[CustomerController::class,'addBalance'])->name('customers.add-balance');
     Route::resource('employees',EmployeeController::class);
     Route::resource('jobs',JobController::class);
     Route::resource('leave_types',VacationTypeController::class);
@@ -107,8 +110,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('squeeze',SqueezeController::class);
     Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
     Route::resource('tying-bales',TyingBalesController::class);
-    
-    
+    Route::resource('pressing-admin-requests',PressingRequestController::class);
+    Route::get('add-pressing-row', [PressingRequestController::class,'addPressingRow']);
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
     Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');

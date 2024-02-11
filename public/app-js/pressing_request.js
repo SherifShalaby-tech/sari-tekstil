@@ -3,7 +3,7 @@ $(document).on('click','.add_row',function(){
     var button = $(this); // Store the reference to the button
         $.ajax({
             type: "get",
-            url: "/add-filling-row",
+            url: "/add-pressing-row",
             dataType: "html",
             success: function (response) {
                 $('.fillings').append(response);

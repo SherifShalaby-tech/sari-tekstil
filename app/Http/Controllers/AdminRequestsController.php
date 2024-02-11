@@ -58,7 +58,7 @@ class AdminRequestsController extends Controller
                 $items=[
                     'opening_request_id' => $opening_request->id,
                     'nationality_id' => $request->nationality_id[$index],
-                    'percent' => $request->percent[$index],
+                    'percentage' => $request->percent[$index],
                     'weight' => $request->weight[$index],
                 ];
                 OpeningRequestNationality::create($items);
@@ -91,7 +91,16 @@ class AdminRequestsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $nationalities = Nationality::pluck('name', 'id');
+        $types = Type::pluck('name', 'id');
+        $batch_number=Str::random(8);
+        $opening_request = OpeningRequest::find($id);
+        $Opening_request_nationality=OpeningRequestNationality::where('opening_request_id',$opening_request->id)->get();
+        return view('admin.edit_original_opening_request')->with(compact(
+            'nationalities',
+            'types','opening_request','Opening_request_nationality',
+            'batch_number'
+        ));
     }
 
     /**
@@ -99,7 +108,43 @@ class AdminRequestsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $data = $request->except('_token');
+            $data['created_by']=Auth::user()->id;
+            $opening_request = OpeningRequest::find($id);
+            $opening_request->update($data);
+
+            $indexs=[];
+            if($request->has('nationality_id')){
+                if(count($request->nationality_id)>0){
+                    $indexs=array_keys($request->nationality_id);
+                }
+            }
+            foreach ($indexs as $index){
+                $items=[
+                    'opening_request_id' => $opening_request->id,
+                    'nationality_id' => $request->nationality_id[$index],
+                    'percentage' => $request->percent[$index],
+                    'weight' => $request->weight[$index],
+                ];
+                if(!empty($request->opening_request_id[$index])){
+                    OpeningRequestNationality::find($request->opening_request_id[$index])->update($items);
+                }else{
+                    OpeningRequestNationality::create($items);
+                }
+            }
+            $output = [
+                'success' => true,
+                'msg' => __('lang.success')
+            ];
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
+        }
+        return redirect()->back()->with('status', $output);
     }
 
     /**
