@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('title', 'اضافة الانتاج')
+@section('title', 'عرض الانتاج')
 @section('breadcrumbbar')
     <div class="breadcrumbbar">
         {{-- ///////// left side //////////// --}}
         <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">اضافة الانتاج</h4>
+            <h4 class="page-title">عرض الانتاج</h4>
             <div class="breadcrumb-list">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">@lang('lang.dashboard')</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">اضافة الانتاج</li>
+                    <li class="breadcrumb-item active" aria-current="page">عرض الانتاج</li>
                 </ol>
             </div>
         </div>
@@ -69,13 +69,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    {{-- ////////////////////// Add Button ////////////////////// --}}
-                    <div class="col-lg-12 mt-3">
-                        <a href="{{ route('production.index') }}" class="btn btn-primary" id="production_create_btn">
-                            عرض الانتاج
-                            <i class="fa fa-plus"></i>
-                        </a> <br/>
-                    </div>
                     <div class="card-body">
                         <div class="row">
                             {{-- ////////////////////// Filters ////////////////////// --}}
@@ -194,7 +187,7 @@
                             </div>
                             <br/><br/>
                             <div class="col-sm-12">
-                                <form class="form-group" id="productForm" action="{{ route('production.store') }}" method="POST" enctype="multipart/form-data">
+                                <form class="form-group" id="productForm" action="{{ route('production.invoice') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="table-responsive">
@@ -219,18 +212,18 @@
                                                         <th class="col15">العيار</th>
                                                         <th class="col16">اللون</th>
                                                         <th class="col17">الكمية</th>
-                                                        <th class="col18">التكلفة الاجمالية</th>
-                                                        <th class="col19">@lang('lang.action')</th>
+                                                        <th class="col18">سعر البيع</th>
+                                                        <th class="col19">المجموع الفرعي</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="tbody">
-                                                    @foreach ($fill_press_requests as $index => $fill_press_request)
+                                                    @foreach ($productions as $index => $production)
                                                         <tr>
                                                             <td class="col1">{{ $index + 1 }}</td>
                                                             <td class="col2">
                                                                 <input type="checkbox" name="products[{{$index}}][checkbox]" class="checkbox_ids" value="1" />
                                                             </td>
-                                                            <input type="hidden" class="form-control" name="products[{{$index}}][fill_press_request_id]" value="{{ $fill_press_request->id }}">
+                                                            <input type="hidden" class="form-control" name="products[{{$index}}][production_id]" value="{{ $production->id }}">
                                                             {{-- +++++++++++++++++ رقم الشحنة  +++++++++++++++++ --}}
                                                             <td class="col3" title="رقم الشحنة">
                                                                 <input type="hidden" class="form-control" name="products[{{$index}}][delivery_number]" value="123">
@@ -243,8 +236,8 @@
                                                             </td>
                                                             {{-- +++++++++++++++++ الكود +++++++++++++++++ --}}
                                                             <td class="col5" title="الكود">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][sku]" value="{{ $fill_press_request->sku }}">
-                                                                {{ $fill_press_request->sku ?? '' }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][sku]" value="{{ $production->sku }}">
+                                                                {{ $production->sku ?? '' }}
                                                             </td>
                                                             {{-- +++++++++++++++++ رقم الرابطة  +++++++++++++++++ --}}
                                                             <td class="col6" title="رقم الرابطة">
@@ -253,80 +246,91 @@
                                                             </td>
                                                             {{-- +++++++++++++++++ نوع التعبئة +++++++++++++++++ --}}
                                                             <td class="col7" title="نوع التعبئة">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][packing_type]" value="{{ $fill_press_request->press_request->fills->name }}">
-                                                                {{ $fill_press_request->press_request->fills->name ?? '' }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][packing_type]" value="{{ $production->packing_type }}">
+                                                                {{$production->packing_type ?? '' }}
                                                             </td>
                                                             {{-- +++++++++++++++++ المكان الحالي +++++++++++++++++ --}}
                                                             <td class="col8" title="المكان الحالي">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][current_location]" value="1">
-                                                                {{ 1 }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][current_location]" value="{{ $production->current_location }}">
+                                                                {{ $production->current_location }}
                                                             </td>
                                                             {{-- +++++++++++++++++ الوزن +++++++++++++++++ --}}
                                                             <td class="col9" title="@lang('lang.weight')">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][weight]" value="{{ $fill_press_request->weight  }}">
-                                                                {{ $fill_press_request->weight ?? '' }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][weight]" value="{{ $production->weight }}">
+                                                                {{ $production->weight ?? '' }}
                                                             </td>
                                                             {{-- +++++++++++++++++ تاريخ الانتاج +++++++++++++++++ --}}
                                                             <td class="col10" title="تاريخ الانتاج">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][production_date]" value="{{ $fill_press_request->created_at->format('Y-m-d') }}">
-                                                                {{ $fill_press_request->created_at->format('Y-m-d') ?? '' }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][production_date]" value="{{ $production->production_date }}">
+                                                                {{ $production->production_date ?? '' }}
                                                             </td>
                                                             {{-- +++++++++++++++++ اسم اخر عامل +++++++++++++++++ --}}
                                                             <td class="col11" title="اسم اخر عامل">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][last_worker]" value="{{ $fill_press_request->press_request->user->id }}">
-                                                                {{ $fill_press_request->press_request->user->name }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][last_worker]" value="{{ $production->last_worker }}">
+                                                                {{ $production->last_worker }}
                                                             </td>
                                                             {{-- +++++++++++++++++ تكلفة الوحدة الواحدة	 +++++++++++++++++ --}}
                                                             <td class="col12" title="تكلفة الوحدة الواحدة">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][cost_per_unit]"  value="1">
-                                                                {{1}}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][cost_per_unit]"  value="{{ $production->cost_per_unit }}">
+                                                                {{ $production->cost_per_unit }}
                                                             </td>
                                                             {{-- +++++++++++++++++ المحتوي الاصلي +++++++++++++++++ --}}
                                                             <td class="col13" title="المحتوي الاصلي">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][original_content]" value="1">
-                                                                {{1}}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][original_content]"  value="{{ $production->original_content }}">
+                                                                {{ $production->original_content }}
                                                             </td>
                                                             {{-- +++++++++++++++++ المحتوي الحالي +++++++++++++++++ --}}
                                                             <td class="col14" title="المحتوي الحالي">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][current_content]" value="{{ $fill_press_request->press_request->screening->name }}">
-                                                                {{ $fill_press_request->press_request->screening->name ?? ''}}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][current_content]" value="{{ $production->current_content }}">
+                                                                {{ $production->current_content ?? ''}}
                                                             </td>
                                                             {{-- +++++++++++++++++ العيار +++++++++++++++++ --}}
                                                             <td class="col15" title="العيار">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][caliber]" value="{{ $fill_press_request->press_request->calibers }}">
-                                                                {{ $fill_press_request->press_request->calibers ?? '' }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][caliber]" value="{{ $production->caliber }}">
+                                                                {{ $production->caliber ?? '' }}
                                                             </td>
                                                             {{-- +++++++++++++++++ اللون +++++++++++++++++ --}}
                                                             <td class="col16"  title="اللون">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][color_id]" value="{{ $fill_press_request->press_request->color->id }}">
-                                                                {{ $fill_press_request->press_request->color->name ?? '' }}
+                                                                <input type="hidden" class="form-control" name="products[{{$index}}][color_id]" value="{{ $production->color_id }}">
+                                                                {{ $production->color->name ?? '' }}
                                                             </td>
                                                             {{-- +++++++++++++++++ الكمية +++++++++++++++++ --}}
                                                             <td class="col17" title="الكمية">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][quantity]" value=" {{ $fill_press_request->press_request->quantity }}">
-                                                                {{ $fill_press_request->press_request->quantity ?? '' }}
+                                                                <input type="text" class="form-control" id="quantity_id" name="products[{{$index}}][quantity]" value=" {{ $production->quantity }}">
+                                                            </td>
+                                                            {{-- +++++++++++++++++ سعر البيع +++++++++++++++++ --}}
+                                                            <td class="col18" title="سعر البيع">
+                                                                <input type="text" class="form-control" id="sell_price_id" name="products[{{$index}}][sell_price]" value="0">
                                                             </td>
                                                             {{-- +++++++++++++++++ التكلفة الاجمالية +++++++++++++++++ --}}
-                                                            <td class="col18" title="التكلفة الاجمالية">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][total_cost]" value="123">
-                                                                {{ 1 }}
+                                                            <td class="col19" title="التكلفة الاجمالية">
+                                                                <input type="text" disabled class="form-control" id="total_cost_id" name="products[{{$index}}][total_cost]" value="0">
                                                             </td>
                                                             {{-- +++++++++++++++++ الخيارات: delete row button +++++++++++++++++ --}}
-                                                            <td class="text-center col19" title="الخيارات">
+                                                            {{-- <td class="text-center col19" title="الخيارات">
                                                                 <a href="javascript:void(0)" class="btn btn-xs btn-danger deleteRow">
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
-                                                            </td>
+                                                            </td> --}}
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    <td colspan="16"></td>
+                                                    <td colspan="2" class="text-center">الاجمالي</td>
+                                                    <td class="sum_total_cost">
+                                                        <input type="number" class="form-control" name="sum_total_cost" disabled id="sum_total_cost" value="0" />
+                                                    </td>
+                                                </tfoot>
                                             </table>
                                             {{-- +++++++++++++ save Button +++++++++++ --}}
                                             <div class="row pull-left">
                                                 <div class="col-sm-12">
                                                     <div class="text-right">
-                                                        <input type="submit" id="submit-btn" class="btn btn-primary"
-                                                            value="@lang('lang.save')" name="submit">
+                                                        <button type="submit" id="submit-btn" class="btn btn-primary" name="print">
+                                                            انشاء فاتورة
+                                                            <i class="fa fa-file-invoice"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div><br/><br/><br/>
@@ -339,38 +343,37 @@
                 </div>
             </div>
         </div>
+        {{-- ++++++++++++++++++++++++++++++++++++++ Modal +++++++++++++++++++++++++++ --}}
+        @include('production.partials.invoice_modal')
+
     </div>
 
 @endsection
 
 @push('javascripts')
     <script>
-        $(document ).ready(function() {
-            // when click on "selectAll" checkbox
-            $('.checked_all').change(function() {
-                tr = $(this).closest('tr');
-                var checked_all = $(this).prop('checked');
+        // when click on "selectAll" checkbox
+        $('.checked_all').change(function() {
+            tr = $(this).closest('tr');
+            var checked_all = $(this).prop('checked');
 
-                tr.find('.check_box').each(function(item) {
-                    if (checked_all === true) {
-                        $(this).prop('checked', true)
-                    } else {
-                        $(this).prop('checked', false)
-                    }
-                })
+            tr.find('.check_box').each(function(item) {
+                if (checked_all === true) {
+                    $(this).prop('checked', true)
+                } else {
+                    $(this).prop('checked', false)
+                }
             })
-            // ======================================== Checkboxes of "products" table ========================================
-            // when click on "all checkboxs" , it will checked "all checkboxes"
-            $('#select_all_ids').click(function() {
-                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
-            });
-            // +++++++++++++ Delete Row in required_product +++++++++++++
-            $('.tbody').on('click','.deleteRow',function(){
-                $(this).parent().parent().remove();
-            });
+        })
+        // ======================================== Checkboxes of "products" table ========================================
+        // when click on "all checkboxs" , it will checked "all checkboxes"
+        $('#select_all_ids').click(function() {
+            $('.checkbox_ids').prop('checked', $(this).prop('checked'));
         });
-    </script>
-    <script>
+        // +++++++++++++ Delete Row in required_product +++++++++++++
+        $('.tbody').on('click','.deleteRow',function(){
+            $(this).parent().parent().remove();
+        });
         // +++++++++++++++++ Checkboxs and label inside selectbox ++++++++++++++
         $("input:checkbox:not(:checked)").each(function() {
             var column = "table ." + $(this).attr("name");
@@ -394,6 +397,101 @@
                 expanded = false;
             }
         }
+        // ++++++++++++++++++++++++++++++++++++ invoices Modal +++++++++++++++++++++++++++++++++++++
+        // =============== First Way ===============
+        // $("#productForm").submit(function (event) {
+        //     event.preventDefault();
+        //     // Collect checked rows
+        //     var checkedRows = [];
+        //     $(".checkbox_ids:checked").each(function ()
+        //     {
+        //         var row = $(this).closest("tr").html();
+        //         console.log(row);
+        //         checkedRows.push("<tr>"+row+"</tr>");
+        //     });
+        //     // Display the checked rows in the modal
+        //     $("#selectedRowsModal .modal-body .table #invoices_table_body").html(checkedRows.join(""));
+        //     // Show the modal
+        //     $("#selectedRowsModal").modal("show");
+        // });
+        // =============== Second Way ===============
+        $("#productForm").submit(function (event) {
+            event.preventDefault();
 
+            // Collect checked rows
+            var checkedRows = [];
+            $(".checkbox_ids:checked").each(function () {
+                var $row = $(this).closest("tr");
+                var columns = [
+                    $row.find(".col14").html(),
+                    $row.find(".col7").html(),
+                    $row.find(".col9").html(),
+                    $row.find(".col16").html(),
+                    $row.find(".col17").html(),
+                    $row.find(".col18").html(),
+                    $row.find(".col19").html(),
+                ];
+
+                // Format the columns as a table row
+                var formattedRow = "<tr><td>" + columns.join("</td><td>") + "</td></tr>";
+                checkedRows.push(formattedRow);
+            });
+
+            // Display the checked rows in the modal
+            $("#selectedRowsModal .modal-body .table #invoices_table_body").html(checkedRows.join(""));
+
+            // Show the modal
+            $("#selectedRowsModal").modal("show");
+        });
+        // ++++++++++++ Calculate "total cost" ++++++++++++++++++++++
+            // Add event listeners to quantity and sell price input fields
+        $('body').on('input', '.col17 input, .col18 input', function () {
+            // Get the row index
+            var index = $(this).closest('tr').index();
+
+            // Get the quantity and sell price values
+            var quantity = parseFloat($('input[name="products[' + index + '][quantity]"]').val()) || 0;
+            var sellPrice = parseFloat($('input[name="products[' + index + '][sell_price]"]').val()) || 0;
+
+            // Calculate the total cost
+            var totalCost = quantity * sellPrice;
+
+            // Update the total cost input field
+            $('input[name="products[' + index + '][total_cost]"]').val(totalCost.toFixed(2));
+
+            // Recalculate the sum of total costs
+            recalculateSumTotalCost();
+        });
+
+        // Add event listener to the "select_all_ids" checkbox
+        $('#select_all_ids').change(function () {
+            // Update all checkbox_ids based on select_all_ids state
+            $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+
+            // Recalculate the sum of total costs
+            recalculateSumTotalCost();
+        });
+
+        // Add event listener to individual checkbox_ids
+        $('body').on('change', '.checkbox_ids', function () {
+            // Update select_all_ids based on the state of all checkbox_ids
+            $('#select_all_ids').prop('checked', $('.checkbox_ids:checked').length === $('.checkbox_ids').length);
+
+            // Recalculate the sum of total costs
+            recalculateSumTotalCost();
+        });
+
+        // Function to recalculate the sum of total costs
+        function recalculateSumTotalCost() {
+            var sumTotalCost = 0;
+
+            // Iterate through each row and sum up the total costs
+            $('.col19 input').each(function () {
+                sumTotalCost += parseFloat($(this).val()) || 0;
+            });
+
+            // Update the sum_total_cost input field
+            $('#sum_total_cost').val(sumTotalCost.toFixed(2));
+        }
     </script>
 @endpush

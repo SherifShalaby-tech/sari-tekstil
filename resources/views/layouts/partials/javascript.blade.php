@@ -53,6 +53,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <!-- End js -->
     <script>
+        // +++++++++++++ select2 +++++++++++
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
         @if (session('status'))
                   new PNotify( {
                       title: '{{ session('status.msg') }} !', text: '{{ session('status.msg') }}',

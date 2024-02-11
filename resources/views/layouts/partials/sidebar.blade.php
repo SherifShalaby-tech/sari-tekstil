@@ -83,7 +83,7 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li>
-                            <a href="{{ route('production.create') }}">@lang('lang.production')</a>
+                            <a href="{{ route('production.index') }}">@lang('lang.production')</a>
                         </li>
                         {{-- <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li> --}}
                     </ul>

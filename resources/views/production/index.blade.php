@@ -69,6 +69,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    {{-- ////////////////////// Add Button ////////////////////// --}}
+                    <div class="col-lg-12 mt-3">
+                        <a href="{{ route('production.create') }}" class="btn btn-primary" id="production_create_btn">
+                            اضافة انتاج
+                            <i class="fa fa-plus"></i>
+                        </a> <br/>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             {{-- ////////////////////// Filters ////////////////////// --}}
@@ -77,6 +84,7 @@
                                     {{-- @include('purchase_order.required_products.partials.filters') --}}
                                 </div>
                             </div>
+
                             {{-- ++++++++++++++++++ Show/Hide Table Columns : selectbox of checkboxes ++++++++++++++++++ --}}
                             <div class="col-md-4 col-lg-4">
                                 <div class="multiselect col-md-6">
@@ -187,7 +195,7 @@
                             </div>
                             <br/><br/>
                             <div class="col-sm-12">
-                                <form class="form-group" id="productForm" action="{{ route('production.store') }}" method="POST" enctype="multipart/form-data">
+                                <form class="form-group" id="productForm" action="{{ route('production.invoice') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="table-responsive">
@@ -212,8 +220,8 @@
                                                         <th class="col15">العيار</th>
                                                         <th class="col16">اللون</th>
                                                         <th class="col17">الكمية</th>
-                                                        <th class="col18">التكلفة الاجمالية</th>
-                                                        {{-- <th class="col19">@lang('lang.action')</th> --}}
+                                                        <th class="col18">سعر البيع</th>
+                                                        <th class="col19">المجموع الفرعي</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="tbody">
@@ -296,13 +304,15 @@
                                                             </td>
                                                             {{-- +++++++++++++++++ الكمية +++++++++++++++++ --}}
                                                             <td class="col17" title="الكمية">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][quantity]" value=" {{ $production->quantity }}">
-                                                                {{ $production->quantity ?? '' }}
+                                                                <input type="text" class="form-control" id="quantity_id" name="products[{{$index}}][quantity]" value=" {{ $production->quantity }}">
+                                                            </td>
+                                                            {{-- +++++++++++++++++ سعر البيع +++++++++++++++++ --}}
+                                                            <td class="col18" title="سعر البيع">
+                                                                <input type="text" class="form-control" id="sell_price_id" name="products[{{$index}}][sell_price]" value="0">
                                                             </td>
                                                             {{-- +++++++++++++++++ التكلفة الاجمالية +++++++++++++++++ --}}
-                                                            <td class="col18" title="التكلفة الاجمالية">
-                                                                <input type="hidden" class="form-control" name="products[{{$index}}][total_cost]" value="{{ $production->total_cost }}">
-                                                                {{ $production->total_cost }}
+                                                            <td class="col19" title="التكلفة الاجمالية">
+                                                                <input type="text" readonly class="form-control" id="total_cost_id" name="products[{{$index}}][total_cost]" value="0">
                                                             </td>
                                                             {{-- +++++++++++++++++ الخيارات: delete row button +++++++++++++++++ --}}
                                                             {{-- <td class="text-center col19" title="الخيارات">
@@ -313,7 +323,15 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </table>
+                                                <tfoot>
+                                                    <td colspan="16"></td>
+                                                    <td colspan="2" class="text-center">الاجمالي</td>
+                                                    <td class="sum_total_cost">
+                                                        <input type="number" class="form-control" name="sum_total_cost" readonly id="sum_total_cost" value="0" />
+                                                    </td>
+                                                </tfoot>
+                                            </table> <br/>
+
                                             {{-- +++++++++++++ save Button +++++++++++ --}}
                                             <div class="row pull-left">
                                                 <div class="col-sm-12">
@@ -334,61 +352,64 @@
                 </div>
             </div>
         </div>
+        {{-- ++++++++++++++++++++++++++++++++++++++ Modal +++++++++++++++++++++++++++ --}}
+        @include('production.partials.invoice_modal')
+
     </div>
 
 @endsection
 
 @push('javascripts')
+    <script src="{{ asset('js/custom/custom_production/production_js.js') }}"></script>
     <script>
-        $(document ).ready(function() {
-            // when click on "selectAll" checkbox
-            $('.checked_all').change(function() {
-                tr = $(this).closest('tr');
-                var checked_all = $(this).prop('checked');
 
-                tr.find('.check_box').each(function(item) {
-                    if (checked_all === true) {
-                        $(this).prop('checked', true)
-                    } else {
-                        $(this).prop('checked', false)
-                    }
-                })
-            })
-            // ======================================== Checkboxes of "products" table ========================================
-            // when click on "all checkboxs" , it will checked "all checkboxes"
-            $('#select_all_ids').click(function() {
-                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
-            });
-            // +++++++++++++ Delete Row in required_product +++++++++++++
-            $('.tbody').on('click','.deleteRow',function(){
-                $(this).parent().parent().remove();
-            });
-        });
-    </script>
-    <script>
-        // +++++++++++++++++ Checkboxs and label inside selectbox ++++++++++++++
-        $("input:checkbox:not(:checked)").each(function() {
-            var column = "table ." + $(this).attr("name");
-            $(column).hide();
-        });
+        // ++++++++++++++++++++++++++++++++++++ invoices Modal +++++++++++++++++++++++++++++++++++++
+        // =============== First Way ===============
+        // $("#productForm").submit(function (event) {
+        //     event.preventDefault();
+        //     // Collect checked rows
+        //     var checkedRows = [];
+        //     $(".checkbox_ids:checked").each(function ()
+        //     {
+        //         var row = $(this).closest("tr").html();
+        //         console.log(row);
+        //         checkedRows.push("<tr>"+row+"</tr>");
+        //     });
+        //     // Display the checked rows in the modal
+        //     $("#selectedRowsModal .modal-body .table #invoices_table_body").html(checkedRows.join(""));
+        //     // Show the modal
+        //     $("#selectedRowsModal").modal("show");
+        // });
+        // =============== Second Way ===============
+        // $("#productForm").submit(function (event) {
+        //     event.preventDefault();
 
-        $("input:checkbox").click(function(){
-            var column = "table ." + $(this).attr("name");
-            $(column).toggle();
-        });
-        // +++++++++++++++++ Checkboxs and label inside selectbox : showCheckboxes() method ++++++++++++++
-        var expanded = false;
-        function showCheckboxes()
-        {
-            var checkboxes = document.getElementById("checkboxes");
-            if (!expanded) {
-                checkboxes.style.display = "block";
-                expanded = true;
-            } else {
-                checkboxes.style.display = "none";
-                expanded = false;
-            }
-        }
+        //     // Collect checked rows
+        //     var checkedRows = [];
+        //     $(".checkbox_ids:checked").each(function () {
+        //         var $row = $(this).closest("tr");
+        //         var columns = [
+        //             $row.find(".col14").html(),
+        //             $row.find(".col7").html(),
+        //             $row.find(".col9").html(),
+        //             $row.find(".col16").html(),
+        //             $row.find(".col17").html(),
+        //             $row.find(".col18").html(),
+        //             $row.find(".col19").html(),
+        //         ];
+
+        //         // Format the columns as a table row
+        //         var formattedRow = "<tr><td>" + columns.join("</td><td>") + "</td></tr>";
+        //         checkedRows.push(formattedRow);
+        //     });
+
+        //     // Display the checked rows in the modal
+        //     $("#selectedRowsModal .modal-body .table #invoices_table_body").html(checkedRows.join(""));
+
+        //     // Show the modal
+        //     $("#selectedRowsModal").modal("show");
+        // });
+
 
     </script>
 @endpush

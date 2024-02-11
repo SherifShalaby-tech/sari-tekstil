@@ -18,5 +18,18 @@ class Production extends Model
     {
         return $this->belongsTo(User::class, 'last_worker');
     }
+    public function fills()
+    {
+        return $this->hasOne(Fill::class, 'id', 'filling_id');
+    }
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
+    }
+    public function calibers ()
+    {
+        return $this->hasMany(Caliber::class, 'id');
+    }
 
+    
 }

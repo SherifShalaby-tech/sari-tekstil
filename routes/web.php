@@ -125,7 +125,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('tying-bales',TyingBalesController::class);
     // +++++++++++++++++++++++++++ Production Routes +++++++++++++++++++++++++++
     Route::resource('production',ProductionController::class);
-    Route::get('production/invoice',[ProductionController::class,'invoice'])->name('production.invoice');
+    Route::post('production/invoice',[ProductionController::class,'invoice'])->name('production.invoice');
+    Route::post('production/invoice/store_invoice',[ProductionController::class,'store_invoice'])->name('production.invoice.store_invoice');
+    // Get Data of "Selected Customer" From customers selectbox
+    Route::post('production/invoice/getCustomerInfo/',[ProductionController::class,'getCustomerInfo'])->name('production.invoice.getCustomerInfo');
     Route::resource('pressing-admin-requests',PressingRequestController::class);
     Route::get('add-pressing-row', [PressingRequestController::class,'addPressingRow']);
     Route::resource('lab',LabsController::class);

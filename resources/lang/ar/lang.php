@@ -148,7 +148,7 @@ return [
     'deductibles'=>'خصومات',
     'reasons_of_deductibles'=>'أسباب الخصومات',
     'net_amount'=>'الصافي',
-    'payment_date'=>'فترة الحساب',
+    'payment_date'=>'تاريخ السداد',
     'source_of_payment'=>'مصدر الأموال',
     'source_type'=>'اسم الموظف',
     'notes'=>'ملاحظات',
@@ -341,6 +341,15 @@ return [
     // ++++++++++++++++ production ++++++++++
     'production' => 'الانتاج',
     'show_hide_columns' => 'اظهار/اخفاء الاعمدة' ,
+    // ---- payments ----
+    'payment_status' => 'حالة السداد' ,
+    'payment_type' => 'نوع الدفع' ,
+    'cash' => 'نقدي',
+    'cheque' => 'شيك',
+    'partially_paid' =>'المدفوعة جزئيا',
+    'paid' => 'دفعت',
+    'pay_later' => 'ادفع لاحقا',
+    'visa' => 'فيزا' ,
 ];
 
 ?>

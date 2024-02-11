@@ -340,6 +340,19 @@ return [
     // ++++++++++++++++ production ++++++++++
     'production' => 'Production',
     'show_hide_columns' => 'show/hide columns' ,
+    // payments
+    'payment_status' => 'Payment Status' ,
+    'payment_type' => 'Payment Type' ,
+    'paid' => 'Paid',
+    'partially_paid' => 'Partially Paid',
+    'pay_later' => 'Pay Later',
+    'cash'=>'Cash',
+    'paying_amount' => 'Paying Amount',
+    'cheque' => 'Cheque',
+    'payment_method' => 'Payment Method',
+    'payment_type' => 'Payment Type' ,
+    'visa' => 'Visa' ,
 ];
+
 
 ?>
