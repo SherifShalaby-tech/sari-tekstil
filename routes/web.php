@@ -93,6 +93,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('stores',StoreController::class);
     Route::resource('suppliers',SupplierController::class);
     Route::resource('customers',CustomerController::class);
+    Route::get('customer/customer_dues/{id}', [CustomerController::class,'customer_dues'])->name('customer_dues');
+    Route::post('customers/add-balance',[CustomerController::class,'addBalance'])->name('customers.add-balance');
     Route::resource('employees',EmployeeController::class);
     Route::resource('jobs',JobController::class);
     Route::resource('leave_types',VacationTypeController::class);
