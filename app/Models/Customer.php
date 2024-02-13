@@ -11,7 +11,7 @@ class Customer extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = ['id'];
     protected $table = 'customers';
-    protected $casts = ['phones' => 'array','emails' => 'array'];
+    // protected $casts = ['phones' => 'array','emails' => 'array'];
     public function user()
     {
         return $this->belongsTo(User::class, 'responsable_id');

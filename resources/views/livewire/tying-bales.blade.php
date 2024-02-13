@@ -9,7 +9,7 @@
                     <button class="btn btn-default input-group-text" wire:click="addBale()"><i class="ri-add-line align-middle"></i></button>
                 </div>
               </div>
-        
+
         </div>
     </div>
     <div class="row">
@@ -35,14 +35,14 @@
                             @endfor
                             @if(count($object)==4)
                             <td><button class="btn btn-default input-group-text" wire:click="saveTie" title="{{__('lang.tie')}}"><img src="{{asset('images/tie.jpg')}}" width="40" height=23/></button></td>
-                            <td> <button class="btn btn-info" ><i class="fa fa-print"></i></button></td>
+                            <td> <button class="btn btn-info"><i class="fa fa-print"></i></button></td>
                             @endif
                         </tr>
                         @endif
 
                         {{-- @endfor --}}
                     </tbody>
-                </table>          
+                </table>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                 <div class="col-lg-3 col-xl-3">
                     <span class="font-weight-bold">@lang('lang.requested_weight') </span><br><span class="text-primary">{{$weight}}</span>
                 </div>
-                
+
         </div> --}}
         {{-- <div class="row pt-3">
             @for ($i=1;$i<=$quantity;$i++)

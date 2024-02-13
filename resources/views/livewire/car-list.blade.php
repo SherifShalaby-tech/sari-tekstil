@@ -1,5 +1,5 @@
 <div>
-     <!-- Start Contentbar -->    
+     <!-- Start Contentbar -->
      <div class="contentbar ">
         <div class="row">
             <div class="col-lg-12">
@@ -42,7 +42,7 @@
                             <tbody>
                             @foreach($cars as $index=>$car)
                             <tr>
-                               
+
                                 <td>
                                     <input type="hidden" value="{{$car->id}}" name="id"/>
                                     {{ $index+1 }}
@@ -61,7 +61,7 @@
                                     <span class="text-danger">@lang('lang.empty')</span>
                                 @else
                                     <span class="text-primary">@lang('lang.occuppied')</span>
-                                @endif    
+                                @endif
                                 </td>
                                 <td class="d-flex justify-content-between">
                                     {!! Form::number('weight_empty',  @num_format($car->weight_empty), ['class' => 'form-control weight_empty', 'placeholder' => '0.00','style'=>'width:200px','data-val'=>$car->weight_empty,!$disabled?'disabled':'']) !!}

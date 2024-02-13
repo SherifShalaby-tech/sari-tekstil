@@ -74,7 +74,7 @@
                                 <span>@lang('lang.empty')</span>
                             @else
                                 <span>@lang('lang.occuppied')</span>
-                            @endif    
+                            @endif
                         </td> --}}
                         <td>
                             @foreach($car->car_extras as $cali)

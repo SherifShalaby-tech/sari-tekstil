@@ -325,6 +325,34 @@ return [
     'bale'=>'Bale',
     'tie'=>'Tie',
     'content'=>'Content',
+    'introduction_sheet'=> 'Introduction Sheet' ,
+    'car_sku' => 'Car Sku' ,
+    'car_barcode'=>'Car Barcode',
+    'process_type' => 'Process Type' ,
+    'calibars' => 'Calibars' ,
+    'add_introduction_sheet' => 'Add Introduction Sheet' ,
+    'edit_introduction_sheet' =>'Edit Introduction Sheet' ,
+    'no' => 'No' ,
+    'deleted_by' => 'Deleted By' ,
+    'show' => 'Show' ,
+    'packing_tape' => 'Packing Tape' ,
+    'meter' => 'Meter' ,
+    // ++++++++++++++++ production ++++++++++
+    'production' => 'Production',
+    'show_hide_columns' => 'show/hide columns' ,
+    // payments
+    'payment_status' => 'Payment Status' ,
+    'payment_type' => 'Payment Type' ,
+    'paid' => 'Paid',
+    'partially_paid' => 'Partially Paid',
+    'pay_later' => 'Pay Later',
+    'cash'=>'Cash',
+    'paying_amount' => 'Paying Amount',
+    'cheque' => 'Cheque',
+    'payment_method' => 'Payment Method',
+    'payment_type' => 'Payment Type' ,
+    'visa' => 'Visa' ,
 ];
+
 
 ?>

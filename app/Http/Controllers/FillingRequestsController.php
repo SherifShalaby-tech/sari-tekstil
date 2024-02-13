@@ -49,6 +49,7 @@ class FillingRequestsController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         try {
             $fillingIds = $request->input('filling_id');
             $emptyWeights = $request->input('empty_weight');
@@ -82,12 +83,13 @@ class FillingRequestsController extends Controller
                     ]);
                 }
             // }
-            
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
             ];
         } catch (\Exception $e) {
+            dd($e);
             Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
             $output = [
                 'success' => false,

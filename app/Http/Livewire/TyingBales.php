@@ -21,8 +21,10 @@ class TyingBales extends Component
 
     public function addBale(){
         $bale=FillPressRequest::where('sku',$this->search)->first();
-        if (count($this->object)==0 || count($this->object) % 4 !== 0) {
-            if(isset($bale->sku) && !empty($bale)){
+        if (count($this->object)==0 || count($this->object) % 4 !== 0)
+        {
+            if(isset($bale->sku) && !empty($bale))
+            {
                     array_push($this->object,$bale->sku);
                     array_push($this->bales,$bale->id);
                     $this->full_weight+=$bale->weight;

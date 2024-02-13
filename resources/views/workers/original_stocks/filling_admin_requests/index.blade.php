@@ -1,29 +1,33 @@
 @extends('layouts.app')
 @section('title', __('lang.filling_admin_requests'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
                 <div class="media">
-                    <span class="breadcrumb-icon"><i class="ri-store-2-request"></i></span>
+                    <span class="breadcrumb-icon">
+                        <i class="ri-store-2-request"></i>
+                    </span>
                     <div class="media-body">
                         <h4 class="page-title">{{__('lang.filling_admin_requests')}}</h4>
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.filling_admin_requests')</li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    @lang('lang.filling_admin_requests')
+                                </li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -34,7 +38,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                
+
                                 <th>@lang('lang.batch_number')</th>
                                 <th>@lang('lang.shipment_number')</th>
                                 <th>@lang('lang.requested_weight')</th>
@@ -68,7 +72,7 @@
                                 <td>{{$request->priority}}</td>
                                 <td>
                                 @foreach($request->opening_request_nationalities as $nationality)
-                                    {{$nationality->car->sku}}<br>
+                                    {{$nationality->car->sku ?? ''}}<br>
                                 @endforeach
                                 </td>
                                 <td>

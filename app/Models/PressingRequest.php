@@ -25,4 +25,8 @@ class PressingRequest extends Model
     {
         return $this->belongsTo(Screening::class, 'screening_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
