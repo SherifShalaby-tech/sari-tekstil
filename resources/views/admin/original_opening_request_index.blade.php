@@ -80,13 +80,15 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            
                                             <li>
-                                                    <a data-href="{{route('admin_opening_request.destroy', $opiningRequest->id)}}"
-                                                        class="btn text-red delete_item"><i class="fa fa-trash"></i>
-                                                        @lang('lang.delete')</a>
+                                                <a data-href="{{route('admin_opening_request.destroy', $opiningRequest->id)}}"
+                                                    class="btn text-red delete_item"><i class="fa fa-trash"></i>
+                                                    @lang('lang.delete')</a>
                                             </li>
-                                            
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="{{route('admin_opening_request.edit', $opiningRequest->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </td>

@@ -133,4 +133,24 @@ class CustomerController extends Controller
           }
           return $output;
     }
+    public function addBalance(string $id){
+
+    }
+    public function customer_dues($id,Request $request){
+        // $cities = City::pluck('name', 'id');
+        // $dues = TransactionSellLine::where('customer_id', $id)
+        //     ->where('payment_status', '!=', 'paid')
+        //     ->where('status', 'final')
+        //     ->where('due_date', '=', $request->date);
+
+        // if ($request->date) {
+        //     $dues->where('due_date', '=', $request->date);
+        // }
+
+        // // Add the get() method to execute the query and retrieve the results
+        // $dues = $dues->get();
+
+        // // Now you can use $dues to access the results
+        // return view('customers.due', compact('dues','cities'));
+    }
 }
