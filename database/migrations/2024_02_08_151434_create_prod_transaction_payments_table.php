@@ -23,6 +23,8 @@ return new class extends Migration
             $table->decimal('amount', 15, 4)->nullable();
             // the "amount" that "customer paid"
             $table->decimal('customer_paid', 15, 4)->nullable();
+            // the "rest" of "customer" الباقي للعميل في حالة انه دفع اكثر من المطلوب
+            $table->decimal('customer_rest', 15, 4)->nullable();
             // the "total amount" that "customer" must pay
             $table->decimal('sum_total_cost', 15, 4)->nullable();
             $table->enum('payment_status', ['paid', 'pending', 'partial'])->nullable();

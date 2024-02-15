@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Caliber;
 use App\Models\Color;
 use App\Models\Customer;
 use App\Models\Production;
@@ -20,15 +21,32 @@ class ProductionController extends Controller
     /* ++++++++++++++++ index() ++++++++++++++++ */
     public function index()
     {
-        $productions = Production::all();
+
+        $productions=Production::
+        when(\request()->color_id != null, function ($query) {
+            $query->where('color_id',\request()->color_id);
+        })
+        ->when(\request()->start_date != null, function ($query) {
+            $query->whereDate('production_date', '>=', request()->start_date);
+        })
+        ->when(\request()->end_date != null, function ($query) {
+            $query->whereDate('production_date', '<=', request()->end_date);
+        })
+        ->when(\request()->caliber != null, function ($query) {
+            $query->where('caliber',\request()->caliber);
+        })
+        ->latest()->get();
         // packing_types filters
         $packing_types = Production::select('packing_type')->get();
+        // dd($packing_types);
         // colors filters
-        $colors = Color::select('id','name')->get();
+        $colors = Color::pluck('name','id');
         // current_content filters
         $current_content = Screening::pluck('name','id');
+        // current_content filters
+        $calibers = Caliber::pluck('number','number');
         // dd($current_content);
-        return view('production.index',compact('productions'));
+        return view('production.index',compact('productions','packing_types','colors','current_content','calibers'));
     }
 
     /**
@@ -69,7 +87,7 @@ class ProductionController extends Controller
                     $production->packing_type = $product['packing_type'];
                     $production->current_location = $product['current_location'];
                     $production->weight = $product['weight'];
-                    $production->production_date = now();
+                    $production->production_date = date('Y-m-d');
                     $production->weight = $product['weight'];
                     $production->last_worker = $product['last_worker'];
                     $production->cost_per_unit = $product['cost_per_unit'];
@@ -107,6 +125,7 @@ class ProductionController extends Controller
     /* ====================== invoice ========================== */
     public function store_invoice(Request $request)
     {
+        // DD($request);
         try
         {
             DB::beginTransaction();
@@ -149,6 +168,7 @@ class ProductionController extends Controller
                     'customer_id'               => $request->customer_id ,
                     'amount'                    => $request->amount,
                     'customer_paid'             => $request->customer_paid,
+                    'customer_rest'             => $request->rest_paid,
                     'sum_total_cost'            => $request->sum_total_cost,
                     'payment_type'              => $request->payment_type,
                     'payment_status'            => $request->payment_status,
@@ -160,6 +180,20 @@ class ProductionController extends Controller
                 {
                     $payment_data['created_by'] = Auth::user()->id;
                     $transaction_payment = ProductionTransactionPayment::create($payment_data);
+                }
+                // +++++++++++++++++++ Update customer Balance +++++++++++++++
+                // Get "customer_id"
+                $customer_id = $request->input('customer_id');
+                // Get "customer_balance"
+                $customer_balance = $request->input('balance');
+                // Get customer data
+                $customer = Customer::find($customer_id);
+                if ($customer)
+                {
+                    // Add the new balance to the existing balance
+                    $new_balance = $customer->balance + $customer_balance;
+                    // Update the customer balance
+                    $customer->update(['balance' => $new_balance]);
                 }
                 DB::commit();
             }

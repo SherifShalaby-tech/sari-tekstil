@@ -81,10 +81,9 @@
                             {{-- ////////////////////// Filters ////////////////////// --}}
                             <div class="col-lg-12">
                                 <div class="container-fluid">
-                                    {{-- @include('purchase_order.required_products.partials.filters') --}}
+                                    @include('production.partials.filters')
                                 </div>
                             </div>
-
                             {{-- ++++++++++++++++++ Show/Hide Table Columns : selectbox of checkboxes ++++++++++++++++++ --}}
                             <div class="col-md-4 col-lg-4">
                                 <div class="multiselect col-md-6">
