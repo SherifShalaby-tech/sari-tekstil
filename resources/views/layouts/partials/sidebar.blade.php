@@ -10,7 +10,7 @@
         <!-- Start Navigationbar -->
         <div class="navigationbar">
             <ul class="vertical-menu">
-                {{-- @if(auth()->user()->can('compression_worker'))                      
+                {{-- @if(auth()->user()->can('compression_worker'))
                 <li>
                     <a href="{{route('squeeze.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.compression')</span>
@@ -25,10 +25,11 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{route('squeeze.index')}}">@lang('lang.compression_request_form_admin')</a></li>
                         <li><a href="{{route('tying-bales.index')}}">@lang('lang.tying_bales')</a></li>
+                        <li><a href="{{route('automatic-squeeze.index')}}">@lang('lang.automatic_squeeze')</a></li>
                     </ul>
                 </li>
                 @endif
-                @if(auth()->user()->can('transporter'))                      
+                @if(auth()->user()->can('transporter'))
                 <li>
                     <a href="{{route('transporter.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.transport_worker')</span>
@@ -59,11 +60,11 @@
                     </ul>
                     <ul class="vertical-submenu">
                         <li><a href="{{route('admin_filling_request.index')}}">@lang('lang.filling_request')</a></li>
-                       
+
                     </ul>
                     <ul class="vertical-submenu">
                         <li><a href="{{route('pressing-admin-requests.index')}}">@lang('lang.pressing_request')</a></li>
-                       
+
                     </ul>
                 </li>
                 <li>
@@ -73,6 +74,19 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{route('original-stock-create')}}">@lang('lang.original_stock')</a></li>
                         <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li>
+                    </ul>
+                </li>
+                {{-- +++++++++++++++++++++++ production : الانتاج +++++++++++++++ --}}
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="ri-pie-chart-line"></i>
+                        <span>@lang('lang.production')</span><i class="ri-arrow-right-s-line"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li>
+                            <a href="{{ route('production.index') }}">@lang('lang.production')</a>
+                        </li>
+                        {{-- <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li> --}}
                     </ul>
                 </li>
                 @if(auth()->user()->can('employees_module.employee.view'))
@@ -101,9 +115,9 @@
                         <li><a href="{{route('forfeit-leaves.index')}}">@lang('lang.view_list_of_employees_in_forfeit_leave')</a></li>
                         @endif
                     </ul>
-                </li> 
-                @endif 
-                @if(auth()->user()->can('suppliers_module.supplier.view'))                      
+                </li>
+                @endif
+                @if(auth()->user()->can('suppliers_module.supplier.view'))
                 <li>
                     <a href="{{route('suppliers.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.suppliers')</span>
@@ -143,15 +157,17 @@
                         <li><a href="{{route('stores.index')}}">@lang('lang.stores')</a></li>
                         <li><a href="{{route('lab.index')}}">@lang('lang.labs')</a></li>
                         <li><a href="{{route('calibers.index')}}">@lang('lang.calibers')</a></li>
+                        {{-- ++++++++++++ introduction_sheet +++++++++++++ --}}
+                        <li><a href="{{route('introduction-sheet.index')}}">@lang('lang.introduction_sheet')</a></li>
                     </ul>
                 </li> '
-                @if(auth()->user()->can('settings_module.general_settings.view'))                      
+                @if(auth()->user()->can('settings_module.general_settings.view'))
                 <li>
                     <a href="{{route('settings.index')}}">
                         <i class="ri-settings-line"></i><span>{{__('lang.settings')}}</span><span class="new-icon"></span>
                     </a>
-                </li> 
-                @endif                                          
+                </li>
+                @endif
             </ul>
         </div>
         <!-- End Navigationbar -->

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminRequestsController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AutomaticSqueezeController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CalibersController;
 use App\Http\Controllers\CarsController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\FillingByOriginalStoreController;
 use App\Http\Controllers\FillingRequestsController;
 use App\Http\Controllers\ForfeitLeaveController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IntroductionSheetController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LabsController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\OriginalStockController;
 use App\Http\Controllers\OriginalStoreWorkerController;
 use App\Http\Controllers\PlanningCarController;
+use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\PressingRequestController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
@@ -36,6 +39,7 @@ use App\Http\Controllers\TyingBalesController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
+use App\Models\IntroductionSheet;
 use App\Models\OriginalStock;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +70,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cars/get-places/{process}', [CarsController::class, 'getPlaces']);
     Route::get('cars/get-barcode/{id}', [CarsController::class, 'getBarcode']);
     Route::resource('cars',CarsController::class);
+    // ++++++++++ introduction_sheet ++++++++++
+    Route::resource('introduction-sheet',IntroductionSheetController::class);
+    // ++++++++++ Create Page : Add "new row" ++++++++++
+    Route::get('introduction-sheet/get-sheet-row/{row_index}', [IntroductionSheetController::class , 'getSheetRow']);
+    //++++++++++ fetch "processes" of selected "process_type" selectbox ++++++++++
+    Route::post('fetch-processes',[IntroductionSheetController::class,'fetchProcesses']);
+    // +++++++ print "introduction_sheet" ++++++++++
+    Route::get('print/invoice/{id}',[IntroductionSheetController::class, 'print'])->name('print_invoice');
+    // +++++++ print "barcode" ++++++++++
+    Route::get('print/barcode/{id}',[IntroductionSheetController::class, 'printBarcode'])->name('print_barcode');
+
+
     Route::resource('maintain-car',ExpenseCarController::class);
     Route::post('change-cart-plan',[PlanningCarController::class,'changeCartPlan']);
     Route::resource('planning-carts',PlanningCarController::class);
@@ -110,6 +126,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('squeeze',SqueezeController::class);
     Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
     Route::resource('tying-bales',TyingBalesController::class);
+    Route::resource('automatic-squeeze',AutomaticSqueezeController::class);
+    // +++++++++++++++++++++++++++ Production Routes +++++++++++++++++++++++++++
+    Route::resource('production',ProductionController::class);
+    Route::post('production/invoice',[ProductionController::class,'invoice'])->name('production.invoice');
+    Route::post('production/invoice/store_invoice',[ProductionController::class,'store_invoice'])->name('production.invoice.store_invoice');
+    // update "update_customer_balance"
+    Route::post('production/invoice/store_invoice/update-customer-balance',[ProductionController::class,'update_customer_balance'])
+            ->name('production.invoice.store_invoice.update_customer_balance');
+    // Get Data of "Selected Customer" From customers selectbox
+    Route::post('production/invoice/getCustomerInfo/',[ProductionController::class,'getCustomerInfo'])->name('production.invoice.getCustomerInfo');
     Route::resource('pressing-admin-requests',PressingRequestController::class);
     Route::get('add-pressing-row', [PressingRequestController::class,'addPressingRow']);
     Route::resource('lab',LabsController::class);

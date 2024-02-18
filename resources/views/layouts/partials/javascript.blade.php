@@ -1,6 +1,6 @@
-    <!-- Start js -->    
+    <!-- Start js -->
     {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>     --}}
-   
+
     <script src="{{asset('js/popper.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/modernizr.min.js')}}"></script>
@@ -39,6 +39,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="{{asset('js/summernote.min.js')}}" referrerpolicy="origin"></script>
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+     <!-- ++++++ Include Select2 JS ++++++ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<!-- Include Toaster.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+    <!-- ++++++ Include Jquery ++++++ -->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <!-- Include Bootstrap-Select CSS and JS -->
     <!-- Latest compiled and minified JavaScript -->
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> --}}
@@ -49,6 +55,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <!-- End js -->
     <script>
+        // +++++++++++++ select2 +++++++++++
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
         @if (session('status'))
                   new PNotify( {
                       title: '{{ session('status.msg') }} !', text: '{{ session('status.msg') }}',
@@ -75,7 +86,7 @@
                       // var check_password = $(this).data('check_password');
                       var href = $(this).data('href');
                       var data = $(this).serialize();
-  
+
                       swal({
                           title: "{!!__('lang.please_enter_your_password')!!}",
                           content: {
@@ -102,7 +113,7 @@
                                   },
                                   dataType: 'json',
                                   success: (data) => {
-  
+
                                       if (data.success == true) {
                                           swal(
                                               'success',
@@ -131,14 +142,14 @@
                                                   }
                                               },
                                           });
-  
+
                                       } else {
                                           swal(
                                               'Failed!',
                                               'Wrong Password!',
                                               'error'
                                           )
-  
+
                                       }
                                   }
                               });
@@ -164,10 +175,9 @@
           $(document).ready(function() {
                 $('.selectpicker').selectpicker();
             });
-            
+
   </script>
   @stack('javascripts')
 
 
 
-    

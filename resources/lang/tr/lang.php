@@ -309,6 +309,8 @@ return [
     'bale'=>'',
     'tie'=>'',
     'content'=>'',
+    'automatic_squeeze'=>'',
+    'squeeze_bales_count'=>'',
 ];
 
 

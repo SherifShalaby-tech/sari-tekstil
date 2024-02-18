@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.filling'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -12,18 +12,18 @@
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">{{__('lang.dashboard')}}</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('original-store-worker-filling.index')}}">{{__('lang.filling_request')}}</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin_filling_request.index')}}">{{__('lang.filling_request')}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">@lang('lang.filling_request')</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -36,40 +36,44 @@
                         'enctype' => 'multipart/form-data',
                     ]) !!}
                     <div class="row">
-                       
-                    
+
+
                         <div class="col-md-3">
                             {!! Form::label('type_id', __('lang.source')."*", ['class' => 'h6 pt-3']) !!}
                             {!! Form::select(
                                 'source',
                                 [
-                                    'original' => 'Original', 
+                                    'original' => 'Original',
                                     'other' => 'Other',
                                 ],
-                                null, 
+                                null,
                                 ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'required', 'placeholder' => __('lang.please_select')]
                             ) !!}
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-md-12 pt-5">
-                           
+
                         </div>
                     </div>
+                    @php
+                        $index = 1;
+                    @endphp
                     <div class="fillings">
                         @include('admin.partials.add_filling_row')
                     </div>
+                    <input type="text" value="{{$index}}" class="row_index"/>
                     <div class="row">
                         <div class="col-md-6 pt-5">
                             {!! Form::label('notes', __( 'lang.notes' )) !!}
-                            {!! Form::text('notes', null, ['class' => 'form-control', 'placeholder' => __( 'lang.notes' ), 
+                            {!! Form::text('notes', null, ['class' => 'form-control', 'placeholder' => __( 'lang.notes' ),
                             ]);
                             !!}
                         </div>
                         <div class="col-md-2 pt-5">
                             {!! Form::label('priority', __( 'lang.priority' )) !!}
-                            {!! Form::text('priority', null, ['class' => 'form-control', 'placeholder' => __( 'lang.priority' ), 
+                            {!! Form::text('priority', null, ['class' => 'form-control', 'placeholder' => __( 'lang.priority' ),
                             ]);
                             !!}
                         </div>
@@ -92,8 +96,8 @@
 @push('javascripts')
 <script src="{{ asset('app-js/filling_request.js') }}"></script>
     {{-- <script>
-      
+
 
     </script> --}}
-        
+
 @endpush

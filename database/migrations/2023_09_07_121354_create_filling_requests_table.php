@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('filling_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('source', 60)->nullable();
+            // $table->string('source', 60)->nullable();
             $table->foreignId('filling_id')->nullable()->constrained('fills', 'id')->cascadeOnDelete();
             $table->decimal('empty_weight', 15, 2)->nullable(); 
             $table->decimal('requested_weight', 15, 2)->nullable();
             $table->json('calibers')->nullable()->constrained('calibers', 'id');
             $table->foreignId('screening_id')->nullable()->constrained('screenings', 'id')->cascadeOnDelete();
             $table->string('destination')->nullable();
-            $table->integer('priority')->nullable();
-            $table->text('notes')->nullable();
+      
             $table->integer('quantity')->nullable();
             $table->foreignId('employee_id')->nullable()->constrained('employees', 'id')->cascadeOnDelete();
             $table->foreignId('color_id')->nullable()->constrained('colors', 'id')->cascadeOnDelete();

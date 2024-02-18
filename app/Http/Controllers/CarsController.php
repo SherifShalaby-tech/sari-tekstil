@@ -170,7 +170,7 @@ class CarsController extends Controller
                 'msg' => __('lang.something_went_wrong')
             ];
         }
-      
+
         return redirect()->back()->with('status', $output);
     }
 

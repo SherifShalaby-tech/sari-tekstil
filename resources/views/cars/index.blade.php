@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.cars'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-9 col-lg-9">
@@ -19,25 +19,27 @@
                 </div>
             </div>
             <div class="col-md-3  col-lg-3 d-flex">
+                {{-- +++++++++++++++++ انشاء العربة +++++++++++++++++ --}}
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
-                </div>   
-                @endif  
-                &nbsp;&nbsp;&nbsp;                   
+                </div>
+                @endif
+                &nbsp;&nbsp;&nbsp;
+                {{-- +++++++++++++++++ تخطيط العربة +++++++++++++++++ --}}
                 @if(auth()->user()->can('settings_module.cars.create'))
                 <div class="widgetbar">
                     <a href="{{route('planning-carts.index')}}" class="btn btn-warning"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.planning_carts')</a>
-                </div>   
-                @endif                     
+                </div>
+                @endif
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
     @include('cars.create')
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <div class="row">
             <div class="col-lg-12">
@@ -93,7 +95,7 @@
                                     <span class="d-flex change-car-status btn btn-outline-info" data-car="{{$car->id}}">
                                         <img src="{{asset('images/full-box.jpg')}}"  width="50px" height="70px" class="img-status{{$car->id}}"/>
                                         <span class="word-status{{$car->id}}">@lang('lang.occuppied')</span></span>
-                                    @endif    
+                                    @endif
                                 </td>
                                 {{-- <td>{{$car->store->name}}</td> --}}
                                 {{-- <td>{{\Illuminate\Support\Str::limit($car->notes, $limit = 100, $end = '...') }}</td> --}}
@@ -134,7 +136,7 @@
                                                         <span><i class="fa fa-wrench"></i> @lang('lang.maintain_car')</span>
                                                     @endif
                                                 </a>
-                                                
+
                                             </li>
                                             @endif
                                             @if(auth()->user()->can('settings_module.cars.edit') || auth()->user()->can('settings_module.cars.create'))
@@ -156,7 +158,7 @@
                                                 <a data-href="{{route('cars.edit', $car->id)}}" data-container=".view_modal" class="btn btn-modal" data-toggle="modal"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
                                             @endif
-                                            @if(auth()->user()->can('settings_module.cars.delete'))    
+                                            @if(auth()->user()->can('settings_module.cars.delete'))
                                             <li>
                                                 <a data-href="{{route('cars.destroy', $car->id)}}"
                                                     class="btn text-red delete_item"><i class="fa fa-trash"></i>
@@ -183,7 +185,7 @@
 @push('javascripts')
 <script src="{{asset('app-js/planning_carts.js')}}" ></script>
 <script>
-    $(document).on('click','.change-car-status',function (e) {  
+    $(document).on('click','.change-car-status',function (e) {
         var car_id=$(this).data('car');
         $.ajax({
             type: "get",
@@ -199,7 +201,7 @@
                 }else if(response.status==0){
                     $('.img-status'+car_id).attr('src','{{asset('images/empty-box.jpg')}}');
                     $('.word-status'+car_id).text("{{__('lang.empty')}}");
-                  
+
                     $('.add-barcode'+car_id).css("pointer-events", "auto");
                     $('.add-barcode'+car_id).css("color", "black");
 
@@ -209,6 +211,6 @@
             }
         });
     });
-   
+
 </script>
 @endpush

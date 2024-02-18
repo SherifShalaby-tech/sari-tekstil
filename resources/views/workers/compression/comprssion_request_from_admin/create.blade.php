@@ -55,9 +55,9 @@
             section.style.display = 'block';
             window.print();
             section.style.display = 'none';
-        
+
         }, 1000);
-    }  
+    }
 </script>
     {{-- <script src="{{ asset('app-js/compression.js') }}"></script> --}}
 @endpush

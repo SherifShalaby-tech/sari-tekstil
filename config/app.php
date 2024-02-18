@@ -164,6 +164,8 @@ return [
         /*
          * Application Service Providers...
          */
+        // +++++++++++++ Barcode +++++++++++
+        Milon\Barcode\BarcodeServiceProvider::class ,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

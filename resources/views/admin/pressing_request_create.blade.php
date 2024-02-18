@@ -57,9 +57,13 @@
                            
                         </div>
                     </div>
+                    @php
+                        $index = 1;
+                    @endphp
                     <div class="fillings">
                         @include('admin.partials.add_pressing_row')
                     </div>
+                    <input type="text" value="{{$index}}" class="row_index"/>
                     <div class="row">
                         {{-- <div class="col-md-6 pt-5">
                             {!! Form::label('notes', __( 'lang.notes' )) !!}
