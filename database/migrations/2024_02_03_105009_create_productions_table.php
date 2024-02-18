@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('packing_type');
             $table->string('current_location');
             $table->string('weight');
-            $table->string('production_date');
+            $table->date('production_date');
             // Foreign Key : last_worker
             $table->foreignId('last_worker')->references('id')->on('users')->onDelete('cascade');
             $table->integer('cost_per_unit');

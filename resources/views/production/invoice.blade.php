@@ -127,19 +127,16 @@
                                                         <input type="number" class="form-control" readonly name="amount" id="amount" value="{{ $sum_total_cost }}" />
                                                     </div>
                                                     {{-- ///////// المبلغ المتبقي ///////// --}}
-                                                    <div class="col-md-4" >
+                                                    <div class="col-md-4" id="rest_paid_cont_id" style="display: none;">
                                                         <label for="" class="text-danger">المبلغ المتبقي</label> <br/>
                                                         <input type="number" class="form-control" id="rest_paid_id" name="rest_paid" readonly value="{{ $sum_total_cost }}" />
                                                     </div>
                                                     {{-- ///////// اضافة لرصيد العميل ///////// --}}
                                                     <div class="col-md-12 mt-3" id="balance_container" style="display:none;">
-                                                        <label>اضافة لرصيد العميل : </label>
                                                         <div class="row">
+                                                            <input type="hidden" class="form-control" name="balance" id="balance_input" readonly />
                                                             <div class="col-md-6">
-                                                                <input type="number" class="form-control" name="balance" id="balance_input" readonly />
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <button class="btn btn-info" id="submit_balance">تاكيد</button>
+                                                                <button class="btn btn-info" id="submit_balance">اضافة لرصيد العميل</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -257,52 +254,33 @@
                 // Get the initial amount
                 var initialAmount = parseFloat($("#amount").val()) || 0;
                 // Calculate the remaining amount
-                var remainingAmount = initialAmount - customerPaid;
+                var remainingAmount = customerPaid - initialAmount;
                 // Update the rest_paid input
                 $("#rest_paid_id").val(remainingAmount.toFixed(2));
-                // +++++++++++++++ Appear Customer Balance +++++++++
+                // +++++++++ Appear Customer Balance +++++++++
                 // Appear Customer Balance and set balance_input value
-                if (remainingAmount < 0)
+                if (remainingAmount > 0)
                 {
+                    $("#rest_paid_cont_id").show();
                     $("#balance_container").show();
-                    // Set the absolute value of remainingAmount to balance_input
-                    $("#balance_input").val(Math.abs(remainingAmount).toFixed(2));
                 }
                 else
                 {
                     $("#balance_container").hide();
+                    $("#rest_paid_cont_id").hide();
                 }
             });
             // +++++++++++++++++ Submit Balance +++++++++++++++++
             $("#submit_balance").on("click", function(e){
                 e.preventDefault();
-                var customer_id = $("#customer_select_id").val();
-                var customer_balance = $("#balance_input").val();
-                console.log(customer_balance);
-                // Make an AJAX request to update the customer balance
-                $.ajax({
-                    url: "{{ route('production.invoice.store_invoice.update_customer_balance') }}", // Replace with your actual endpoint
-                    type: "POST", // Use the appropriate HTTP method
-                    data:
-                    {
-                        customer_id: customer_id,
-                        customer_balance: customer_balance
-                    },
-                    success: function(response)
-                    {
-                        // Handle the success response
-                        console.log("Customer balance updated successfully");
-                        // Show a success notification using Toaster.js
-                        toastr.success('تم تحديث رصيد العميل بنجاح');
-                    },
-                    error: function(error)
-                    {
-                        // Handle the error, if any
-                        console.error("Error updating customer balance:", error);
-                        // Show an error notification using Toaster.js
-                        toastr.error('حدث خطا في تحديث رصيد العميل');
-                    }
-                });
+                // Set the absolute value of rest to balance_input
+                $rest_value = $("#rest_paid_id").val();
+                $("#balance_input").val($rest_value);
+                // Customer Paid = amount
+                $amount = $("#amount").val();
+                $("#customer_paid").val($amount);
+                // make "rest_paid_id" = 0
+                $("#rest_paid_id").val(0);
             });
         </script>
     @endpush

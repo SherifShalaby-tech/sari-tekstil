@@ -356,6 +356,7 @@ return [
     'payment_method' => 'Payment Method',
     'payment_type' => 'Payment Type' ,
     'visa' => 'Visa' ,
+    'filter' => 'filter' ,
 ];
 
 
