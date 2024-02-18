@@ -28,4 +28,8 @@ class PressingRequest extends Model
     public function pressing_request_transactions(){
         return $this->belongsTo(PressingRequestTransaction::class, 'pressing_request_transaction_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

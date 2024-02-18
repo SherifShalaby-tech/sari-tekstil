@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.calibers'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -22,15 +22,15 @@
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createCaliberModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
-                </div>                        
+                </div>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
     @include('calibers.create')
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -42,7 +42,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>@lang('lang.number')</th>
-                                {{-- <th>@lang('lang.store')</th> --}}
+                                <th>@lang('lang.store')</th>
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>

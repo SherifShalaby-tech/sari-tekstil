@@ -6,6 +6,7 @@ use App\Models\Cars;
 use App\Models\Employee;
 use App\Models\FillPressRequest;
 use App\Models\PressingRequest;
+use App\Models\System;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -20,6 +21,24 @@ class SqueezeRequests extends Component
     public $car = [];
     public $pressingrequestid =null;
     public $class=[];
+    // ++++++++++++ packing_tape ++++++++++++
+    public $packing_tape_rest = 0;
+    public $packing_tape_required = 0;
+    // ++++++++++++++ mount() ++++++++++++++
+    public function mount()
+    {
+        // Retrieve the 'packing_tape' value from the System model and set it to $packing_tape_rest
+        $this->packing_tape_rest = System::getProperty('packing_tape');
+    }
+    // ++++++++++++++ updatedPackingTapeRequired ++++++++++++++
+    public function changePackingTapeRequired()
+    {
+        // Update packing_tape_rest when packing_tape_required is updated
+        $this->packing_tape_rest -= $this->packing_tape_required;
+        // // Save the updated packing_tape_rest value to the 'packing_tape' key in the System model
+        // System::where('key', 'packing_tape')->update(['value' => $this->packing_tape_rest]);
+    }
+
     public function render()
     {   $weight=$this->weight;
         $quantity=$this->quantity;
@@ -35,17 +54,28 @@ class SqueezeRequests extends Component
             $this->dispatchBrowserEvent('swal:modal', ['type' => 'error', 'message' => __('lang.There_is_no_car_with_this_code')]);
         }
     }
-    public function press_bale($index,$total_weight){
-        try{
-            if($this->rows[$index]['bale_weight']==null){
+    // +++++++++++++++++ press_bale() +++++++++++++++++
+    public function press_bale($index,$total_weight)
+    {
+        try
+        {
+            if($this->rows[$index]['bale_weight']==null)
+            {
                 $this->dispatchBrowserEvent('swal:modal', ['type' => 'error', 'message' => __('lang.enter_bale_weight')]);
-            }else{
+            }
+            else
+            {
+                // ++++++++++ Save the updated packing_tape_rest value to the 'packing_tape' key in the System model ++++++++++
+                System::where('key', 'packing_tape')->update(['value' => $this->packing_tape_rest]);
+
                 $fillPressRequest=FillPressRequest::create([
                     'press_request_id'=>$this->pressingrequestid,
                     'employee_id'=>Employee::find(Auth::user()->id)->id,
                     'sku'=>"123456",
                     'weight'=>$this->rows[$index]['bale_weight'],
-                    'cars_id'=>$this->car['id']
+                    'cars_id'=>$this->car['id'],
+                    'packing_tape_required' => $this->packing_tape_required,
+                    'packing_tape_rest' => $this->packing_tape_rest,
                 ]);
                 $pressing_request=PressingRequest::find($this->pressingrequestid);
                 $pressing_request->update([

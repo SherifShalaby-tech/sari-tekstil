@@ -17,7 +17,7 @@ class System extends Model
 
     protected $fillable = array('key', 'value', 'date_and_time', 'created_by', 'deleted_by', 'updated_by');
 
-
+    // +++++++++++ getProperty() +++++++++++++++++
     public static function getProperty($key = null)
     {
         $row = System::where('key', $key)

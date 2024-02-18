@@ -18,7 +18,7 @@
     @stack('css')
     @livewireStyles
 </head>
-<body class="vertical-layout">    
+<body class="vertical-layout">
     <!-- Start Infobar Setting Sidebar -->
     <div id="infobar-settings-sidebar" class="infobar-settings-sidebar no-print">
         <div class="infobar-settings-sidebar-head d-flex w-100 justify-content-between">
