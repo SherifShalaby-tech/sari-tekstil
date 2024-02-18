@@ -325,6 +325,10 @@ return [
     'bale'=>'Bale',
     'tie'=>'Tie',
     'content'=>'Content',
+    'automatic_squeeze'=>'Automatic Squeeze',
+    'bale_weight'=>'Bale weight',
+    'number_of_bales'=>'Number_of_bales',
+    'squeeze_bales_count'=>'Squeeze bales count',
 ];
 
 ?>

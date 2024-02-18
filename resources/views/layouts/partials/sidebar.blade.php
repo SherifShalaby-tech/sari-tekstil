@@ -25,6 +25,7 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{route('squeeze.index')}}">@lang('lang.compression_request_form_admin')</a></li>
                         <li><a href="{{route('tying-bales.index')}}">@lang('lang.tying_bales')</a></li>
+                        <li><a href="{{route('automatic-squeeze.index')}}">@lang('lang.automatic_squeeze')</a></li>
                     </ul>
                 </li>
                 @endif

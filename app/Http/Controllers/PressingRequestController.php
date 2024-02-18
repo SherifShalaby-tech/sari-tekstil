@@ -142,7 +142,7 @@ class PressingRequestController extends Controller
             $pressing_rquests = $request->input('pressing_request_id');
             $pressing_request_transaction=PressingRequestTransaction::find($id)->update([
                 'priority' => $request->input('priority'),
-                'status' => 1,
+                'status' => 0,
                 'source' => $request->input('source'),
             ]);
             foreach ($calibers as $index => $caliberSet) {

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\PressingRequest;
+use App\Models\PressingRequestTransaction;
 use Livewire\Component;
 
 class CompressionRequestFormAdmin extends Component

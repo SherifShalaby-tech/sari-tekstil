@@ -26,23 +26,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pressing_requests as $index=>$item)
+                        @foreach ($pressing_requests as $index=>$val)
                             <tr>
-                                <th scope="row">{{ $item->filling->name??'' }}</th>
-                                <td>{{ $item->empty_weight }} Kg</td>
-                                <td>{{ $item->screening->name??'' }}</td>
+
+                                <th scope="row">
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->filling->name??'' }}<br>
+                                    @endforeach
+                                </th>
                                 <td>
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->empty_weight }} Kg<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->screening->name }}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($val->pressing_requests as $item)
                                     @php
                                         $calibersString = implode(', ', $item->calibers);
                                     @endphp
                                     {{ $calibersString }}<br>
+                                    @endforeach
                                 </td>
-                                <td>{{ $item->weight }} Kg</td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>{{ $item->color->name??'' }}</td>
-                                <td>{{ $item->destination }}</td>
-                                <td ><a href="{{route('squeeze.edit',$item->id)}}" class="btn btn-default text-danger" title="{{__('lang.squeeze')}}">
-                                        <h4 class="{{ $item->status==0?'text-danger':''}}" title="{{__('lang.squeeze')}}">
+                                <td>
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->weight }} Kg<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->quantity }}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->color->name }}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($val->pressing_requests as $item)
+                                    {{ $item->destination }}<br>
+                                    @endforeach
+                                </td>
+                                <td ><a href="{{route('squeeze.edit',$val->id)}}" class="btn btn-default text-danger" title="{{__('lang.squeeze')}}">
+                                        <h4 class="{{ $val->status==0?'text-danger':''}}" title="{{__('lang.squeeze')}}">
                                             <i class="fa fa-stop-circle"></i>
                                         </h4>
                                     </a>

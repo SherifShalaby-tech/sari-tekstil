@@ -30,12 +30,10 @@ class SqueezeRequests extends Component
     }
     public function addCar(){
         $this->car=Cars::where('sku',$this->search)->where('weight_product','!=','0')->where('next_process','squeeze')->first();
-
         $this->total_weight=!empty($this->car)?$this->car['weight_product']:0;
         if(empty($this->car)){
             $this->dispatchBrowserEvent('swal:modal', ['type' => 'error', 'message' => __('lang.There_is_no_car_with_this_code')]);
         }
-
     }
     public function press_bale($index,$total_weight){
         try{
@@ -49,7 +47,10 @@ class SqueezeRequests extends Component
                     'weight'=>$this->rows[$index]['bale_weight'],
                     'cars_id'=>$this->car['id']
                 ]);
-
+                $pressing_request=PressingRequest::find($this->pressingrequestid);
+                $pressing_request->update([
+                    'quantity'=>((int)$pressing_request->quantity) - 1,
+                ]);
                 $this->class[$index]="text-black";
                 $this->rows[$index]['bale_id']=$fillPressRequest->id;
                 Cars::find($this->car['id'])->update([
@@ -58,9 +59,10 @@ class SqueezeRequests extends Component
                     // 'next_process'=>'',
                     'weight_product'=>Cars::find($this->car['id'])->weight_product-$this->rows[$index]['bale_weight'],
                 ]);
-                if(FillPressRequest::where('press_request_id',$this->pressingrequestid)->count()==$this->quantity){
-                    // PressingRequest::find($this->pressingrequestid)->update(['status'=>'1']);
-                }
+                // if(FillPressRequest::where('press_request_id',$this->pressingrequestid)->count()==$this->quantity){
+                //     // PressingRequest::find($this->pressingrequestid)->update(['status'=>'1']);
+                // }
+                // $this->addCar();
                 $this->dispatchBrowserEvent('swal:modal', ['type' => 'success', 'message' => __('lang.success')]);
             }
         } catch (\Exception $e) {
