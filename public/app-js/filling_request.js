@@ -1,9 +1,11 @@
 $(document).on('click','.add_row',function(){
-    var index = $(this).data('index');
+    var index = $('.row_index').val();
+    $('.row_index').val(parseInt(index)+1)
     var button = $(this); // Store the reference to the button
         $.ajax({
             type: "get",
             url: "/add-filling-row",
+            data:{'index':index},
             dataType: "html",
             success: function (response) {
                 $('.fillings').append(response);

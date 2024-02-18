@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminRequestsController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AutomaticSqueezeController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CalibersController;
 use App\Http\Controllers\CarsController;
@@ -125,6 +126,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('squeeze',SqueezeController::class);
     Route::get('print-bale-staker/{bale_id}',[SqueezeController::class,'printBaleStaker']);
     Route::resource('tying-bales',TyingBalesController::class);
+    Route::resource('automatic-squeeze',AutomaticSqueezeController::class);
     // +++++++++++++++++++++++++++ Production Routes +++++++++++++++++++++++++++
     Route::resource('production',ProductionController::class);
     Route::post('production/invoice',[ProductionController::class,'invoice'])->name('production.invoice');

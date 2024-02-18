@@ -10,7 +10,7 @@ class FillingRequest extends Model
 {
     use HasFactory , SoftDeletes;
     protected $casts = ['calibers' => 'array'];
-    protected $fillable = array('source','filling_id','empty_weight','requested_weight',
+    protected $fillable = array('source','filling_id','empty_weight','requested_weight','filling_request_transaction_id',
      'calibers','screening_id','destination','priority','notes','quantity','employee_id','color_id', 'created_by'
     );
     public function fills(){
@@ -19,5 +19,20 @@ class FillingRequest extends Model
 
     public function calibers (){
         return $this->hasMany(Caliber::class, 'id');
+    }
+    public function screening()
+    {
+        return $this->belongsTo(Screening::class, 'screening_id');
+    }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
+    public function filling_request_transactions(){
+        return $this->belongsTo(FillingRequestTransaction::class, 'filling_request_transaction_id');
+    }
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
     }
 }

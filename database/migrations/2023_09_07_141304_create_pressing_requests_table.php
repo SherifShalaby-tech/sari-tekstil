@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('quantity')->nullable();
             $table->string('destination')->nullable();
             $table->text('calibers')->nullable();
-            $table->integer('priority')->nullable();
-            $table->string('status')->nullable()->default('0');
+            // $table->integer('priority')->nullable();
+            // $table->string('status')->nullable()->default('0');
             $table->foreignId('color_id')->nullable()->constrained('colors', 'id')->cascadeOnDelete();
             $table->foreignId('filling_id')->nullable()->constrained('fills', 'id')->cascadeOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();

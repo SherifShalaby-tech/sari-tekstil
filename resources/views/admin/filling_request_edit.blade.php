@@ -34,7 +34,7 @@
             <div class="col-lg-12 col-xl-12">
                 <div class="card m-b-30 p-2">
                     {!! Form::open([
-                        'route' => ['admin_filling_request.update', $filling_request->id],
+                        'route' => ['admin_filling_request.update', $filling_request_transaction->id],
                         'method' => 'put',
                         'id' => 'filling-request-update-form',
                     ]) !!}
@@ -51,7 +51,7 @@
                                     'original' => 'Original',
                                     'other' => 'Other',
                                 ],
-                                isset($filling_request->source)?$filling_request->source:null,
+                                isset($filling_request_transaction->source) ? $filling_request_transaction->source : null,
                                 [
                                     'class' => 'form-control selectpicker',
                                     'data-live-search' => 'true',
@@ -68,16 +68,36 @@
                         </div>
                     </div>
                     <div class="fillings">
-                        @include('admin.partials.add_filling_row')
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($filling_request_transaction->filling_requests as $key => $filling_request)
+                            @include('admin.partials.add_filling_row', ['index' => $index])
+                            @php
+                                $index += 1;
+                            @endphp
+                        @endforeach
+                        @php
+                            $index -= 1;
+                        @endphp
+                        <input type="hidden" value="{{ $index }}" class="row_index" />
                     </div>
                     <div class="row">
                         <div class="col-md-6 pt-5">
                             {!! Form::label('notes', __('lang.notes')) !!}
-                            {!! Form::text('notes', isset($filling_request->notes)?$filling_request->notes:null, ['class' => 'form-control', 'placeholder' => __('lang.notes')]) !!}
+                            {!! Form::text(
+                                'notes',
+                                isset($filling_request_transaction->notes) ? $filling_request_transaction->notes : null,
+                                ['class' => 'form-control', 'placeholder' => __('lang.notes')],
+                            ) !!}
                         </div>
                         <div class="col-md-2 pt-5">
                             {!! Form::label('priority', __('lang.priority')) !!}
-                            {!! Form::text('priority', isset($filling_request->priority)?$filling_request->priority:null, ['class' => 'form-control', 'placeholder' => __('lang.priority')]) !!}
+                            {!! Form::text(
+                                'priority',
+                                isset($filling_request_transaction->priority) ? $filling_request_transaction->priority : null,
+                                ['class' => 'form-control', 'placeholder' => __('lang.priority')],
+                            ) !!}
                         </div>
                     </div>
                     <div class="row pt-4">
