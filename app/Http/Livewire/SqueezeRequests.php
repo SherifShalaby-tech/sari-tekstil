@@ -80,7 +80,9 @@ class SqueezeRequests extends Component
                 $pressing_request=PressingRequest::find($this->pressingrequestid);
                 $pressing_request->update([
                     'quantity'=>((int)$pressing_request->quantity) - 1,
+                    'status'=>(((int)$pressing_request->quantity) - 1)>0?0:'complete',
                 ]);
+
                 $this->class[$index]="text-black";
                 $this->rows[$index]['bale_id']=$fillPressRequest->id;
                 Cars::find($this->car['id'])->update([
