@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.edit_customers'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -19,11 +19,11 @@
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -42,7 +42,7 @@
                                 'class' => 'form-control required',
                             ]) !!}
                         </div>
-                    
+
                         <div class="col-md-3">
                             {!! Form::label('responsable_name', __('lang.responsable_name'), ['class'=>'h6 pt-3']) !!}
                                 {!! Form::select(
@@ -74,14 +74,16 @@
                                 ]) !!}
                                 <button type="button" class="btn btn-primary btn-sm ml-2 add_phone"><i class="fa fa-plus"></i></button>
                             </div>
-                            @for($i=1;$i<count($customer->phones);$i++)
-                                <div class="d-flex justify-content-center pt-2">
-                                    {!! Form::text('phones[]', $customer->phones[$i], [
-                                        'class' => 'form-control',
-                                        'placeholder'=>__('lang.phone').' 1'
-                                    ]) !!}
-                                </div>
-                            @endfor
+                            @if ( count($customer['phones']) > 0 )
+                                @for($i=1;$i<count($customer->phones);$i++)
+                                    <div class="d-flex justify-content-center pt-2">
+                                        {!! Form::text('phones[]', $customer->phones[$i], [
+                                            'class' => 'form-control',
+                                            'placeholder'=>__('lang.phone').' 1'
+                                        ]) !!}
+                                    </div>
+                                @endfor
+                            @endif
                             </div>
                         </div>
                         <div class="col-md-2">

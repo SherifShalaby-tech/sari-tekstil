@@ -362,53 +362,6 @@
     <script src="{{ asset('js/custom/custom_production/production_js.js') }}"></script>
     <script>
 
-        // ++++++++++++++++++++++++++++++++++++ invoices Modal +++++++++++++++++++++++++++++++++++++
-        // =============== First Way ===============
-        // $("#productForm").submit(function (event) {
-        //     event.preventDefault();
-        //     // Collect checked rows
-        //     var checkedRows = [];
-        //     $(".checkbox_ids:checked").each(function ()
-        //     {
-        //         var row = $(this).closest("tr").html();
-        //         console.log(row);
-        //         checkedRows.push("<tr>"+row+"</tr>");
-        //     });
-        //     // Display the checked rows in the modal
-        //     $("#selectedRowsModal .modal-body .table #invoices_table_body").html(checkedRows.join(""));
-        //     // Show the modal
-        //     $("#selectedRowsModal").modal("show");
-        // });
-        // =============== Second Way ===============
-        // $("#productForm").submit(function (event) {
-        //     event.preventDefault();
-
-        //     // Collect checked rows
-        //     var checkedRows = [];
-        //     $(".checkbox_ids:checked").each(function () {
-        //         var $row = $(this).closest("tr");
-        //         var columns = [
-        //             $row.find(".col14").html(),
-        //             $row.find(".col7").html(),
-        //             $row.find(".col9").html(),
-        //             $row.find(".col16").html(),
-        //             $row.find(".col17").html(),
-        //             $row.find(".col18").html(),
-        //             $row.find(".col19").html(),
-        //         ];
-
-        //         // Format the columns as a table row
-        //         var formattedRow = "<tr><td>" + columns.join("</td><td>") + "</td></tr>";
-        //         checkedRows.push(formattedRow);
-        //     });
-
-        //     // Display the checked rows in the modal
-        //     $("#selectedRowsModal .modal-body .table #invoices_table_body").html(checkedRows.join(""));
-
-        //     // Show the modal
-        //     $("#selectedRowsModal").modal("show");
-        // });
-
 
     </script>
 @endpush

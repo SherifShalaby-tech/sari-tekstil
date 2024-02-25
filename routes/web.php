@@ -27,6 +27,7 @@ use App\Http\Controllers\OriginalStoreWorkerController;
 use App\Http\Controllers\PlanningCarController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\PressingRequestController;
+use App\Http\Controllers\ProductionInvoicesController;
 use App\Http\Controllers\RecieveOriginalStockFromSupplierController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SettingController;
@@ -134,6 +135,16 @@ Route::group(['middleware' => ['auth']], function () {
             ->name('production.invoice.store_invoice.update_customer_balance');
     // Get Data of "Selected Customer" From customers selectbox
     Route::post('production/invoice/getCustomerInfo/',[ProductionController::class,'getCustomerInfo'])->name('production.invoice.getCustomerInfo');
+    // ++++++++++++++ Customer Dues ++++++++++++++
+    Route::get('customer/customer_dues/{id}', [CustomerController::class,'customer_dues'])->name('customer_dues');
+    Route::post('customer/pay_due/', [CustomerController::class,'pay_due'])->name('customers.pay_due');
+    Route::get('pay_due_view/{id}', [CustomerController::class,'pay_due_view'])->name('customers.pay_due_view');
+    // +++++++++++++++++++++++++++ Production_Invoices Routes +++++++++++++++++++++++++++
+    Route::resource('production_invoices',ProductionInvoicesController::class);
+    // -------- Invoices Dues --------
+    Route::post('production_invoices/pay_due/', [ProductionInvoicesController::class,'pay_due'])->name('production_invoices.pay_due');
+    Route::get('production_invoices/pay_due_view/{id}', [ProductionInvoicesController::class,'pay_due_view'])->name('production_invoices.pay_due_view');
+
     Route::resource('pressing-admin-requests',PressingRequestController::class);
     Route::get('add-pressing-row', [PressingRequestController::class,'addPressingRow']);
     Route::resource('lab',LabsController::class);

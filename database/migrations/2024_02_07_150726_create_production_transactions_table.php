@@ -24,10 +24,13 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             // +++++ type +++++
             $table->string('type')->nullable();
+            // +++++ invoice_no +++++
+            $table->string('invoice_no')->nullable();
             $table->decimal('grand_total', 15, 4)->nullable();
             $table->decimal('final_total', 15, 4)->default(0.0000);
             $table->string('transaction_date');
             $table->enum('payment_status', ['paid', 'pending', 'partial'])->nullable();
+            $table->enum('status', ['received', 'pending', 'ordered', 'final', 'draft', 'sent_admin', 'sent_supplier', 'partial', 'approved', 'rejected', 'expired', 'valid', 'declined', 'send_the_goods', 'compensated', 'canceled']);
             // +++++ Foreign key : created_by +++++
 			$table->foreignId('created_by')->nullable()->constrained('users', 'id')->cascadeOnDelete();
             // +++++ Foreign key : edited_by +++++

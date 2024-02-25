@@ -85,7 +85,9 @@
                         <li>
                             <a href="{{ route('production.index') }}">@lang('lang.production')</a>
                         </li>
-                        {{-- <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li> --}}
+                        <li>
+                            <a href="{{ route('production_invoices.index') }}">عرض فواتير الانتاج</a>
+                        </li>
                     </ul>
                 </li>
                 @if(auth()->user()->can('employees_module.employee.view'))

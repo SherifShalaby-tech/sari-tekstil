@@ -102,7 +102,7 @@
                                                 <select class="form-control select2" id="customer_select_id" name="customer_id">
                                                     <option value="">اختار عميل</option>
                                                     @foreach ( $customers as $customer )
-                                                        <option value="{{ $customer->id }}" class="">{{ $customer->name }}</option>
+                                                        <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 {{-- +++++++++++++++++ customer info ++++++++++++++++++++ --}}
@@ -275,6 +275,7 @@
                 e.preventDefault();
                 // Set the absolute value of rest to balance_input
                 $rest_value = $("#rest_paid_id").val();
+                console.log("rest_value = ",$rest_value);
                 $("#balance_input").val($rest_value);
                 // Customer Paid = amount
                 $amount = $("#amount").val();
