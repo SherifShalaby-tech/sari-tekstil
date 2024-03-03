@@ -11,10 +11,10 @@
                 <span aria-hidden="true">×</span>
                 </button>
             </div>
-            {!! Form::open(['route' => 'stores.store', 'method' => 'post', 'files' => true,'id' =>'branch-form' ]) !!}
+            {!! Form::open(['route' => 'storecategories.store', 'method' => 'post', 'files' => true,'id' =>'branch-form' ]) !!}
             <div class="modal-body">
                 <div class="form-group">
-                   
+
                     {!! Form::label('name', __( 'lang.name' ) . ':*') !!}
                     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __( 'lang.name' ), 'required'
                     ]);
@@ -24,7 +24,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                   
+
                     {!! Form::label('branch', __( 'lang.branch' ) . ':*') !!}
                     {!! Form::select('branch_id', $branches, false, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'branch_id','required']) !!}
                     @error('branch_id')
@@ -32,55 +32,14 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                   
-                    {!! Form::label('location', __( 'lang.location' ) ) !!}
-                    {!! Form::text('location', null, ['class' => 'form-control', 'placeholder' => __( 'lang.location' ), 
-                    ]);
-                    !!}
-                    @error('location')
-                        <label class="text-danger error-msg">{{ $message }}</label>
-                    @enderror
-                </div>
-                <div class="form-group">
-                   
-                    {!! Form::label('phone_number', __( 'lang.phone_number' ) ) !!}
-                    {!! Form::text('phone_number', null, ['class' => 'form-control', 'placeholder' => __( 'lang.phone_number' ), 
-                    ]);
-                    !!}
-                    @error('phone_number')
-                        <label class="text-danger error-msg">{{ $message }}</label>
-                    @enderror
-                </div>
-                <div class="form-group">
-                   
-                    {!! Form::label('email', __( 'lang.email' )) !!}
-                    {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => __( 'lang.email' ), 
-                    ]);
-                    !!}
-                    @error('email')
-                        <label class="text-danger error-msg">{{ $message }}</label>
-                    @enderror
-                </div>
-                <div class="form-group">
-                   
-                    {!! Form::label('manager_name', __( 'lang.manager_name' )) !!}
-                    {!! Form::text('manager_name', null, ['class' => 'form-control', 'placeholder' => __( 'lang.manager_name' ), 
-                    ]);
-                    !!}
-                    @error('manager_name')
-                        <label class="text-danger error-msg">{{ $message }}</label>
-                    @enderror
-                </div>
-                <div class="form-group">
-                   
-                    {!! Form::label('manager_mobile_number', __( 'lang.manager_mobile_number' ) ) !!}
-                    {!! Form::text('manager_mobile_number', null, ['class' => 'form-control', 'placeholder' => __( 'lang.manager_mobile_number' ), 
-                    ]);
-                    !!}
-                    @error('manager_mobile_number')
-                        <label class="text-danger error-msg">{{ $message }}</label>
-                    @enderror
-                </div>
+
+                   {!! Form::label('store', __( 'lang.store' ) . ':*') !!}
+                   {!! Form::select('store_id', $stores, false, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'store_id','required']) !!}
+                   @error('store_id')
+                       <label class="text-danger error-msg">{{ $message }}</label>
+                   @enderror
+               </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('lang.close')</button>
@@ -90,5 +49,36 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Triggered when the branch dropdown value changes
+        $('#branch_id').change(function () {
+            // Get the selected branch ID
+            var branchId = $(this).val();
+
+            // Make an AJAX request to get the stores based on the selected branch
+            $.ajax({
+                url: '/getStores/' + branchId, // Replace with the actual route for fetching stores
+                type: 'GET',
+                success: function (data) {
+                    // Clear existing options in the store dropdown
+                    $('#store_id').empty();
+                    console.log(data);
+                    // Add the new options based on the received data
+                    $.each(data, function (key, value) {
+                        $('#store_id').append('<option value="' + key + '">' + value + '</option>');
+                    });
+
+                    // Refresh the SelectPicker to reflect the changes
+                    $('#store_id').selectpicker('refresh');
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
 
 {{-- {!! JsValidator::formRequest('App\Http\Requests\StoreOpeningRequest','#opening-form'); !!} --}}

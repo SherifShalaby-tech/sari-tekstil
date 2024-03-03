@@ -10,7 +10,7 @@
         <!-- Start Navigationbar -->
         <div class="navigationbar">
             <ul class="vertical-menu">
-                {{-- @if(auth()->user()->can('compression_worker'))                      
+                {{-- @if(auth()->user()->can('compression_worker'))
                 <li>
                     <a href="{{route('squeeze.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.compression')</span>
@@ -28,7 +28,7 @@
                     </ul>
                 </li>
                 @endif
-                @if(auth()->user()->can('transporter'))                      
+                @if(auth()->user()->can('transporter'))
                 <li>
                     <a href="{{route('transporter.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.transport_worker')</span>
@@ -59,11 +59,11 @@
                     </ul>
                     <ul class="vertical-submenu">
                         <li><a href="{{route('admin_filling_request.index')}}">@lang('lang.filling_request')</a></li>
-                       
+
                     </ul>
                     <ul class="vertical-submenu">
                         <li><a href="{{route('pressing-admin-requests.index')}}">@lang('lang.pressing_request')</a></li>
-                       
+
                     </ul>
                 </li>
                 <li>
@@ -101,9 +101,9 @@
                         <li><a href="{{route('forfeit-leaves.index')}}">@lang('lang.view_list_of_employees_in_forfeit_leave')</a></li>
                         @endif
                     </ul>
-                </li> 
-                @endif 
-                @if(auth()->user()->can('suppliers_module.supplier.view'))                      
+                </li>
+                @endif
+                @if(auth()->user()->can('suppliers_module.supplier.view'))
                 <li>
                     <a href="{{route('suppliers.index')}}">
                         <i class="ri-hospital-fill"></i><span>@lang('lang.suppliers')</span>
@@ -141,17 +141,18 @@
                         <li><a href="{{route('screening.index')}}">@lang('lang.screening')</a></li>
                         <li><a href="{{route('branches.index')}}">@lang('lang.branches')</a></li>
                         <li><a href="{{route('stores.index')}}">@lang('lang.stores')</a></li>
+                        <li><a href="{{route('storecategories.index')}}">@lang('lang.store_categories')</a></li>
                         <li><a href="{{route('lab.index')}}">@lang('lang.labs')</a></li>
                         <li><a href="{{route('calibers.index')}}">@lang('lang.calibers')</a></li>
                     </ul>
                 </li> '
-                @if(auth()->user()->can('settings_module.general_settings.view'))                      
+                @if(auth()->user()->can('settings_module.general_settings.view'))
                 <li>
                     <a href="{{route('settings.index')}}">
                         <i class="ri-settings-line"></i><span>{{__('lang.settings')}}</span><span class="new-icon"></span>
                     </a>
-                </li> 
-                @endif                                          
+                </li>
+                @endif
             </ul>
         </div>
         <!-- End Navigationbar -->

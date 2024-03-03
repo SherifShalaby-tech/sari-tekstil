@@ -28,9 +28,24 @@ class FillingAdminRequestsController extends Controller
      */
     public function create()
     {
-        
+        $fillingrequests=FillingRequest::latest()->get();
+        return view('workers.original_stocks.filling_requests.index',compact('fillingrequests'));
     }
 
+    public function filling_requests_submit()
+    {
+        if (!auth()->user()->can('orignal_store_worker')) {
+            abort(403, __('lang.unauthorized_action'));
+        }
+        // $types=Type::latest()->pluck('name','id');
+        // $nationalities=Nationality::latest()->pluck('name','id');
+        // $cars=Cars::latest()->pluck('sku','id');
+        // $opening_requests=OpeningRequest::find($id);
+        // return view('workers.original_stocks.filling_admin_requests.create',compact('types',
+        // 'nationalities','opening_requests','cars'));
+        $fillingrequests=FillingRequest::latest()->get();
+        return view('workers.original_stocks.filling_requests.create',compact('fillingrequests'));
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -97,8 +112,8 @@ class FillingAdminRequestsController extends Controller
                         'percentage'=>$request->percentage[$index],
                         'weight'=>$request->weight[$index],
                         'goods_weight'=>$request->goods_weight[$index],
-              
-                    ]); 
+
+                    ]);
                 }else{
                     CarContents::where('car_id',$request->car_id[$index])
                     ->where('opening_request_id',$request->opening_id[$index])
@@ -109,7 +124,7 @@ class FillingAdminRequestsController extends Controller
                         'goods_weight'=>$request->goods_weight[$index],
                     ]);
                 }
-                
+
             }
 
             $output = [
@@ -124,7 +139,7 @@ class FillingAdminRequestsController extends Controller
             ];
         }
         return redirect()->back()->with('status', $output);
-        
+
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.filling_admin_requests'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -18,12 +18,12 @@
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -34,7 +34,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                
+
                                 <th>@lang('lang.batch_number')</th>
                                 <th>@lang('lang.shipment_number')</th>
                                 <th>@lang('lang.requested_weight')</th>
@@ -68,7 +68,10 @@
                                 <td>{{$request->priority}}</td>
                                 <td>
                                 @foreach($request->opening_request_nationalities as $nationality)
-                                    {{$nationality->car->sku}}<br>
+                                    @if ($nationality->car)
+                                        {{$nationality->car->sku ?? '-'}}<br>
+                                    @endif
+
                                 @endforeach
                                 </td>
                                 <td>

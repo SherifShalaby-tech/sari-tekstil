@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.filling'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -19,11 +19,11 @@
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -36,8 +36,8 @@
                         'enctype' => 'multipart/form-data',
                     ]) !!}
                     <div class="row">
-                       
-                    
+
+
                         <div class="col-md-3">
                             {!! Form::label('type_id', __('lang.type')."*", ['class'=>'h6 pt-3']) !!}
                                 {!! Form::select(
@@ -71,6 +71,14 @@
                                 ['class' => 'form-control sku selectpicker','data-live-search'=>"true",'required','placeholder'=>__('lang.please_select')]
                             ) !!}
                         </div>
+                        <div class="col-md-3">
+                            {!! Form::label('car_weight', __('lang.car_weight'), ['class'=>'h6 pt-3']) !!}
+                            {!! Form::text('car_weight', null, [
+                                'class' => 'form-control car_weight',
+                                'placeholder'=>__('lang.car_weight')
+                            ]) !!}
+                        </div>
+
                         <div class="col-md-3">
                             {!! Form::label('process', __('lang.table')."*", ['class'=>'h6 pt-3']) !!}
                             {!! Form::select(
