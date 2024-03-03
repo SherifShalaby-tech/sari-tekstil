@@ -18,6 +18,11 @@ class ProductionTransaction extends Model
     {
         return $this->hasMany(ProductionTransaction::class);
     }
+    // +++++++++++++++++ transaction_payments() Relationship +++++++++++++++++
+    public function transaction_payments()
+    {
+        return $this->hasMany(ProductionTransactionPayment::class,'production_transaction_id','id');
+    }
     // +++++++++++++++++ customer() Relationship +++++++++++++++++
     public function customer()
     {
@@ -37,6 +42,7 @@ class ProductionTransaction extends Model
     // +++++++++++++++++ created_by_user() Relationship +++++++++++++++++
     public function created_by_user()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
+        // return $this->belongsTo(User::class, 'created_by', 'id');
+        return $this->belongsTo(User::class,'created_by');
     }
 }

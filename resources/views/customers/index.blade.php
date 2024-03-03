@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.customers'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -23,15 +23,15 @@
                 @if(auth()->user()->can('customers_module.customer.create'))
                 <div class="widgetbar">
                     <a href="{{route('customers.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</a>
-                </div>   
-                @endif                     
+                </div>
+                @endif
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -61,14 +61,10 @@
                                 <td>{{$supplier->name}}</td>
                                 <td>{{$supplier->user->name}}</td>
                                 <td>
-                                    @for($i=0;$i<count($supplier->emails);$i++)
-                                    {{$supplier->emails[$i]}}<br>
-                                    @endfor
+                                    {{ $supplier->emails }}
                                 </td>
                                 <td>
-                                    @for($i=0;$i<count($supplier->phones);$i++)
-                                    {{$supplier->phones[$i]}}<br>
-                                    @endfor
+                                    {{$supplier->phones }}
                                 </td>
                                 <td>{{$supplier->country}}</td>
                                 <td>{{$supplier->company_address}}</td>
@@ -101,9 +97,17 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            <li>
-                                                <a href="{{route('customer_dues', $supplier->id)}}" class="btn" target="_blank"><i class="dripicons-document-edit"></i> @lang('lang.dues')</a>
-                                            </li>
+                                            {{-- ++++++++++++ customer dues : متاخرات العميل ++++++++++++ --}}
+                                            @php
+                                                $customer_has_dues = App\Models\ProductionTransaction::where(['customer_id' => $supplier->id,'payment_status' => 'partial'])->count();
+                                            @endphp
+                                            @if( $customer_has_dues > 0 )
+                                                <li>
+                                                    <a href="{{route('customer_dues', $supplier->id)}}" class="btn" target="_blank">
+                                                        <i class="dripicons-document-edit"></i> @lang('lang.dues')
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li class="divider"></li>
                                             @if(auth()->user()->can('customers_module.customer.edit'))
                                             <li>
@@ -131,7 +135,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                      
+
                     </div>
             </div>
             <!-- End col -->

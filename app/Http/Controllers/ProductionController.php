@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Caliber;
 use App\Models\Color;
+use App\Models\Caliber;
 use App\Models\Customer;
+use App\Models\Screening;
 use App\Models\Production;
 use Illuminate\Http\Request;
-use App\Models\FillPressRequest;
 use App\Models\ProductionLine;
+use Illuminate\Support\Carbon;
+use App\Models\FillPressRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProductionTransaction;
 use App\Models\ProductionTransactionPayment;
-use App\Models\Screening;
 
 class ProductionController extends Controller
 {
@@ -133,16 +134,36 @@ class ProductionController extends Controller
             $products = $request->input('products');
             // ++++++++++++++++++++ production_transaction table ++++++++++++++++++++
             // Create a new production_transaction instance and populate it with data from the request
-            $production_transaction = new ProductionTransaction();
+            $production_transaction                     = new ProductionTransaction();
             $production_transaction->store_id           = 1;
             $production_transaction->employee_id        = auth()->user()->id;
             $production_transaction->customer_id        = $request->customer_id;
             $production_transaction->type               = "invoice";
+            $production_transaction->invoice_no         = $this->generateInvoivceNumber();
             $production_transaction->grand_total        = $request->sum_total_cost;
-            $production_transaction->final_total        = $request->sum_total_cost;
             $production_transaction->transaction_date   = now();
             $production_transaction->payment_status     = $request->payment_status;
             $production_transaction->created_by         = auth()->user()->id;
+            // Customer paid less than required amount
+            if($request->customer_paid < $request->amount)
+            {
+                $production_transaction->payment_status = "partial";
+                $production_transaction->status = "partial";
+                $production_transaction->final_total = $request->customer_paid;
+            }
+            // Customer paid equal to required amount
+            elseif($request->customer_paid == $request->amount)
+            {
+                $production_transaction->payment_status = "paid";
+                $production_transaction->status = "final";
+                $production_transaction->final_total = $request->customer_paid;
+            }
+            // Customer paid greater than required amount
+            else{
+                $production_transaction->final_total = $request->sum_total_cost;
+                $production_transaction->payment_status = "paid";
+                $production_transaction->status = "final";
+            }
             // Save the production_transaction to the database
             $production_transaction->save();
 
@@ -167,19 +188,19 @@ class ProductionController extends Controller
                     'production_transaction_id' => $production_transaction->id,
                     'customer_id'               => $request->customer_id ,
                     'amount'                    => $request->amount,
-                    'customer_paid'             => $request->customer_paid,
+                    'customer_paid'             => ($request->customer_paid > $request->amount) ? $request->sum_total_cost : $request->customer_paid,
                     'customer_rest'             => $request->rest_paid,
                     'sum_total_cost'            => $request->sum_total_cost,
                     'payment_type'              => $request->payment_type,
                     'payment_status'            => $request->payment_status,
                     'payment_date'              => $request->payment_date,
                     'notes'                     => $request->notes,
-
                 ];
                 if (!empty($payment_data['amount']))
                 {
                     $payment_data['created_by'] = Auth::user()->id;
-                    $transaction_payment = ProductionTransactionPayment::create($payment_data);
+                    // Create "ProductionTransactionPayment"
+                    ProductionTransactionPayment::create($payment_data);
                 }
                 // +++++++++++++++++++ Update customer Balance +++++++++++++++
                 // Get "customer_id"
@@ -187,7 +208,7 @@ class ProductionController extends Controller
                 // Get "customer_balance"
                 $customer_balance = $request->input('balance');
                 // Get customer data
-                $customer = Customer::find($customer_id);
+                $customer = Customer::findOrFail($customer_id);
                 if ($customer)
                 {
                     // Add the new balance to the existing balance
@@ -288,5 +309,18 @@ class ProductionController extends Controller
             'cash' => __('lang.cash'),
             'visa' => __('lang.visa'),
         ];
+    }
+    // +++++++++++ generateInvoivceNumber() : generate random invoice_number +++++++++++
+    public function generateInvoivceNumber($i = 1)
+    {
+        $month = Carbon::now()->month;
+        $year = Carbon::now()->year;
+
+        $inv_count = ProductionTransaction::all()->count() + $i;
+
+        $invoice_no = 'Inv' . $year . $month . $inv_count;
+
+
+        return $invoice_no;
     }
 }
