@@ -157,6 +157,7 @@
                         <li><a href="{{route('screening.index')}}">@lang('lang.screening')</a></li>
                         <li><a href="{{route('branches.index')}}">@lang('lang.branches')</a></li>
                         <li><a href="{{route('stores.index')}}">@lang('lang.stores')</a></li>
+                        <li><a href="{{route('storecategories.index')}}">@lang('lang.store_categories')</a></li>
                         <li><a href="{{route('lab.index')}}">@lang('lang.labs')</a></li>
                         <li><a href="{{route('calibers.index')}}">@lang('lang.calibers')</a></li>
                         {{-- ++++++++++++ introduction_sheet +++++++++++++ --}}

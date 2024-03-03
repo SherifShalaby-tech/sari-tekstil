@@ -41,6 +41,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VacationTypeController;
 use App\Http\Controllers\WageController;
 use App\Models\IntroductionSheet;
+use App\Http\Controllers\StoreCategoriesController;
 use App\Models\OriginalStock;
 use App\Models\Screening;
 use Illuminate\Support\Facades\Route;
@@ -114,6 +115,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('original-store-worker',OriginalStoreWorkerController::class);
     Route::resource('recieve-shipment-from-supplier',RecieveOriginalStockFromSupplierController::class);
     Route::get('get-cart-weight', [FillingByOriginalStoreController::class,'getCartWeight']);
+    Route::get('get-nationality-weight', [FillingByOriginalStoreController::class,'getnationalitytWeight']);
     Route::resource('original-store-worker-filling',FillingByOriginalStoreController::class);
     Route::resource('admin_opening_request',AdminRequestsController::class);
     Route::get('get-nationality-weight/{id}',[ AdminRequestsController::class,'getWeight']);
@@ -152,6 +154,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('lab',LabsController::class);
     Route::resource('calibers',CalibersController::class);
     Route::get('original-stock-create',[OriginalStockController::class,'create'])->name('original-stock-create');
+    Route::get('/getStores/{branchId}', [StoreCategoriesController::class,'create']);
+    Route::resource('storecategories',StoreCategoriesController::class);
+    Route::get('original-stock-create-store',[OriginalStockController::class,'create_from_another_store'])->name('original-stock-create-store');
+    Route::post('original-stock-create-store',[OriginalStockController::class,'store'])->name('original-stock-store-store');
+
+
 });
 Auth::routes();
 

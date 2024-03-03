@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.screening'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -22,15 +22,15 @@
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#createStoreModal"><i class="ri-add-line align-middle mr-2"></i>Add</button>
-                </div>                        
+                </div>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
-    @include('stores.create')
+    @include('store_categories.create')
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -42,11 +42,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>@lang('lang.name')</th>
-                                <th>@lang('lang.branch')</th>
-                                <th>@lang('lang.phone_number')</th>
-                                <th>@lang('lang.email')</th>
-                                <th>@lang('lang.manager_name')</th>
-                                <th>@lang('lang.location')</th>
+                                <th>@lang('lang.store')</th>
                                 <th>@lang('lang.added_by')</th>
                                 <th>@lang('lang.updated_by')</th>
                                 <th>@lang('lang.action')</th>
@@ -57,11 +53,7 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{$store->name}}</td>
-                                <td>{{$store->branch->name ?? 'NAN'}}</td>
-                                <td>{{$store->phone_number ?? 'NAN'}}</td>
-                                <td>{{$store->email ?? 'NAN'}}</td>
-                                <td>{{$store->manager_name ?? 'NAN'}}</td>
-                                <td>{{$store->location ?? 'NAN'}}</td>
+                                <td>{{$store->store->name ?? 'NAN'}}</td>
                                 <td>
                                     @if ($store->created_by  > 0 and $store->created_by != null)
                                         {{ $store->created_at->diffForHumans() }} <br>

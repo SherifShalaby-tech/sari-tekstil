@@ -6,16 +6,16 @@
     <div class="col-md-2 pt-3">
         {!! Form::label('nationality_id', __('lang.nationality')."*", ['class' => 'h6 ', 'style'=>isset($hideBtn) ? 'display:none;' : '']) !!}
         {!! Form::select('nationality_id[]', $nationalities, isset($f_store)?$f_store->nationality->id:null, [
-            'class' => 'form-control selectpicker','data-live-search'=>"true",
+            'class' => 'form-control selectpicker nationality_id','data-live-search'=>"true",
             'placeholder' => __('lang.please_select'),
             'required'
         ]) !!}
     </div>
     <div class="col-md-2 pt-3">
         {!! Form::label('weight', __('lang.weight'), ['class' => 'h6', 'style'=>isset($hideBtn) ? 'display:none;' : '']) !!}
-        {!! Form::number('weight[]',isset($weight_product)&&!empty($weight_product)?@num_format($weight_product):(isset($f_store)?$f_store->weight:null), [
+        {!! Form::text('weight[]',isset($weight_product)&&!empty($weight_product)?@num_format($weight_product):(isset($f_store)?$f_store->weight:null), [
             'class' => 'form-control weight',
-            
+
             'placeholder' => '0.00',
         ]) !!}
     </div>

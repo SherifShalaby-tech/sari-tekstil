@@ -24,18 +24,38 @@ $(document).on('click','.add_row',function(){
 $(document).on('click','.remove_row',function(){
     $(this).closest('.row').remove()
 });
-$(document).on('change','.sku',function () { 
+$(document).on('change','.sku',function () {
     $.ajax({
         type: "get",
         url: "/get-cart-weight",
         data: {'car_id':$(this).val()},
         success: function (response) {
             console.log(response)
-            $('.weight').val(response);   
+            $('.car_weight').val(response);
         }
     });
 });
-$(document).on('change','.percent',function () { 
-    var actual_weight=($('.net_weight').val()*$(this).val())/100;
-    $(this).closest('.row_weight').find('.actual_weight').val(actual_weight);
+$(document).on('change','.nationality_id',function () {
+    $.ajax({
+        type: "get",
+        url: "/get-nationality-weight",
+        data: {'nationality_id':$(this).val()},
+        success: function (response) {
+            console.log(response)
+            $('.weight').val(response);
+            $('.percent').val(100);
+            $('.actual_weight').val(response);
+            // $(this).closest('.row_weight').find('.weight').val(response);
+        }
+    });
+});
+$(document).on('change','.percent',function () {
+    var actual_weight=($('.weight').val()*$(this).val())/100;
+    $('.actual_weight').val(actual_weight);
+    // $(this).closest('.row_weight').find('.actual_weight').val(actual_weight);
+});
+$(document).on('change','.actual_weight',function () {
+    var percent=(100*$(this).val())/$('.weight').val();
+    $('.percent').val(percent);
+    // $(this).closest('.row_weight').find('.actual_weight').val(actual_weight);
 });

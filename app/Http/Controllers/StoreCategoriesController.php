@@ -7,7 +7,7 @@ use App\Models\StoreCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\Branch;
 class StoreCategoriesController extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class StoreCategoriesController extends Controller
     public function index()
     {
         $stores=StoreCategory::latest()->get();
-        return view('stores.index',compact('stores'));
+        return view('store_categories.index',compact('stores'));
     }
 
     /**
@@ -67,11 +67,13 @@ class StoreCategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        $store = Store::find($id);
+        $branches = Branch::pluck('name', 'id');
+        $store = StoreCategory::find($id);
         $stores = Store::pluck('name', 'id');
-        return view('stores.edit')->with(compact(
+        return view('store_categories.edit')->with(compact(
             'store',
-            'stores'
+            'stores',
+            'branches'
         ));
     }
 
@@ -84,7 +86,7 @@ class StoreCategoriesController extends Controller
             $data = $request->except('_token');
             $data['name'] = $request->name;
             $data['edited_by'] = Auth::user()->id;
-            Store::find($id)->update($data);
+            StoreCategory::find($id)->update($data);
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -96,7 +98,7 @@ class StoreCategoriesController extends Controller
                 'msg' => __('lang.something_went_wrong')
             ];
         }
-      
+
         return redirect()->back()->with('status', $output);
     }
 
@@ -106,7 +108,7 @@ class StoreCategoriesController extends Controller
     public function destroy(string $id)
     {
         try {
-            $store=Store::find($id);
+            $store=StoreCategory::find($id);
             $store->deleted_by=Auth::user()->id;
             $store->save();
             $store->delete();
@@ -123,4 +125,13 @@ class StoreCategoriesController extends Controller
           }
           return $output;
     }
+
+    public function getStores($branchId)
+    {
+        $stores = Store::where('branch_id', $branchId)->pluck('name', 'id');
+        // dd($stores);
+        // Return the stores in JSON format
+        return response()->json($stores);
+    }
+
 }

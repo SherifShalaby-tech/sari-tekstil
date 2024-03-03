@@ -13,6 +13,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\OriginalStock;
 
 class FillingByOriginalStoreController extends Controller
 {
@@ -44,7 +45,7 @@ class FillingByOriginalStoreController extends Controller
     }
     public function generateUniqueBatchNumber() {
         do {
-            $batchNumber = mt_rand(100000, 999999); 
+            $batchNumber = mt_rand(100000, 999999);
             $existingCount = Cars::where('batch_number', $batchNumber)->count();
         } while ($existingCount > 0);
         return $batchNumber;
@@ -75,9 +76,9 @@ class FillingByOriginalStoreController extends Controller
                 CarExtra::create([
                     'cars_id'=>$car->id,
                     'next_employee_id'=>$workers[$i]
-                ]);    
+                ]);
             }
-            
+
 
             $indexs=[];
             if($request->has('nationality_id')){
@@ -93,8 +94,8 @@ class FillingByOriginalStoreController extends Controller
                     'percentage'=>$request->percentage[$index],
                     'weight'=>$request->weight[$index],
                     'goods_weight'=>$request->actual_weight[$index],
-          
-                ]); 
+
+                ]);
                 // $items=[
                 //     'filling_by_original_store_id' => $fill->id,
                 //     'nationality_id' => $request->nationality_id[$index],
@@ -104,7 +105,7 @@ class FillingByOriginalStoreController extends Controller
                 // ];
                 // FillingByOriginalStoreNationality::create($items);
             }
-            
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -171,7 +172,7 @@ class FillingByOriginalStoreController extends Controller
             for($i=0; $i<count($workers);$i++){
                 $car->car_extras()->update([
                     'next_employee_id'=>$workers[$i]
-                ]);    
+                ]);
             }
 
 
@@ -190,10 +191,10 @@ class FillingByOriginalStoreController extends Controller
                     'percentage'=>$request->percentage[$index],
                     'weight'=>$request->weight[$index],
                     'goods_weight'=>$request->actual_weight[$index],
-          
-                ]); 
+
+                ]);
             }
-            
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -232,8 +233,15 @@ class FillingByOriginalStoreController extends Controller
           }
           return $output;
     }
-    
+
     public function getCartWeight(Request $request) {
         return Cars::find($request->car_id)->weight_product;
     }
+
+    public function getnationalitytWeight(Request $request) {
+        $weights = OriginalStock::where('nationality_id', $request->nationality_id)->pluck('actual_weight');
+        $totalWeight = $weights->sum();
+        return $totalWeight;
+    }
+
 }

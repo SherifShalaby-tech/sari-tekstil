@@ -15,7 +15,7 @@ class OriginalStockController extends Controller
      */
     public function index()
     {
-        
+
         return view('original_stock.create');
     }
 
@@ -26,7 +26,14 @@ class OriginalStockController extends Controller
     {
         return view('original_stock.create');
     }
-
+    public function create_from_another_store(Request $request)
+    {
+        $pressing = FillPressRequest::with('press_request')->get();
+        $batch_number=Str::random(8);
+        return view('original_stock.create_from_store')->with(compact(
+            'batch_number'
+        ));
+    }
     /**
      * Store a newly created resource in storage.
      */

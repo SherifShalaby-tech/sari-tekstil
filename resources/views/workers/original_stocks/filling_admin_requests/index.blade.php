@@ -72,7 +72,10 @@
                                 <td>{{$request->priority}}</td>
                                 <td>
                                 @foreach($request->opening_request_nationalities as $nationality)
-                                    {{$nationality->car->sku??''}}<br>
+                                    @if ($nationality->car)
+                                        {{$nationality->car->sku ?? '-'}}<br>
+                                    @endif
+
                                 @endforeach
                                 </td>
                                 <td>

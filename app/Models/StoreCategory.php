@@ -19,8 +19,8 @@ class StoreCategory extends Model
     {
         return $this->belongsTo(User::class, 'edited_by');
     }
-    public function branch()
+    public function store()
     {
-        return $this->belongsTo(Branch::class, 'branch_id');
+        return $this->belongsTo(Store::class, 'store_id');
     }
 }
