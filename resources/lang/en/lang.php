@@ -358,6 +358,8 @@ return [
     'visa' => 'Visa',
     'filter' => 'filter',
     'opening_request' => 'Opening Request',
+    'opening_requests' => 'Opening Requests',
     'admin_requests' => 'Admin Requests',
-    'stock' => 'Stock',
+    'filling_request' => 'Filling Request',
+    'pressing_request' => 'Pressing Request',
 ];
