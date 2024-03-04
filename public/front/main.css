@@ -1,3 +1,7 @@
+.rightbar {
+    background-color: #f8f8f8;
+}
+
 .dropdown-menu .dropdown-item.active span {
     color: black !important;
 }

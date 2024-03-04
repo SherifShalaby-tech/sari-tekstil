@@ -4,21 +4,19 @@
     <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
-            <div class="col-md-8">
-                <div class="media">
-                    <div class="wrapper">
-                        <div class="description">
-                            <h3>@lang('lang.opening_request')</h3>
-                            {{-- <p>Perfect for pages with long titles</p> --}}
-                        </div>
-                        <ul class="breadcrumbs">
-                            <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
-                            </li>
-                            <li><a href="{{ route('admin_opening_request.index') }}">{{ __('lang.opening_request') }}</a>
-                            </li>
-                            <li class="last active"><a href="#">@lang('lang.opening_request')</a></li>
-                        </ul>
+            <div class="media">
+                <div class="wrapper">
+                    <div class="description">
+                        <h3>@lang('lang.opening_request')</h3>
+                        {{-- <p>Perfect for pages with long titles</p> --}}
                     </div>
+                    <ul class="breadcrumbs">
+                        <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
+                        </li>
+                        <li><a href="{{ route('admin_opening_request.index') }}">{{ __('lang.opening_request') }}</a>
+                        </li>
+                        <li class="last active"><a href="#">@lang('lang.opening_request')</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -31,12 +29,13 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12 col-xl-12">
-                <div class="card m-b-30 p-2">
-                    {!! Form::open([
-                        'route' => 'admin_opening_request.store',
-                        'method' => 'post',
-                        'enctype' => 'multipart/form-data',
-                    ]) !!}
+                {!! Form::open([
+                    'route' => 'admin_opening_request.store',
+                    'method' => 'post',
+                    'enctype' => 'multipart/form-data',
+                ]) !!}
+                <div class="card p-2 mb-2">
+
                     <div class="row">
                         <div class="col-md-3 px-4">
                             {!! Form::label('type_id', __('lang.type') . '*', ['class' => 'form-label']) !!}
@@ -47,7 +46,7 @@
                                 'placeholder' => __('lang.please_select'),
                             ]) !!}
                         </div>
-                        <div class="col-md-3 px-4">
+                        <div class="col-md-3 d-flex align-items-end px-4">
                             <div class="form__group field">
                                 {!! Form::number('requested_weight', 0, [
                                     'class' => 'form__field requested_weight',
@@ -57,7 +56,7 @@
                                 {!! Form::label('requested_weight', __('lang.requested_weight') . '*', ['class' => 'form__label']) !!}
                             </div>
                         </div>
-                        <div class="col-md-3 px-4">
+                        <div class="col-md-3 d-flex align-items-end px-4">
                             <div class="form__group field">
                                 {!! Form::text('batch_number', $batch_number, [
                                     'class' => 'form__field',
@@ -67,6 +66,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="card p-2 mb-2">
                     <div class="row">
                         <div class="col-md-3 my-3 title">
                             <h4>@lang('lang.add_nationalities')</h4>
@@ -89,12 +90,13 @@
                             </button>
                         </div>
                     </div>
-                    {!! Form::close() !!}
                 </div>
             </div>
-            <!-- End col -->
+            {!! Form::close() !!}
         </div>
-        <!-- End row -->
+        <!-- End col -->
+    </div>
+    <!-- End row -->
     </div>
     <!-- End Contentbar -->
 @endsection
