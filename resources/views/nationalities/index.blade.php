@@ -4,25 +4,29 @@
     <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
+            <div class="col-md-8">
                 <div class="media">
-                    <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
-                    <div class="media-body">
-                        <h4 class="page-title">{{ __('lang.nationalities') }}</h4>
-                        <div class="breadcrumb-list">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">{{ __('lang.dashboard') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.nationalities')</li>
-                            </ol>
+                    <div class="wrapper">
+                        <div class="description">
+                            <h3>{{ __('lang.nationalities') }}</h3>
                         </div>
+                        <ul class="breadcrumbs">
+                            <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
+                            </li>
+                            <li><a href="#">{{ __('lang.dashboard') }}</a>
+                            </li>
+                            <li class="last active"><a href="#">@lang('lang.nationalities')</a></li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4">
+
+            <div class="col-md-4">
                 @if (auth()->user()->can('settings_module.nationalities.create'))
                     <div class="widgetbar">
-                        <button class="button" data-toggle="modal" data-target="#createNationalityModal">
+
+                        <button class="button" id="centered-toggle-button" onclick="toggleModal()">
                             <div class="button-wrapper">
                                 <div class="text">@lang('lang.add')</div>
                                 <span class="icon">
@@ -46,9 +50,9 @@
         <!-- Start row -->
         <div class="row">
             <!-- Start col -->
-            <div class="col-lg-12 col-xl-12">
+            <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table id="datatable-buttons" class="table table-striped table-bordered" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -68,7 +72,8 @@
                                             {{ $nationality->created_at->diffForHumans() }} <br>
                                             {{ $nationality->created_at->format('Y-m-d') }}
                                             ({{ $nationality->created_at->format('h:i') }})
-                                            {{ $nationality->created_at->format('A') == 'AM' ? __('am') : __('pm') }} <br>
+                                            {{ $nationality->created_at->format('A') == 'AM' ? __('am') : __('pm') }}
+                                            <br>
                                             {{ $nationality->createBy?->name }}
                                         @else
                                             {{ __('no_update') }}
@@ -79,7 +84,8 @@
                                             {{ $nationality->updated_at->diffForHumans() }} <br>
                                             {{ $nationality->updated_at->format('Y-m-d') }}
                                             ({{ $nationality->updated_at->format('h:i') }})
-                                            {{ $nationality->updated_at->format('A') == 'AM' ? __('am') : __('pm') }} <br>
+                                            {{ $nationality->updated_at->format('A') == 'AM' ? __('am') : __('pm') }}
+                                            <br>
                                             {{ $nationality->updateBy?->name }}
                                         @else
                                             {{ __('no_update') }}

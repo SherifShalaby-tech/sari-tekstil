@@ -16,7 +16,7 @@ $('.breadcrumbs li a').each(function () {
         $(this).css('width', 75 + 'px');
 
         $(this).mouseover(function () {
-            $(this).css('width', breadWidth * 1.4 + 'px');
+            $(this).css('width', breadWidth * 1.5 + 'px');
         });
 
         $(this).mouseout(function () {

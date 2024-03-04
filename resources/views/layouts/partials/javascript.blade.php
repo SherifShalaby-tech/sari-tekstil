@@ -45,6 +45,7 @@
     <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
 
     <script src="{{ asset('front/breadcrumbs.js') }}"></script>
+    <script src="{{ asset('front/modal.js') }}"></script>
 
 
     <!-- ++++++ Include Jquery ++++++ -->
