@@ -7,9 +7,18 @@ function toggleModal() {
 }
 
 function closeModal() {
-    const modal = document.getElementById('panel');
+    const modals = document.querySelectorAll('.panel');
+    const overlay = document.querySelector('.overlay');
+    modals.forEach((modal) => {
+        modal.classList.add('off');
+    })
+    overlay.style.display = 'none';
+}
+
+function toggleEditModal(id) {
+    const modal = document.getElementById(`panel${id}`);
     const overlay = document.querySelector('.overlay');
 
-    modal.classList.add('off');
-    overlay.style.display = 'none';
+    modal.classList.toggle('off');
+    overlay.style.display = modal.classList.contains('off') ? 'none' : 'block';
 }

@@ -4,22 +4,21 @@
     <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
+            <div class="col-md-8">
                 <div class="media">
-                    <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
-                    <div class="media-body">
-                        <h4 class="page-title">{{ __('lang.transport_worker') }}</h4>
-                        <div class="breadcrumb-list">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('lang.dashboard') }}</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.transport_worker')</li>
-                            </ol>
+                    <div class="wrapper">
+                        <div class="description">
+                            <h3>{{ __('lang.transport_worker') }}</h3>
+                            {{-- <p>Perfect for pages with long titles</p> --}}
                         </div>
+                        <ul class="breadcrumbs">
+                            <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="last active"><a href="#">@lang('lang.transport_worker')</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- End Breadcrumbbar -->

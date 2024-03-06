@@ -2,6 +2,11 @@
     background-color: #f8f8f8;
 }
 
+button {
+    outline: none;
+    border: none;
+}
+
 .dropdown-menu .dropdown-item.active span {
     color: black !important;
 }
@@ -11,7 +16,8 @@
     font-weight: 400;
     letter-spacing: 1px;
     text-transform: uppercase;
-
+    background-color: #1163991f;
+    border-radius: 6px;
     text-align: center;
     margin: 0;
     white-space: nowrap;
@@ -32,11 +38,10 @@
     content: '';
     display: block;
     position: absolute;
-    right: 0;
+    right: 5%;
     bottom: 0;
     height: 3px;
     width: 30%;
-    margin-bottom: 0.25em;
 }
 
 .bootstrap-select .dropdown-menu li a span.text {
@@ -156,7 +161,9 @@
 
 
 
-.submit-button {
+.submit-button,
+.print-button,
+.delete-button {
     /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace; */
     font-size: 17px;
@@ -187,88 +194,46 @@
 .label {
     position: relative;
     top: -1px;
+}
+
+.submit-button .transition,
+.print-button .transition,
+.delete-button .transition {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 500ms;
+    color: white !important;
+    border-radius: 9999px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.submit-button:hover .transition,
+.print-button:hover .transition,
+.delete-button:hover .transition {
+    width: 14em;
+    height: 14em;
+}
+
+.submit-button:active,
+.print-button:active,
+.delete-button:active {
+    transform: scale(0.97);
 }
 
 .submit-button .transition {
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    transition-duration: 500ms;
-    background-color: #116399;
-    color: white !important;
-    border-radius: 9999px;
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.submit-button:hover .transition {
-    width: 14em;
-    height: 14em;
-}
-
-.submit-button:active {
-    transform: scale(0.97);
-}
-
-
-
-
-
-
-.print-button {
-    /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace; */
-    font-size: 17px;
-    /* padding: 1em 2.7em; */
-    font-weight: 500;
-    background: #1f2937;
-    color: white;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.6em;
-    cursor: pointer;
-}
-
-.gradient {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    border-radius: 0.6em;
-    margin-top: -0.25em;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 0.3));
-}
-
-.label {
-    position: relative;
-    top: -1px;
+    background-color: #28a745;
 }
 
 .print-button .transition {
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    transition-duration: 500ms;
-    background-color: #28a745;
-    color: white !important;
-    border-radius: 9999px;
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background-color: #116399;
 }
 
-.print-button:hover .transition {
-    width: 14em;
-    height: 14em;
-}
-
-.print-button:active {
-    transform: scale(0.97);
+.delete-button .transition {
+    background-color: #dc3545;
 }

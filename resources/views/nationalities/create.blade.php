@@ -1,6 +1,5 @@
 <!-- Modal -->
 <div class="overlay" onclick="closeModal()"></div>
-
 <div id="panel" class="panel off">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleStandardModalLabel">{{ __('lang.add') }}</h5>
@@ -15,7 +14,7 @@
         'id' => 'nationality-form',
     ]) !!}
     <div class="modal-body">
-        <div class="form__group field">
+        <div class="form__group field w-50 m-auto">
             {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
             {!! Form::text('name', null, ['class' => 'form__field', 'placeholder' => __('lang.name'), 'required']) !!}
             {!! Form::label('name', __('lang.name') . '*', [
@@ -27,19 +26,20 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="toggleModal()">@lang('lang.close')</button>
-        <button id="create-nationality-btn" class="btn btn-primary">{{ __('lang.save') }}</button>
+        <button id="create-nationality-btn" type="submit" class="px-3 py-2 submit-button">
+            <span class="transition"></span>
+            <span class="gradient"></span>
+            <span class="label">@lang('lang.save')</span>
+        </button>
+        <div class="px-3 py-2 delete-button" onclick="toggleModal()">
+            <span class="transition"></span>
+            <span class="gradient"></span>
+            <span class="label">@lang('lang.close')</span>
+        </div>
+
     </div>
     {!! Form::close() !!}
 </div>
-
-
-
-
-
-
-
-
 
 
 
