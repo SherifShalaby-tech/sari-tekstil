@@ -18,6 +18,7 @@
             <input type="hidden" name="id" value="{{ $nationality->id }}" />
             {!! Form::text('name', $nationality->name, [
                 'class' => 'form__field',
+                'style' => 'padding: 9px 0 0',
                 'placeholder' => __('lang.name'),
                 'required',
             ]) !!}

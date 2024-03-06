@@ -26,16 +26,16 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button id="create-nationality-btn" type="submit" class="px-3 py-2 submit-button">
+        <button id="create-nationality-btn" type="submit" class="p-3 submit-button">
             <span class="transition"></span>
             <span class="gradient"></span>
             <span class="label">@lang('lang.save')</span>
         </button>
-        <div class="px-3 py-2 delete-button" onclick="toggleModal()">
+        <button type="button" class="p-3 delete-button" onclick="toggleModal()">
             <span class="transition"></span>
             <span class="gradient"></span>
             <span class="label">@lang('lang.close')</span>
-        </div>
+        </button>
 
     </div>
     {!! Form::close() !!}

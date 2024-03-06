@@ -1,47 +1,28 @@
 @extends('layouts.app')
 @section('title', __('lang.nationalities'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <div class="media">
-                    <div class="wrapper">
-                        <div class="description">
-                            <h3>{{ __('lang.nationalities') }}</h3>
-                        </div>
-                        <ul class="breadcrumbs">
-                            <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
-                            </li>
-                            <li><a href="#">{{ __('lang.dashboard') }}</a>
-                            </li>
-                            <li class="last active"><a href="#">@lang('lang.nationalities')</a></li>
 
-                        </ul>
-                    </div>
-                </div>
-            </div>
+@section('page_title')
+    {{ __('lang.nationalities') }}
+@endsection
 
-            <div class="col-md-4">
-                @if (auth()->user()->can('settings_module.nationalities.create'))
-                    <div class="widgetbar">
-                        <button class="button" id="centered-toggle-button" onclick="toggleModal()">
-                            <div class="button-wrapper">
-                                <div class="text">@lang('lang.add')</div>
-                                <span class="icon">
-                                    <i class="fas fa-plus text-white"></i>
-                                </span>
-                            </div>
-                        </button>
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
-
-    <!-- End Breadcrumbbar -->
+@section('breadcrumbs')
+    @parent
+    <li class="last active"><a href="#">@lang('lang.nationalities')</a></li>
     @include('nationalities.create')
 @endsection
+
+@if (auth()->user()->can('settings_module.nationalities.create'))
+    @section('button')
+        <button class="button" id="centered-toggle-button" onclick="toggleModal()">
+            <div class="button-wrapper">
+                <div class="text">@lang('lang.add')</div>
+                <span class="icon">
+                    <i class="fas fa-plus text-white"></i>
+                </span>
+            </div>
+        </button>
+    @endsection
+@endif
 
 @section('content')
     <!-- Start Contentbar -->
