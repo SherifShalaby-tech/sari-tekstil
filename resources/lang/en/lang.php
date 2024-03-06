@@ -361,5 +361,8 @@ return [
     'opening_requests' => 'Opening Requests',
     'admin_requests' => 'Admin Requests',
     'filling_request' => 'Filling Request',
+    'filling_requests' => 'Filling Requests',
     'pressing_request' => 'Pressing Request',
+    'pressing_requests' => 'Pressing Requests',
+    'source' => 'Source',
 ];

@@ -94,6 +94,37 @@
             @include('layouts.partials.topbar')
             <!-- End Topbar -->
             @yield('breadcrumbbar')
+            <!-- Start Breadcrumbbar -->
+            <div class="breadcrumbbar">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="media">
+                            <div class="wrapper">
+                                <div class="description">
+                                    <h3>@yield('page_title')</h3>
+                                    {{-- <p>Perfect for pages with long titles</p> --}}
+                                </div>
+                                <ul class="breadcrumbs">
+                                    @section('breadcrumbs')
+
+                                        <li class="first"><a href="{{ url('/') }}" class=""><i
+                                                    class="fas fa-home"></i></a>
+                                        </li>
+                                    @show
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widgetbar">
+                            @yield('button')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             @yield('content')
             <!-- Start Footerbar -->
             <div class="footerbar no-print">

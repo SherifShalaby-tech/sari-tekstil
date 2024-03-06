@@ -1,40 +1,26 @@
 @extends('layouts.app')
 @section('title', __('lang.opening'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <div class="media">
-                    <div class="wrapper">
-                        <div class="description">
-                            <h3>{{ __('lang.opening_requests') }}</h3>
-                            {{-- <p>Perfect for pages with long titles</p> --}}
-                        </div>
-                        <ul class="breadcrumbs">
-                            <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
-                            </li>
-                            <li class="last active"><a href="#">@lang('lang.opening_requests')</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="widgetbar">
-                    <a class="button" href="{{ route('admin_opening_request.create') }}">
-                        <div class="button-wrapper">
-                            <div class="text">@lang('lang.add')</div>
-                            <span class="icon">
-                                <i class="fas fa-plus text-white"></i>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Breadcrumbbar -->
+
+@section('page_title')
+    {{ __('lang.opening_requests') }}
 @endsection
+
+@section('breadcrumbs')
+    @parent
+    <li class="last active"><a href="#">@lang('lang.opening_requests')</a></li>
+@endsection
+
+@section('button')
+    <a class="button" href="{{ route('admin_opening_request.create') }}">
+        <div class="button-wrapper">
+            <div class="text">@lang('lang.add')</div>
+            <span class="icon">
+                <i class="fas fa-plus text-white"></i>
+            </span>
+        </div>
+    </a>
+@endsection
+
 @section('content')
     <!-- Start Contentbar -->
     <div class="contentbar">

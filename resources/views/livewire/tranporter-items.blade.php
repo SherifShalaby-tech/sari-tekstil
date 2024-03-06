@@ -11,7 +11,6 @@
         <!-- Start col -->
         <div class="col-lg-12">
             <div class="card  p-2 mb-2">
-
                 <div class="table-responsive">
                     <table id="datatable-buttons" class="table table-striped table-bordered ">
                         <thead>

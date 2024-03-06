@@ -1,30 +1,21 @@
 @extends('layouts.app')
 @section('title', __('lang.filling'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
-                <div class="media">
-                    <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
-                    <div class="media-body">
-                        <h4 class="page-title">@lang('lang.filling_request')</h4>
-                        <div class="breadcrumb-list">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('lang.dashboard') }}</a>
-                                </li>
-                                <li class="breadcrumb-item"><a
-                                        href="{{ route('original-store-worker-filling.index') }}">{{ __('lang.filling_request') }}</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.filling_request')</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+@section('page_title')
+    @lang('lang.filling_request')
 @endsection
+
+@section('breadcrumbs')
+    @parent
+    <li><a href="{{ route('original-store-worker-filling.index') }}">{{ __('lang.filling_request') }}</a>
+    </li>
+    <li class="last active"><a href="#">@lang('lang.filling_request')</a></li>
+@endsection
+
+
+
 @section('content')
     <!-- Start Contentbar -->
     <div class="contentbar">
@@ -118,7 +109,7 @@
 @push('javascripts')
     <script src="{{ asset('app-js/filling_request.js') }}"></script>
     {{-- <script>
-      
+
 
     </script> --}}
 @endpush

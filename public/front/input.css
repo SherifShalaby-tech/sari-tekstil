@@ -10,9 +10,9 @@
     border: none !important;
     border-bottom: 2px solid #9b9b9b !important;
     outline: 0;
-    font-size: 17px;
+    font-size: 16px;
     color: #333;
-    padding: 7px 0;
+    padding: 3px 0;
     background: transparent;
     transition: border-color 0.2s;
 }
@@ -22,7 +22,7 @@
 }
 
 .form__field:placeholder-shown~.form__label {
-    font-size: 17px;
+    font-size: 14px;
     cursor: text;
     top: 20px;
 }
@@ -32,7 +32,7 @@
     top: 0;
     display: block;
     transition: 0.2s;
-    font-size: 17px;
+    font-size: 14px;
     color: #7d7d7d;
     pointer-events: none;
 }
@@ -40,7 +40,7 @@
 .form-label {
 
     display: block;
-    font-size: 17px;
+    font-size: 14px;
     color: #9b9b9b;
     pointer-events: none;
     margin-bottom: 0;
@@ -59,7 +59,7 @@
     top: 0;
     display: block;
     transition: 0.2s;
-    font-size: 17px;
+    font-size: 14px;
     color: #38caef;
     font-weight: 700;
 }

@@ -1,34 +1,25 @@
 @extends('layouts.app')
 @section('title', __('lang.opening'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="media">
-                <div class="wrapper">
-                    <div class="description">
-                        <h3>@lang('lang.opening_request')</h3>
-                        {{-- <p>Perfect for pages with long titles</p> --}}
-                    </div>
-                    <ul class="breadcrumbs">
-                        <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
-                        </li>
-                        <li><a href="{{ route('admin_opening_request.index') }}">{{ __('lang.opening_request') }}</a>
-                        </li>
-                        <li class="last active"><a href="#">@lang('lang.opening_request')</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page_title')
+    @lang('lang.opening_request')
 @endsection
+
+@section('breadcrumbs')
+    @parent
+    <li><a href="{{ route('admin_opening_request.index') }}">{{ __('lang.opening_request') }}</a>
+    </li>
+    <li class="last active"><a href="#">@lang('lang.opening_request')</a></li>
+@endsection
+
+
 @section('content')
     <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
             <!-- Start col -->
-            <div class="col-lg-12 col-xl-12">
+            <div class="col-lg-12">
                 {!! Form::open([
                     'route' => 'admin_opening_request.store',
                     'method' => 'post',
@@ -91,8 +82,8 @@
                         </div>
                     </div>
                 </div>
+                {!! Form::close() !!}
             </div>
-            {!! Form::close() !!}
         </div>
         <!-- End col -->
     </div>

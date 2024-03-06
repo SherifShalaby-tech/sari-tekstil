@@ -7,6 +7,10 @@ button {
     border: none;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .dropdown-menu .dropdown-item.active span {
     color: black !important;
 }
