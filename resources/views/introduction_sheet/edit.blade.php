@@ -1,31 +1,13 @@
 @extends('layouts.app')
 @section('title', __('lang.edit_introduction_sheet'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
-                <div class="media">
-                    <span class="breadcrumb-icon">
-                        <i class="ri-store-2-fill"></i>
-                    </span>
-                    <div class="media-body">
-                        <h4 class="page-title">@lang('lang.edit_introduction_sheet')</h4>
-                        <div class="breadcrumb-list">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="{{url('/')}}">{{__('lang.dashboard')}}</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    @lang('lang.edit_introduction_sheet')
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page_title')
+    @lang('lang.edit_introduction_sheet')
+@endsection
+
+@section('breadcrumbs')
+    @parent
+    <li class="last active"><a href="#">@lang('lang.edit_introduction_sheet')</a></li>
 @endsection
 @section('content')
     <div class="contentbar">
@@ -36,7 +18,12 @@
                         <h5 class="card-title">@lang('lang.edit_introduction_sheet')</h5>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => ['introduction-sheet.update',$introductionSheet->id], 'method' => 'post', 'files' => true, 'id' =>'introduction-sheet-form' ]) !!}
+                        {!! Form::open([
+                            'route' => ['introduction-sheet.update', $introductionSheet->id],
+                            'method' => 'post',
+                            'files' => true,
+                            'id' => 'introduction-sheet-form',
+                        ]) !!}
                         @csrf
                         @method('PUT')
                         <div class="form-body">
@@ -45,7 +32,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         {!! Form::label('car_sku', __('lang.car_sku') . ':*') !!}
-                                        {!! Form::text('car_sku', old('car_sku', $introductionSheet->car_sku), ['class' => 'form-control', 'placeholder' => __('lang.sku')]) !!}
+                                        {!! Form::text('car_sku', old('car_sku', $introductionSheet->car_sku), [
+                                            'class' => 'form-control',
+                                            'placeholder' => __('lang.sku'),
+                                        ]) !!}
                                         @error('car_sku')
                                             <label class="text-danger error-msg">{{ $message }}</label>
                                         @enderror
@@ -54,12 +44,11 @@
                                 {{-- +++++++++++++++++++ process_type +++++++++++++++++++ --}}
                                 <div class="col-md-6">
                                     {!! Form::label('process_type', __('lang.process_type'), ['class' => 'h6 pt-3']) !!}
-                                    {!! Form::select(
-                                        'process_type',
-                                        $processes,
-                                        old('process_type', $introductionSheet->process_type),
-                                        ['class' => 'form-control select2 required', 'placeholder' => __('lang.please_select'), 'id' => 'process_type_id']
-                                    ) !!}
+                                    {!! Form::select('process_type', $processes, old('process_type', $introductionSheet->process_type), [
+                                        'class' => 'form-control select2 required',
+                                        'placeholder' => __('lang.please_select'),
+                                        'id' => 'process_type_id',
+                                    ]) !!}
                                     @error('process_type')
                                         <label class="text-danger error-msg">{{ $message }}</label>
                                     @enderror
@@ -83,7 +72,7 @@
                                         'process',
                                         [], // Replace with the actual options from the database
                                         old('process', $introductionSheet->process),
-                                        ['class' => 'form-control select2 required', 'placeholder' => __('lang.please_select'), 'id' => 'process_id']
+                                        ['class' => 'form-control select2 required', 'placeholder' => __('lang.please_select'), 'id' => 'process_id'],
                                     ) !!}
                                     @error('process')
                                         <label class="text-danger error-msg">{{ $message }}</label>
@@ -94,12 +83,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="caliber">@lang('lang.calibars')</label>
-                                        {!! Form::select(
-                                            'caliber',
-                                            $caliber,
-                                            old('caliber', $introductionSheet->caliber),
-                                            ['class' => 'form-control', 'required', 'placeholder' => __('lang.please_select')]
-                                        ) !!}
+                                        {!! Form::select('caliber', $caliber, old('caliber', $introductionSheet->caliber), [
+                                            'class' => 'form-control',
+                                            'required',
+                                            'placeholder' => __('lang.please_select'),
+                                        ]) !!}
                                         @error('caliber')
                                             <label class="text-danger error-msg">{{ $message }}</label>
                                         @enderror
@@ -121,7 +109,8 @@
                                 </div> --}}
                                 {{-- +++++++++++++++++++ save button +++++++++++++++++++ --}}
                                 <div class="col-md-12">
-                                    <button  id="create-nationality-btn" class="btn btn-primary">{{__('lang.save')}}</button>
+                                    <button id="create-nationality-btn"
+                                        class="btn btn-primary">{{ __('lang.save') }}</button>
                                 </div>
                             </div>
                         </div>

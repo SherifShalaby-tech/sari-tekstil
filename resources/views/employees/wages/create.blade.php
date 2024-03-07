@@ -1,21 +1,23 @@
 @extends('layouts.app')
 @section('title', __('lang.add_wages'))
-@section('breadcrumbbar')
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
-                <h4 class="page-title">@lang('lang.add_wages')</h4>
-                <div class="breadcrumb-list">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">@lang('lang.dashboard')</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('wages.index') }}">@lang('lang.wages')</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">@lang('lang.add_wages')</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page_title')
+    @lang('lang.add_wages')
 @endsection
+
+@section('breadcrumbs')
+    @parent
+    <li><a href="{{ route('wages.index') }}">{{ __('lang.wages') }}</a>
+    </li>
+    <li class="last active"><a href="#">@lang('lang.add_wages')</a></li>
+@endsection
+
+
+
+
+
+
+
 @section('content')
     <!-- Start row -->
     <div class="row d-flex justify-content-center">
@@ -90,20 +92,32 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="net_amount">@lang('lang.net_amount')</label>
-                                {!! Form::text('net_amount', null, ['class' => 'form-control', 'placeholder' => __('lang.net_amount'), 'id' => 'net_amount']) !!}
+                                {!! Form::text('net_amount', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => __('lang.net_amount'),
+                                    'id' => 'net_amount',
+                                ]) !!}
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="deductibles">@lang('lang.deductibles')</label>
-                                {!! Form::text('deductibles', null, ['class' => 'form-control', 'placeholder' => __('lang.deductibles'), 'id' => 'deductibles']) !!}
+                                {!! Form::text('deductibles', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => __('lang.deductibles'),
+                                    'id' => 'deductibles',
+                                ]) !!}
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="reasons_of_deductibles">@lang('lang.reasons_of_deductibles')</label>
-                                {!! Form::text('reasons_of_deductibles', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => __('lang.reasons_of_deductibles')]) !!}
+                                {!! Form::text('reasons_of_deductibles', null, [
+                                    'class' => 'form-control',
+                                    'rows' => 3,
+                                    'placeholder' => __('lang.reasons_of_deductibles'),
+                                ]) !!}
                             </div>
                         </div>
                         <div class="col-md-4 account_period">
@@ -117,25 +131,38 @@
                             </div>
                         </div>
 
-           
+
 
                         <input type="hidden" name="amount" id="amount">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="payment_date">@lang('lang.payment_date')</label>
-                                {!! Form::text('payment_date', @format_date(date('Y-m-d')), ['class' => 'form-control datepicker', 'placeholder' => __('lang.payment_date')]) !!}
+                                {!! Form::text('payment_date', @format_date(date('Y-m-d')), [
+                                    'class' => 'form-control datepicker',
+                                    'placeholder' => __('lang.payment_date'),
+                                ]) !!}
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 {!! Form::label('source_of_payment', __('lang.source_of_payment'), []) !!} <br>
-                                {!! Form::select('source_id', $users, null, ['class' => 'select2 form-control', 'placeholder' => __('lang.please_select'), 'id' => 'source_id', 'required']) !!}
+                                {!! Form::select('source_id', $users, null, [
+                                    'class' => 'select2 form-control',
+                                    'placeholder' => __('lang.please_select'),
+                                    'id' => 'source_id',
+                                    'required',
+                                ]) !!}
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 {!! Form::label('source_type', __('lang.source_type'), []) !!} <br>
-                                {!! Form::select('source_type', ['user' => __('lang.user'), 'pos' => __('lang.pos'), 'store' => __('lang.store'), 'safe' => __('lang.safe')], null, ['class' => 'select2 form-control','placeholder' => __('lang.please_select')]) !!}
+                                {!! Form::select(
+                                    'source_type',
+                                    ['user' => __('lang.user'), 'pos' => __('lang.pos'), 'store' => __('lang.store'), 'safe' => __('lang.safe')],
+                                    null,
+                                    ['class' => 'select2 form-control', 'placeholder' => __('lang.please_select')],
+                                ) !!}
                             </div>
                         </div>
                         <div class="col-md-4">
