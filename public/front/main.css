@@ -53,16 +53,16 @@ a {
     color: black !important;
 }
 
-.plus {
+.plus,
+.remove-ci-button,
+.print-ci-button {
     background-color: #fff;
-    color: #116399;
     display: block;
     height: 30px;
     position: relative;
     text-decoration: none;
     width: 30px;
     outline: none;
-    border: 1px solid #116399;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -72,14 +72,33 @@ a {
     transition: color 0.1s;
 }
 
-.plus i {
+.plus {
+    color: #116399;
+    border: 1px solid #116399;
+}
+
+.remove-ci-button {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.print-ci-button {
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.plus i,
+.remove-ci-button i,
+.print-ci-button i {
     position: relative;
     z-index: 1;
 }
 
 
-.plus .inner {
-    background-color: #116399;
+.plus .inner,
+.remove-ci-button .inner,
+.print-ci-button .inner {
+
     display: block;
     height: 0;
     left: 50%;
@@ -96,11 +115,27 @@ a {
     transition: all 0.1s;
 }
 
-.plus:hover {
+.plus .inner {
+    background-color: #116399;
+}
+
+.remove-ci-button .inner {
+    background-color: #dc3545;
+}
+
+.print-ci-button .inner {
+    background-color: #28a745;
+}
+
+.plus:hover,
+.remove-ci-button:hover,
+.print-ci-button:hover {
     color: #fff;
 }
 
-.plus:hover .inner {
+.plus:hover .inner,
+.remove-ci-button:hover .inner,
+.print-ci-button:hover .inner {
     height: 24px;
     margin-left: -12px;
     margin-top: -12px;
@@ -240,4 +275,8 @@ a {
 
 .delete-button .transition {
     background-color: #dc3545;
+}
+
+.bootstrap-select {
+    min-width: 120px !important;
 }

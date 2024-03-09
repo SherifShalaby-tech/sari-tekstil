@@ -12,19 +12,19 @@
 @endsection
 
 @section('button')
-    <button class="button" id="centered-toggle-button" onclick="toggleModal()">
+    {{-- <button class="button" id="centered-toggle-button" onclick="toggleModal()">
         <div class="button-wrapper">
             <div class="text">@lang('lang.add')</div>
             <span class="icon">
                 <i class="fas fa-plus text-white"></i>
             </span>
         </div>
-    </button>
+    </button> --}}
 
-    {{-- <div class="widgetbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createCaliberModal"><i
-                            class="ri-add-line align-middle mr-2"></i>Add</button>
-                </div> --}}
+    <div class="widgetbar">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#createCaliberModal"><i
+                class="ri-add-line align-middle mr-2"></i>Add</button>
+    </div>
 @endsection
 
 

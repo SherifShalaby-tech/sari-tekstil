@@ -23,8 +23,8 @@
 
     <div class="login">
         <div class="container">
-            <div class="card"></div>
-            <div class="card">
+            <div class="login-card"></div>
+            <div class="login-card">
                 <h1 class="title">Login</h1>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

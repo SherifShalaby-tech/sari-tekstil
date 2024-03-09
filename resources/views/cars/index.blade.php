@@ -12,27 +12,21 @@
 @endsection
 
 @section('button')
+    {{-- +++++++++++++++++ انشاء العربة +++++++++++++++++ --}}
     @if (auth()->user()->can('settings_module.cars.create'))
-        <button class="button" id="centered-toggle-button" onclick="toggleModal()">
-            <div class="button-wrapper">
-                <div class="text">@lang('lang.add')</div>
-                <span class="icon">
-                    <i class="fas fa-plus text-white"></i>
-                </span>
-            </div>
-        </button>
+        <div class="widgetbar">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#createCarModal"><i
+                    class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
+        </div>
     @endif
+    &nbsp;&nbsp;&nbsp;
+    {{-- +++++++++++++++++ تخطيط العربة +++++++++++++++++ --}}
     @if (auth()->user()->can('settings_module.cars.create'))
         <div class="widgetbar">
             <a href="{{ route('planning-carts.index') }}" class="btn btn-warning"><i
                     class="ri-add-line align-middle mr-2"></i>@lang('lang.planning_carts')</a>
         </div>
     @endif
-
-    {{-- <div class="widgetbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createCaliberModal"><i
-                            class="ri-add-line align-middle mr-2"></i>Add</button>
-                </div> --}}
 @endsection
 
 

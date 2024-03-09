@@ -12,8 +12,8 @@
     outline: 0;
     font-size: 16px;
     color: #333;
-    padding: 3px 0;
-    background: transparent;
+    padding: 5px 0;
+    background: #eeeeee59;
     transition: border-color 0.2s;
 }
 

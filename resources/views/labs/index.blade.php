@@ -13,7 +13,7 @@
 
 
 @section('button')
-    <button class="btn btn-primary" data-toggle="modal" data-target="#createJobModal"><i
+    <button class="btn btn-primary" data-toggle="modal" data-target="#createLabModal"><i
             class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
 @endsection
 

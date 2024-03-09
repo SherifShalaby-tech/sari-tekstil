@@ -366,4 +366,5 @@ return [
     'pressing_requests' => 'Pressing Requests',
     'source' => 'Source',
     'E-Commerce' => 'E-Commerce',
+    'store_categories' => 'Store Categories',
 ];

@@ -13,14 +13,8 @@
 
 @if (auth()->user()->can('settings_module.colors.create'))
     @section('button')
-        <button class="button" id="centered-toggle-button" onclick="toggleModal()">
-            <div class="button-wrapper">
-                <div class="text">@lang('lang.add')</div>
-                <span class="icon">
-                    <i class="fas fa-plus text-white"></i>
-                </span>
-            </div>
-        </button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#createColorModal"><i
+                class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
     @endsection
 @endif
 
