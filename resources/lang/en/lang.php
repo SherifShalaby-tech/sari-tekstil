@@ -283,7 +283,8 @@ return [
     'print' => 'Print',
     'recent_color' => 'Recent Color',
     'recieve_shipment_from_supplier' => 'Recieve Shipment From Supplier',
-    'original_store_worker' => 'OriginalStore Worker',
+
+    'original_store_worker' => 'Original Store Worker',
     'supplier' => 'Supplier',
     'nationality' => 'Nationality',
     'shipment_weight' => 'Shipment Weight',
@@ -367,4 +368,8 @@ return [
     'source' => 'Source',
     'E-Commerce' => 'E-Commerce',
     'store_categories' => 'Store Categories',
+    'stock' => 'Stock',
+    'original_stock' => 'Original Stock',
+    'original_stock_from_store' => 'Original Stock From Store',
+    'car_weight' => 'Car Weight',
 ];

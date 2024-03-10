@@ -20,18 +20,18 @@
         <!-- Start row -->
         <div class="row">
             <!-- Start col -->
-            <div class="col-lg-12 col-xl-12">
-                <div class="card m-b-30 p-2">
-                    {!! Form::open([
-                        'route' => ['pressing-admin-requests.update', $pressing_request_transaction->id],
-                        'method' => 'put',
-                        'id' => 'filling-request-update-form',
-                    ]) !!}
-                    @csrf
-                    @method('PUT')
+            <div class="col-lg-12">
+                {!! Form::open([
+                    'route' => ['pressing-admin-requests.update', $pressing_request_transaction->id],
+                    'method' => 'put',
+                    'id' => 'filling-request-update-form',
+                ]) !!}
+                @csrf
+                @method('PUT')
+                <div class="card p-2 mb-2">
                     <div class="row">
                         <div class="col-md-3">
-                            {!! Form::label('type_id', __('lang.source') . '*', ['class' => 'h6 pt-3']) !!}
+                            {!! Form::label('type_id', __('lang.source') . '*', ['class' => 'form-label']) !!}
                             {!! Form::select(
                                 'source',
                                 [
@@ -47,13 +47,14 @@
                                 ],
                             ) !!}
                         </div>
-
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 pt-5">
+
+                    <div class="row pt-2">
+                        <div class="col-md-12">
 
                         </div>
                     </div>
+
                     <div class="fillings">
                         @php
                             $index = 1;
@@ -70,30 +71,43 @@
                         @endphp
                         <input type="hidden" value="{{ $index }}" class="row_index" />
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-between mt-2">
                         {{-- <div class="col-md-6 pt-5">
                             {!! Form::label('notes', __( 'lang.notes' )) !!}
                             {!! Form::text('notes', null, ['class' => 'form-control', 'placeholder' => __( 'lang.notes' ),
                             ]);
                             !!}
                         </div> --}}
-                        <div class="col-md-2 pt-5">
-                            {!! Form::label('priority', __('lang.priority')) !!}
-                            {!! Form::text(
-                                'priority',
-                                isset($pressing_request_transaction->priority) ? $pressing_request_transaction->priority : null,
-                                ['class' => 'form-control', 'placeholder' => __('lang.priority')],
-                            ) !!}
+                        <div class="col-md-3">
+                            <div class="form__group field">
+                                {!! Form::text(
+                                    'priority',
+                                    isset($pressing_request_transaction->priority) ? $pressing_request_transaction->priority : null,
+                                    ['class' => 'form__field', 'placeholder' => __('lang.priority')],
+                                ) !!}
+                                {!! Form::label('priority', __('lang.priority'), [
+                                    'class' => 'form__label',
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
-                    <div class="row pt-4">
-                        <div class="col-md-3 pt-5">
-                            <button type="submit" class="btn btn-danger mr-3">@lang('lang.save')</button>
-                            <button type="button" class="btn btn-primary ">@lang('lang.print')</button>
+                    <div class="row mt-4">
+
+                        <div class="col-md-3">
+                            <button type="submit" class="px-3 py-2 submit-button">
+                                <span class="transition"></span>
+                                <span class="gradient"></span>
+                                <span class="label">@lang('lang.save')</span>
+                            </button>
+                            <button type="button" class="px-3 py-2 print-button">
+                                <span class="transition"></span>
+                                <span class="gradient"></span>
+                                <span class="label">@lang('lang.print')</span>
+                            </button>
                         </div>
                     </div>
-                    {!! Form::close() !!}
                 </div>
+                {!! Form::close() !!}
             </div>
             <!-- End col -->
         </div>
