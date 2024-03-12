@@ -1,5 +1,5 @@
 function toggleModal() {
-    const modal = document.getElementById('panel');
+    const modal = document.getElementById('form-panel');
     const overlay = document.querySelector('.overlay');
 
     modal.classList.toggle('off');
@@ -7,7 +7,7 @@ function toggleModal() {
 }
 
 function closeModal() {
-    const modals = document.querySelectorAll('.panel');
+    const modals = document.querySelectorAll('.form-panel');
     const overlay = document.querySelector('.overlay');
     modals.forEach((modal) => {
         modal.classList.add('off');
@@ -16,7 +16,7 @@ function closeModal() {
 }
 
 function toggleEditModal(id) {
-    const modal = document.getElementById(`panel${id}`);
+    const modal = document.getElementById(`form-panel${id}`);
     const overlay = document.querySelector('.overlay');
 
     modal.classList.toggle('off');

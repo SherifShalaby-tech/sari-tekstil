@@ -1,4 +1,4 @@
-<div id="panel{{ $nationality->id }}" class="panel off">
+<div id="form-panel{{ $nationality->id }}" class="form-panel off">
 
     <div class="modal-header">
         <h5 class="modal-title" id="exampleStandardModalLabel">{{ __('lang.edit') }}</h5>

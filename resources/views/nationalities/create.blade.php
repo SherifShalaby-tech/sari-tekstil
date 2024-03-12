@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="overlay" onclick="closeModal()"></div>
-<div id="panel" class="panel off">
+<div id="form-panel" class="form-panel off">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleStandardModalLabel">{{ __('lang.add') }}</h5>
         <button type="button" class="modal_close" onclick="toggleModal()" aria-label="Close">

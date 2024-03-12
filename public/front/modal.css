@@ -91,7 +91,7 @@ button.modal_close span.cross:after {
     z-index: 99;
 }
 
-.panel {
+.form-panel {
     width: 500px;
     background: white;
     border: 1px solid #ccc;
@@ -122,7 +122,7 @@ button.modal_close span.cross:after {
 }
 
 
-.panel.off {
+.form-panel.off {
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -50%) scale(0.2);
@@ -143,39 +143,39 @@ button.modal_close span.cross:after {
 }
 
 @supports (offset-rotate: 0deg) {
-    .panel {
+    .form-panel {
         offset-rotate: 0deg;
         offset-path: path("M 250,100 S -300,500 -700,-200");
     }
 
-    .panel.off {
+    .form-panel.off {
         offset-distance: 100%;
     }
 }
 
 @media (prefers-reduced-motion) {
-    .panel {
+    .form-panel {
         offset-path: none;
     }
 }
 
-.panel h2 {
+.form-panel h2 {
     border-bottom: 1px solid #ccc;
     padding: 1rem;
     margin: 0;
 }
 
-.panel .content {
+.form-panel .content {
     padding: 1rem;
 }
 
-.panel .actions {
+.form-panel .actions {
     border-top: 1px solid #ccc;
     background: #eee;
     padding: 0.5rem 1rem;
 }
 
-.panel .actions button {
+.form-panel .actions button {
     border: 0;
     background: #78f89f;
     border-radius: 5px;

@@ -13,8 +13,16 @@
 
 @if (auth()->user()->can('settings_module.fills.create'))
     @section('button')
-        <button class="btn btn-primary" data-toggle="modal" data-target="#createFillModal"><i
-                class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button>
+        <button class="button" id="centered-toggle-button" onclick="toggleModal()">
+            <div class="button-wrapper">
+                <div class="text">@lang('lang.add')</div>
+                <span class="icon">
+                    <i class="fas fa-plus text-white"></i>
+                </span>
+            </div>
+        </button>
+        {{-- <button class="btn btn-primary" data-toggle="modal" data-target="#createFillModal"><i
+                class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</button> --}}
     @endsection
 @endif
 
@@ -75,10 +83,9 @@
                                                 style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                 @if (auth()->user()->can('settings_module.fills.edit'))
                                                     <li>
-                                                        <a data-href="{{ route('fills.edit', $fill->id) }}"
-                                                            data-container=".view_modal" class="btn btn-modal"
-                                                            data-toggle="modal"><i class="dripicons-document-edit"></i>
-                                                            @lang('lang.update')</a>
+                                                        <button onclick="toggleEditModal({{ $fill->id }})"><i
+                                                                class="dripicons-document-edit"></i>
+                                                            @lang('lang.update')</button>
                                                     </li>
                                                 @endif
                                                 <li class="divider"></li>
@@ -93,6 +100,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @include('fills.edit')
                             @endforeach
                         </tbody>
                     </table>
