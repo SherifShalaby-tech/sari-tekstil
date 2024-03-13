@@ -1,7 +1,7 @@
 <div id="form-panel{{ $car->id }}" class="form-panel off">
     <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">{{ __('lang.edit') }}</h5>
-        <button type="button" class="modal_close" onclick="toggleEditModal({{ $nationality->id }})" aria-label="Close">
+        <button type="button" class="modal_close" onclick="toggleEditModal({{ $car->id }})" aria-label="Close">
             <span class="cross" aria-hidden="true"></span>
         </button>
     </div>

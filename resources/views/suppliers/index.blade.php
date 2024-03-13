@@ -1,37 +1,5 @@
 @extends('layouts.app')
 @section('title', __('lang.suppliers'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8 col-lg-8">
-                <div class="media">
-                    <span class="breadcrumb-icon"><i class="ri-store-2-fill"></i></span>
-                    <div class="media-body">
-                        <h4 class="page-title">{{ __('lang.suppliers') }}</h4>
-                        <div class="breadcrumb-list">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">{{ __('lang.dashboard') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@lang('lang.suppliers')</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4">
-                @if (auth()->user()->can('suppliers_module.supplier.create'))
-                    <div class="widgetbar">
-                        <a href="{{ route('suppliers.create') }}" class="btn btn-primary"><i
-                                class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</a>
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
-    <!-- End Breadcrumbbar -->
-@endsection
-
 
 
 

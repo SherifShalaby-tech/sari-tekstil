@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ asset('front/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('front/breadcrumbs.css') }}">
     <link rel="stylesheet" href="{{ asset('front/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/navbar.css') }}">
 
     <style>
         /* input:not([type=file], [type=search]), */
