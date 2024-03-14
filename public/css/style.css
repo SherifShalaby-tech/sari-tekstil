@@ -35318,6 +35318,7 @@ mark {
     margin-right: 3px;
 }
 
+/*
 .vertical-menu .vertical-submenu>li>a:before {
     content: "";
     font-family: "remixicon" !important;
@@ -35325,7 +35326,7 @@ mark {
     line-height: 10px;
     padding-right: 5px;
     vertical-align: middle;
-}
+} */
 
 .vertical-menu .vertical-submenu>li>a.active {
     color: #1ba4fd;

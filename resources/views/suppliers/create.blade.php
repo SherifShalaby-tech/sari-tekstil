@@ -12,6 +12,18 @@
     <li class="last active"><a href="#">@lang('lang.add_suppliers')</a></li>
 @endsection
 
+@push('css')
+    <style>
+        .form__label {
+            top: 18px !important;
+        }
+
+        .form__field:focus+.form__label {
+            top: -10px !important;
+        }
+    </style>
+@endpush
+
 
 @section('content')
     <!-- Start Contentbar -->
@@ -29,7 +41,6 @@
                     <div class="row">
                         <div class="col-md-3 d-flex align-items-end px-4">
                             <div class="form__group">
-
                                 {!! Form::text('name', null, [
                                     'class' => 'form__field required',
                                 ]) !!}
@@ -65,7 +76,7 @@
                 </div>
                 <div class="card p-2 mb-2">
                     <div class="row">
-                        <div class="col-md-3 mb-2 title">
+                        <div class="col-md-3 mb-3 title">
                             <h4>@lang('lang.phone_numbers')</h4>
                         </div>
                     </div>
@@ -99,7 +110,7 @@
                 </div>
                 <div class="card p-2 mb-2">
                     <div class="row">
-                        <div class="col-md-3 mb-2 title">
+                        <div class="col-md-3 mb-3 title">
                             <h4>@lang('lang.bank_acount_details')</h4>
                         </div>
                     </div>
@@ -132,7 +143,7 @@
                 </div>
                 <div class="card p-2 mb-2">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             {!! Form::label('address', __('lang.address'), ['class' => 'form-label']) !!}
                             {!! Form::textarea('address', null, [
                                 'class' => 'form-control',
