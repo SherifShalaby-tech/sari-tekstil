@@ -27,7 +27,7 @@
                         : null),
                 [
                     'class' => 'form__field weight',
-
+            
                     'placeholder' => '0.00',
                 ],
             ) !!}
@@ -66,6 +66,6 @@
     </div>
     <div class="col-md-1  text-center">
         <button type="button" style="{{ !isset($hideBtn) || (isset($index) && $index == 0) ? 'display:none;' : '' }}"
-            class=" remove remove_row"><i class="fa fa-close"></i></button>
+            class=" remove remove_row"><span class="inner"></span><i class="fa fa-close"></i></button>
     </div>
 </div>

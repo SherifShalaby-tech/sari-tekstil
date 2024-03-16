@@ -12,12 +12,6 @@
     <li class="last active"><a href="#">@lang('lang.add_wages')</a></li>
 @endsection
 
-
-
-
-
-
-
 @section('content')
     <!-- Start row -->
     <div class="row d-flex justify-content-center">

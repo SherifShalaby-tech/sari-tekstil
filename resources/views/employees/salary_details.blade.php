@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="salary_details" tabindex="-1" role="dialog" aria-labelledby="salary_detailsLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog  modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,41 +15,70 @@
                         <div class="form-group">
                             <div class="i-checks" style="margin-top: 40px">
                                 <input id="fixed_wage" name="fixed_wage" type="checkbox" value="1"
-                                       @if (!empty($employee->fixed_wage)) checked @endif
-                                       class="form-control-custom salary_checkbox">
+                                    @if (!empty($employee->fixed_wage)) checked @endif
+                                    class="form-control-custom salary_checkbox">
                                 <label for="fixed_wage"><strong>@lang('lang.enter_the_fixed_wage')</strong></label>
-                                {!! Form::text('fixed_wage_value', !empty($employee->fixed_wage_value) ? $employee->fixed_wage_value : null, ['class' => 'form-control salary_fields', 'placeholder' => __('lang.enter_the_fixed_wage')]) !!}
+                                {!! Form::text('fixed_wage_value', !empty($employee->fixed_wage_value) ? $employee->fixed_wage_value : null, [
+                                    'class' => 'form-control salary_fields',
+                                    'placeholder' => __('lang.enter_the_fixed_wage'),
+                                ]) !!}
                             </div>
                         </div>
-                        {!! Form::select('payment_cycle', $payment_cycle, !empty($employee->payment_cycle) ? $employee->payment_cycle : null, ['class' => 'form-control salary_select select2',  'placeholder' => __('lang.select_payment_cycle')]) !!}
+                        {!! Form::select(
+                            'payment_cycle',
+                            $payment_cycle,
+                            !empty($employee->payment_cycle) ? $employee->payment_cycle : null,
+                            ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_payment_cycle')],
+                        ) !!}
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="i-checks" style="margin-top: 40px">
                                 <input id="commission" name="commission" type="checkbox" value="1"
-                                       @if (!empty($employee->commission)) checked @endif
-                                       class="form-control-custom salary_checkbox">
+                                    @if (!empty($employee->commission)) checked @endif
+                                    class="form-control-custom salary_checkbox">
                                 <label for="commission"><strong>@lang('lang.enter_the_commission_%')</strong></label>
-                                {!! Form::text('commission_value', !empty($employee->commission_value) ? $employee->commission_value : null, ['class' => 'form-control salary_fields', 'placeholder' => __('lang.enter_the_commission_%')]) !!}
+                                {!! Form::text('commission_value', !empty($employee->commission_value) ? $employee->commission_value : null, [
+                                    'class' => 'form-control salary_fields',
+                                    'placeholder' => __('lang.enter_the_commission_%'),
+                                ]) !!}
                             </div>
                         </div>
-                        {!! Form::select('commission_type', $commission_type, !empty($employee->commission_type) ? $employee->commission_type : null, ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_type')]) !!}
+                        {!! Form::select(
+                            'commission_type',
+                            $commission_type,
+                            !empty($employee->commission_type) ? $employee->commission_type : null,
+                            ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_type')],
+                        ) !!}
                         <br>
                         <br>
-                        {!! Form::select('commision_calculation_period', $commission_calculation_period, !empty($employee->commision_calculation_period) ? $employee->commision_calculation_period : null, ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_calculation_period')]) !!}
+                        {!! Form::select(
+                            'commision_calculation_period',
+                            $commission_calculation_period,
+                            !empty($employee->commision_calculation_period) ? $employee->commision_calculation_period : null,
+                            ['class' => 'form-control salary_select select2', 'placeholder' => __('lang.select_commission_calculation_period')],
+                        ) !!}
                         <br>
                         <br>
-                        {!! Form::label('commission_over_daily_target', __('lang.commission_over_daily_target'), ['class'=>'h6 pt-3']) !!}
-                        {!! Form::text('commission_over_daily_target', !empty($employee->commission_over_daily_target) ? $employee->commission_over_daily_target : null, [
-                            'class' => 'form-control required',
-                            'placeholder'=>__('lang.commission_over_daily_target')
-                        ]) !!}
+                        {!! Form::label('commission_over_daily_target', __('lang.commission_over_daily_target'), ['class' => 'h6 pt-3']) !!}
+                        {!! Form::text(
+                            'commission_over_daily_target',
+                            !empty($employee->commission_over_daily_target) ? $employee->commission_over_daily_target : null,
+                            [
+                                'class' => 'form-control required',
+                                'placeholder' => __('lang.commission_over_daily_target'),
+                            ],
+                        ) !!}
                         <br>
-                        {!! Form::label('discount_over_daily_target', __('lang.discount_over_daily_target'), ['class'=>'h6 pt-3']) !!}
-                        {!! Form::text('discount_over_daily_target',!empty($employee->discount_over_daily_target) ? $employee->discount_over_daily_target : null, [
-                            'class' => 'form-control required',
-                            'placeholder'=>__('lang.discount_over_daily_target')
-                        ]) !!}
+                        {!! Form::label('discount_over_daily_target', __('lang.discount_over_daily_target'), ['class' => 'h6 pt-3']) !!}
+                        {!! Form::text(
+                            'discount_over_daily_target',
+                            !empty($employee->discount_over_daily_target) ? $employee->discount_over_daily_target : null,
+                            [
+                                'class' => 'form-control required',
+                                'placeholder' => __('lang.discount_over_daily_target'),
+                            ],
+                        ) !!}
                         {{-- {!! Form::label('commissioned_products', __('lang.products') . ':', ['class' => 'text-muted']) !!}
                         {!! Form::select('commissioned_products[]', $products, !empty($employee->commissioned_products) ? $employee->commissioned_products : null, ['class' => 'form-control salary_select select2', 'multiple','placehoder'=>__('lang.please_select'), 'data-actions-box' => 'true']) !!} --}}
                         {{-- <br>
@@ -63,14 +92,25 @@
                         <br>
                         <br>
                         {!! Form::label('commission_cashiers', __('lang.cashiers') . ':', ['class' => 'text-muted']) !!}
-                        {!! Form::select('comission_cashier[]', $cashiers, !empty($employee->commission_cashiers) ? $employee->commission_cashiers : null, ['class' => 'form-control salary_select select2', 'multiple','placehoder'=>__('lang.please_select'), 'data-actions-box' => 'true']) !!}
+                        {!! Form::select(
+                            'comission_cashier[]',
+                            $cashiers,
+                            !empty($employee->commission_cashiers) ? $employee->commission_cashiers : null,
+                            [
+                                'class' => 'form-control salary_select select2',
+                                'multiple',
+                                'placehoder' => __('lang.please_select'),
+                                'data-actions-box' => 'true',
+                            ],
+                        ) !!}
 
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">@lang('lang.save')</button>
-                <button type="button" class="btn btn-secondary salary_cancel" data-dismiss="modal">@lang('lang.close')</button>
+                <button type="button" class="btn btn-secondary salary_cancel"
+                    data-dismiss="modal">@lang('lang.close')</button>
             </div>
         </div>
     </div>

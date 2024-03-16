@@ -164,6 +164,20 @@
                 });
         });
     </script>
+
+    {{-- <script>
+        $('.menubar').on('click', function() {
+            $('.side_bar_title').toggleClass('d-none');
+        })
+        $('.leftbar').on('mouseenter', function() {
+            $('.side_bar_title').addClass('d-block');
+
+        })
+        $('.leftbar').on('mouseleave', function() {
+            $('.side_bar_title').addClass('d-none');
+
+        })
+    </script> --}}
 </body>
 
 </html>
