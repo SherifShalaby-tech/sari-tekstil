@@ -58,12 +58,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 mb-2 title">
-                            <h4>@lang('lang.add_nationalities')</h4>
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 mb-2 title">
+                        <h4>@lang('lang.add_nationalities')</h4>
                     </div>
+                </div>
+                <div class="card p-2 mb-2">
                     <div class="nationalities">
                         @foreach ($Opening_request_nationality as $index => $Opening_request_nat)
                             @include('admin.partials.add_nationalities')

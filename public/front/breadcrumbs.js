@@ -23,6 +23,4 @@ $('.breadcrumbs li a').each(function () {
             $(this).css('width', 75 + 'px');
         });
     }
-
-
 });

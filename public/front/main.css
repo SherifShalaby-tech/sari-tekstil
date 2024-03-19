@@ -288,3 +288,100 @@ a {
 .sidebar {
     background-color: #f7f7f7;
 }
+
+#datatable-buttons_wrapper .row:first-child {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    top: 2px !important;
+    background-color: #f7f7f7;
+    padding: 7px 0;
+    margin: 0;
+    border-radius: 8px;
+    border: 2px solid #d5d5d5;
+}
+
+#datatable-buttons_wrapper .row:nth-child(3) {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    top: 91% !important;
+    background-color: #f7f7f7;
+    padding: 7px 0;
+    margin: 0;
+    border-radius: 8px;
+    border: 2px solid #d5d5d5;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    padding: 0 !important;
+}
+
+#datatable-buttons_wrapper .row .col-md-6:first-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+#datatable-buttons_wrapper .row .col-md-6:first-child #datatable-buttons_length label {
+    font-size: 14px;
+    color: #116399;
+    margin-bottom: 0;
+}
+
+#datatable-buttons_wrapper .row .col-md-6:first-child .dt-buttons a {
+    background-color: #28a745;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#datatable-buttons_wrapper .row .col-md-6:first-child .dt-buttons a:hover {
+    background-color: #38caef;
+}
+
+
+
+#datatable-buttons_wrapper .row:nth-child(2) {
+    position: relative;
+    z-index: 9999;
+}
+
+
+.paginate_button {
+    margin: 0 2px;
+}
+
+.paginate_button.previous a {
+    background-color: #28a745 !important;
+    color: white !important;
+    border-radius: 4px !important;
+}
+
+.paginate_button.next a {
+    background-color: #38caef !important;
+    color: white !important;
+    border-radius: 4px !important;
+}
+
+.paginate_button.previous.disabled a {
+    background-color: #116399 !important;
+    color: white !important;
+    border-radius: 4px !important;
+}
+
+.paginate_button.next.disabled a {
+    background-color: #116399 !important;
+    color: white !important;
+    border-radius: 4px !important;
+}
+
+.paginate_button.active a {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-radius: 4px !important;
+    border: 1px solid #dc3545 !important;
+}

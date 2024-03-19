@@ -46,6 +46,11 @@
 
     <script src="{{ asset('front/breadcrumbs.js') }}"></script>
     <script src="{{ asset('front/modal.js') }}"></script>
+    <script src="{{ asset('front/table-scroll.js') }}"></script>
+    <script src="{{ asset('front/loading.js') }}"></script>
+    <script src="{{ asset('front/theme-switcher.js') }}"></script>
+    <script src="{{ asset('front/drop-down1.js') }}"></script>
+    <script src="{{ asset('front/drop-down2.js') }}"></script>
 
 
     <!-- ++++++ Include Jquery ++++++ -->

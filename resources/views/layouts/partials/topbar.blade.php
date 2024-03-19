@@ -177,6 +177,45 @@
                              </div>
                          </div>
                      </li>
+                     <li class="list-inline-item">
+                         <div class="profilebar">
+                             <div class="dropdown">
+                                 <a class="dropdown-toggle" href="#" role="button" id="profilelink"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                         src="{{ asset('images/users/profile.svg') }}" class="img-fluid"
+                                         alt="profile"><span class="live-icon"></span></a>
+                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
+                                     <a class="dropdown-item" href="#"><i class="ri-user-6-line"></i>My
+                                         Profile</a>
+
+                                     <a class="dropdown-item" href="#"> <label for="light"
+                                             class="visually-hidden">Light</label>
+                                         <input type="radio" name="theme" id="light" checked>
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label for="pink" class="visually-hidden">Pink theme</label>
+                                         <input type="radio" id="pink" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label for="blue" class="visually-hidden">Blue theme</label>
+                                         <input type="radio" id="blue" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label for="green" class="visually-hidden">Green theme</label>
+                                         <input type="radio" id="green" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label for="dark" class="visually-hidden">Dark theme</label>
+                                         <input type="radio" id="dark" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <h1>Test Theme Switcher</h1>
+                                     </a>
+                                 </div>
+
+                             </div>
+                         </div>
+                     </li>
                  </ul>
              </div>
          </div>

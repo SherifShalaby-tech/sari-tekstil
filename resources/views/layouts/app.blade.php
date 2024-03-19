@@ -22,6 +22,11 @@
 </head>
 
 <body class="vertical-layout">
+
+    <div class="loading-background">
+    </div>
+
+
     <!-- Start Infobar Setting Sidebar -->
     <div id="infobar-settings-sidebar" class="infobar-settings-sidebar no-print">
         <div class="infobar-settings-sidebar-head d-flex w-100 justify-content-between">
@@ -125,18 +130,28 @@
 
 
 
-            @yield('content')
+            <div class="animate-in-page">
+                @yield('content')
+            </div>
+
             <!-- Start Footerbar -->
-            <div class="footerbar no-print">
+            {{-- <div class="footerbar no-print">
                 <footer class="footer">
                     <p class="mb-0">© 2023 {{ $settings['site_title'] }}- {{ __('lang.developed_by') }}:
                         {{ $settings['developed_by'] }} - All Rights Reserved.</p>
                 </footer>
-            </div>
+            </div> --}}
             <!-- End Footerbar -->
         </div>
         <!-- End Rightbar -->
     </div>
+
+
+
+
+    <div class="bg-start"></div>
+
+
     <!-- End Containerbar -->
     @include('layouts.partials.javascript')
     @livewireScripts
@@ -178,6 +193,49 @@
 
         })
     </script> --}}
+
+    <script>
+        function loadingHandler(className, route) {
+            var num = 15;
+
+            var modalBtn = document.querySelector(`.${className}`);
+
+            var loadingBackground = document.querySelector('.loading-background');
+            var holdModals = document.createDocumentFragment();
+
+            for (var i = 0; i < num; i++) {
+                var div = document.createElement('div');
+                div.classList.add('modal-drop');
+                div.style.top = Math.floor((Math.random() * 100)) + 'vh';
+                div.style.left = Math.floor((Math.random() * 100)) + 'vw';
+                div.style.transitionDelay = Math.random() + 's';
+                holdModals.appendChild(div);
+            }
+            loadingBackground.appendChild(holdModals);
+
+            modalBtn.addEventListener('click', function() {
+                loadingBackground.style.display = 'block';
+                window.setTimeout(function() {
+                    loadingBackground.classList.add('active');
+
+                }, 0.01);
+                window.setTimeout(function() {
+
+                    window.location.href = route;
+                }, 1000);
+
+            });
+
+            closeBtn.addEventListener('click', function() {
+                loadingBackground.classList.remove('active');
+
+                window.setTimeout(function() {
+                    loadingBackground.style.display = 'none';
+                }, 3000);
+            });
+        }
+        loadingHandler('transporter-button', "{{ route('transporter.index') }}")
+    </script>
 </body>
 
 </html>

@@ -68,7 +68,7 @@
                 @endif
                 @if (auth()->user()->can('transporter'))
                     <li>
-                        <a href="{{ route('transporter.index') }}">
+                        <button class="transporter-button">
                             <div class="d-flex align-items-center" style="gap: 10px">
                                 <div style="width: 18px">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -127,7 +127,7 @@
                                 </div>
                                 <span class="side_bar_title">@lang('lang.transport_worker')</span>
                             </div>
-                        </a>
+                        </button>
                     </li>
                 @endif
                 @if (auth()->user()->can('orignal_store_worker'))
@@ -918,6 +918,7 @@
                     </li>
                 @endif
             </ul>
+            {{--  --}}
         </div>
         <!-- End Navigationbar -->
     </div>

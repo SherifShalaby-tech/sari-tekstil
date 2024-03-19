@@ -1,32 +1,21 @@
 @extends('layouts.app')
 @section('title', __('lang.transport_worker'))
-@section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <div class="media">
-                    <div class="wrapper">
-                        <div class="description">
-                            <h3>{{ __('lang.transport_worker') }}</h3>
-                            {{-- <p>Perfect for pages with long titles</p> --}}
-                        </div>
-                        <ul class="breadcrumbs">
-                            <li class="first"><a href="{{ url('/') }}" class=""><i class="fas fa-home"></i></a>
-                            </li>
-                            <li class="last active"><a href="#">@lang('lang.transport_worker')</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Breadcrumbbar -->
+
+@section('page_title')
+    {{ __('lang.transport_worker') }}
 @endsection
+
+@section('breadcrumbs')
+    @parent
+    <li class="last active"><a href="#">@lang('lang.transport_worker')</a></li>
+@endsection
+
 @section('content')
     <!-- Start Contentbar -->
-    <div class="contentbar">
-        <livewire:tranporter-items />
+    <div class="animate-in-page">
+        <div class="contentbar">
+            <livewire:tranporter-items />
+        </div>
     </div>
     <!-- End Contentbar -->
 @endsection

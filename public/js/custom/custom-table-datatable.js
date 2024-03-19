@@ -4,42 +4,42 @@
 ---------------------------------------
 */
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     /* -- Table - Datatable -- */
     $('#datatable').DataTable({
         responsive: true
     });
-    $('#default-datatable').DataTable( {
-        "order": [[ 3, "desc" ]],
+    $('#default-datatable').DataTable({
+        "order": [[3, "desc"]],
         responsive: true
-    } );  
+    });
     var table = $('#datatable-buttons-scroll').DataTable({
         dom: '<"top"lB><"bottom"frtip>',
-        lengthMenu: [10, 25, 50, 75, 100,200,300,400],
-        pageLength: 10 ,
+        lengthMenu: [10, 25, 50, 75, 100, 200, 300, 400],
+        pageLength: 10,
         buttons:
             ['copy', 'csv', 'excel', 'pdf',
-            {
-            extend: 'print',
-            exportOptions: {
-                columns: ":visible:not(.notexport)"
-            }
-        }],
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ":visible:not(.notexport)"
+                    }
+                }],
     });
     var table = $('#datatable-buttons').DataTable({
-        "order": [[ 3, "desc" ]],
+        "order": [[3, "desc"]],
         responsive: true,
-        dom: '<"top"lB><"bottom"frtip>',
-        lengthMenu: [10, 25, 50, 75, 100,200,300,400],
-        pageLength: 10 ,
+        // dom: '<"top"lB><"bottom"frtip>',
+        lengthMenu: [10, 25, 50, 75, 100, 200, 300, 400],
+        pageLength: 10,
         buttons:
             ['copy', 'csv', 'excel', 'pdf',
-            {
-            extend: 'print',
-            exportOptions: {
-                columns: ":visible:not(.notexport)"
-            }
-        }],
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ":visible:not(.notexport)"
+                    }
+                }],
     });
     table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 });

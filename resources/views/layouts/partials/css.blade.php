@@ -37,7 +37,12 @@
     <link rel="stylesheet" href="{{ asset('front/breadcrumbs.css') }}">
     <link rel="stylesheet" href="{{ asset('front/login.css') }}">
     <link rel="stylesheet" href="{{ asset('front/navbar.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('front/table-scroll.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/loading.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/theme-switcher.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/drop-down.css') }}">
+    {{-- animate.css --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         /* input:not([type=file], [type=search]), */
         textarea,

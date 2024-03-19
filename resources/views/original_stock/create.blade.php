@@ -17,11 +17,11 @@
         <!-- Start row -->
         <div class="row">
             <!-- Start col -->
-            <div class="col-lg-12 col-xl-12">
-                <div class="card m-b-30 p-2">
-                    <div class="container">
-                        <livewire:add-original-stock />
-                    </div>
+            <div class="col-lg-12">
+                <div class="card p-2 my-2">
+
+                    <livewire:add-original-stock />
+
                 </div>
             </div>
         </div>

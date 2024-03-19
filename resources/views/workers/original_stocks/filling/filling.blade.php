@@ -95,34 +95,37 @@
                             ]) !!}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3 mb-2 title">
-                            <h4>@lang('lang.add_nationalities')</h4>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-2 title">
+                        <h4>@lang('lang.add_nationalities')</h4>
                     </div>
+                </div>
+                <div class="card p-2 mb-2">
                     <div class="nationalities">
                         @include('workers.original_stocks.partials.add_nationalities')
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-md-3">
-                            <button type="submit" class="px-3 py-2 submit-button">
-                                <span class="transition"></span>
-                                <span class="gradient"></span>
-                                <span class="label">@lang('lang.save')</span>
-                            </button>
-                            <button type="button" class="px-3 py-2 print-button">
-                                <span class="transition"></span>
-                                <span class="gradient"></span>
-                                <span class="label">@lang('lang.print')</span>
-                            </button>
-                        </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3">
+                        <button type="submit" class="px-3 py-2 submit-button">
+                            <span class="transition"></span>
+                            <span class="gradient"></span>
+                            <span class="label">@lang('lang.save')</span>
+                        </button>
+                        <button type="button" class="px-3 py-2 print-button">
+                            <span class="transition"></span>
+                            <span class="gradient"></span>
+                            <span class="label">@lang('lang.print')</span>
+                        </button>
                     </div>
                 </div>
-                {!! Form::close() !!}
             </div>
-            <!-- End col -->
+            {!! Form::close() !!}
         </div>
-        <!-- End row -->
+        <!-- End col -->
+    </div>
+    <!-- End row -->
     </div>
     <!-- End Contentbar -->
 @endsection
