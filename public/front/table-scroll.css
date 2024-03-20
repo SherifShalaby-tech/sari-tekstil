@@ -25,11 +25,11 @@
 
 
 .wrapper1 {
-    margin-top: 40px;
+    margin-top: 28px;
 }
 
 .wrapper2 {
-    margin-bottom: 62px;
+    margin-bottom: 36px;
 }
 
 @media(max-width:767px) {
@@ -51,7 +51,7 @@
 
 
 th {
-    padding: 10px 25px !important;
+    padding: 8px 25px !important;
     font-weight: 700 !important;
     font-size: 11px !important;
     width: fit-content !important;
@@ -60,6 +60,7 @@ th {
     color: #fff !important;
     background-color: #596fd7 !important;
     text-transform: uppercase;
+    border-radius: 4px;
 }
 
 thead tr {
@@ -75,4 +76,16 @@ thead tr {
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.disp-block {
+    display: block;
+}
+
+.disp-none {
+    display: none;
+}
+
+.leftbar:hover .side_bar_title {
+    display: block;
 }

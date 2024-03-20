@@ -37,7 +37,7 @@
              <div class="togglebar">
                  <ul class="list-inline mb-0">
                      <li class="list-inline-item">
-                         <div class="menubar" onclick="toggleButtons()">
+                         <div class="menubar">
                              <a class="menu-hamburger" href="javascript:void();">
                                  <i class="ri-menu-2-line menu-hamburger-collapse"></i>
                                  <i class="ri-close-line menu-hamburger-close"></i>

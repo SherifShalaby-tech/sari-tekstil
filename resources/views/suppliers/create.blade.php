@@ -12,17 +12,6 @@
     <li class="last active"><a href="#">@lang('lang.add_suppliers')</a></li>
 @endsection
 
-@push('css')
-    <style>
-        .form__label {
-            top: 18px !important;
-        }
-
-        .form__field:focus+.form__label {
-            top: -10px !important;
-        }
-    </style>
-@endpush
 
 
 @section('content')

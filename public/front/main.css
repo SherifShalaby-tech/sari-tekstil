@@ -289,6 +289,27 @@ a {
     background-color: #f7f7f7;
 }
 
+
+/* table */
+
+
+table {
+    border-collapse: separate !important;
+    border-spacing: 2px !important;
+    margin: 0;
+    /* Adjust this value to change the gap size */
+}
+
+
+table.table-bordered.dataTable tbody td {
+    color: #343434;
+    padding: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px !important;
+}
+
 #datatable-buttons_wrapper .row:first-child {
     position: absolute;
     z-index: 1;
@@ -297,11 +318,17 @@ a {
     width: 100%;
     top: 2px !important;
     background-color: #f7f7f7;
-    padding: 7px 0;
+    padding: 2px 0;
     margin: 0;
     border-radius: 8px;
     border: 2px solid #d5d5d5;
+    align-items: center;
 }
+
+#datatable-buttons_wrapper .row:first-child .col-md-4 div label {
+    margin: 0;
+}
+
 
 #datatable-buttons_wrapper .row:nth-child(3) {
     position: absolute;
@@ -309,38 +336,44 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    top: 91% !important;
+    top: 93% !important;
     background-color: #f7f7f7;
-    padding: 7px 0;
+    padding: 0;
     margin: 0;
     border-radius: 8px;
     border: 2px solid #d5d5d5;
+    align-items: center;
 }
 
 div.dataTables_wrapper div.dataTables_info {
     padding: 0 !important;
 }
 
-#datatable-buttons_wrapper .row .col-md-6:first-child {
+#datatable-buttons_wrapper .row .col-md-8:first-child {
     display: flex;
     justify-content: space-between;
 }
 
-#datatable-buttons_wrapper .row .col-md-6:first-child #datatable-buttons_length label {
+#datatable-buttons_wrapper .row .col-md-8:first-child #datatable-buttons_length label {
     font-size: 14px;
     color: #116399;
     margin-bottom: 0;
 }
 
-#datatable-buttons_wrapper .row .col-md-6:first-child .dt-buttons a {
+#datatable-buttons_wrapper .row .col-md-8:first-child .dt-buttons a {
     background-color: #28a745;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 21px;
+    margin: 0px 3px;
+    border-radius: 8px;
+    font-size: 14px;
 }
 
-#datatable-buttons_wrapper .row .col-md-6:first-child .dt-buttons a:hover {
+#datatable-buttons_wrapper .row .col-md-8:first-child .dt-buttons a:hover {
     background-color: #38caef;
+    border-color: #38caef;
 }
 
 
@@ -350,9 +383,20 @@ div.dataTables_wrapper div.dataTables_info {
     z-index: 9999;
 }
 
+#datatable-buttons_wrapper .row:nth-child(2) .col-sm-12 {
+    padding: 0 !important;
+}
+
+#datatable-buttons_wrapper .row:nth-child(3) .col-md-5 div {
+    font-size: 14px !important;
+}
 
 .paginate_button {
     margin: 0 2px;
+}
+
+.paginate_button a {
+    padding: 5px !important;
 }
 
 .paginate_button.previous a {
@@ -384,4 +428,12 @@ div.dataTables_wrapper div.dataTables_info {
     color: white !important;
     border-radius: 4px !important;
     border: 1px solid #dc3545 !important;
+    transition: 0.6s;
+}
+
+.paginate_button.active a:hover {
+    background-color: #7e1f28 !important;
+    color: white !important;
+    border-radius: 4px !important;
+    border: 1px solid #7e1f28 !important;
 }

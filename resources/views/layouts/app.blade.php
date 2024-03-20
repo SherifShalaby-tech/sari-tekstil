@@ -130,9 +130,9 @@
 
 
 
-            <div class="animate-in-page">
-                @yield('content')
-            </div>
+            {{-- <div class="animate-in-page"> --}}
+            @yield('content')
+            {{-- </div> --}}
 
             <!-- Start Footerbar -->
             {{-- <div class="footerbar no-print">
@@ -196,7 +196,7 @@
 
     <script>
         function loadingHandler(className, route) {
-            var num = 15;
+            var num = 5;
 
             var modalBtn = document.querySelector(`.${className}`);
 
@@ -234,7 +234,16 @@
                 }, 3000);
             });
         }
-        loadingHandler('transporter-button', "{{ route('transporter.index') }}")
+        loadingHandler('suppliers-button', "{{ route('suppliers.index') }}");
+    </script>
+    <script>
+        loadingHandler('transporter-button', "{{ route('transporter.index') }}");
+    </script>
+    <script>
+        loadingHandler('customers-button', "{{ route('customers.index') }}");
+    </script>
+    <script>
+        loadingHandler('settings-button', "{{ route('settings.index') }}");
     </script>
 </body>
 

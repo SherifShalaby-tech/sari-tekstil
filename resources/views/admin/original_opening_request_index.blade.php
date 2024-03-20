@@ -78,33 +78,37 @@
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    <div class="cd-dropdown-wrapper">
+                                                    {{-- <div class="cd-dropdown-wrapper">
 
                                                         <a class="cd-dropdown-trigger" href="#0">خيارات</a>
 
-                                                        {{-- <button fill="button"
+                                                        <div class="cd-dropdown">
+                                                            <ul class="cd-dropdown-content"> --}}
+                                                    <div class="btn-group">
+                                                        <button fill="button"
                                                             class="btn btn-default btn-sm dropdown-toggle"
                                                             data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">خيارات
                                                             <span class="caret"></span>
                                                             <span class="sr-only">Toggle Dropdown</span>
-                                                        </button> --}}
-                                                        <div class="cd-dropdown">
-                                                            <ul class="cd-dropdown-content">
-                                                                <li>
-                                                                    <a data-href="{{ route('admin_opening_request.destroy', $opiningRequest->id) }}"
-                                                                        class=" delete_item"><i class="fa fa-trash"></i>
-                                                                        @lang('lang.delete')</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="{{ route('admin_opening_request.edit', $opiningRequest->id) }}"><i
-                                                                            class="dripicons-document-edit"></i>
-                                                                        @lang('lang.update')</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                        </button>
+                                                        <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default"
+                                                            user="menu" x-placement="bottom-end"
+                                                            style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                            <li>
+                                                                <a data-href="{{ route('admin_opening_request.destroy', $opiningRequest->id) }}"
+                                                                    class=" delete_item"><i class="fa fa-trash"></i>
+                                                                    @lang('lang.delete')</a>
+                                                            </li>
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('admin_opening_request.edit', $opiningRequest->id) }}"><i
+                                                                        class="dripicons-document-edit"></i>
+                                                                    @lang('lang.update')</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
+
                                                 </td>
                                             </tr>
                                         @endforeach

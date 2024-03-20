@@ -75,10 +75,10 @@ html {
 body {
     font-family: "Lato", sans-serif;
     margin: 0;
-    background: #ffffff;
+
     font-size: 15px;
     font-weight: 400;
-    color: #8A98AC;
+
     line-height: 1.5;
 }
 
@@ -171,7 +171,6 @@ code {
 
 .logobar {
     padding: 15px 0;
-    margin-bottom: 15px;
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -204,6 +203,8 @@ code {
 .contentbar {
     padding: 10px;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
 }
 
 .footerbar {
@@ -35163,6 +35164,19 @@ mark {
     padding: 0;
 }
 
+.vertical-menu>li>button {
+    padding: 5px 20px;
+    display: block;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #f7f7f7;
+    border-top: 1px solid #f7f7f7;
+    color: #181a39;
+    transition: 0.2s;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .vertical-menu>li>a {
     padding: 5px 20px;
     display: block;
@@ -35171,6 +35185,8 @@ mark {
     border-top: 1px solid #f7f7f7;
     color: #181a39;
     transition: 0.2s;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .vertical-menu>li>a>i {
@@ -35664,7 +35680,7 @@ mark {
     background-color: #ffffff;
     padding: 15px 30px;
     position: fixed;
-    z-index: 1;
+    z-index: 9;
     left: 250px;
     right: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);

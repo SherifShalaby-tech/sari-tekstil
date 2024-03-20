@@ -41,5 +41,5 @@ $(document).ready(function () {
                     }
                 }],
     });
-    table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+    table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-8:eq(0)');
 });

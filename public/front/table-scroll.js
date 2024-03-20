@@ -26,12 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // #######################################
 // fix side bar
-$(document).on("click", ".buttons-collection", function () {
-    if (!$(this).hasClass('toggleVisColList')) {
-        $(this).addClass('toggleVisColList')
-    }
+$('.menubar').on("click", function () {
+    $('.side_bar_title').toggleClass('disp-none', 'disp-block')
+})
 
-})
-$(document).on("click", ".toggleVisColList", function () {
-    $('.dt-button-collection').toggle()
-})

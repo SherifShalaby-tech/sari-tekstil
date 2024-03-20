@@ -66,6 +66,7 @@
                         </ul>
                     </li>
                 @endif
+
                 @if (auth()->user()->can('transporter'))
                     <li>
                         <button class="transporter-button">
@@ -620,7 +621,8 @@
                 @endif
                 @if (auth()->user()->can('suppliers_module.supplier.view'))
                     <li>
-                        <a href="{{ route('suppliers.index') }}">
+                        <button class="suppliers-button">
+
                             <div class="d-flex align-items-center" style="gap: 10px">
                                 <div style="width: 18px">
                                     <svg version="1.1" id="ecommerce_1_" xmlns="http://www.w3.org/2000/svg" x="0"
@@ -779,12 +781,12 @@
                                 </div>
                                 <span class="side_bar_title">@lang('lang.suppliers')</span>
                             </div>
-                        </a>
+                        </button>
                     </li>
                 @endif
                 @if (auth()->user()->can('customers_module.customer.view'))
                     <li>
-                        <a href="{{ route('customers.index') }}">
+                        <button class="customers-button">
                             <div class="d-flex align-items-center" style="gap: 10px">
                                 <div style="width: 18px">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999"
@@ -821,7 +823,7 @@
                                 </div>
                                 <span class="side_bar_title">@lang('lang.customers')</span>
                             </div>
-                        </a>
+                        </button>
                     </li>
                 @endif
                 <li>
@@ -889,7 +891,7 @@
                 </li>
                 @if (auth()->user()->can('settings_module.general_settings.view'))
                     <li>
-                        <a href="{{ route('settings.index') }}">
+                        <button class="settings-button">
                             <div class="d-flex align-items-center" style="gap: 10px">
 
                                 <div style="width: 18px">
@@ -914,7 +916,7 @@
                                 <span class="side_bar_title">{{ __('lang.settings') }}</span>
                             </div>
                             {{-- <span class="new-icon"></span> --}}
-                        </a>
+                        </button>
                     </li>
                 @endif
             </ul>
