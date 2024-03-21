@@ -1,9 +1,10 @@
 <!-- Modal -->
+<div class="edit-overlay" onclick="closeEditModal($type->id)"></div>
 <div id="form-panel{{ $type->id }}" class="form-panel off">
 
     <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">{{ __('lang.edit') }}</h5>
-        <button type="button" class="modal_close" onclick="toggleEditModal({{ $type->id }})" aria-label="Close">
+        <button type="button" class="modal_close" onclick="closeEditModal({{ $type->id }})" aria-label="Close">
             <span class="cross" aria-hidden="true"></span>
         </button>
     </div>
@@ -33,7 +34,7 @@
             <span class="gradient"></span>
             <span class="label">@lang('lang.save')</span>
         </button>
-        <div class="px-3 py-2 delete-button" onclick="toggleEditModal({{ $type->id }})">
+        <div class="px-3 py-2 delete-button" onclick="closeEditModal({{ $type->id }})">
             <span class="transition"></span>
             <span class="gradient"></span>
             <span class="label">@lang('lang.close')</span>

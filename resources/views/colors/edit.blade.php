@@ -1,8 +1,10 @@
 <!-- Modal -->
+
+<div class="edit-overlay" onclick="closeEditModal($type->id)"></div>
 <div id="form-panel{{ $color->id }}" class="form-panel off">
     <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">{{ __('lang.edit') }}</h5>
-        <button type="button" class="modal_close" onclick="toggleEditModal({{ $color->id }})" aria-label="Close">
+        <button type="button" class="modal_close" onclick="closeEditModal({{ $color->id }})" aria-label="Close">
             <span class="cross" aria-hidden="true"></span>
         </button>
     </div>
@@ -32,7 +34,7 @@
             <span class="gradient"></span>
             <span class="label">@lang('lang.save')</span>
         </button>
-        <div class="px-3 py-2 delete-button" onclick="toggleEditModal({{ $color->id }})">
+        <div class="px-3 py-2 delete-button" onclick="closeEditModal({{ $color->id }})">
             <span class="transition"></span>
             <span class="gradient"></span>
             <span class="label">@lang('lang.close')</span>
@@ -40,6 +42,5 @@
     </div>
     {!! Form::close() !!}
 </div>
-</div>
-</div>
+
 {!! JsValidator::formRequest('App\Http\Requests\UpdateColorRequest', '#color-update-form') !!}

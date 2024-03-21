@@ -60,9 +60,9 @@
                             {{-- <i class="ri-arrow-right-s-line"></i> --}}
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a href="{{ route('squeeze.index') }}">@lang('lang.compression_request_form_admin')</a></li>
-                            <li><a href="{{ route('tying-bales.index') }}">@lang('lang.tying_bales')</a></li>
-                            <li><a href="{{ route('automatic-squeeze.index') }}">@lang('lang.automatic_squeeze')</a></li>
+                            <li><button class="submenu__button squeeze-button">@lang('lang.compression_request_form_admin')</button></li>
+                            <li><button class="submenu__button tying-bales-button">@lang('lang.tying_bales')</button></li>
+                            <li><button class="submenu__button automatic-squeeze-button">@lang('lang.automatic_squeeze')</button></li>
                         </ul>
                     </li>
                 @endif
@@ -274,14 +274,19 @@
                             </div>
                         </a>
                         <ul class="vertical-submenu">
-                            {{-- <li><a href="{{route('original-store-worker.fill')}}">@lang('lang.filling')</a></li> --}}
-                            <li><a href="{{ route('original-store-worker-filling.index') }}">@lang('lang.filling')</a>
+
+                            <li><button class="submenu__button original-store-worker-filling-button">
+                                    @lang('lang.filling')</button>
                             </li>
-                            <li><a href="{{ route('original-store-worker.index') }}">@lang('lang.store_worker_recieve_original')</a></li>
-                            <li><a href="{{ route('recieve-shipment-from-supplier.index') }}">@lang('lang.recieve_shipment_from_supplier')</a>
+                            <li><button class="submenu__button original-store-worker-button">@lang('lang.store_worker_recieve_original')</button>
                             </li>
-                            <li><a href="{{ route('filling-admin-requests.index') }}">@lang('lang.filling_admin_requests')</a></li>
-                            <li><a href="form-layouts.html">Layouts</a></li>
+                            <li><button class="submenu__button recieve-shipment-from-supplier-button">
+                                    @lang('lang.recieve_shipment_from_supplier')</button>
+                            </li>
+                            <li><button class="submenu__button filling-admin-requests-button">
+                                    @lang('lang.filling_admin_requests')</button>
+                            </li>
+                            <li><button class="submenu__button form-layouts-button">Layouts</button></li>
                         </ul>
                     </li>
                 @endif
@@ -356,14 +361,17 @@
                         </div>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('admin_opening_request.index') }}">@lang('lang.opening_request')</a></li>
-                    </ul>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('admin_filling_request.index') }}">@lang('lang.filling_request')</a></li>
+                        <li>
+                            <button class="submenu__button admin_opening_request-button">
+                                @lang('lang.opening_request')</button>
+                        </li>
 
-                    </ul>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('pressing-admin-requests.index') }}">@lang('lang.pressing_request')</a></li>
+                        <li><button class="submenu__button admin_filling_request-button">
+                                @lang('lang.filling_request')</button></li>
+                        <li><button class="submenu__button pressing-admin-requests-button">
+                                @lang('lang.pressing_request')
+                            </button>
+                        </li>
 
                     </ul>
                 </li>
@@ -448,8 +456,10 @@
                         </div>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('original-stock-create') }}">@lang('lang.original_stock')</a></li>
-                        <li><a href="chart-c3.html">@lang('lang.original_stock_from_store')</a></li>
+                        <li><button class="submenu__button original-stock-create-button">
+                                @lang('lang.original_stock')</button></li>
+                        <li><button class="submenu__button chart-c3-button">
+                                @lang('lang.original_stock_from_store')</button></li>
                     </ul>
                 </li>
                 {{-- +++++++++++++++++++++++ production : الانتاج +++++++++++++++ --}}
@@ -515,11 +525,11 @@
                         </div>
                     </a>
                     <ul class="vertical-submenu">
-                        <li>
-                            <a href="{{ route('production.index') }}">@lang('lang.production')</a>
+                        <li><button class="submenu__button production-button">
+                                @lang('lang.production')</button>
                         </li>
-                        <li>
-                            <a href="{{ route('production_invoices.index') }}">عرض فواتير الانتاج</a>
+                        <li><button class="submenu__button production_invoices-button">
+                                عرض فواتير الانتاج</button>
                         </li>
                     </ul>
                 </li>
@@ -597,24 +607,41 @@
                             </div>
                         </a>
                         <ul class="vertical-submenu">
-                            <li><a href="{{ route('employees.index') }}">@lang('lang.employees')</a></li>
+                            <li>
+                                <button class="submenu__button employees-button">
+                                    @lang('lang.employees')</button>
+                            </li>
                             @if (auth()->user()->can('employees_module.jobs.view'))
-                                <li><a href="{{ route('jobs.index') }}">@lang('lang.jobs')</a></li>
+                                <li>
+                                    <button class="submenu__button jobs-button">
+                                        @lang('lang.jobs')</button>
+                                </li>
                             @endif
                             @if (auth()->user()->can('employees_module.leave_types.view'))
-                                <li><a href="{{ route('leave_types.index') }}">@lang('lang.vacation_types')</a></li>
+                                <li>
+                                    <button class="submenu__button leave_types-button">
+                                        @lang('lang.vacation_types')</button>
+                                </li>
                             @endif
                             @if (auth()->user()->can('employees_module.wages.view'))
-                                <li><a href="{{ route('wages.index') }}">@lang('lang.wages')</a></li>
+                                <li><button class="submenu__button wages-button">
+                                        @lang('lang.wages')</button>
+                                </li>
                             @endif
                             @if (auth()->user()->can('employees_module.attendance.view'))
-                                <li><a href="{{ route('attendance.index') }}">@lang('lang.attendance')</a></li>
+                                <li><button class="submenu__button attendance-button">
+
+                                        @lang('lang.attendance')</button></li>
                             @endif
                             @if (auth()->user()->can('employees_module.leaves.view'))
-                                <li><a href="{{ route('leaves.index') }}">@lang('lang.view_list_of_employees_in_leave')</a></li>
+                                <li>
+                                    <button class="submenu__button leaves-button">
+                                        @lang('lang.view_list_of_employees_in_leave')</button>
+                                </li>
                             @endif
                             @if (auth()->user()->can('employees_module.forfeit_leaves.view'))
-                                <li><a href="{{ route('forfeit-leaves.index') }}">@lang('lang.view_list_of_employees_in_forfeit_leave')</a></li>
+                                <li><button class="submenu__button forfeit-leaves-button">
+                                        @lang('lang.view_list_of_employees_in_forfeit_leave')</button></li>
                             @endif
                         </ul>
                     </li>
@@ -864,29 +891,50 @@
                     </a>
                     <ul class="vertical-submenu">
                         @if (auth()->user()->can('settings_module.nationalities.view'))
-                            <li><a href="{{ route('nationality.index') }}">@lang('lang.nationalities')</a></li>
+                            <li>
+                                <button class="submenu__button nationality-button">
+                                    @lang('lang.nationalities')</button>
+                            </li>
                         @endif
                         @if (auth()->user()->can('settings_module.types.view'))
-                            <li><a href="{{ route('types.index') }}">@lang('lang.types')</a></li>
+                            <li>
+                                <button class="submenu__button types-button">
+                                    @lang('lang.types')</button>
+                            </li>
                         @endif
                         @if (auth()->user()->can('settings_module.colors.view'))
-                            <li><a href="{{ route('colors.index') }}">@lang('lang.colors')</a></li>
+                            <li>
+                                <button class="submenu__button colors-button">
+                                    @lang('lang.colors')</button>
+                            </li>
                         @endif
                         @if (auth()->user()->can('settings_module.fills.view'))
-                            <li><a href="{{ route('fills.index') }}">@lang('lang.fills')</a></li>
+                            <li>
+                                <button class="submenu__button fills-button">
+                                    @lang('lang.fills')</button>
+                            </li>
                         @endif
                         @if (auth()->user()->can('settings_module.cars.view'))
-                            <li><a href="{{ route('cars.index') }}">@lang('lang.cars')</a></li>
+                            <li><button class="submenu__button cars-button">
+                                    @lang('lang.cars')</button></li>
                         @endif
-                        <li><a href="{{ route('opening.index') }}">@lang('lang.opening')</a></li>
-                        <li><a href="{{ route('screening.index') }}">@lang('lang.screening')</a></li>
-                        <li><a href="{{ route('branches.index') }}">@lang('lang.branches')</a></li>
-                        <li><a href="{{ route('stores.index') }}">@lang('lang.stores')</a></li>
-                        <li><a href="{{ route('storecategories.index') }}">@lang('lang.store_categories')</a></li>
-                        <li><a href="{{ route('lab.index') }}">@lang('lang.labs')</a></li>
-                        <li><a href="{{ route('calibers.index') }}">@lang('lang.calibers')</a></li>
+                        <li><button class="submenu__button opening-button">
+                                @lang('lang.opening')</button></li>
+                        <li><button class="submenu__button screening-button">
+                                @lang('lang.screening')</button></li>
+                        <li><button class="submenu__button branches-button">
+                                @lang('lang.branches')</button></li>
+                        <li><button class="submenu__button stores-button">
+                                @lang('lang.stores')</button></li>
+                        <li><button class="submenu__button storecategories-button">
+                                @lang('lang.store_categories')</button></li>
+                        <li><button class="submenu__button lab-button">
+                                @lang('lang.labs')</button></li>
+                        <li><button class="submenu__button calibers-button">
+                                @lang('lang.calibers')</button></li>
                         {{-- ++++++++++++ introduction_sheet +++++++++++++ --}}
-                        <li><a href="{{ route('introduction-sheet.index') }}">@lang('lang.introduction_sheet')</a></li>
+                        <li><button class="submenu__button introduction-sheet-button">
+                                @lang('lang.introduction_sheet')</button></li>
                     </ul>
                 </li>
                 @if (auth()->user()->can('settings_module.general_settings.view'))

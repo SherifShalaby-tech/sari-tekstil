@@ -196,19 +196,21 @@
 
     <script>
         function loadingHandler(className, route) {
-            var num = 5;
+            var num = 18;
 
             var modalBtn = document.querySelector(`.${className}`);
-
             var loadingBackground = document.querySelector('.loading-background');
             var holdModals = document.createDocumentFragment();
+
+            // Remove existing modals
+            loadingBackground.innerHTML = '';
 
             for (var i = 0; i < num; i++) {
                 var div = document.createElement('div');
                 div.classList.add('modal-drop');
                 div.style.top = Math.floor((Math.random() * 100)) + 'vh';
                 div.style.left = Math.floor((Math.random() * 100)) + 'vw';
-                div.style.transitionDelay = Math.random() + 's';
+                div.style.transitionDelay = 0.02 + 's';
                 holdModals.appendChild(div);
             }
             loadingBackground.appendChild(holdModals);
@@ -217,33 +219,65 @@
                 loadingBackground.style.display = 'block';
                 window.setTimeout(function() {
                     loadingBackground.classList.add('active');
-
                 }, 0.01);
                 window.setTimeout(function() {
-
                     window.location.href = route;
                 }, 1000);
-
             });
 
-            closeBtn.addEventListener('click', function() {
-                loadingBackground.classList.remove('active');
-
-                window.setTimeout(function() {
-                    loadingBackground.style.display = 'none';
-                }, 3000);
-            });
+            // Assuming you have a close button with class 'close-btn'
+            var closeBtn = document.querySelector('.close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    loadingBackground.classList.remove('active');
+                    window.setTimeout(function() {
+                        loadingBackground.style.display = 'none';
+                    }, 3000);
+                });
+            }
         }
+
         loadingHandler('suppliers-button', "{{ route('suppliers.index') }}");
-    </script>
-    <script>
         loadingHandler('transporter-button', "{{ route('transporter.index') }}");
-    </script>
-    <script>
         loadingHandler('customers-button', "{{ route('customers.index') }}");
+        loadingHandler('settings-button', "{{ route('settings.index') }}");
+        loadingHandler('squeeze-button', "{{ route('squeeze.index') }}");
+        loadingHandler('tying-bales-button', "{{ route('tying-bales.index') }}");
+        loadingHandler('automatic-squeeze-button', "{{ route('automatic-squeeze.index') }}");
+        loadingHandler('original-store-worker-filling-button', "{{ route('original-store-worker-filling.index') }}");
+        loadingHandler('colors-button', "{{ route('colors.index') }}");
+        loadingHandler('original-store-worker-button', "{{ route('original-store-worker.index') }}");
+        loadingHandler('recieve-shipment-from-supplier-button', "{{ route('recieve-shipment-from-supplier.index') }}");
+        loadingHandler('filling-admin-requests-button', "{{ route('filling-admin-requests.index') }}");
+        loadingHandler('form-layouts-button', "form-layouts.html");
+        loadingHandler('admin_opening_request-button', "{{ route('admin_opening_request.index') }}");
+        loadingHandler('admin_filling_request-button', "{{ route('admin_filling_request.index') }}");
+        loadingHandler('pressing-admin-requests-button', "{{ route('pressing-admin-requests.index') }}");
+        loadingHandler('original-stock-create-button', "{{ route('original-stock-create') }}");
+        loadingHandler('chart-c3', "chart-c3.html");
     </script>
     <script>
-        loadingHandler('settings-button', "{{ route('settings.index') }}");
+        loadingHandler('production-button', "{{ route('production.index') }}");
+        loadingHandler('production_invoices-button', "{{ route('production_invoices.index') }}");
+        loadingHandler('employees-button', "{{ route('employees.index') }}");
+        loadingHandler('jobs-button', "{{ route('jobs.index') }}");
+        loadingHandler('leave_types-button', "{{ route('leave_types.index') }}");
+        loadingHandler('wages-button', "{{ route('wages.index') }}");
+        loadingHandler('attendance-button', "{{ route('attendance.index') }}");
+        loadingHandler('leaves-button', "{{ route('leaves.index') }}");
+        loadingHandler('forfeit-leaves-button', "{{ route('forfeit-leaves.index') }}");
+        loadingHandler('nationality-button', "{{ route('nationality.index') }}");
+        loadingHandler('types-button', "{{ route('types.index') }}");
+        loadingHandler('fills-button', "{{ route('fills.index') }}");
+        loadingHandler('cars-button', "{{ route('cars.index') }}");
+        loadingHandler('opening-button', "{{ route('opening.index') }}");
+        loadingHandler('screening-button', "{{ route('screening.index') }}");
+        loadingHandler('branches-button', "{{ route('branches.index') }}");
+        loadingHandler('stores-button', "{{ route('stores.index') }}");
+        loadingHandler('storecategories-button', "{{ route('storecategories.index') }}");
+        loadingHandler('lab-button', "{{ route('lab.index') }}");
+        loadingHandler('calibers-button', "{{ route('calibers.index') }}");
+        loadingHandler('introduction-sheet-button', "{{ route('introduction-sheet.index') }}");
     </script>
 </body>
 

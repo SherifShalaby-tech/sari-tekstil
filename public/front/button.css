@@ -1,7 +1,7 @@
 .button {
     --width: 100px;
     --height: 35px;
-    --button-color: #116399;
+    --button-color: var(--clr-text);
     width: var(--width);
     height: var(--height);
     background: var(--button-color);
@@ -56,7 +56,7 @@
 }
 
 .button:hover {
-    background: #6c18ff;
+    background: var(--clr-heading);
 }
 
 .button:hover .text {

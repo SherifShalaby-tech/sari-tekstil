@@ -57,8 +57,8 @@ th {
     width: fit-content !important;
     text-align: center;
     border: 1px solid white !important;
-    color: #fff !important;
-    background-color: #596fd7 !important;
+    color: var(--clr-card-bg) !important;
+    background-color: var(--clr-text) !important;
     text-transform: uppercase;
     border-radius: 4px;
 }

@@ -1,5 +1,4 @@
 <!-- Modal -->
-<!-- Modal -->
 <div class="overlay" onclick="closeModal()"></div>
 <div id="form-panel" class="form-panel off">
     <div class="modal-header">

@@ -1,6 +1,6 @@
 .description {
     padding-left: 15px;
-    border-left: 2px solid #116399;
+    border-left: 2px solid var(--clr-text);
 }
 
 .description h3 {
@@ -49,12 +49,12 @@ ul.breadcrumbs li {
 }
 
 ul.breadcrumbs li:hover:before {
-    border-left: 10px solid #1b94e5;
+    border-left: 10px solid var(--clr-heading);
 }
 
 ul.breadcrumbs li:hover a {
     color: #fff;
-    background: #1b94e5;
+    background: var(--clr-heading);
 }
 
 ul.breadcrumbs li:before {
@@ -82,7 +82,7 @@ ul.breadcrumbs li:after {
 
 ul.breadcrumbs li.active a {
     color: #fff;
-    background: #116399;
+    background: var(--clr-text);
 }
 
 ul.breadcrumbs li.first {

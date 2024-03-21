@@ -34,129 +34,132 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12">
-                <div class="card p-2 mb-2">
-                    <div class="wrapper1">
-                        <div class="div1"></div>
-                    </div>
-                    <div class="wrapper2">
-                        <div class="div2 table-scroll-wrapper">
-                            <!-- content goes here -->
-                            <div style="min-width: 1200px;max-height: 70vh;min-height:60vh;overflow: auto">
-                                <table id="datatable-buttons" class="table table-striped table-bordered"
-                                    style="width: 100% !important">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>@lang('lang.profile_photo')</th>
-                                            <th>@lang('lang.name')</th>
-                                            <th>@lang('lang.email')</th>
-                                            <th>@lang('lang.phone_numbers')</th>
-                                            <th>@lang('lang.job_type')</th>
-                                            <th>@lang('lang.wage')</th>
-                                            {{-- <th>@lang('lang.annual_leave_balance')</th> --}}
-                                            <th>@lang('lang.age')</th>
-                                            <th>@lang('lang.date_of_start_working')</th>
-                                            <th>@lang('lang.commission')</th>
-                                            <th>@lang('lang.added_by')</th>
-                                            <th>@lang('lang.updated_by')</th>
-                                            <th>@lang('lang.action')</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($employees as $index => $employee)
+                <div class="animate-in-page">
+
+
+                    <div class="card p-2 mb-2">
+                        <div class="wrapper1">
+                            <div class="div1"></div>
+                        </div>
+                        <div class="wrapper2">
+                            <div class="div2 table-scroll-wrapper">
+                                <!-- content goes here -->
+                                <div style="min-width: 1200px;max-height: 70vh;min-height:60vh;overflow: auto">
+                                    <table id="datatable-buttons" class="table table-striped table-bordered"
+                                        style="width: 100% !important">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $index + 1 }}</td>
-                                                <td><img src="{{ asset('uploads/employees/' . $employee->photo) }}"
-                                                        alt="photo" width="50" height="50"></td>
-                                                <td>{{ $employee->name }}</td>
-                                                <td>{{ $employee->user->email }}</td>
-                                                <td>{{ $employee->phone }}</td>
-                                                <td>{{ $employee->job_type->title }}</td>
-                                                <td>{{ $employee->fixed_wage_value }}</td>
-                                                <td>{{ Carbon\Carbon::parse($employee->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y') }}
-                                                </td>
-                                                <td>{{ $employee->date_of_start_working }}</td>
-                                                <td>{{ $employee->commission_value }}</td>
-                                                <td>
-                                                    @if ($employee->created_by > 0 and $employee->created_by != null)
-                                                        {{ $employee->created_at->diffForHumans() }} <br>
-                                                        {{ $employee->created_at->format('Y-m-d') }}
-                                                        ({{ $employee->created_at->format('h:i') }})
-                                                        {{ $employee->created_at->format('A') == 'AM' ? __('am') : __('pm') }}
-                                                        <br>
-                                                        {{ $employee->createBy?->name }}
-                                                    @else
-                                                        {{ __('no_update') }}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($employee->edited_by > 0 and $employee->edited_by != null)
-                                                        {{ $employee->updated_at->diffForHumans() }} <br>
-                                                        {{ $employee->updated_at->format('Y-m-d') }}
-                                                        ({{ $employee->updated_at->format('h:i') }})
-                                                        {{ $employee->updated_at->format('A') == 'AM' ? __('am') : __('pm') }}
-                                                        <br>
-                                                        {{ $employee->updateBy?->name }}
-                                                    @else
-                                                        {{ __('no_update') }}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button employee="button"
-                                                            class="btn btn-default btn-sm dropdown-toggle"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">خيارات
-                                                            <span class="caret"></span>
-                                                            <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default"
-                                                            user="menu" x-placement="bottom-end"
-                                                            style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                            @if (auth()->user()->can('employees_module.employee.edit'))
-                                                                <li>
-                                                                    <a href="{{ route('employees.edit', $employee->id) }}"
-                                                                        class="btn"><i
-                                                                            class="dripicons-document-edit"></i>
-                                                                        @lang('lang.update')</a>
-                                                                </li>
-                                                            @endif
-                                                            <li class="divider"></li>
-                                                            @if (auth()->user()->can('employees_module.forfeit_leaves.create'))
-                                                                <li>
-                                                                    <a data-href="{{ route('forfeit-leaves.create', $employee->id) }}"
-                                                                        data-container=".view_modal" class="btn btn-modal"
-                                                                        data-toggle="modal"><i
-                                                                            class="dripicons-document-edit"></i>
-                                                                        @lang('lang.forfeit_leave')</a>
-                                                                </li>
-                                                            @endif
-                                                            <li class="divider"></li>
-                                                            @if (auth()->user()->can('employees_module.employee.delete'))
-                                                                <li>
-                                                                    <a data-href="{{ route('employees.destroy', $employee->id) }}"
-                                                                        class="btn text-red delete_item"><i
-                                                                            class="fa fa-trash"></i>
-                                                                        @lang('lang.delete')</a>
-                                                                </li>
-                                                            @endif
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                <th>#</th>
+                                                <th>@lang('lang.profile_photo')</th>
+                                                <th>@lang('lang.name')</th>
+                                                <th>@lang('lang.email')</th>
+                                                <th>@lang('lang.phone_numbers')</th>
+                                                <th>@lang('lang.job_type')</th>
+                                                <th>@lang('lang.wage')</th>
+                                                {{-- <th>@lang('lang.annual_leave_balance')</th> --}}
+                                                <th>@lang('lang.age')</th>
+                                                <th>@lang('lang.date_of_start_working')</th>
+                                                <th>@lang('lang.commission')</th>
+                                                <th>@lang('lang.added_by')</th>
+                                                <th>@lang('lang.updated_by')</th>
+                                                <th>@lang('lang.action')</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                <div class="view_modal no-print">
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($employees as $index => $employee)
+                                                <tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td><img src="{{ asset('uploads/employees/' . $employee->photo) }}"
+                                                            alt="photo" width="50" height="50"></td>
+                                                    <td>{{ $employee->name }}</td>
+                                                    <td>{{ $employee->user->email }}</td>
+                                                    <td>{{ $employee->phone }}</td>
+                                                    <td>{{ $employee->job_type->title }}</td>
+                                                    <td>{{ $employee->fixed_wage_value }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($employee->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y') }}
+                                                    </td>
+                                                    <td>{{ $employee->date_of_start_working }}</td>
+                                                    <td>{{ $employee->commission_value }}</td>
+                                                    <td>
+                                                        @if ($employee->created_by > 0 and $employee->created_by != null)
+                                                            {{ $employee->created_at->diffForHumans() }} <br>
+                                                            {{ $employee->created_at->format('Y-m-d') }}
+                                                            ({{ $employee->created_at->format('h:i') }})
+                                                            {{ $employee->created_at->format('A') == 'AM' ? __('am') : __('pm') }}
+                                                            <br>
+                                                            {{ $employee->createBy?->name }}
+                                                        @else
+                                                            {{ __('no_update') }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($employee->edited_by > 0 and $employee->edited_by != null)
+                                                            {{ $employee->updated_at->diffForHumans() }} <br>
+                                                            {{ $employee->updated_at->format('Y-m-d') }}
+                                                            ({{ $employee->updated_at->format('h:i') }})
+                                                            {{ $employee->updated_at->format('A') == 'AM' ? __('am') : __('pm') }}
+                                                            <br>
+                                                            {{ $employee->updateBy?->name }}
+                                                        @else
+                                                            {{ __('no_update') }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class=" cd-dropdown-wrapper">
+                                                            <button fill="button"
+                                                                class="cd-dropdown-trigger dropdown-toggle"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">خيارات
+                                                                <span class="caret"></span>
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <ul class="dropdown-menu cd-dropdown-content edit-options dropdown-menu-right dropdown-default"
+                                                                user="menu" x-placement="bottom-end"
+                                                                style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                @if (auth()->user()->can('employees_module.employee.edit'))
+                                                                    <li>
+                                                                        <a
+                                                                            href="{{ route('employees.edit', $employee->id) }}"><i
+                                                                                class="dripicons-document-edit"></i>
+                                                                            @lang('lang.update')</a>
+                                                                    </li>
+                                                                @endif
+                                                                <li class="divider"></li>
+                                                                @if (auth()->user()->can('employees_module.forfeit_leaves.create'))
+                                                                    <li>
+                                                                        <a data-href="{{ route('forfeit-leaves.create', $employee->id) }}"
+                                                                            data-container=".view_modal" class=" btn-modal"
+                                                                            data-toggle="modal"><i
+                                                                                class="dripicons-document-edit"></i>
+                                                                            @lang('lang.forfeit_leave')</a>
+                                                                    </li>
+                                                                @endif
+                                                                <li class="divider"></li>
+                                                                @if (auth()->user()->can('employees_module.employee.delete'))
+                                                                    <li>
+                                                                        <a data-href="{{ route('employees.destroy', $employee->id) }}"
+                                                                            class=" delete_item"><i class="fa fa-trash"></i>
+                                                                            @lang('lang.delete')</a>
+                                                                    </li>
+                                                                @endif
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="view_modal no-print">
+                                    </div>
                                 </div>
                             </div>
+                            <!-- End col -->
                         </div>
-                        <!-- End col -->
                     </div>
                 </div>
             </div>
+            <!-- End row -->
         </div>
-        <!-- End row -->
     </div>
     <!-- End Contentbar -->
 @endsection

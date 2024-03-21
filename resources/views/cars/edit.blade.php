@@ -1,7 +1,8 @@
+<div class="edit-overlay" onclick="closeEditModal($type->id)"></div>
 <div id="form-panel{{ $car->id }}" class="form-panel off">
     <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">{{ __('lang.edit') }}</h5>
-        <button type="button" class="modal_close" onclick="toggleEditModal({{ $car->id }})" aria-label="Close">
+        <button type="button" class="modal_close" onclick="closeEditModal({{ $car->id }})" aria-label="Close">
             <span class="cross" aria-hidden="true"></span>
         </button>
     </div>
@@ -67,7 +68,7 @@
             <span class="gradient"></span>
             <span class="label">@lang('lang.save')</span>
         </button>
-        <div class="px-3 py-2 delete-button" onclick="toggleEditModal({{ $car->id }})">
+        <div class="px-3 py-2 delete-button" onclick="closeEditModal({{ $car->id }})">
             <span class="transition"></span>
             <span class="gradient"></span>
             <span class="label">@lang('lang.close')</span>
@@ -75,6 +76,5 @@
     </div>
     {!! Form::close() !!}
 </div>
-</div>
-</div>
+
 {!! JsValidator::formRequest('App\Http\Requests\UpdateCarsRequest', '#car-update-form') !!}

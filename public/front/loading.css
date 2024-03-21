@@ -23,7 +23,7 @@
     color: #fff;
     display: none;
     position: absolute;
-    z-index: 99;
+    z-index: 999999999;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -39,7 +39,7 @@
 
 
 .modal-drop {
-    background: #38caef;
+    background: var(--clr-heading);
     border-radius: 50%;
     width: 150vh;
     height: 150vh;
@@ -62,7 +62,7 @@
     /* Changed to fixed for full-screen effect */
     top: 0;
     left: 0;
-    background-color: #38caef;
+    background-color: var(--clr-heading);
     z-index: 9999;
     animation: fadeInOut 0.5s ease forwards;
     /* Adjust the duration as per your requirement */

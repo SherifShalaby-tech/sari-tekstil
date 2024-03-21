@@ -84,15 +84,14 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                            class="btn btn-default btn-sm dropdown-toggle"
+                                                    <div class=" cd-dropdown-wrapper">
+                                                        <button type="button" class="cd-dropdown-trigger dropdown-toggle"
                                                             data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">خيارات
                                                             <span class="caret"></span>
                                                             <span class="sr-only">Toggle Dropdown</span>
                                                         </button>
-                                                        <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default"
+                                                        <ul class="dropdown-menu cd-dropdown-content edit-options dropdown-menu-right dropdown-default"
                                                             user="menu" x-placement="bottom-end"
                                                             style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                             @if (auth()->user()->can('settings_module.types.edit'))
@@ -107,8 +106,7 @@
                                                             @if (auth()->user()->can('settings_module.types.delete'))
                                                                 <li>
                                                                     <a data-href="{{ route('types.destroy', $type->id) }}"
-                                                                        class="btn text-red delete_item"><i
-                                                                            class="fa fa-trash"></i>
+                                                                        class=" delete_item"><i class="fa fa-trash"></i>
                                                                         @lang('lang.delete')</a>
                                                                 </li>
                                                             @endif
