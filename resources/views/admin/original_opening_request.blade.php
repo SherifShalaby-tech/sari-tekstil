@@ -63,7 +63,7 @@
                         <h4>@lang('lang.add_nationalities')</h4>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="nationalities">
                         @include('admin.partials.add_nationalities')
                     </div>
@@ -93,4 +93,10 @@
 @endsection
 @push('javascripts')
     <script src="{{ asset('app-js/opening_request.js') }}"></script>
+
+    <script>
+        $('.menubar').on("click", function() {
+            $('.side_bar_title').toggleClass('disp-none', 'disp-block')
+        })
+    </script>
 @endpush

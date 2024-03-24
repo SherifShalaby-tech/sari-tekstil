@@ -25,7 +25,7 @@
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3">
                             {!! Form::label('type_id', __('lang.source') . '*', ['class' => 'form-label']) !!}
@@ -102,4 +102,10 @@
 
 
     </script> --}}
+
+    <script>
+        $('.menubar').on("click", function() {
+            $('.side_bar_title').toggleClass('disp-none', 'disp-block')
+        })
+    </script>
 @endpush

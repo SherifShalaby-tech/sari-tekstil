@@ -10,20 +10,40 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--clr-title);
+    background: var(--clr-middle);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--clr-heading);
+    background: var(--clr-less-dark);
 }
 
 .rightbar {
-    background-color: var(--clr-card-bg);
+    background-color: var(--clr-light);
 }
 
 .topbar {
-    background-color: var(--clr-nav-bg);
+    background-color: var(--clr-dark);
+    color: var(--clr-light) !important;
+}
+
+.topbar a {
+    color: var(--clr-light) !important;
+    border-color: var(--clr-light) !important;
+}
+
+.topbar a:hover {
+    color: var(--clr-dark) !important;
+    background-color: var(--clr-middle) !important;
+    border-color: var(--clr-light) !important;
+}
+
+.topbar .dropdown-menu {
+    background-color: var(--clr-less-dark) !important
+}
+
+.topbar a input {
+    color: var(--clr-light) !important;
 }
 
 .submenu__button {
@@ -33,7 +53,7 @@
     border-bottom: 1px solid #f7f7f7;
     border-left: 3px solid gray;
     border-top: 1px solid #f7f7f7;
-    color: var(--clr-text);
+    color: var(--clr-light);
     text-align: left;
     transition: 0.2s;
     width: 100%;
@@ -63,7 +83,7 @@ a {
     font-weight: 400;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background-color: #1163991f;
+    background-color: var(--clr-middle);
     border-radius: 6px;
     text-align: center;
     margin: 0;
@@ -72,7 +92,7 @@ a {
 }
 
 .title h4:before {
-    background: linear-gradient(to right, var(--clr-text), var(--clr-heading));
+    background: linear-gradient(to right, var(--clr-middle), var(--clr-dark));
     content: '';
     display: block;
     height: 3px;
@@ -81,7 +101,7 @@ a {
 }
 
 .title h4:after {
-    background: linear-gradient(to right, var(--clr-text), var(--clr-heading));
+    background: linear-gradient(to right, var(--clr-middle), var(--clr-dark));
     content: '';
     display: block;
     position: absolute;
@@ -99,7 +119,7 @@ a {
 .plus,
 .remove-ci-button,
 .print-ci-button {
-    background-color: var(--clr-card);
+    background-color: var(--clr-light);
     display: block;
     height: 30px;
     position: relative;
@@ -116,8 +136,8 @@ a {
 }
 
 .plus {
-    color: var(--clr-text);
-    border: 1px solid var(--clr-heading);
+    color: var(--clr-dark);
+    border: 1px solid var(--clr-less-dark);
 }
 
 .remove-ci-button {
@@ -251,8 +271,8 @@ a {
     font-size: 17px;
     /* padding: 1em 2.7em; */
     font-weight: 500;
-    background: #1f2937;
-    color: white;
+    background: var(--clr-dark);
+    color: var(--clr-light);
     border: none;
     position: relative;
     overflow: hidden;
@@ -325,7 +345,8 @@ a {
 }
 
 .sidebar {
-    background-color: var(--clr-body-bg);
+    background-color: var(--clr-less-dark);
+
 }
 
 
@@ -341,8 +362,8 @@ table {
 
 
 table.table-bordered.dataTable tbody td {
-    color: var(--clr-text);
-    background-color: var(--clr-card-bg);
+    color: var(--clr-dark);
+    background-color: var(--clr-less-light);
     padding: 5px;
     font-weight: 500;
     font-size: 14px;
@@ -396,12 +417,12 @@ div.dataTables_wrapper div.dataTables_info {
 
 #datatable-buttons_wrapper .row .col-md-8:first-child #datatable-buttons_length label {
     font-size: 14px;
-    color: var(--clr-text);
+    color: var(--clr-dark);
     margin-bottom: 0;
 }
 
 #datatable-buttons_wrapper .row .col-md-8:first-child .dt-buttons a {
-    background-color: var(--clr-text);
+    background-color: var(--clr-dark);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -409,11 +430,14 @@ div.dataTables_wrapper div.dataTables_info {
     margin: 0px 3px;
     border-radius: 8px;
     font-size: 14px;
+    font-weight: 500;
 }
 
 #datatable-buttons_wrapper .row .col-md-8:first-child .dt-buttons a:hover {
-    background-color: var(--clr-heading);
-    border-color: var(--clr-heading);
+    background-color: var(--clr-less-dark);
+    border-color: var(--clr-less-dark);
+    color: var(--clr-dark);
+    font-weight: 500;
 }
 
 
@@ -440,42 +464,42 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 .paginate_button.previous a {
-    background-color: var(--clr-body-bg) !important;
-    color: var(--clr-text) !important;
+    background-color: var(--clr-light) !important;
+    color: var(--clr-dark) !important;
     border-radius: 4px !important;
 }
 
 .paginate_button.next a {
-    background-color: var(--clr-body-bg) !important;
-    color: var(--clr-text) !important;
+    background-color: var(--clr-light) !important;
+    color: var(--clr-dark) !important;
     border-radius: 4px !important;
 }
 
 .paginate_button.previous.disabled a {
-    background-color: var(--clr-card-bg) !important;
-    color: var(--clr-heading) !important;
+    background-color: var(--clr-less-light) !important;
+    color: var(--clr-dark) !important;
     border-radius: 4px !important;
 }
 
 .paginate_button.next.disabled a {
-    background-color: var(--clr-card-bg) !important;
-    color: var(--clr-heading) !important;
+    background-color: var(--clr-less-light) !important;
+    color: var(--clr-dark) !important;
     border-radius: 4px !important;
 }
 
 .paginate_button.active a {
-    background-color: var(--clr-card-bg) !important;
-    color: var(--clr-text) !important;
+    background-color: var(--clr-light) !important;
+    color: var(--clr-dark) !important;
     border-radius: 4px !important;
-    border: 1px solid var(--clr-card-bg) !important;
+    border: 1px solid var(--clr-light) !important;
     transition: 0.6s;
 }
 
 .paginate_button.active a:hover {
-    background-color: var(--clr-body-bg) !important;
-    color: var(--clr-heading) !important;
+    background-color: var(--clr-light) !important;
+    color: var(--clr-dark) !important;
     border-radius: 4px !important;
-    border: 1px solid var(--clr-body-bg) !important;
+    border: 1px solid var(--clr-light) !important;
 }
 
 

@@ -27,7 +27,7 @@
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
 
                         <div class="col-md-3 d-flex align-items-end  px-4 mb-3">
@@ -191,9 +191,13 @@
 
                         <div id="cropped_logo_images"></div>
                     </div>
-                    <div class="row pt-4">
-                        <div class="col-md-3 pt-5">
-                            <button type="submit" class="btn btn-primary ">@lang('lang.save')</button>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="px-3 py-2 submit-button">
+                                <span class="transition"></span>
+                                <span class="gradient"></span>
+                                <span class="label">@lang('lang.save')</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -253,5 +257,11 @@
                 });
             }
         @endif
+    </script>
+
+    <script>
+        $('.menubar').on("click", function() {
+            $('.side_bar_title').toggleClass('disp-none', 'disp-block')
+        })
     </script>
 @endpush

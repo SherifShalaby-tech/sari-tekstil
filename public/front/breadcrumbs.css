@@ -1,6 +1,6 @@
 .description {
     padding-left: 15px;
-    border-left: 2px solid var(--clr-text);
+    border-left: 2px solid var(--clr-dark);
 }
 
 .description h3 {
@@ -9,7 +9,7 @@
     font-weight: 500;
     line-height: 20px;
     margin: 0px;
-    color: #444;
+    color: var(--clr-dark);
     text-transform: uppercase;
 }
 
@@ -49,12 +49,12 @@ ul.breadcrumbs li {
 }
 
 ul.breadcrumbs li:hover:before {
-    border-left: 10px solid var(--clr-heading);
+    border-left: 10px solid var(--clr-less-dark);
 }
 
 ul.breadcrumbs li:hover a {
-    color: #fff;
-    background: var(--clr-heading);
+    color: var(--clr-dark);
+    background: var(--clr-less-dark);
 }
 
 ul.breadcrumbs li:before {
@@ -81,8 +81,9 @@ ul.breadcrumbs li:after {
 }
 
 ul.breadcrumbs li.active a {
-    color: #fff;
-    background: var(--clr-text);
+    color: var(--clr-dark);
+    font-weight: 500;
+    background: var(--clr-middle);
 }
 
 ul.breadcrumbs li.first {

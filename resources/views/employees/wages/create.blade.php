@@ -23,7 +23,7 @@
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
 
                     <div class="row ">
                         <div class="col-md-3 mb-4 px-4">

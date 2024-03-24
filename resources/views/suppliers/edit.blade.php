@@ -25,7 +25,7 @@
                     'method' => 'put',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 d-flex align-items-end px-4">
                             <div class="form__group">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 mb-3 title">
                             <h4>@lang('lang.phone_numbers')</h4>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 mb-3 title">
                             <h4>@lang('lang.bank_acount_details')</h4>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-12">
                             {!! Form::label('address', __('lang.address'), ['class' => 'form-label']) !!}

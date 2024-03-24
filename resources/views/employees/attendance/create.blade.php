@@ -20,7 +20,7 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12 col-xl-12">
-                <div class="card m-b-30 p-2">
+                <div class="card m-b-30 p-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     {!! Form::open([
                         'route' => 'attendance.store',
                         'method' => 'post',
@@ -73,7 +73,7 @@
                                         null,
                                         [
                                             'class' => 'form-control
-                                                                                                                                                                                      selectpicker',
+                                                                                                                                                                                                                          selectpicker',
                                             'data-live-search' => 'true',
                                             'placeholder' => __('lang.please_select'),
                                             'required',

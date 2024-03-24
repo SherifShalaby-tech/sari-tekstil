@@ -25,7 +25,7 @@
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                <div class="card  p-2 mb-2">
+                <div class="card  p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 px-4 mb-3">
                             {!! Form::label('branch_name', __('lang.branch_name'), ['class' => 'form-label']) !!}

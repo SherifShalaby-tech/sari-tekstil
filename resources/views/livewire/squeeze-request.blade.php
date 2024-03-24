@@ -12,7 +12,7 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12">
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="scrollable-div">
                         <div class=" table-responsive">
                             <table id="datatable-buttons-scroll" class="table table-striped table-bordered ">

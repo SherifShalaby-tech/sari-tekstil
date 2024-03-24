@@ -34,7 +34,7 @@
                 <div class="animate-in-page">
 
 
-                    <div class="card p-2 mb-2">
+                    <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                         <div class="wrapper1">
                             <div class="div1"></div>
                         </div>

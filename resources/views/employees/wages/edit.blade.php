@@ -24,7 +24,7 @@
                 {!! Form::open(['route' => ['wages.update', $wage->id], 'method' => 'put', 'id' => 'brand-update-form']) !!}
                 @csrf
                 @method('PUT')
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 mb-4 px-4">
                             {!! Form::label('employee_id', __('lang.name') . '*', [

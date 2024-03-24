@@ -25,7 +25,7 @@
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 d-flex align-items-end px-4">
                             <div class="form__group">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 mb-2 title">
                             <h4>@lang('lang.phone_numbers')</h4>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3">
                             {!! Form::label('company_address', __('lang.company_address'), ['class' => 'form-label']) !!}

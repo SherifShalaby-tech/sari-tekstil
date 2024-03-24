@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="card p-2 my-2">
+            <div class="card p-2 my-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-light">

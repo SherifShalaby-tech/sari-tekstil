@@ -24,7 +24,7 @@
                 {!! Form::open(['route' => ['original-store-worker-filling.update', $fill->id], 'method' => 'put']) !!}
                 @csrf
                 @method('PUT')
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-3 px-4 mb-2">
                             {!! Form::label('type_id', __('lang.type') . '*', ['class' => 'form-label']) !!}
@@ -98,7 +98,7 @@
                         <h4>@lang('lang.add_nationalities')</h4>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="nationalities">
                         @php
                             $hideBtn = 2;

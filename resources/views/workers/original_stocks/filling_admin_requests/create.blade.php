@@ -26,7 +26,7 @@
                 ]) !!}
                 @csrf
                 @method('PUT')
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <h5><span
@@ -113,7 +113,7 @@
                         <h4>@lang('lang.add_nationalities')</h4>
                     </div>
                 </div>
-                <div class="card p-2 mb-2">
+                <div class="card p-2 mb-2  animate__animated animate__bounceInLeft" style="animation-delay: 1.5s">
                     <div class="nationalities">
                         @foreach ($opening_requests->opening_request_nationalities as $index => $nationality)
                             @include('workers.original_stocks.filling_admin_requests.add_nationalities')

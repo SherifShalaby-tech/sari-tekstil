@@ -8,12 +8,12 @@
     font-family: inherit;
     width: 100%;
     border: none !important;
-    border-bottom: 2px solid var(--clr-heading) !important;
+    border-bottom: 2px solid var(--clr-less-dark) !important;
     outline: 0;
     font-size: 16px;
-    color: var(--clr-text);
+    color: var(--clr-dark);
     padding: 5px 0;
-    background: var(--clr-card-bg);
+    background: var(--clr-light);
     transition: border-color 0.2s;
 }
 
@@ -33,7 +33,7 @@
     display: block;
     transition: 0.2s;
     font-size: 14px;
-    color: var(--clr-text);
+    color: var(--clr-dark);
     ;
     pointer-events: none;
 }
@@ -42,7 +42,7 @@
 
     display: block;
     font-size: 14px;
-    color: var(--clr-text);
+    color: var(--clr-dark);
     ;
     pointer-events: none;
     margin-bottom: 0;
@@ -52,7 +52,7 @@
     padding-bottom: 6px;
     font-weight: 700;
     border-width: 3px !important;
-    border-image: linear-gradient(to right, var(--clr-text), var(--clr-heading)) !important;
+    border-image: linear-gradient(to right, var(--clr-middle), var(--clr-dark)) !important;
     border-image-slice: 1 !important;
 }
 
@@ -62,7 +62,7 @@
     display: block;
     transition: 0.2s;
     font-size: 14px;
-    color: var(--clr-heading);
+    color: var(--clr-dark);
     font-weight: 700;
 }
 

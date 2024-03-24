@@ -218,7 +218,7 @@
                                      </div>
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
-                                     <a class="dropdown-item" href="#"> <label for="light">Light</label>
+                                     {{-- <a class="dropdown-item" href="#"> <label for="light">Light</label>
                                          <input type="radio" name="theme" id="light">
                                      </a>
                                      <a class="dropdown-item" href="#">
@@ -236,6 +236,22 @@
                                      <a class="dropdown-item" href="#">
                                          <label for="dark">Dark theme</label>
                                          <input type="radio" id="dark" name="theme">
+                                     </a> --}}
+                                     <a class="dropdown-item" href="#">
+                                         <label class="w-100 h-100" for="sunburn">sun burn</label>
+                                         <input type="radio" class="d-none" id="sunburn" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label class="w-100 h-100" for="sunshine">sun burn</label>
+                                         <input type="radio" class="d-none" id="sunshine" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label class="w-100 h-100" for="dust">dusty</label>
+                                         <input type="radio" class="d-none" id="dust" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" href="#">
+                                         <label class="w-100 h-100" for="night">night</label>
+                                         <input type="radio" class="d-none" id="night" name="theme">
                                      </a>
                                  </div>
 

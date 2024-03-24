@@ -181,3 +181,35 @@ h3 {
             40%,
             0.206);
 }
+
+:root:has(#sunburn:checked) {
+    --clr-dark: #152935;
+    --clr-less-dark: #8fc8e9;
+    --clr-middle: #f3d6c0;
+    --clr-less-light: #ccd5d2;
+    --clr-light: #fff9f3;
+}
+
+:root:has(#sunshine:checked) {
+    --clr-dark: #212b0f;
+    --clr-less-dark: #9ab867;
+    --clr-middle: #f3d6c0;
+    --clr-less-light: #d6c3ab;
+    --clr-light: #fff9f3;
+}
+
+:root:has(#dust:checked) {
+    --clr-dark: #5b484a;
+    --clr-less-dark: #8b5943;
+    --clr-middle: #d9bf9d;
+    --clr-less-light: #e1d1b9;
+    --clr-light: #e3e1e6;
+}
+
+:root:has(#night:checked) {
+    --clr-dark: #2e2c39;
+    --clr-less-dark: #afa3d5;
+    --clr-middle: #f1bfc0;
+    --clr-less-light: #a9ccc1;
+    --clr-light: #e7e3f1;
+}
