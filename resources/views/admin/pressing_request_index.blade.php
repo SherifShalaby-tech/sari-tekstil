@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.pressing'))
 @section('breadcrumbbar')
-    <!-- Start Breadcrumbbar -->                    
+    <!-- Start Breadcrumbbar -->
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
@@ -21,14 +21,14 @@
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
                     <a href="{{route('pressing-admin-requests.create')}}" class="btn btn-primary"><i class="ri-add-line align-middle mr-2"></i>@lang('lang.add')</a>
-                </div>    
+                </div>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- End Breadcrumbbar -->
 @endsection
 @section('content')
-    <!-- Start Contentbar -->    
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
@@ -43,7 +43,7 @@
                                 <th>@lang('lang.priority')</th>
                                 <th>@lang('lang.filling')</th>
                                 <th>@lang('lang.requested_weight')</th>
-                                <th>@lang('lang.calibers')</th>
+                                {{-- <th>@lang('lang.calibers')</th> --}}
                                 <th>@lang('lang.screening')</th>
                                 <th>@lang('lang.destination')</th>
                                 {{-- <th>@lang('lang.employee')</th> --}}
@@ -67,14 +67,14 @@
                                     {{$pressingRequest->weight}}<br>
                                     @endforeach
                                 </td>
-                                <td>
+                                {{-- <td>
                                     @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
                                     @php
                                         $calibersString = implode(', ', $pressingRequest->calibers);
                                     @endphp
                                     {{ $calibersString }}<br>
                                     @endforeach
-                                </td>
+                                </td> --}}
                                 <td>
                                     @foreach($pressingRequestTransaction->pressing_requests as $index=>$pressingRequest)
                                         {{$pressingRequest->screening->name}}<br>
@@ -98,7 +98,7 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu" x-placement="bottom-end" style="position: absolute; transform: translate3d(73px, 31px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            
+
                                             <li>
                                                     <a data-href="{{route('pressing-admin-requests.destroy', $pressingRequestTransaction->id)}}"
                                                         class="btn text-red delete_item"><i class="fa fa-trash"></i>
@@ -108,7 +108,7 @@
                                             <li>
                                                 <a href="{{route('pressing-admin-requests.edit', $pressingRequestTransaction->id)}}" class="btn"><i class="dripicons-document-edit"></i> @lang('lang.update')</a>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 </td>

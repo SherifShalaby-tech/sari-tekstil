@@ -49,11 +49,18 @@ class CustomerController extends Controller
         try {
             $data = $request->except('_token');
             $data['created_by'] = Auth::user()->id;
+
+            // Convert arrays to strings before passing to create() method
+            $data['phones'] = implode(',', $data['phones']); // Convert phones array to a comma-separated string
+            $data['emails'] = implode(',', $data['emails']); // Convert emails array to a comma-separated string
+
             Customer::create($data);
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
             ];
+
 
         }
         catch (\Exception $e) {

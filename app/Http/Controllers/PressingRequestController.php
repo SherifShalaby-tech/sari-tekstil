@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Caliber;
 use App\Models\Color;
+use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Fill;
 use App\Models\FillingRequest;
@@ -32,16 +33,18 @@ class PressingRequestController extends Controller
     public function create()
     {
         $fills = Fill::pluck('name', 'id');
-        $screening = Screening::pluck('name', 'id');
+        $screenings = Screening::get();
         $calibers=Caliber::pluck('number');
         $employees=Employee::pluck('name', 'id');
         $colors=Color::pluck('name', 'id');
+        $customers = Customer::pluck('name', 'id');
         return view('admin.pressing_request_create')->with(compact(
             'fills',
-            'screening',
+            'screenings',
             'calibers',
             'employees',
             'colors',
+            'customers'
 
         ));
     }
@@ -51,49 +54,40 @@ class PressingRequestController extends Controller
      */
     public function store(Request $request)
     {
-        try {
+        // try {
+            // return $request;
             $fillingIds = $request->input('filling_id');
             $emptyWeights = $request->input('empty_weight');
             $requestedWeights = $request->input('requested_weight');
-            $calibers = $request->input('calibers');
             $screeningIds = $request->input('screening_id');
             $destinations = $request->input('destination');
             $quantities = $request->input('quantity');
-            // $employeeIds = $request->input('employee_id');
             $colorIds = $request->input('color_id');
-            $pressing_request_transaction=PressingRequestTransaction::create([
+            $pressing_request_transaction = PressingRequestTransaction::create([
                 'priority' => $request->input('priority'),
                 'status' => 1,
                 'source' => $request->input('source'),
             ]);
-            foreach ($calibers as $index => $caliberSet) {
+            foreach ($fillingIds as $index => $fillingId) {
                 PressingRequest::create([
-                    'pressing_request_transaction_id'=>$pressing_request_transaction->id,
-                    'filling_id' => $fillingIds[$index - 1],
-                    'empty_weight' => $emptyWeights[$index-1],
-                    'weight' => $requestedWeights[$index-1],
-                    'calibers' => $caliberSet, // Convert to JSON if needed
-                    'screening_id' => $screeningIds[$index-1],
-                    'destination' => $destinations[$index-1],
-                    // 'priority' => $request->input('priority'),
-                    'quantity' => $quantities[$index -1 ],
-                    'color_id' => $colorIds[$index-1],
+                    'pressing_request_transaction_id' => $pressing_request_transaction->id,
+                    'filling_id' => $fillingId,
+                    'empty_weight' => $emptyWeights[$index],
+                    'weight' => $requestedWeights[$index],
+                    'screening_id' => $screeningIds[$index],
+                    'destination' => $destinations[$index],
+                    'quantity' => $quantities[$index],
+                    'color_id' => $colorIds[$index],
                     'created_by' => Auth::user()->id,
                 ]);
             }
-            
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
             ];
-        } catch (\Exception $e) {
-            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-            $output = [
-                'success' => false,
-                'msg' => __('lang.something_went_wrong')
-            ];
-        }
-        return redirect()->back()->with('status', $output);
+            return redirect()->back()->with('status', $output);
+
     }
     /**
      * Display the specified resource.
@@ -113,6 +107,7 @@ class PressingRequestController extends Controller
         $calibers=Caliber::pluck('number');
         $employees=Employee::pluck('name', 'id');
         $colors=Color::pluck('name', 'id');
+        $customers = Customer::pluck('name', 'id');
         $pressing_request_transaction=PressingRequestTransaction::find($id);
         return view('admin.pressing_request_edit')->with(compact(
             'fills','pressing_request_transaction',
@@ -120,6 +115,7 @@ class PressingRequestController extends Controller
             'calibers',
             'employees',
             'colors',
+            'customers'
 
         ));
     }
@@ -173,9 +169,9 @@ class PressingRequestController extends Controller
                         'created_by' => Auth::user()->id,
                     ]);
                 }
-           
+
             }
-            
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -222,7 +218,7 @@ class PressingRequestController extends Controller
         $index = (int)$request->index;
         $index = $index + 1;
         $fills = Fill::pluck('name', 'id');
-        $screening = Screening::pluck('name', 'id');
+        $screenings = Screening::get();
         $calibers=Caliber::pluck('number');
         // $employees=Employee::pluck('name', 'id');
         $colors=Color::pluck('name', 'id');
@@ -230,7 +226,7 @@ class PressingRequestController extends Controller
         $weight_product='';
         // return "Hello from addNationalityRow";
         return view('admin.partials.add_pressing_row',compact('fills',
-        'screening',
+        'screenings',
         'index',
         'calibers',
         // 'employees',

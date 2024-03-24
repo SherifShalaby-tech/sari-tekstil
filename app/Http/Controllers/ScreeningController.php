@@ -24,7 +24,7 @@ class ScreeningController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -34,13 +34,24 @@ class ScreeningController extends Controller
     {
         try {
             $data = $request->except('_token');
-            $data['created_by']=Auth::user()->id;
+
+            // Ensure calibers is an array
+            if (isset($data['calibers']) && is_array($data['calibers'])) {
+                // Convert calibers array to JSON string
+                $data['calibers'] = json_encode($data['calibers']);
+            }
+
+            $data['created_by'] = Auth::user()->id;
+
             $screening = Screening::create($data);
+
             $output = [
                 'success' => true,
                 'id' => $screening->id,
                 'msg' => __('lang.success')
             ];
+
+
         } catch (\Exception $e) {
             Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
             $output = [
@@ -95,7 +106,7 @@ class ScreeningController extends Controller
                 'msg' => __('lang.something_went_wrong')
             ];
         }
-      
+
         return redirect()->back()->with('status', $output);
     }
 

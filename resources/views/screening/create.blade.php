@@ -1,6 +1,7 @@
 <!-- Modal -->
 @php
      $openings = App\Models\Opening::pluck('name', 'id');
+     $calibers = App\Models\Caliber::pluck('number', 'id');
 @endphp
 <div class="modal fade" id="createScreeningModal" tabindex="-1" role="dialog" aria-labelledby="exampleStandardModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  rollIn  animated" role="document">
@@ -28,7 +29,51 @@
                         {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
                         {!! Form::label('opening', __( 'lang.opening' ) . ':*') !!}
                         {!! Form::select('opening_id', $openings, false, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'id' => 'opening_id','required']) !!}
-                        @error('name')
+                        @error('opening_id')
+                            <label class="text-danger error-msg">{{ $message }}</label>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
+                        {!! Form::label('type', __( 'lang.type' ) . ':*') !!}
+                        {!! Form::select('type',['man' => 'Man', 'woman' => 'Woman', 'walada'=>'Walada'], false, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'required']) !!}
+                        @error('type')
+                            <label class="text-danger error-msg">{{ $message }}</label>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
+                        {!! Form::label('season', __( 'lang.season' ) . ':*') !!}
+                        {!! Form::select('season',['winter' => 'Winter', 'summer' => 'Summer'] , false, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'), 'required']) !!}
+                        @error('season')
+                            <label class="text-danger error-msg">{{ $message }}</label>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
+                        {!! Form::label('calibers', __( 'lang.calibers' ) . ':*') !!}
+                        {!! Form::select('calibers[]',$calibers, false, ['class' => 'selectpicker form-control', 'data-live-search' => 'true', 'style' => 'width: 80%', 'multiple', 'required']) !!}
+                        @error('calibers')
+                            <label class="text-danger error-msg">{{ $message }}</label>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
+                        {!! Form::label('cost', __( 'lang.cost' ) . ':*') !!}
+                        {!! Form::number('cost', null, ['class' => 'form-control', 'placeholder' => __( 'lang.cost' ),
+                        ]);
+                        !!}
+                        @error('cost')
+                            <label class="text-danger error-msg">{{ $message }}</label>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {{-- <input type="hidden" name="quick_add" value="{{ isset($quick_add)&&$quick_add?$quick_add:'' }}"> --}}
+                        {!! Form::label('sell_price', __( 'lang.sell_price' ) . ':*') !!}
+                        {!! Form::number('sell_price', null, ['class' => 'form-control', 'placeholder' => __( 'lang.sell_price' ),
+                        ]);
+                        !!}
+                        @error('sell_price')
                             <label class="text-danger error-msg">{{ $message }}</label>
                         @enderror
                     </div>

@@ -3,7 +3,7 @@
         {{-- <th> --}}
             <button type="button" @if((isset($hideBtn) && $hideBtn != 2) || (isset($key) && $key!=0))
             style="display:none; margin-bottom: 10px;"
-            @else style="margin-bottom: 10px"  @endif 
+            @else style="margin-bottom: 10px"  @endif
                 class="btn btn-primary btn-sm ml-2 add_row" value="Add New Row"   data-index="{{ $index }}" id="rowButton"><i class="fa fa-plus"></i></button>
         {{-- </th> --}}
         <th class="head">
@@ -21,18 +21,28 @@
         <th class="head">
             <label for="screening_id" class="h6" style="{{ isset($hideBtn) ? 'display:none;' : '' }}">{{ __('lang.screening') }}*</label>
             <select  name="screening_id[]"  style="display:inline !important" class="form-control selectpicker" data-live-search="true">
-           
-            @foreach ($screening as $id => $name)
-                <option value="{{ $id }}" {{(isset($pressing_request->screening_id)&&$pressing_request->screening_id==$id?'selected':'')}}>{{ $name }}</option>
-            @endforeach
+
+                @foreach ($screenings as $screening)
+                    <option value="{{ $screening['id'] }}" {{ (isset($pressing_request->screening_id) && $pressing_request->screening_id == $screening['id'] ? 'selected' : '') }}>
+                        {{ $screening['name'] }} -
+                        @if ($screening['calibers'] !== null)
+                            @php $calibers = json_decode($screening['calibers']); @endphp
+                            @foreach ($calibers as $caliber)
+                                {{ $caliber }},
+                            @endforeach
+                        @else
+                            No Calibers
+                        @endif
+                    </option>
+                @endforeach
           </select></th>
-        <th class="head">
+        {{-- <th class="head">
             <label for="calibers" class="h6" style="{{ isset($hideBtn) ? 'display:none;' : '' }}">{{ __('lang.calibers') }}*</label>
             <select  name="calibers[{{ $index }}][]" style="display:inline !important" class="form-control selectpicker" data-live-search="true" multiple>
         @foreach ($calibers as $id => $name)
             <option value="{{ $id }}" {{(isset($pressing_request->calibers)&&in_array($id, $pressing_request->calibers)?'selected':'')}}>{{ $name }}</option>
         @endforeach
-        </select></th>
+        </select></th> --}}
         <th class="head">
             <label for="requested_weight" class="h6" style="{{ isset($hideBtn) ? 'display:none;' : '' }}">{{ __('lang.requested_weight') }}*</label>
             <input name="requested_weight[]"class="form-control" value="{{(isset($pressing_request->weight)?$pressing_request->weight:null)}}" type="number" placeholder="Requested weight"></th>
@@ -54,11 +64,11 @@
                     <option value="number" {{(isset($pressing_request->destination)&&$pressing_request->destination=="number"?'selected':null)}}>Number</option>
                 </select></th>
             <th>
-                <button type="button" 
+                <button type="button"
                 class="btn btn-primary btn-sm ml-2"  onclick="printRow(this)" id="rowButton"><i class="fa fa-print"></i></button>
             </th>
             <th>
-                <button type="button" @if((isset($hideBtn) && $hideBtn == 0)|| (isset($key) && $key!=0))  style="display:inline;" @else style="display:none; "@endif 
+                <button type="button" @if((isset($hideBtn) && $hideBtn == 0)|| (isset($key) && $key!=0))  style="display:inline;" @else style="display:none; "@endif
                     class="btn btn-danger btn-sm ml-2 remove_row"><i class="fa fa-close"></i></button>
            </th>
     </table>
