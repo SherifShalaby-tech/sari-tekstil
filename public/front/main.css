@@ -39,7 +39,7 @@
 }
 
 .topbar .dropdown-menu {
-    background-color: var(--clr-less-dark) !important
+    background-color: var(--clr-dark) !important
 }
 
 .topbar a input {

@@ -217,7 +217,8 @@
                                          </svg>
                                      </div>
                                  </a>
-                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
+                                 <div class="dropdown-menu dropdown-menu-right" style="width: 35px !important"
+                                     aria-labelledby="profilelink">
                                      {{-- <a class="dropdown-item" href="#"> <label for="light">Light</label>
                                          <input type="radio" name="theme" id="light">
                                      </a>
@@ -237,21 +238,28 @@
                                          <label for="dark">Dark theme</label>
                                          <input type="radio" id="dark" name="theme">
                                      </a> --}}
-                                     <a class="dropdown-item" href="#">
-                                         <label class="w-100 h-100" for="sunburn">sun burn</label>
-                                         <input type="radio" class="d-none" id="sunburn" name="theme">
+                                     <a class="dropdown-item" style="width: 35px !important" href="#">
+                                         <label class="w-100 h-100 position-relative blue" for="blue">
+                                         </label>
+                                         <input type="radio" class="d-none" id="blue" name="theme">
                                      </a>
-                                     <a class="dropdown-item" href="#">
-                                         <label class="w-100 h-100" for="sunshine">sun burn</label>
-                                         <input type="radio" class="d-none" id="sunshine" name="theme">
+                                     <a class="dropdown-item" style="width: 35px !important" href="#">
+                                         <label class="w-100 h-100 green position-relative" for="green">
+                                         </label>
+                                         <input type="radio" class="d-none w-100 h-100" id="green"
+                                             name="theme">
                                      </a>
-                                     <a class="dropdown-item" href="#">
-                                         <label class="w-100 h-100" for="dust">dusty</label>
+                                     <a class="dropdown-item" style="width: 35px !important" href="#">
+                                         <label class="w-100 h-100 dust position-relative" for="dust"></label>
                                          <input type="radio" class="d-none" id="dust" name="theme">
                                      </a>
-                                     <a class="dropdown-item" href="#">
-                                         <label class="w-100 h-100" for="night">night</label>
-                                         <input type="radio" class="d-none" id="night" name="theme">
+                                     <a class="dropdown-item" style="width: 35px !important" href="#">
+                                         <label class="w-100 h-100 pink position-relative" for="pink"></label>
+                                         <input type="radio" class="d-none" id="pink" name="theme">
+                                     </a>
+                                     <a class="dropdown-item" style="width: 35px !important" href="#">
+                                         <label class="w-100 h-100 dark position-relative" for="dark"></label>
+                                         <input type="radio" class="d-none" id="dark" name="theme">
                                      </a>
                                  </div>
 

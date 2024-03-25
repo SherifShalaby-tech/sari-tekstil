@@ -35190,6 +35190,32 @@ mark {
     font-weight: 500;
 }
 
+.vertical-menu>li>button:hover {
+
+    border-top: 1px solid var(--clr-dark) !important;
+    color: var(--clr-dark) !important;
+    background-color: var(--clr-light) !important;
+    border-bottom: 0 !important;
+    transition: 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.vertical-menu>li>a:hover {
+    border-top: 1px solid var(--clr-dark) !important;
+    border-bottom: 0 !important;
+    color: var(--clr-dark) !important;
+    background-color: var(--clr-light) !important;
+    transition: 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.submenu__button:hover {
+    color: var(--clr-dark) !important;
+    background-color: var(--clr-light) !important;
+}
+
 .vertical-menu>li>a>i {
     display: inline-block;
     width: 30px;
@@ -35209,7 +35235,7 @@ mark {
 }
 
 .vertical-menu>li>a.active {
-    color: #1ba4fd;
+    color: var(--clr-less-light);
 }
 
 .vertical-menu>li>a.active img {
@@ -35894,7 +35920,7 @@ mark {
 
 .topbar .infobar .notifybar h5 {
     font-size: 15px;
-    color: #181a39;
+    color: var(--clr-less-light);
     margin-top: 0;
     margin-bottom: 5px;
 }
